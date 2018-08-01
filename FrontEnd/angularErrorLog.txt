@@ -1,0 +1,10 @@
+
+1) 404 not found -> address wrong(check url ), import can be wrong(or undefined)
+2)Unexpected value 'undefined' declared by the module 'AppModule'
+     -> check class name in import and export statements.
+3)No NgModule metadata found for 'AppModule'.
+     ->  check sequence of import @NgModule and export statements in app.module.ts
+4)ReferenceError: imports is not defined
+     -> check for keyword (wrong keyword used).   
+5)app-header is not a known component 
+   you probably forgot to add new component in app.module.ts

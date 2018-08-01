@@ -1,0 +1,65 @@
+Developers best practices
+
+1) Read Codes
+2) Documentation
+3) Standards
+4) Review Codes
+5) Testing
+6) Backup
+7) Latest Tools
+
+\\ variables
+
+start with only alphabet and underscore.
+name should tell what than how
+descriptive name for global with upper camel case;
+short name for local with lower camel case
+constant should all capital with underscore to separate two words
+boolean variables should start with is or has
+avoid using literal string or numbers
+       e.g. For i = 1 To 7. instead For i = 1 To NUM_DAYS_IN_WEEK
+class structure should not be queue.queueCapacity  it should be queue.capacity; 
+
+\\functions
+name should reflect actions(verb) plus objects (names) e.g. CalculateInvoiceTotal()
+name should lower camel case
+boolean value returning functions should start with is or has
+each functions should have one clearly defined task.
+
+\\ coding
+use minimum no of parameters
+functions should affect only one value its return value;
+
+
+
+\\ expressions
+code optimization has nothing to do with complex expressions
+so keep expressions simple
+Remember that programs are written for programmer not for computes
+
+\\ Indentation
+indent to show structure
+Be consistent with indentation
+It is more important to have consistent style than particular style
+
+\\ comments
+use comments for part of program which is difficult to understand
+comment functions and global data
+do not comment bad code rewrite it
+
+
+\\ errors
+predict and handle errors before occuring
+
+\\ Testing
+test code at boundry points
+measure test coverage
+
+\\ performance
+time measurement
+do not optimize what does not matter
+check for space and time complexity
+concentrate on hot spots
+customize configuration 
+save by using smallest possible data type
+do not save which can be easily calculated

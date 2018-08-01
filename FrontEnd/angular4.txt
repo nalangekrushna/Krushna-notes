@@ -1,0 +1,177 @@
+angular concepts  https://www.codeproject.com/Articles/1174685/Learn-Angular-step-by-step-for-Beginners-Lab
+city and state    https://gist.github.com/shadabtughlaq/82c0fb64b578694db17b3150a1d05af3
+
+AMD vs CommonJS vs UMD 
+	two module specs AMD and CommonJS allowed developers to write their code in an agreed modularized way. AMD, Common JS are nothing but two styles of authoring Javascript code that help in making the code modular. 
+	AMD - (Asynchronous Module Definitions) made popular by Require JS. CommonJS is a style you will be familiar with if worked in Node.One of the above is good if you are authoring modular code for your apps. But what happens if you begin to author libraries.?
+	There are libraries used on the server side and client side. If you don't make your code compatible to both cases, then you'll find developers having trouble of using it and resorting to shims to get your library working. Classic example being - underscore.js in AMD. Underscore.js is not an AMD module and will have to be shimmed to be used.
+    while authoring libraries, its important that you satisfy consumers of both these styles - at least till the near future where they decide which is the spec. This gives rise to the.. 
+	UMD - Universal Module definition.
+	This is a universal pattern that supports both the styles mentioned above. 
+	Full Illustration at https://www.linkedin.com/pulse/amd-vs-common-js-umd-damodaran-sathyakumar/
+
+node.js  
+   1) npm:-node package manager = central repositary of all open source javascript
+           frameworks
+   2) node.js = runs javascript outside browser
+   
+CommonJs(serverjs) = defines module format and specification to interact between different
+                     module so different javascript frameworks can be used together
+
+SystemJs =  universal dynamic module loader
+
+TypeScript = typed superset of javascript that compiles to plain javascript
+             1) suger coating language
+			 2) there is no private, protected as well as interface. It will
+			 transpiled to public and interface is at all not added
+
+transpiler = one language to another language		
+
+What is the difference between SystemJS and CommonJS
+
+CommonJS is a specification while SystemJS is opensource Javascript a loader which 
+follows specifications like CommonJS. CommonJS specification defines how modules in 
+JavaScript work , how they can be exposed and how they can be called. SystemJS is a 
+loader which follows CommonJS specs and other specs.	 
+
+angular 4 project 
+   files and folders already available inside project folder
+   1) karma.conf.js = configuration for writing unit tests
+            karma = test runner
+			jasmine = framework for test running
+   2) package.json = managing all libraries, dependancies and modules
+   3) tslint.json = building application
+   4) tsconfig.json = configuration  file for typescript
+   5) protractor.conf.js = testing configuration
+   6) .gitingnore = defines files and folder to exclude from repositary
+   7) .editorconfig = editor configuration file 
+   8) .angular-cli.json = configuration of angular 4 project
+            project name 
+			app = here we tell source folder
+			index.html  = starting point of application
+			main = starting point of typescript to be executed
+			styles = all css part
+			polyfills.ts = backward compability
+			test.ts = write unit test
+			tsconfig.app.json = how our application should be compiled
+	9) folder e2e 
+	10)folder node_modules
+	11) folder src =  All Angular components, templates, styles, images, and anything else your app needs go here. Any files outside of this folder are meant to support building your app.
+	    1) folder app
+	         1) app.module.ts = Defines AppModule, the root module that tells Angular how to assemble the application.
+			     NgModule = container of all modules
+				 HttpModule = handles http requests
+				 FormsModule = handle angular forms
+			 2) app.component.spec.ts = writes unit test for app.component.ts
+		2) folder assets = contains all audio, video and text files
+        3) folder environment = This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application.		
+	12)README.md = It has some basic information on how to use CLI commands. 
+	     
+Command
+   ng-serve = start running angular project
+   project running address on browser localhost:4200
+   ng g/generate component(what) my-component(name)   
+   
+naming conventions
+   all modules end with module and all components end with component
+
+routing in angular = loading particular part of page without reloading complete page
+
+1) why * is used in angular ?
+  -> When Angular sees the asterisk (*) in ngFor, it will use its DOM element as 
+  template to render the loop.
+  ->(official) The * is a bit of syntactic sugar that makes it easier to read and 
+  write directives that modify HTML layout with the help of templates.  NgFor, NgIf, 
+  and NgSwitch all add and remove element subtrees that are wrapped in <template> 
+  tags.
+  
+2) sequence inside @NgModule in app.module.ts ?
+  -> there is no sequence restriction inside @NgModule you can do imports, declarations
+     bootstrap in any sequence.
+	 
+3) importing sequence for files
+   -> also there is no restriction in any order you can import both library as 
+      well as user defined fines.
+4) import sequence for @NgModule, import and export class ?
+    -> sequence strictly as follows
+	     1)import
+	     2)@NgModule
+	     3)export class
+
+5) file paths 
+    if we use ./ at starting file path starts from current directory.
+	if we didn't use anything file path starts from project starting directory 
+       i.e. from same level of index.html	
+	if we use only / then file path start after localhost:8080/
+
+6) import keyword comes from ES6/Typescript and imports from angular
+    the import we are using on first line is ES6 import which also requires export
+	with it.and imports from @NgModule is angular import.
+	
+7) {} = what is mean by it in angular
+
+8)class name imported inside should be same as class name exported from another file.
+It is case sensitive. 
+9) declarations inside angular 
+    -> declares parent and child component of that module.
+	
+10) ngOnInit = 
+
+angular templates
+
+define 
+      <ng-template #template_name></ng-template>
+calling
+      template_name inside any angular expression
+	  
+data binding 
+  1) interpolation {{}} = used for one way binding(component class to view only)
+  2) one way binding [] = same as above
+  3) Two way binding [()] = bananas in box needs to understand deeply
+  4) Event Binding () = Angular 2.0 directly uses the valid HTML DOM element events. 
+     For example, ng-click is now replaced with (click). The round brackets 
+	 (parentheses) are used with DOM event name for event binding in Angular 2. 
+	 
+() = Round brackets indicate data sent from UI to object.
+[] = Square brackets indicate data is sent from object to UI.
+
+If else format inside html
+ <p *ngIf = "expression";  then True_template else false_template">Hello</p>
+   <ng-template #true_template>html part</ng-template>
+     hellow will be printed if we didn't write then part
+	 
+Pipes (filters in angularjs)(|) = 
+    custom pipe declaration
+	     definition
+		      import {Pipe , PipeTransform} from '@angular/core' ;
+			  @Pipe ({
+			      name : 'sort'
+			  })
+			  export class SortPipe implements PipeTransform   {
+			      transform(value,any[], args: string) : any {
+				      if(args == 'ascending') {
+					     return value.sort();
+					  }
+					  else if(args == 'descending') {
+					     return value.sort().reverse();
+					  }
+				  }
+			  }
+			  
+			  inside html
+			  {{ arr | sort : 'ascending'}}
+Imp :- pipe should be declared before the class in which we are using it. Inside the app.module.ts inside @NgModule in declarations part
+
+Forms :- 1) template driver form = work done inside html(template)         
+                in angular4 inside it automatically detects form element inside it automatically detects which contains directives 
+                called ngModel and fetches it inside app.component.ts. We use FormsModule here.
+                #form_name = "ngForm" (ngSubmit)= "function_name(form_name.value)" 				
+         2) model driven form  = work done inside ts(component class) 
+		        It is easier to perform validations and testing using model driven form than template driven form.Also we can detect
+				any change happening in the form.easily do two way data binding.We use ReactiveFormsModule here.
+				
+
+
+
+			
+		 

@@ -1,0 +1,30 @@
+Introduction 
+	method of least square
+	Linear Regression = Linear regression is used for predicting quantitative values,such as an individual’s salary.
+	Linear discriminant analysis = to predict qualitative values, such as whether a patient survives or dies
+	Logistic Regression = advanced(now a days used) version of Linear discimination analysis.
+	Generelised linear model = linear regression + logistic regression
+	Classification and Regression trees
+	Generalized additive model = class of non-linear extension to generalized linear model.
+	ESL(Element of Statistical Learning) = more advance book for machine learning experts.
+	n = number of distinct data points, or observations,in our sample
+	p = p denote the number of variables that are available for use in making predictions. For example, the Wage data set consists
+	    of 12 variables for 3,000 people, so we have n = 3,000 observations and p = 12 variables (such as year, age, wage, and more).
+	Xij = represent the value of the jth variable for the ith observation, where i = 1, 2, . . ., n and j = 1, 2, . . . , p.
+	X = n*P
+	K-nearest neighbour classifier = 
+	cross validation = A central problem in all statistical learning situations involves choosing the best method for a given application.
+	bootstrap  = which can be used to estimate the accuracy of a number of different methods in order to choose the best one.
+	stepwise selection = 
+	ridge regression = 
+	principal component regression = 
+	partial least square = 
+	lasso = 
+	tree based methods = 
+	bagging = 
+	boosting =
+	random forest = 
+	support vector machines = 
+	hierachical clustering = 
+	features/predictors/independant variables/variables
+	label/response/dependant variable 

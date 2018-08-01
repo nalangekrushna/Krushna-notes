@@ -1,0 +1,25 @@
+1) what is data science ?
+	Data science is an interdisciplinary field of scientific methods, processes, algorithms and systems to extract knowledge or insights from data in various forms, either structured or unstructured, similar to data mining.-wiki
+	
+When it comes to data, size isn’t everything.
+
+2) what is sample error ?
+	Sample error reﬂects the risk that, purely by chance, a randomly chosen sample of opinions does not reﬂect the true views of the population. the “margin of error” reported in opinion polls reﬂects this risk and the larger the sample, the smaller the margin of error. 
+	
+3) what is sampling bias ?
+	sampling bias is when the sample isn’t randomly chosen at all.
+	
+4) margin of error ?
+
+5) confidence interval =
+
+6) statistical inference = 
+
+data is number with context. If we consider humnan as unit of observation. then data set consist of number of humans. and his age, height, weight becomes properties or variables. There are three types of variables
+	i) categorized variables = these categories do not have arithmatic meaning e.g. race,gender,nationality.
+	ii) quantitative variables = values that can actuallly averaged or sumed. e.g. height weight age
+	iii) ordinal variables = it does have an order. eg. education, frequecy of exercise. 
+the statistics are summaries of numerical data.but they do not tell stories.but they are useful.
+
+exploratory data analysis =
+confirmatory data analysis =  

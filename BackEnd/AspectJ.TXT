@@ -1,0 +1,54 @@
+AspectJ
+	AspectJ, as one of its strong points, features helpful tools. It provides an aspect weaver in the form of a compiler, an aspect-aware debugger and documentation generator, and a standalone aspect browser to visualize how an advice crosscuts a system's parts.
+
+
+AOP - OOP does not adequately address behaviors that span over many -- often unrelated -- modules. In contrast, AOP methodology fills this void.
+
+AOP Concepts
+1) Aspect – a standard code/feature that is scattered across multiple places in the application and is typically different than the actual Business Logic (for example, Transaction management). Each aspect focuses on a specific cross-cutting functionality. 
+	The modularization unit in AOP is called an aspect, just as a common concern's implementation in OOP is called a class.
+2) Joinpoint – it’s a particular point during execution of programs like method execution, constructor call, or field assignment
+3) Advice – the action taken by the aspect in a specific joinpoint
+4) Pointcut – a regular expression that matches a joinpoint. Each time any join point matches a pointcut, a specified advice associated with that pointcut is executed
+5) Weaving – the process of linking aspects with targeted objects to create an advised object.
+6) concern - A concern is a particular goal, concept, or area of interest. In technology terms, a typical software system comprises several core and system-level concerns. For example, a credit card processing system's core concern would process payments, while its system-level concerns would handle logging, transaction integrity, authentication, security, performance, and so on. Many such concerns -- known as crosscutting concerns
+	Pointcut and advice together specify weaving rules. Aspect, a class-like concept, puts pointcuts and advices together to form a crosscutting unit. The pointcuts specify execution points and the weaving rule's context, whereas the advices specify actions, operations, or decisions performed at those points. You can also look at joinpoints as a set of events in response to which you execute certain advices.
+-------------------------------------------------------------------------------------------------------
+AspectJ vs Spring AOP
+1) Capabilities and Goals
+	Spring AOP aims to provide a simple AOP implementation across Spring IoC to solve the most common problems that programmers face. It is not intended as a complete AOP solution – it can only be applied to beans that are managed by a Spring container.
+	On the other hand, AspectJ is the original AOP technology which aims to provide complete AOP solution. It is more robust but also significantly more complicated than Spring AOP. It’s also worth noting that AspectJ can be applied across all domain objects.
+
+------------------------------------------------------------------------------------------------------------
+AOP development steps:
+1) Aspectual decomposition: Decompose the requirements to identify crosscutting and common concerns. You separate module-level concerns from crosscutting system-level concerns. For example, in the aforementioned credit card module example, you would identify three concerns: core credit card processing, logging, and authentication.
+2) Concern implementation: Implement each concern separately. For the credit card processing example, you'd implement the core credit card processing unit, logging unit, and authentication unit.
+3) Aspectual recomposition: In this step, an aspect integrator specifies recomposition rules by creating modularization units -- aspects. The recomposition process, also known as weaving or integrating, uses this information to compose the final system. For the credit card processing example, you'd specify, in a language provided by the AOP implementation, that each operation's start and completion be logged. You would also specify that each operation must clear authentication before it proceeds with the business logic.
+-----------------------------------------------------------------------------------------------------------
+Weaving : The weaver, a processor, assembles an individual concern in a process known as weaving. The weaver, in other words, interlaces different execution-logic fragments according to some criteria supplied to it. The desired composition requires the following weaving rules, expressed here in natural language
+	1) Log each public operation's beginning.
+	2) Log each public operation's completion.
+	3) Log any exception thrown by each public operation.
+--------------------------------------------------------------------------------------------------------------
+Joinpoints : Although any identifiable point in a program's execution is a joinpoint, AspectJ limits the available joinpoints to those usable in a systematic manner. AspectJ makes the following pointcuts available:
+	1) Method call and execution
+	2) Constructor call and execution
+	3) Read/write access to a field
+	4) Exception handler execution
+	5) Object and class initialization execution	
+
+-----------------------------------------------------------------------------------------------------------
+The AOP language specification : At a higher level, an AOP language specifies two components:
+	1) Implementation of concerns: Mapping an individual requirement into code so that a compiler can translate it into executable code. Since implementation of concerns takes the form of specifying procedures, you can to use traditional languages like C, C++, or Java with AOP.
+	2) Weaving rules specification: How to compose independently implemented concerns to form the final system. For this purpose, an implementation needs to use or create a language for specifying rules for composing different implementation pieces to form the final system. The language for specifying weaving rules could be an extension of the implementation language, or something entirely different.
+
+AOP language implementation : AOP language compilers perform two logical steps:
+	1) Combine the individual concerns.
+	2) Convert the resulting information into executable code.
+	
+An AOP implementation can implement the weaver in various ways, including source-to-source translation. Here, you preprocess source code for individual aspects to produce weaved source code. The AOP compiler then feeds this converted code to the base language compiler to produce final executable code. For instance, using this approach, a Java-based AOP implementation would convert individual aspects first into Java source code, then let the Java compiler convert it into byte code. The same approach can perform weaving at the byte code level; after all, byte code is still a kind of source code. Moreover, the underlying execution system -- a VM implementation, say -- could be aspect aware. Using this approach for Java-based AOP implementation, for example, the VM would load weaving rules first, then apply those rules to subsequently loaded classes. In other words, it could perform just-in-time aspect weaving.
+
+-------------------------------------------------------------------------------------------------------------
+references
+1) http://www.baeldung.com/spring-aop-vs-aspectj
+2) https://www.javaworld.com/article/2073918/core-java/i-want-my-aop---part-1.html best concept explaination

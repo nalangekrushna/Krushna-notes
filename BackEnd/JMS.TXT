@@ -1,0 +1,65 @@
+
+JMS
+
+1) What Is Messaging?
+-> Messaging is a method of communication between software components or applications. A messaging system is a peer-to-peer 
+   facility: A messaging client can send messages to, and receive messages from, any other client. Each client connects to a 
+   messaging agent that provides facilities for creating, sending, receiving, and reading messages.It is loosely coupled.
+   
+2) What Is the JMS API?
+-> The Java Message Service is a Java API that allows applications to create, send, receive, and read messages.JMS API defines a 
+   common set of interfaces and associated semantics that allow programs written in the Java programming language to communicate 
+   with other messaging implementations.JMS messages are PERSISTENT by default.features of JMS API:
+   i) Asynchronous: A JMS provider can deliver messages to a client as they arrive; a client does not have to request messages 
+                    in order to receive them.
+   ii) Reliable: The JMS API can ensure that a message is delivered once and only once.
+   
+   A JMS application is composed of the following parts.
+   i) JMS PROVIDER: A JMS provider is a messaging system that implements the JMS interfaces and provides administrative and 
+                    control features. An implementation of the Java EE platform includes a JMS provider.
+   ii) JMS CLIENTS: JMS clients are the programs or components, written in the Java programming language, that produce and 
+                    consume messages. Any Java EE application component can act as a JMS client.
+   iii) Messages :  are the objects that communicate information between JMS clients.
+   iv) Administered objects : are preconfigured JMS objects created by an administrator for the use of clients.
+   
+   basic building blocks of a JMS application:
+   a) Administered Objects : JMS clients access these objects through interfaces that are portable. an administrator configures 
+                             administered objects in a JNDI namespace, and JMS clients then access them by using resource 
+							 injection. 
+	    i) Connection Factories : A connection factory is the object a client uses to create a connection to a provider. A 
+		                          connection factory encapsulates a set of connection configuration parameters that has been 
+								  defined by an administrator.
+		ii) destinations : A destination is the object a client uses to specify the target of messages it produces and the 
+		                   source of messages it consumes. In the PTP messaging domain, destinations are called queues. In the 
+						   pub/sub messaging domain, destinations are called topics. 
+   b) Connections : A connection encloses a virtual connection with a JMS provider. 
+   c) Session : A session is a single-threaded context for producing and consuming messages. You use sessions to create the 
+                following: 
+		i) Message producers
+		ii) Message consumers
+        iii) Messages
+        iv) Queue browsers
+        v) Temporary queues and topics
+   d) Message Producers : A message producer is an object that is created by a session and used for sending messages to a 
+                          destination. 
+   e) Message Consumers : A message consumer is an object that is created by a session and used for receiving messages sent to 
+                          a destination.
+		i) Message Listener : A message listener is an object that acts as an asynchronous event handler for messages. 
+		ii) Message Selector : If your messaging application needs to filter the messages it receives, you can use a JMS API 
+		                       message selector, which allows a message consumer to specify the messages that interest it. 
+							   Message selectors assign the work of filtering messages to the JMS provider(activemq) rather than
+							   to the application.
+   f) JMS Messages : A JMS message can have three parts: a header, properties, and a body. Only the header is required.
+        i) Header: A JMS message header contains a number of predefined fields that contain values used by both clients and 
+		           providers to identify and route messages.
+		ii) properties: You can create and set properties for messages if you need values in addition to those provided by the 
+		                header fields. You can use properties to provide compatibility with other messaging systems, or you can 
+						use them to create message selectors.
+		iii) Body : The JMS API defines five message body formats, also called message types, which allow you to send and 
+		            receive data in many different forms.
+   g) Queue Browsers: Messages sent to a queue remain in the queue until the message consumer for that queue consumes them. The 
+                      JMS API provides a QueueBrowser object that allows you to browse the messages in the queue and display the
+					  header values for each message.
+		
+QueueConnectionFactory : A client uses a QueueConnectionFactory object to create QueueConnection objects with a point-to-point 
+                         JMS provider.

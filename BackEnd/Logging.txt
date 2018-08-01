@@ -1,0 +1,80 @@
+Logging
+
+logger should be asynchronous as synchronous logging will block the process.
+avoid using isDebugEnabled method.(find some turnaround to this)
+
+log4J components
+1) Categories
+2) Appenders = logging requests to print to multiple output destinations.
+3) Layouts =  customize output format
+
+stack used
+1) slf4j interface
+2) log4j 2 as implementation
+3) try to use aspectJ
+4) advance tool : Spring Cloud Sleuth
+5) advance tool : zipkin
+
+Filters
+1) level
+2) categories
+
+Logging Aspects
+1) Monitoring
+2) Performance
+3) Security (auditing)
+4) Scalability and high availability
+5) Recoverability
+6) capacity
+
+levels
+1) ERROR – something terribly wrong had happened, that must be investigated immediately. No system can tolerate items logged on this level. Example: NPE, database unavailable, mission critical use case cannot be continued. 
+2) WARN – the process might be continued, but take extra caution. Actually I always wanted to have two levels here: one for obvious problems where work-around exists (for example: “Current data unavailable, using cached values”) and second (name it: ATTENTION) for potential problems and suggestions. Example: “Application running in development mode” or “Administration console is not secured with a password”. The application can tolerate warning messages, but they should always be justified and examined.
+3) INFO – Important business process has finished. In ideal world, administrator or advanced user should be able to understand INFO messages and quickly find out what the application is doing. For example if an application is all about booking airplane tickets, there should be only one INFO statement per each ticket saying “[Who] booked ticket from [Where] to [Where]”. Other definition of INFO message: each action that changes the state of the application significantly (database update, external system request).
+4) DEBUG – Developers stuff.
+5) TRACE – Very detailed information, intended only for development. You might keep trace messages for a short period of time after deployment on production environment, but treat these log statements as temporary, that should or might be turned-off eventually. The distinction between DEBUG and TRACE is the most difficult, but if you put logging statement and remove it after the feature has been developed and tested, it should probably be on TRACE level.
+
+rules for logging 
+1) Don’t forget, logging levels are there for you
+2) Do you know what you are logging?
+3) Avoid side effects = software should not fail due to logging failure.
+4) Be concise and descriptive -> i) Each logging statement should contain both data and description.
+							     ii) Was it so hard to include thee actual message type, message id, etc. in the warning string? I know something went wrong, but what? What was the context?
+								 iii)  Show the data being processed and show its meaning. Show what the program is actually doing.
+5) Tune your pattern = the ideal logging pattern should include (of course except the logged message itself): current time (without date, milliseconds precision), logging level, name of the thread, simple logger name (not fully qualified) and the message.
+6) You should never include file name, class name and line number, although it’s very tempting. I have even seen empty log statements issued from the code. because the programmer assumed that the line number will be a part of the logging pattern and he knew that “If empty logging message appears in 67th line of the file (in authenticate() method), it means that the user is authenticated”. Besides, logging class name, method name and/or line number has a serious performance impact.
+		A somewhat more advanced feature of a logging frameworks is the concept of Mapped Diagnostic Context. MDC is simply a 
+map managed on a thread-local basis. You can put any key-value pair in this map and since then every logging statement 
+issued from this thread is going to have this value attached as part of the pattern.
+7) Log method arguments and return values 
+8) Watch out for external systems = This is the special case of the previous tip: if you communicate with an external system, consider logging every piece of data that comes out from your application and gets in. 
+9) Log exceptions properly = First of all, avoid logging exceptions, let your framework or container (whatever it is) do it for you. There is one, ekhem, exception to this rule: if you throw exceptions from some remote service (RMI, EJB remote session bean, etc.), that is capable of serializing exceptions, make sure all of them are available to the client (are part of the API). Otherwise the client will receive NoClassDefFoundError: SomeFancyException instead of the “true” error.
+10) Logs easy to read, easy to parse = There are two groups of receivers particularly interested in your application logs: human beings (you might disagree, but programmers belong to this group as well) and computers (typically shell scripts written by system administrators). use patterns that can be easily recognized by regular expressions, etc. If it is not possible, print the data in two formats:Computers will appreciate “ms after 1970 epoch” time format, while people would be delighted seeing “1 day 10 hours 17 minutes 36 seconds” text. 
+11) don't use single log file (mostly create new log file every day)
+12) don't log confidential information
+13) Tracking single operation across multiple systems and logs =  single request will very likely hit multiple of these services, and if a problem does occur, we’ll need to corroborate all of the individual logs of these systems to get the full picture of what happened. 
+To address this kind of architecture, we now have a new generation of logging helper tools in the ecosystem, such as Zipkin and Spring Cloud Sleuth.
+Zipkin traces requests across microservice architectures to help you identify which application is causing the issue. It also comes with a helpful UI where you can filter traces based on application, length of the trace or timestamp.
+And the Spring Cloud Sleuth project works by adding a unique 64-bit ID to each trace; a web request, for instance, can constitute a trace. This way, the request can be identified across multiple services.
+14) If possible try to use JSON format instead of plaint text which is easy to parse.
+15) Logging performance = Number of threads used for logging
+16) Avoid recording errors with long stack traces repeatedly
+17) Do not use AOP indiscriminately for injecting logs, especially in production
+18) Do not use logging as a replacement for other monitoring strategies
+
+N+1 select problem
+------------------------------------------------------------------------------------------------------
+Ideal logging statement
+	1) make file for every day with name of application and date. e.g. expert_console.dd-mm-yyyy.log
+	2) BY DEFAULT
+hh-mm-ss pm/am IST [thread_name] log.level which_is_logging_class - type_of_loggin(request/response/time_measurement)< which_method_is_loggin> paramters[name=value,name=value] object_name[name=value,name=value]
+
+for failure message RESPONSE
+hh-mm-ss pm/am IST [thread_name] log.level which_is_logging_class - EXCEPTION< which_method_is_loggin> errorcode : code errormessage : message \n stact trace
+
+---------------------------------------------------------------------------------------------------
+references
+1) https://www.javacodegeeks.com/2011/01/10-tips-proper-application-logging.html
+2) https://www.javaworld.com/article/2076243/java-se/log4j-delivers-control-over-logging.html
+3) https://dzone.com/articles/9-logging-sins-in-your-java-applications
+4) https://dzone.com/articles/high-performance-and-smarter  to improve performance use this article

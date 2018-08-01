@@ -1,0 +1,122 @@
+Security
+Input validation 					config management
+authentication						sensitive info
+cryptography						parameter manipulation
+audit and logging					session management
+authorization 						Exception handling
+
+securing network 
+router		 firewall 		switches 
+
+securing host
+patches and updates 		protocols		services		accounts		files and directories		shares
+ports						registry 		audit and logging
+--------------------------------------------------------------------------------------------------------------
+security principles 
+least privileges		seperation of duties		defence in depth		minimize attack surface area
+fail securely			secure default				don't trust services
+------------------------------------------------------------------------------------------------------------
+security requirement samples			add requirement after every word
+identification		authentication & password management		authorization & role management		integrity 	
+intrusion detection 		Nonrepudiation		privacy		security audit and logging		physical protection
+system maintainance security		third party comp analysis		encryption		hashing 	reusable security framework	
+backup 		server uptime
+----------------------------------------------------------------------------------------------------------------------
+design principles
+1) least privileges : Also access should be time based
+2) fail safe defaults : allowing resource to be accessed only if explicit access is granted to user.By default user do not have 
+access to any resources
+3) complete mediation : every access to every resource must be validated for authorization.
+4) open design : security of system and its algorithm should not dependant on secrecy of design or implementation
+5) seperation privilege : access attempts to be granted for more than one condition e.g. active status and timing.
+6) least common mechanism  : mechanism used to access resource should not be shared.
+7) defence in depth : layering resource access authorization verification in a system.
+-----------------------------------------------------------------------------------------------------------------------
+SDLC secure implementation
+validate input and output		minimize unsafe function used		use strict compiler setting and resolve warnigs
+use latest compiler toolset		technoloy used are latest?any risk assessment done?		use static and dynamic analysis tool
+manual code review				use logging and tracing			default deny		give least privilege	
+sanitize data sent to other system		adopt secure coding standard
+-----------------------------------------------------------------------------------------------------------------------
+Security Tools 
+acunetix		open web application security project zap (owasp zap)		paros		checkmarx		coverity
+appscan(ibm security)		HP webInspect		fortify			Nessus		portswigger		sonar		whitesource
+
+Assasin  techm developed
+https://assassin.techmahindra.com:8443/ASSASSIN/Login.jsp
+-----------------------------------------------------------------------------------------------------------------------
+Application security frameworks
+microsoft sdl		clasp		nist		sse cmm gartner		touchPoints		safeCode		bsimm8		tsp-secure
+software assurance maturity model
+
+-------------------------------------------------------------------------------------------------------
+top 10 technical mistake
+1) code injection : injection vulnerability occurs every time you send data to interpreter (eg webserver) 
+		priventions : 1) standard centralized input validation mechanism
+					  2) strongly typed parameterized query api
+					  3) if no 2 is not possible then carefully escape special character using specific escape syntax for interpreter.use owasp's ESAPI for escape routines.
+					  4) encode least privilege account when connecting db or backend.
+					  5) avoid detailed error message as those are useful for attackers.
+2) Broken authentication and session management
+		priventions : 1) seperate public and restricted areas.
+					  2) use account lookout policies for end users
+					  3) use strong password management
+					  4) do not use plain text password in storage and transmit
+					  5) be able to disable account
+					  6) use ssl to protect cookies and set cookie lifetime.
+					  7) limit sessin lifetime using timeout period.
+					  8) do not expose session identifier or any part of credentials in url.
+3) cross site scripting :
+		priventions : 1) explicitly specify output encoding.
+					  2) all others ways are also same in no 2 of technical mistakes.
+					  
+4) Broken Access control : 
+		priventions : 1) don't explicitly map id/key/index for user,role,functions explicitly.Attacker may guess it.
+					  2) don't use absolute path as a part of request for information. Attacker may try to access files 
+							directly through other channels.
+					  3) file stored locally on web or application server should not be publicaly accessible.Files intended for
+							users should mark as read only by os mechanism.
+					  4) page containing sensitive info should not cached on cliend side.
+					  
+5) security misconfiguration :
+		priventions : 1) a repeatable hardening process that makes it fast and easy to deploy a locked down environment.
+					  2) dev prod and qa environment should configured identically.process should be automated.
+					  3) process for software updates and patches.
+					  4) running scans periodically to assss misconfiguration.
+6) Sensitive data exposure : 
+		priventions : 1) not to store sensitive data if no longer required.
+					  2) encryption algorithms with key management.
+					  3) try to use disable autocomplete.
+					  
+7) Insufficient attack protection : 
+		priventions : 1) intrusion detection system.
+					  2) web application firewall.
+					  3) all above guidelines.
+					  
+8) cross site request forgery : 
+		priventions : 1) insert custom random tokens in every form and url that will be not auomatically submited by browser like cookie.
+					  2) verify token at serve side. it should be unique for per user per session basis.
+					  3) for sensitive data use re authentication or transaction signing.
+					  4) don't use get request for sensitive data or value transactions.
+					  
+9) third party library with known vulnerability :
+		priventions : 1) conduct risk assessment.
+		
+10) unprotected APIs :
+		priventions : 1) secured communication between client and api.
+					  2) request data parsers communication should be hardened.
+					  3) access control scheme from functions and references.
+					  4) protect against injection of all forms.
+		
+-------------------------------------------------------------------------------------------------------------------
+OWASP  (check website thoroughly)
+maven plugin to check if any publically known vulnerability are there for all third party libraries.
+https://www.ysofters.com/2015/12/01/owasp-dependency-check-at-ysoft/
+		
+------------------------------------------------------------------------------------------------------------------------
+most imp security course 
+contains broad guidelines 
+SS1431 
+------------------------------------------------------------------------------------------------------------
+to find all security related courses in techm dext 
+use secure or security keywords in search.

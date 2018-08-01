@@ -1,0 +1,50 @@
+what why how when who 
+tomcat
+
+1) what is tomcat ?
+-> Java Servlet Container. to run php you need to configure it. It is designed for java. 
+ 
+   servlet/web container = component of a web server that interacts with Java servlets.A web container
+   is responsible for managing the lifecycle of servlets, mapping a URL to a particular servlet and 
+   ensuring that the URL requester has the correct access-rights.
+   
+2) Apache Tomcat = the apache(web server) manages the static data of the web pages,redirection etc 
+   whereas tomcat(web container) manages the web application.
+   
+3) difference between web server and application server ?
+-> Web server contains only web or servlet container. It can be used for servlet, jsp, struts, jsf 
+   etc. It can't be used for EJB.It is a computer where the web content can be stored. In general web
+   server can be used to host the web sites but there also used some other web servers also such as 
+   FTP, email, storage, gaming etc.
+   
+   Application server contains Web and EJB containers. It can be used for servlet, jsp, struts, jsf, 
+   ejb etc. It is a component based product that lies in the middle-tier of a server centric 
+   architecture.It provides the middleware services for state maintenance and security, along with 
+   persistence and data access. It is a type of server designed to install, operate and host 
+   associated services and applications for the IT services, end users and organizations.
+   
+4) Java servlets = runs inside web container. 
+   lifecycle = The lifecycle of a servlet is controlled by the container in which the servlet has 
+   been deployed. When a request is mapped to a servlet, the container performs the following steps.
+   1)If an instance of the servlet does not exist, the web container
+         i)Loads the servlet class.
+		 ii)Creates an instance of the servlet class.
+         iii)Initializes the servlet instance by calling the init method.
+   2)Invokes the service method, passing request and response objects. 
+   3)Destroy method = the destroy() method is called only once at the end of the life cycle of a 
+   servlet. This method gives your servlet a chance to close database connections, halt background 
+   threads, write cookie lists or hit counts to disk, and perform other such cleanup activities.
+   After the destroy() method is called, the servlet object is marked for garbage collection. 
+   
+5) Components of tomcat = 
+   1)Catalina = Catalina provides Tomcat's actual implementation of the servlet specification; when 
+   you start up your Tomcat server, you're actually starting Catalina.
+   Catalina is the Java Engine (JRE / JVM) that's built into Tomcat and provides an environment in 
+   which Servlets can be run.
+   
+   2)Coyote = Coyote is the HTTP connector that's built into Tomcat and provides Tomcat with an 
+              interface that browsers can connect to.
+   
+   3)Jasper = Jasper is the Java Server pages handler in Tomcat; internally, it deals with any 
+              compiling that's neccessary, and converts JSPs into Servlets for Catalina to handle.
+   

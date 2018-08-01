@@ -1,0 +1,39 @@
+Machine Learning
+	supervised 
+	unsupervised
+	
+Supervised Learning
+	Regression = type of supervised learning. when we need to predict numerical (non-discrete) value use regression.
+	
+	feature is input; label is output
+	A feature is one column of the data in your input set. For instance, if you're trying to predict the type of pet someone will choose, your input features might include age, home region, family income, etc. The label is the final choice, such as dog, fish, iguana, rock, etc.
+	Once you've trained your model, you will give it sets of new input containing those features; it will return the predicted "label" (pet type) for that person.
+	
+	Example = One row of a data set. An example contains one or more features and possibly a label.
+	Squred Loss = the squares of the difference between a model's predicted value for a labeled example and the actual value of the label. 
+	Mean Squred Loss = The average squared loss per example. MSE is calculated by dividing the squared loss by the number of examples.
+	Root Mean Squred Error = The square root of the Mean Squared Error.
+	
+	
+	model = The representation of what an ML system has learned from the training data.
+	ways to measure error in model = root mean square error, mean absolute error
+	
+	bell shape histogram
+	disease score normalization
+	different algorithms used in data science
+	Inverser Document frequency 
+	median
+	sobel edge detection algorithm
+	harris corner detection algorithm
+	loss function = determines major difference between lot of machine learning methods.
+	statistical learning theory
+	principal of ockham razor = among hypothesis that predicts equally well we should choose the one with fewest assumptions.
+								best models are the simple moedels which fits data well.
+								we need to balance between accuracy and simplicity.
+	cursive dimensionality = cursive dimensionality is that we tend to overfit when we have lot of features and not as much data
+	Regularisation =
+	logistic regression = find the weights that minimizes the sum of training loss. It just chooses the coefficients (those betas ) to minimize this things.
+	loss function of logistic regression = log(1+e^(-y*f(x)))
+	if f is some of weighted features where the weights are called beta.and I also call beta coefficient.
+	
+	maximum likelihood percentage = didn't understood

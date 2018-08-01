@@ -1,0 +1,16 @@
+some personal portfolio designs
+https://medium.freecodecamp.org/15-web-developer-portfolios-to-inspire-you-137fb1743cae
+
+rgba(255,255,255,0.95);   color for headline
+another good color		#24292e
+
+Observable = wrapper around some asynchronous(mostly) or synchronous data stream.
+Observer = does some activity when Observable signals success or error or completion.
+subscription = by subscription method we tells observable that someone i response.
+
+method of Observer :
+	1) next() = this method is called everytime when Observable emits new value.
+	2) error() = when error comes observable stops so complete method never gets called.
+	3) complete() = when complete called it means observable stopped reading values. no later values are readed.
+	
+unsubscribe = it is used to stop observable leaking.you unsubscribe method when you no longer needed any values.

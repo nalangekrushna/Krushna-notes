@@ -1,0 +1,146 @@
+folder name = component name
+name of component Component
+
+webpack = webpack is a module bundler for modern JavaScript applications. When webpack 
+          processes your application, it recursively builds a dependency graph that 
+		  includes every module your application needs, then packages all of those modules
+		  into a small number of bundles - often only one - to be loaded by the browser.
+		  1)entry = webpack creates a graph of all of your application's dependencies. 
+		            The starting point of this graph is known as an entry point. The entry
+					point tells webpack where to start and follows the graph of 
+					dependencies to know what to bundle. You can think of your application'
+					s entry point as the contextual root or the first file to kick off 
+					your app.
+		  2)Output =Once you've bundled all of your assets together, you still need to 
+		            tell webpack where to bundle your application. The webpack output 
+					property tells webpack how to treat bundled code.
+		  3)Loader =Loaders in webpack transform these files into modules as they are 
+		            added to your dependency graph.
+          4)Plugins=While Loaders only execute transforms on a per-file basis, plugins 
+		            are most commonly used to perform actions and custom functionality on 
+					"compilations" or "chunks" of your bundled modules.
+           All the above properties can be found at webpack.config.js
+		   
+1)What are decorators?
+  =>Decorators are a design pattern that is used to separate modification or decoration 
+    of a class without modifying the original source code. 
+  =>Decorators are functions that are invoked with a prefixed @ symbol, and immediately 
+    followed by a class, parameter, method or property. The decorator function is supplied
+	information about the class, parameter or method, and the decorator function returns 
+	something in its place, or manipulates its target in some way. Typically the 
+	"something" a decorator returns is the same thing that was passed in, but it has been 
+	augmented in some way.	
+    
+html path in template url is relative to that component
+
+we dont need to add .ts it is added automatically by webpack. It is feature of typescript.
+we just add single angular tag inside index.html. we add all other tags in html page of that 
+tag. if you want to add some more tags in index.html page then add them to bootstrap in 
+app.module.ts in bootstrap section.
+
+*.spec.ts file in used for testing
+
+you cannot combine styles and styleUrls and also template and templateUrl.note the s in 
+styles in above sentence styles or styleUrls can be multiple, but template cannot.
+
+selector have three methods to add
+1)As a tag 
+      inside ts file of that selector
+e.g. selector : 'selector-name'
+      inside html file of selector
+<selector-name></selector-name>
+2)you can change selector to attribute selector by enclosing it into square brackets.
+      inside ts file of that selector
+e.g. selector : '[selector-name]'
+      inside html file of selector
+	  <div selector-name></div>
+any html tag can be used instead of div.
+3)As a class 
+      inside ts file of that selector
+e.g. selector : '.selector-name'
+      inside html file of selector
+	  <div class="selector-name"></div>
+any normal html tag can be used instead of div.but you cannot use hover like element.
+
+string interpolation syntax condition is any expression that can be converted into string.
+also you cannot add multiline expression there.you also call method in it.
+
+ES6 arrow function :() => {} : function (){} : only difference is handling this keyword.
+
+although both string interpolation and property binding reflects changes occured during
+program running. recommendation is for static property use string interpolation and 
+the property that changes during running use property binding.don't mix property binding
+string interpolation.
+
+$event = 
+
+@Input () = used to access child element in parent component.you can set this properties 
+            from outside(bindable).
+@Output () = you can listen this properties from outside.Used to emit event to parent
+             from child class.
+			 
+shadow dom =
+encapsulation = 
+local reference # = can be used anywhere in that html.It gives us element with all its 
+                    properties.but we cannot get access to local reference in ts file.
+@ViewChild('local_reference')= 
+ElementRef = 
+Renderer2 = 
+
+Angular lifecycle hooks
+1)ngOnChanges = it is executed when component initialized and also on change in every 
+                bound property marked with @Input.
+2)ngOnInit = it is executed after constructor and for once.
+3)ngDoCheck = every tme something in component changes it is called.
+4)ngAfterContentInit = when content inside <ng-content> is projected.that time method will
+                        be called.
+5)ngAfterContentChanged = called every time the projected component has been checked.
+6)ngAfterViewInit = after parent and child views are initialized.
+7)ngAfterViewChecked = 
+8)ngOnDestroy = called once when component is about to destroy.
+
+lifecycle calling sequence(r = repeated again after this cycle completed : no in repeated cycle)
+1)constructor
+2)ngOnChanges(r:1)
+3)ngOnInit
+4)ngDoCheck(r:2)
+5)ngAfterContentInit
+6)ngAfterContentChanged(r:3)
+7)ngAfterViewInit
+8)ngAfterViewChecked(r:4)
+9)ngOnDestroy						
+
+Services use cases
+1) code duplication
+2) data storage
+
+Promise = 
+
+id in html form 
+
+json web token
+
+Hierachical Injector
+emmet plugin for better html code writing.
+
+Module = A module is a collection of services, directives, controllers, filters, and configuration information.
+
+component = a part or element of a larger whole(general)
+            Components are the most basic building block of an UI in an Angular application. An Angular application 
+			is a tree of Angular components. Angular components are a subset of directives. Unlike directives, 
+			components always have a template and only one component can be instantiated per an element in a 
+			template.A component must belong to an NgModule in order for it to be usable by another component or 
+			application. To specify that a component is a member of an NgModule, you should list it in the 
+			declarations field of that NgModule.
+
+directives =Directives allow you to attach behavior to elements in the DOM. A directive must belong to an NgModule 
+            in order for it to be usable by another directive, component, or application. To specify that a 
+			directive is a member of an NgModule, you should list it in the declarations field of that NgModule.
+			
+Services =  Services are an abstraction layer that handles an application's business logic, which usually includes 
+            communicating with a backend and parsing/returning data or datasets.
+			When developing an Angular app, you will most likely run into a scenario in which you need to use the 
+			same code across multiple components. You may even need to share data between components, or you may 
+			need to fetch data from a database of some sort. It's these times when creating an Angular service makes
+			sense. An angular service is simply a function that allows you to access its' defined properties and 
+			methods. It also helps keep your coding organized.
