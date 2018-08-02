@@ -1,0 +1,56 @@
+Principles of Machine Learning
+	misclassification/classification error = (false positive + false negative)/total no of observations.
+
+	recall = true positive rate
+	precision = true positive/ total no of predicted positive
+	f1  score  = 2(precision * recall)/(precision + recall)
+				 it is balance between precision and recall.So if either precision or recall is bad then f1 score is bad.
+				 If f1 score is good then your model is good.
+	machine learning researchers use accuracy or misclassification to compare between different algorithms.
+	bivariate normal distribution = 
+	heuristic = 
+	
+	influential points = an influential point changes estimates substantially when ommited.
+	Leverage = if you move xi then f(xi) moves proportionally.The proportionality constant is called the leverage of point i.
+	
+	Ways to improve accuracy of model 
+		feature selection = 
+			Greedy backward selection = 1) start with all features
+										2) find the feature which hurts predictive power least when removed
+										3) remove it.
+										4) stop when some criterian met.
+			Greedy forward selection =  1) start with no feature
+										2) find the feature that by itself is the best model.
+										3) Keeping that feature you add another feature so the combination of both is best.
+										4) Keep those two and add another feature.
+										5) stop when some criterian met.
+		which feature should we add next = one which gives largest boost to accuracy.
+		when should we stop =  when we reach point of diminishing return.
+		how to know we reached point of diminishing return = adjusted R2
+		Regularization
+		Interpreting features
+		sweeping model parameters
+		cross validation
+		colinear features or highly corelated features
+		scaling features 
+		ridge regression
+		least square regression
+		nested cross validation = tuning parameters
+		decision tree = 1) c4.5
+						2) CART
+		Information = from observing the occurence of event.
+					  number of bits needed to encode probability of the event.
+					  If event has probability p then we need -log2(p) bits.
+		Spliting criteria for decision tree = Information gain
+		Information gain for particular subset of data in particular branch on variable A
+		Gain(S,A) = expected reduction in entropy due to branching on variable A.
+				  = original entropy - entropy after branching
+		Gini index
+		Boosting =
+		coordinate descent perspective = 
+		empirical performance
+		Bootstrap Sample of size n = draw n points from replacement at random from training data.
+		Support Vector Machine
+		kernal trick
+		Radial Basis Function Kernal
+		
