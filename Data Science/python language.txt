@@ -1,0 +1,29 @@
+python : interpreted, case-sensitive, object-oriented,
+languages are not interpreted or compiled, but rather language implementations either interpret or compile code. 
+A minimum python software consist of support libraries, compiler to convert code into byte code.(in .pyc file) and python virtual machine(PVM) interpreter. we could say python is byte code interpreted language.(CPython official implementation).
+
+Some naming conventions
+Only class name should be start with Capital letter all other identifiers starts with lower case.
+an identifier must be start with alphabets or underscore.followed by zero or more alphabets,numerics and underscores.
+we can't use special characters,reserved words in identifiers.
+identifier starting with single underscore is private.
+identifier starting with double underscore is strongly private.
+if identifier is start with double underscore and end with two trailing underscores then it is language defined special name.
+we can use multiline statement by using backward slash(\) and for string we can also use triple quotations.
+
+DocString : it is a string that occurs as first statement in module, function, class or method definition.
+
+function vs method = simply method is function inside a class.
+Function → Free (Free means not belong to an object or class)
+Method → Member (A member of an object or class)
+
+semicolon(;) allows multiple statements to single line but it is discouraged.
+
+Generator and yield = A generator is a function that produces or yields a sequence of values using yield method.
+When a generator function is called, it returns a generator object without even beginning execution of the function. When the next() method is called for the first time, the function starts executing until it reaches the yield statement, which returns the yielded value. The yield keeps track i.e. remembers the last execution and the second next() call continues from previous value.
+
+9.00000000e-01 = 0.9 = 9 * 10**-1
+
+
+
+

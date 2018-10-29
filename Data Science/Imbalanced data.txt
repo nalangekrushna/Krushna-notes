@@ -1,0 +1,14 @@
+Different ways to deal with imbalanced data
+	1) oversampling
+	2) undersampling
+	3) K means clustering
+	4) SMOTE 
+	5) MSMOTE
+	6) ensembles or hybrid
+	
+Metrics to apply in imbalanced datasets
+	1) precision/specificity
+	2) recall / sensitivity
+	3) f1 score
+	4) MCC : correlation coef between observed and predicted binary classification
+	5) Area Under Curve
