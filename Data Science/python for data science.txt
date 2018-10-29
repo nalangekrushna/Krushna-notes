@@ -1,0 +1,88 @@
+week 1
+	feature selection = selecting attributes that have greatest impact towards the problem solving.It requires some domain
+		knowledge to narrow down the number of features.
+		
+	data science 
+		step 1) formulating a well stated data science problem. list some questions others to ask to get value out of their data.
+				what problem you are trying to tackle.
+				what problem that needs to be addressed.
+				or opportunity that needs to be asserted.
+		step 2) Assess the situation with respect to problem or opportunity you have defined.
+				Analyze risk,cost,benfits,contigencies regulation,resource and requirements of situation.
+				what are requirements of problem.
+				what are assumptions and constraints.
+				what resoureces are available for you.(persons,capital)
+				what are main costs associated with project.
+				what are potential benefits.
+				what risks are there in pursuing a project
+				what are contigencies to potential risk.
+				Answer of the above questions will
+				help you to get better overview of situation.
+				better understanding of what project involves.
+				How will you guide your programming to solve project.
+		step 3) define goals and objectives.define success criteria.
+		step 4) formulate a plan to come with solution.
+	
+	Basic Steps in Data Science Process
+		1) acquire = include anything that makes us retrieve data including finding, accessing,acquiring, moving data. It 	
+			includes identification of authenticated access to all related data,transportation of data from different sources and ways to subset and match the data to regions or time of interest.
+		2) preparation = first step in data preparation involves litterally looking at data to understand its nature,quality 	
+			and format.It often takes a preliminary data analysis or sample of data to understand this.
+			Second step is pre- processing data for analysis.It includes cleaning data, subsetting or filtering data and 
+			creating data that programs can read and understand via modelling raw data into a more defined data model or 
+			packaging it using specific data format.If there are multiple dataset involved, it also includes integration of data from different data source and streams. Prepared data then will be passed to analysis step.
+		3) analysis = selection of analytical technique to use building a model of data and analyzing the results. This step 
+			will take couple of iterations on its own or might requires data scientist to go back to step 1 and 2 to get more data or package data in different way.
+		4) reporting = it includes evaluation of analytical results.presenting them in visual way. and creating reports that 
+			includes an assessment of results with respect to success criteria.
+		5) Act = determining action from insights based on purpose you initially define.
+		
+	heat map = tellls where is the hot spot.
+	histogram = shows distribution of data also can show skewness or unusual dispersion.
+	boxplots = shows data distribution
+	Line graph = shows how values in your data change over time.
+	scatter plot  = relation between two variables.
+	
+	Data quality = you could remove rows missing data.
+				   merge duplicate values.
+				   retain the nearer value whenever there is conflict for invalid values.
+				   a missing age value of employee can be filled with reasonable estimate considering length of employment.
+				   outliers can be removed if they are not important to task.
+				   In order to resolve all this issues knowledge of application such as how data is collected, user  population
+				   intended user of application are important.
+				   domain knowledge is also required to handle such a incomplete or incorrect data.
+				   keep the records of changes you have made.
+				   to reduce data variability you can aggregate the data.e.g. daily sales value have many spurious changes.
+				   aggregatging value to monthly or weekly basis will result in smoother data.
+	data manipulation/data pre-processing/data wrangling/data munging = some operations are scaling, tranformation, feature 
+		selection, dimensionality reduction
+		
+	Scaling = changing range of values between a specified range such as from zero to one.This is done to avoid certain features
+		with large values from dominating the result.e.g. in analyzing data with height and weight the magnitude of weight 
+		values is much greater than magnitude of height values.so scaling between 0 to 1 will equalize the contribution.
+	feature selection = removing redundant or irrelevant features.
+						combining features
+						creating new features.
+						If two features are too corelated then one can be removed.
+	Dimensionality Reduction = it is useful when dataset has large no of dimensions.It involves finding smaller set of 
+		dimensions that captures most of variation in data.Principal component analysis is used for this.
+		
+	Association analysis = come up with set of rules to capture association between items or events.
+	Graph analysis = this is used when you have lot of entities and connection between entities like social network.It is used 
+		to exploring spread of disease or epidemic by analyzing hospitals and doctors record. Identification of security threats
+		by monitoring social media,email,text-data. Optimization of mobile network traffic.
+		
+	Reporting = It can change shape based on audience.first thing is to look at your result and decide what to present.part of 
+		that means determining which part of your analysis is most important to offer the biggest value to your scientific 
+		community, your company, your industry or your particular audience.In deciding what to ask you should ask yourself 
+		following questions.
+			1) what is my punchline in other word what are results.
+			2) what value this results provide based on specific domain that I am working on
+			3) application question led to
+			4) how do result compare to success criteria.
+		you neeed to include answer to this questions in your report or presentation.
+		
+		
+	
+	
+		
