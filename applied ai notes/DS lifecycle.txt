@@ -1,0 +1,14 @@
+Data Science Life cycle
+
+1) understand business requirements = define the problem and customer. product manager
+2) data acquitision  = ETL = sql,log files and hadoop. data engineer
+3) data preparation = cleaning,pre-processing. 
+4) Exploratory Data Analysis ,hypothesis testing.slice and dice data
+5) Modelling Evaluation and Interpretation
+6) communicate the results.
+7) deployment    software engineer, distributed system engineer
+8) real time testing, A/B testing 
+9) customer business buy in
+10) operations = retrain model, handle failures, procedure for failures and retraining.
+11) optimizations = improve model, more data, more features, optimize code.
+

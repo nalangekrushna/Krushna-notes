@@ -1,0 +1,49 @@
+
+Notes are IMPORTANT!
+
+Feynman technique = 1) pick and study topic
+					2) explain topic to child( unfamiliar person with subject)
+					3) indentify any gaps in your understanding.
+					4) go back to content to fill the gaps.
+
+spced interval learning = 
+	1) after 1 day try to explain concept using feynman techniques.
+	2) after 1 week try to solve q and a in applied ai course
+	3) after 1 month again use feynman's technique.
+	
+learning to learn 
+	No course in world can teach you everything..
+	Image search is great way.
+	post comment on video that you don't understand
+	you will get email responsed to all questions you posted.
+	additional reading report 
+	weekly progress reports
+	submit assignments in ipynb and pdf format
+	take response on whatsapp or email.
+	save your work on google drive
+	error dubug using just google.
+	
+most important aspects of data science by order
+1) feature engineering
+2) Bias-Variance Tradeoff
+3) Data analysis and visualization.
+
+Can you explain the difference between ML and DL without using any technical term like features or multilayer neuron?
+	
+magnetism by richard feynman 
+https://www.youtube.com/watch?v=Q1lL-hXO27Q
+Inspirational video : you can learn anything.
+https://youtu.be/JC82Il2cjqA
+difference between predictive modelling and machine learning
+https://www.educba.com/machine-learning-vs-predictive-modelling/
+
+Recommended books
+http://greenteapress.com/thinkstats/thinkstats.pdf
+Introduction to Probability and Statistics for engineers and scientists, Sheldon M Ross
+Linear Algebra and Its Applications, Gilbert Strang
+Video lectures: https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/
+The Elements of Statistical Learning: Trevor Hastie https://web.stanford.edu/~hastie/ElemStatLearn/
+Pattern Recognition and Machine Learning, Christopher Bishop
+Deep Learning, Ian Goodfellow http://www.deeplearningbook.org/
+
+

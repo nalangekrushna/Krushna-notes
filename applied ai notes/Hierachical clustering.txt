@@ -1,0 +1,26 @@
+Types of hierachical clustering = 
+	1) agglomerative (more popular) = at starting considers everything as seperate cluster. and then group them by similarity or distance.
+	2) divisive = at starting considers everything as single cluster.and then divides them into different clusters.
+	
+dendogram = graphs showing distance between clusters.
+
+Agglomerative clustering algorithm = 
+1) compute a proximity matrix.(similarity values between two points.)
+2) let each point be cluster.
+3) Repeat
+	a) merge the two closest clusters.
+	b) update the proximity matrix.
+4) until only single cluster remains 
+
+similarity between two clusters 
+1) min distance( single linkage algo) = extremely sensitive to noise and outliers
+2) max distance(complete linkage) = less affected by noise.breaks large clusters and biased towards globular clusters.
+3) group average = compromise between min and max. it takes max as well as min distance and averages all. It is less succeptible to noise. and it is biased towards globular clusters. sometime it breaks and sometime did not break large clusters depending upon density of cluster.
+4) distance between centroids
+5) other methods derived from objective function.
+
+ward's method for cluster similarity = similar to group average when distance between points is distance squared.
+
+space complexity = n squared
+time complexity  = n cube
+ 

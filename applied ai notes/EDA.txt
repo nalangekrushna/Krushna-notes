@@ -1,0 +1,10 @@
+EDA
+Always focus on objectives there are different ways of analysis but you should focus on your objective(i.e. classification)
+Always write conclusions below their graphs
+
+scatterplot = used to find correlation between two variables.
+3 d scatterplot = used to print in 3d space.
+pair plot = upto 4/5 variables  gives both scatterplot as well as histogram.
+histogram = for univariate analysis
+probability density function = 
+cumulative density function = addition of pdf from 0 to 1.

@@ -1,0 +1,42 @@
+Python notes
+
+Keyword = reserved,cannot use as identifier, variable name, function name,case-sensitive
+list of keywords -> import keyword; 	keyword.kwlist;
+identifiers = combination of alphanumerics and underscore, can start with only alphabet or underscore. can't use 	
+	special characters.
+comments = #,'''
+muliline code = use \ at end of first line. or you can use it in brackets.
+variable = location in memory to store some data(value).
+id(variable) = gives location of variable in memory.
+every value in python has datatype.since everything is object in python programming data types are actually classes and variables are instance(object) of classes.
+list [] = heterogeneous data types,mutable = sequential data structure = seq[start:end:step],indexing
+tuple () = heterogeneous data types, immutable(constant list), indexing
+set {} = unique data, heterogeneous data types,unordered (you can't access particular element.), non-indexing
+dictonary {key:value,key:value} = heterogeneous data types(like maps in java)
+
+def func(a,b,*test,**kwargs)
+func(1,2,’test1′,’test2′,{‘1′:1,’2’:2})
+out: normal args 1 2 -> normal arguments
+args (‘test1’, ‘test2’) -> tuples
+kwargs {‘1’: 1, ‘2’: 2} -> key value pairs
+%  operator gives modulus/reminder  e.g. 5%2  =1
+// operator gives quotient    e.g. 5//2  = 2    -5/2 = -3 
+**  exponential operator
+in  membership operator
+is  identity operators  only gives true when pointing to same memory location.
+
+write docstrings for function -- good programming practice.
+Python returns None when you do not return anything in function.
+Some built in methods
+	all = check if all values are true( for 0 or False it returns false)
+	enumerate = returns list with index
+	dir =  gives all attributes of given variable.
+	filter(function, list) = returns subset of list
+	type = gives type of variable
+	isinstance(variable,datatype) = return true or false
+	map(function,list) = apply function to every value in list
+	reduce(function,list) = apply function for first two values and then apply it to returned value with third value and so on.
+Always keep non-default value arguments first.
+lambda function : lambda argument : code
+module = file containing python statements and functions
+In python for anything to consider package it should have __init__.py module. init file could be empty or it should have some initialization code.

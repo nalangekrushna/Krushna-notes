@@ -1,0 +1,33 @@
+co-variance = co-variance sign if positive tells us about if x increase then y also or if negative then x increase 	then y decreases. but by magnitude we cannot tell how much big difference is cause magnitude depends on metric system.
+consider example of height and weight if we take weight in kg or pound then there will be different magnitude.
+
+Pearson correlation coef = covarince(X,y)/(sigma(x)*sigma(y))
+	pearson coef lies between -1 to +1. it will be +1 or -1 for all points falling on same line.
+	covarince and pearson coef are biased towards linear relationships.
+	pearson coef slope of line doesn't matter.also cannot capture non-linear complex relationships.
+	
+Spearman rank correlation coef = it creates new variable by sorting all x and all y in ascending order and then calculate pearson correlation coef rank.
+
+correlation doesn't imply causation.
+two random variable are correlated doesnot mean one causes another.e.g. no of nobel prize winners vs chocolate consumption per capita. Its correlation is 0.8 but it chocolate consumption cannot get you nobel prize.
+Causul model =  advance area of statistics and machine learning.
+
+https://sciencebasedmedicine.org/evidence-in-medicine-correlation-and-causation/
+
+confidence interval = height between 160 to 180 cm(interval) with 95% probability(confidence) vs
+point estimate = height 168.5 cm
+
+mean for normal random variable 
+	case 1: you have sample and std-dev = just by using simple formula. = using central limit theorem.
+	case 2: you just have sample = t -distribution/student's t dist = sample follows t-1 degrees of freedom.
+	case 3: empirical bootstrap method to calculate confidence interval.
+
+bootstrap samples : sample generated using uniform distribution.(sample with replacement).
+non-parametric technique : doesn't make any assumption related to distribution.
+
+Hypothesis testing 	
+Null hypothesis = no difference between mean values of two set of data.
+Alternative hypothesis = inverse of null hypothesis
+Proof contradiction	= here we assume null hypothesis is true and prove alternative hypothesis is false.
+p-value = probability of observing difference between mean values of two set of data if null value is true.
+p-value = probability of observing already observed value when the assumption (null hypothesis) is true.

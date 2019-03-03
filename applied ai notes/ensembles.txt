@@ -1,0 +1,45 @@
+ensembles = group of things
+
+Types of ensembles :
+	1) Bagging (bootstraped aggregation) = 
+	2) Boosting 
+	3) Stacking 
+	4) Cascading
+	
+bootstrap sample = 
+sampling with replacement = 
+
+Random forest(rf) = decision tree as base models  + row sampling + column sampling + aggregation
+	random = random bootstrap sampling with replacement.
+	forest = group of decision tree
+	feature bagging = bootstrap sampling( row sampling) + feature sampling (column sampling ).
+	bagging = bootstrap + aggregation
+	out of bag(oob) rows  =  rows which are skipped in particular model.
+	oob error =  error on oob points.
+	bias = low as learners(decision tree) are low bias models. bias value is bias of individual model. 
+	variance = in rf output is aggregation of no of models k. so as k increases variance decreases.
+	
+Extremely randomized tree = decision tree as base models  + row sampling + column sampling + aggregation + randomization when selecting threshold to check maximum gini impurity reduction.
+	
+Cases  = all the cases taken by decision tree are also applicable here.
+
+bagging = low bias,high variance + randomization(column+row sampling) + aggregation
+boosting = low variance,high bias + additive combining.
+
+Gradient Boosting
+	residual = actual value - predicted value 
+	negative gradient(residual) = pseudo residua
+
+	loss minimization 
+		classification = logistic loss
+		linear regression = squared loss
+		svm = hinge loss
+	
+	you can minimize any loss function in gradient boost so gradient boost performs slightly well than random forest as random forest cannot minimize any loss function.
+	in gradient boosting as no of base models(m) increases then chances of overfitting also increases.
+	also as shrinkage coef increases chances of overfitting also increases.
+	
+XGboost = GBDT + row sampling + column sampling
+
+Stacking classifier = m base model of different types build seperately.
+	

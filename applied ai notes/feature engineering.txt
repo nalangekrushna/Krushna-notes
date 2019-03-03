@@ -1,0 +1,31 @@
+
+Fourier decomposition/transform = popular method for time series data.
+amplitude = height of wave from zero.
+time period = time taken for one oscillation.
+frequency = 1/time period
+phase  = distance from x axis when time = 0
+
+fourier transform =  if you have repeating pattern then you can break it into sum of sine wave.
+whenever you have repeating pattern in time series frequencies are important.
+when you get time series use fourier transform to convert it into frequency domain and then take amplitude and frequency value as features.
+
+image histograms = color histogram, edge histogram
+color histogram = image has pixels and every pixel has RGB values and all values go from 0 to 255. color histogram
+	cannot recognize shape.
+Edge histogram = edge histogram capture angle of edge.
+
+SIFT = scale invariant feature transform = object detection = for any point it creates 128 dimensional vector.
+scaling invariance = feature didn't change much if size of image changes.
+rotational invariance = feature didn't change much if image is rotated.
+
+Indicator variable  = binary variable answering yes or no
+
+feature binning = to bean the given feature take only that feature and label(y variable) and build a decision tree and use decision tree visualization to bin given feature.
+
+interaction feature = combining two features with any mathematical operation.for every leaf node you can create a interactive feature. combining two features will become two way interaction.
+
+Model specific featurization
+	Logistic regression on power law distributed data = apply log function on power law distributed data as it will convert it into gaussian or normal distributed curve on which logistic regression works best.
+	 
+feature slicing = 
+

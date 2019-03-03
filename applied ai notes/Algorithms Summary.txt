@@ -1,0 +1,11 @@
+KNN
+	Best cases
+	1) when dimensionality is small(<10)
+		problems with large dimensionality
+		1)curse of dimensionality when using eucludian distance
+		2)interpretability reduces.
+		3)runtime complexity of kdtree or LSH increses.
+		
+	Worst cases
+	1) when required low latency system.
+		If needed to use kNN then try to use with LSH or kdtree.

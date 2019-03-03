@@ -1,0 +1,17 @@
+Logistic Regression(lr) = 
+
+Assumptions = all classes are almost/perfectly linearly seperable.
+There is no collinearity or multi collinearity.
+
+lr is prone to outliers.
+Imbalanced data needs to be handled.
+
+monotonic function  = if x increases then f(x) also increases.
+
+ways to convert non linear datapoints to linear datapoints.(feature engineering).
+1) polynomial function( f1,f1 square,f1 cube)
+2) trignometric function (sin cos tan)
+3) boolean functions ( and or xor)
+4) log or exponential functions.
+
+ 

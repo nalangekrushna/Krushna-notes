@@ -1,0 +1,20 @@
+
+Accuracy = no of correctly clasified points/ total no of points.
+	when you have imbalanced dataset never use accuracy as performance matrix.
+	when model also returns probability score then there is no way to incorporate probability in accuracy metrics.
+	
+Confusion matrix = 
+
+Receiver Operating Characteristic curve(ROC) = 
+	1) sort all data in decreasing order of y predicted.
+	
+Area under Curve(AUC) = for dumb model auc could be high.
+AUC didn't depend on predicted y scores but only there order.
+AUC of random model will be exactly 0.5.
+consider a case where auc of your model is 0.2 then change the output class label from 0 to 1 and vice versa and then your auc will be 0.8.
+
+Log-loss = log-loss used probability scores. log loss value should be less.
+
+R squared/coef of determination = if it is near the 1 then model is very good. if it is near to zero then model is bad.
+
+median absolute deviation (MAD) = r squared is not robust for outliers. so we use MAD.

@@ -1,0 +1,27 @@
+Amazon food review
+
+why convert text to vector
+if we convert text to vector we can use all power of linear algebra there.
+
+text-preprocessing
+1) remove stop words
+2) convert to lower case
+3) stemming
+4) lemmitazation
+5) uni-gram,bi-gram,n-gram
+	in uni-gram each word is considered as dimension. In bi-gram each consecutive pairs of word is considered as dimension.
+	
+term frequency = no of time the word occured/total no of words
+Inverse document frequency = log(total no of documents/no of documents containing given word.)
+
+formula for word value vi = Term frequency * inverse document frequency.
+
+what tf idf does ?
+	tf = more importance if word is frequent in document.
+	idf = more importance to rarer word in document corpus.
+	limitation = doesn't take semantic meaning.
+	
+word2vec = takes semantic meaning in consideration. works on dense matrix
+sparsity of matrix = no of zeroes/total no of values.
+
+tsne for bow,tf-idf,avg w2v,tf-idf w2v

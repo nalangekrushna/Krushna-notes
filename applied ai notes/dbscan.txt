@@ -1,0 +1,50 @@
+density based clustering = you will put points in dense regions(clusters) or sparse regions(noise).
+
+dbscan  = density based spatial clustering of applications with noise 
+
+density at point p = no of points within hypersphere of radius epselon around p.
+
+dense region = a hypersphere or radius epselon that contains atleast min points points  
+min points = no of points to have in epselon radius to qualify it as dense region.
+
+epselon(eps) = 
+
+core point = point p is said to be core if point p has greater than equal to min no of points in epselon radius around it. core point always belong to dense region.
+border point = if p has less than min point points in epselon radius. but p belongs to neighbourhood q where q is core point.
+neighbourhood = distnace between p and q is less than equal to epselon.
+
+noise point =  point which is not core as well as border point.
+
+density edge = a straight line between two core points and distance between two points is less than epselon is called density edge. 
+
+density connected points = two points p and q which are core said to be density connected point when there density edge between p to p1 , p1 to p2 and p2 to q 
+
+dbscan algorithm = 
+1) label each point as core, border ,noise point.
+2) remove all noise points in data.
+3) for each core point p which is not assigned to any cluster 
+	a) create a new cluster with given point
+	b) add all points that are density connected to p add them into p cluster.
+	(initially no core point is assigned to any cluster. we select p randomly.)
+4) take each border point and assign it to nearest cluster.
+
+Hyper parameters
+1) Min points = rule of thumb always equal to greater than d. better d*2. take larger min points when data is noisy.
+2) epselon = after deciding min points (consider min point = 4 here)
+	calculate di = distnace from x i to 4 th min point of xi 
+	sort di in increasing order 
+	plot elbow graph and find point of sudden change. and di value at that point is our epselon.
+	
+Advantages of dbscan 
+1) it can handle noise very well.
+2) it can handle different size and shape.
+3) don't requires to give k value.
+
+Limitations = 
+1) small change in epselon could give completely different clusters. didn't works well with varying densities.
+2) high dimensions data didn't works well.
+
+time complexity = nlogn
+space completely = n
+
+

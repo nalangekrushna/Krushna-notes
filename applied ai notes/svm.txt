@@ -1,0 +1,44 @@
+SVM (support vector machine) = svm tryes to find hyperplane that maximizes the distance between two parallel lines to the hyperplane one of which touches negative point and other touches positive point i.e. margin.
+
+margin= distance between two lines which are parallel to svm hyperplane.
+as margin increses generalization accuracy increses.
+generalization accuracy = accuracy on unseen data points.
+
+support vectors = points through which pie+ and pie- passes are called support vectors.
+
+alternative geometric intuition =
+convex hull = its a smallest polygon such that all points are on the polygon or inside polygon.
+
+convex shape = a shape is said to be convex if points inside it goes to each other without going out or touching the boundaries of the shape.
+
+hard margin = in hard margin no error is allowed i.e. positive points should at one side and negative points should be at other side of respective support vector.
+
+soft margin = error are allowed by tried to minimize them.
+
+hinge loss = 
+
+kernal  = kernals do feature transform internally.
+rbf kernal(radial basis function) = general purpose kernal
+
+domain specific kernal = string kernal, gnome kernal
+
+for training svm special algorithms = sequential minimal optimization(SMO)
+libsvm = best popular open source library for training svm.
+training complexity is (n square) where n is no of datapoints.
+run time complexity is kd where k is no of support vectors and d is dimensionality of data.
+nu-svm : nu(hyper parameter) nu >= percentage of no of errors and nu <= percentage of support vector.
+	percentage of no of errors = no of misclassified points in training data.
+svm classification = svc
+svm regression = svr
+
+SVM use cases
+	feature engineering and feature transform = feature transform replaced by kernal design or kernal selection.
+	getting feature importance is very difficult.
+	outliers have very little impact on svm.but rbf with small sigma can be impacted by outliers.
+	Bias-Variance tradeoff = as c increses, it will get overfitted.i.e. high variance model
+							 and c decreses it will get underfitted i.e. high bias 
+	svm works well for large dimensionality.
+	
+Best Case : having right kernel
+Worst case : n is large i.e. training dataset is large.then train time is long.it is not useful in internet based applications.
+people use linear regression instead of svm when data goes to millions of data points.
