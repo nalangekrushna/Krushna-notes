@@ -3,6 +3,22 @@ File Reading
 		https://stackoverflow.com/questions/28766133/faster-way-to-read-excel-files-to-pandas-dataframe
 		https://gist.github.com/tonyerskine/77250575b166bec997f33a679a0dfbe4
 	Fastest format for reading and writing on disk use feather.
+	
+Import statement 
+	It's often useful to place them inside functions to restrict their visibility and/or reduce initial startup time. 
+	repeatedly executing an import statement can seriously affect performance in some circumstances.
+	don't use from module import *
+	which one is better "import module" or "from module import function" ?
+	-> depends on scenario, importing function takes more time than importing module.but calling module.function or function directly takes nearly same time.(difference of milliseconds)
+	https://stackoverflow.com/a/346967/8144864
+	
+String 
+	string object is immutable in python. please find mutable object in python()
+	use join for joining whenever possible. it is faster than regular string concatenation using plus sign.
+	
+List,Set,Dictionary 
+	prefer use of set over list.
+
 datetime parsing : 
 	add format to increase speed of parse_date in pandas read csv.
 	alternative is to use ciso8601 which is fastest datetime parser written in c language.
@@ -17,6 +33,7 @@ String replacement : translate vs re.sub vs replace
 		replace will be faster than translate for small strings.
 		re.sub is faste than findall and finditer for large amount of data.
 		df.str.replace is faster than df.rename.
+		df.str.replace didn't work with brackets.i.e. with ()
 		
 Regex : Some guidelines you should follow when you aren't sure what to use:
         Is the pattern you're looking for highly static? For example, do you want to split a string on every comma, pipe, or tab?
@@ -35,3 +52,18 @@ for loops
 	vectorization i.e. using square brackets is also a good option.
 	using numpy is the fastest way to do the operations.
 	Alternatively if you wanted to use for loops you could use Cython 
+	
+Miscellaneous = options to reduce code runtime
+	1 microservices
+	2 c extensions
+	3 other python runtimes such as pypy pyston grumpy etc.
+	4 update cython
+	
+Cython 
+	1 detect critical module
+	2 compile it
+	3 add type
+	4 apply additional optimization
+		a change python data structures to c data structures.
+		
+Python profiler 
