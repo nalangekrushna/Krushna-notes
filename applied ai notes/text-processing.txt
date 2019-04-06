@@ -3,6 +3,10 @@ Amazon food review
 why convert text to vector
 if we convert text to vector we can use all power of linear algebra there.
 
+token = You get a token by splitting sentence a space.
+Word = A token that is not a stop_word
+edit distance =  a way of quantifying how dissimilar two strings (e.g., words) are to one another by counting the minimum number of operations required to transform one string into the other. Being the most common metric, the Levenshtein distance is usually what is meant by "edit distance".
+
 text-preprocessing
 1) remove stop words
 2) convert to lower case
