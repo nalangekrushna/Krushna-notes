@@ -1,0 +1,59 @@
+Naive Bays algorithm = its a probabilistic algorithm using bays statistical theorem.
+
+conditional probability = conditional probability is a measure of the probability of an event (some particular situation occurring) given that another event has occurred.
+
+fundamental assumptions 
+1) conditional independance = features are independant of each other. Naive Bays performs very well in this case.
+Naive bays performance decreases with above assumption getting more and more false. But it works reasonably well without perfect conditional independance.
+
+Naive Bays theorem = p(A|B) = p(B|A)*p(A)/p(B) if p(B) != 0
+
+p(A|B) = posterior,   p(B|A) = likelyhood probabilities,   p(A) = prior  p(B) = evidence
+
+Imbalanced Data
+Imbalanced data needs to be handled. best way to handle it is to remove prior and we are done.
+
+Outliers 
+outliers need to be handled. One way of it is laplace smoothing.
+
+feature importance = you can use likelyhood values as feature importance.
+Interpretability = you can say this class got selected as it contains following features which are of high feature importance.
+
+feature standardization 
+Not required
+Naive Bays cannot use distance or similarity matrix.
+Naive Bays can handle large dimensions. but use log probabilities for Naive Bays to avoid numerical stability and underflow issues.
+
+Best :
+1) Naive bays works well with high dimensionality problems like text classification or spam email filtering.
+2) It works well with categorical features also.
+3) its interpretibility is very good.
+4) Its run time time and space complexity is very low.
+5) Its train time complexity is also low.
+
+Worst :
+1) It can be easily overfit if we didn't do laplace smoothing.
+
+out-of-core Naive Bays = when you have data which didn't fit in memory then use this algorithm.
+
+laplace smoothing/additive smoothing = when in test data we get word which is not present in training data then we use additive smoothing for this.
+In imbalanced database minority class gets more affected than majority class by value of alpha.
+
+numerical stability issues = python double precision has 16 significant values. After 16 values python starts rounding. so to avoid that problem we use log probability.
+
+numerical underflow = it means 16  values are not enough to represent number sufficiently.
+
+high bias  = underfitting
+high variance  = overfitting = when small change in training data result in large change in model. 
+
+training phase
+	time complexity = ndc
+	
+evaluation pahse
+	time complexity 
+	space complexity = dc
+	
+
+Imbalence dataset = it affects naive bays algorithm. you have to use upsampling/downsampling methods to handle imbalanced data. other alternative is to drop prior from formula to handle imbalance.
+
+outlier = you have to use laplace smooting to handle outliers.

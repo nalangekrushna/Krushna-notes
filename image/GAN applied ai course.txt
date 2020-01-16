@@ -1,0 +1,49 @@
+
+GAN (generative adversial network) = 
+
+what is first principles approach ?
+
+Task where gan used ?
+-> given bunch of mnist images generate new mnist images. They cannot be copy of original images.
+Task breaking ?
+1) generate one dimensional vectors(scalers) basically numbers from original dataset.This should be very similar to original dataset but not the same ?
+	given data first plot pdf and find distribution type using different tests.
+	generate random sample using given probability distribution.
+	Since original and generated dataset have same distribution,so there values are similar.
+	In histograms if two datasets are overlapping then we said we cannot seperate them out. this is concept behind GAN.
+	Test/Measure how similar original and generated dataset are. We use model based approach In this we labels original model as 1 and generated as 0. and pass through any model with performance measurements.
+	If model able to distinguish between original and generated then my distributions or generated data is not same as original data.
+
+keras flatten operation flattens images by row wise.
+
+why we use cnn or dnn 
+As take example linear regression didn't work well with high dimensionality data. cause you cannot check assumption that data should be multivariate normal as visualizing/measuring multivariate normality becomes impossible as performance matrix are build for single variables at a time. and for visualization 2d you need 3d diagram so visulization for higher dimensions is also impossible.
+
+There are task specific gans
+pixelDTGAN
+SRGAN
+Progressive GAN
+stackGAN
+
+How to train a GAN?
+1) give normal random(must) input to generator.
+2) Initial generator model weights are also random.
+
+For GAN's in generator network normalize input to [-1,1] instead of [0,1].
+For GAN's in generator network it is better to use tanh instead of sigmoid function for last layer. People discovered it by practical. reasons unknown.
+For GAN's sample random input from normal distribution. This also practically.
+For batch normalization don't send original and generated data together. send it in different batches.
+
+simple feed forward neural network = fully connected deep neural network
+
+good article on GAN
+https://medium.com/datadriveninvestor/generative-adversarial-network-gan-using-keras
+
+https://drive.google.com/file/d/1i32iTTdPn_v2nYFB8iHc0tKotVWDsY3a/view
+
+why we decrease total no of neurons in last layer ?
+
+
+you can use readymade/already available gan for given task only you need to do hyper paramter tuning as the gan is not trained on your data but some other dataset.
+
+20-07-1973

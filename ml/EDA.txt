@@ -1,0 +1,48 @@
+EDA
+Always focus on objectives there are different ways of analysis but you should focus on your objective(i.e. classification)
+Always write conclusions below their graphs
+
+scatterplot = used to find correlation between two features.
+3d scatterplot = used to print in 3d space for three features.
+pair plot = upto 4/5 variables  gives both scatterplot as well as histogram.
+
+histogram = for univariate analysis = y axis has its frequency or count and x axis has class interval(bin width) of given feature. it is used in case of continous variables. It shows distribution of continous data.
+histogram is special type of bar chart without any gap between two bars so we cannot show discrete data on histogram.
+How to calculate histogram
+1) first do binning of given feature.
+2) count no of values in each bin.
+3) plot class intervals of given features on x axis and count on y axis.
+4) to plot frequency density instead of frequency divide frequency by class interval size and you will get density which you can plot.
+
+density = probability of having certain value.
+Frequency Density = Frequency / Class Width
+
+Bar graph  = bar graph represents comparison of discrete variables. It has gap between two bars.
+
+probability density function (PDF) is used for continuous random variables;
+probability mass function (PMF) is used for discrete random variables;
+and the probability distribution function is a general term that may refer to both PDF and PMF
+
+probability density function =  A pdf is a function that describes the probability that a random variable will take a certain value.
+The y-axis in a density plot is the probability density function for the kernel density estimation. 
+histogram or pdf are used to find most important feature(i.e. which feature contains most information.)
+cumulative distribution function = addition of pdf from 0 to 1. sum of pdf upto give point.
+
+pmf (probability mass function) = function that gives the probability that a discrete random variable is exactly equal to some value.
+In case of single coin toss height of y axis is 0.5 for both x values head and tail.
+In case of fair die height of y axis is 1/6 for all 6 x values.
+i.e. all pmf should sum to 1.
+
+box plot = A boxplot splits the data set into quartiles.This type of graph is used to show the shape of the distribution, its central value, and its variability. The body of the boxplot consists of a "box" (hence, the name), which goes from the first quartile (Q1) to the third quartile (Q3).Within the box, a vertical line is drawn at the Q2, the median of the data set. Two horizontal lines, called whiskers, extend from the front and back of the box. The front whisker goes from Q1 to the smallest non-outlier in the data set, and the back whisker goes from Q3 to the largest non-outlier. 
+In box plot the whiskers are generally defined as 1.5 times the inter-quartile range. Anything this outside the whiskers is considered as an outlier. the value 1.5 times interquatritle range (from 25% to 75%)came from normal distribution as it convers almost 3*sigma i.e. 99.3% of total data. remaining data is considered as outlier in boxplot.
+
+violin plot = box plot + kernel density plot
+A Violin Plot is used to visualise the distribution of the data and its probability density.
+https://blog.bioturing.com/2018/05/16/5-reasons-you-should-use-a-violin-graph/
+
+the white dot represents the median
+the thick gray bar in the center represents the interquartile range
+the thin gray line represents the 95% confidence interval
+On each side of the gray line is a kernel density estimation to show the distribution shape of the data. Wider sections of the violin plot represent a higher probability that members of the population will take on the given value;
+
+countor plot = 

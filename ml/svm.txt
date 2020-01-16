@@ -1,0 +1,65 @@
+SVM (support vector machine) = svm tryes to find hyperplane that maximizes the distance between two parallel lines to the hyperplane one of which touches negative point and other touches positive point i.e. margin.
+
+margin= distance between two lines which are parallel to svm hyperplane.
+as margin increses generalization accuracy increses.
+generalization accuracy = accuracy on unseen data points.
+
+support vectors = points through which pie+ and pie- passes are called support vectors.
+
+alternative geometric intuition =
+convex hull = its a smallest polygon such that all points are on the polygon or inside polygon.
+
+convex shape = a shape is said to be convex if points inside it goes to each other without going out or touching the boundaries of the shape.
+
+hard margin = in hard margin no error is allowed i.e. positive points should at one side and negative points should be at other side of respective support vector.
+equation = w*x-b = 1 or w*x-b= -1
+optimization problem  = 2*k/||w||     k = 1 which is value of support vector.
+
+soft margin = error are allowed but we try to minimize them.
+equation = avg(hinge loss) + alpha*||w||^2
+
+hinge loss =  max(0, 1-y_i(w*x_i-b))
+
+kernal  = kernals do feature transform internally.
+kernel trick =  The idea is that our data, which isn’t linearly separable in our ’n’ dimensional space may be linearly separable in a higher dimensional space.
+polynomial kernel = 
+rbf kernal(radial basis function) = general purpose kernal
+The linear, polynomial and RBF or Gaussian kernel are simply different in case of making the hyperplane decision boundary between the classes.
+The kernel functions are used to map the original dataset (linear/nonlinear ) into a higher dimensional space with view to making it linear dataset.
+Usually linear and polynomial kernels are less time consuming and provides less accuracy than the rbf or Gaussian kernels.
+
+domain specific kernal = string kernal, gnome kernal
+
+for training svm special algorithms = sequential minimal optimization(SMO)
+libsvm = best popular open source library for training svm.
+training complexity is (n square) where n is no of datapoints.
+run time complexity is kd where k is no of support vectors and d is dimensionality of data.
+nu-svm : nu(hyper parameter) nu >= percentage of no of errors and nu <= percentage of support vector.
+	percentage of no of errors = no of misclassified points in training data.
+svm classification = svc
+svm regression = svr
+
+SVM use cases
+	feature engineering and feature transform = feature transform replaced by kernal design or kernal selection.
+	getting feature importance is very difficult.
+	outliers have very little impact on svm.but rbf with small sigma can be impacted by outliers.
+	Bias-Variance tradeoff = as c increses, it will get overfitted.i.e. high variance model
+							 and c decreses it will get underfitted i.e. high bias 
+	svm works well for large dimensionality.
+	
+Best Case : having right kernel
+Worst case : n is large i.e. training dataset is large.then train time is long.it is not useful in internet based applications.
+people use linear regression instead of svm when data goes to millions of data points.
+
+training complexity
+	time complexity = n2
+	
+run time complexity
+	O(kd)
+	where k = no of support vectors
+	d= dimensionality of data.
+	
+why-we-take-values-1-and-and-1-for-support-vector-planes ?
+It is not necessary that we always choose +1 and -1. So let’s choose any arbitrary value of k here.Only restriction is that it should be greater than 0.
+We can’t choose distinct values for our planes i.e we can’t take +k1 and -k2 as we want our positive and negative planes to be equalliy distant from our plane pie.
+changing value of k will only change our hard margin optimization equation which is above.

@@ -1,0 +1,7 @@
+
+General tips
+1) image dpi should be 300.
+2) use double quotes instead of single quote in windows.
+
+to see preprocessed image use below command
+tesseract img.jpg a.txt -c tessedit_write_images=true

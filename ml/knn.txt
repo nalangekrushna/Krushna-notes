@@ -1,0 +1,146 @@
+if vector type is not given then by default its column vector.
+
+non parametric algorithm = it means that it does not make any assumptions on the underlying data distribution.
+the model structure is determined from the data. If you think about it, it’s pretty useful, because in the “real world”, most of the data does not obey the typical theoretical assumptions made (as in linear regression models, for example). 
+
+K-NN (nearest neightbour) = non parametric algorithm
+concept : take k nearest point by distance.and then take their majority vote to estimate point type.
+
+Assumptions = NO ASSUMPTIONS ABOUT DATA DISTRIBUTION.
+
+Equation : NO EQUATION.
+
+Imbalanced Data
+No need to handle imbalanced data.
+
+Outliers
+It depends on data. If you don't have outliers cluster then taking k value more than one will negate the effect of outliers.
+
+Column Standardization
+Yes.
+
+advantages :
+1) no assumption about underlying data.
+2) no training required.
+3) Easy to interpret the results.
+
+disadvatage:
+1) Need to store all data in memory.
+
+
+failure case : 1) when the point is too far away from any cluster.
+			   2) or when the cluster mixed with different points and there is no seperation between clusters.
+			   
+distance measurement :
+	1) euclidean distance(L2) = shortest distance between two points measured by pythagoras theorem.
+		consider you have point p(a,b) and your points in training dataset are x1,x2,....xn and y1,y2...yn
+		then euclidean distance can be calculated as sqrt( (a-x)2 + (b-y)2 )
+	2) manhatten distance(L1) = summation absolute values of all the xi
+		In above example manhatten distance can be calculated as sum( abs(a-x) + abs(b-y) )
+	3) minkowski distance(Lp) = p the power of difference of two points.
+		its just extension of euclidean distance as instead of square there will be power of p. and then pth square root.
+	4) Hamming distance = it is used in nlp. hamming distance is no of points where binary vectors are different.
+		Its is xor between two binary strings of same length. It denotes how much points are far away from each other. 
+	5) cosine distance 	
+when cosine distance increase cosine similarity decreases.
+cosine distance = 1 - cosine-similarity(cos(theta))
+cosine similarity = 1 when both points are same. then cosine distance = 0
+cosine similarity  = -1  when both points are opposite. then cosine distance = 2
+cosine similarity = cos(theta)
+cosine distance = 1 - cos(theta)
+
+which distance matrix works best ?
+The type of distance metric we use is based on the problem requirement. We could use any one among Euclidean, Cosine Distance, Manhattan, etc.
+https://soundcloud.com/applied-ai-course/practical-applications-of
+
+How can the angle between two vectors be greater than 180degrees? For example, if one vector is in 1st quadrant and the second vector is in 4th quadrant how can we choose which angle we should take?
+it a customary to angles in the anti-clockwise direction and from the x-axis to the y-axis is an actually anti-clockwise direction. So if a vector is in the 1st Q and another is in 4th Q, it would be the anticlockwise angle and hence more than 180 degrees.
+
+Why can’t we say cosine similarity and cosine distance are inversely proportional?
+I mean if you look:
+cos(0) = 1 then cos_dist = 0
+cos(90) = 0 then cos_dist = 1
+cos(180) = -1 then cos_dist = 2
+cos(270) = 0 then cos_dist = 1
+cos(360) = 1 then cos_dist = 0
+-> cosine-distance = 1- cosine_similarity i.e. (cos(theta))
+
+if we use cosine-distance instead of eucl-distance then how will it effect our knn algorithm ??
+Cosine similarity is generally used as a metric for measuring distance when the magnitude of the vectors does not matter.This happens for example when working with text data represented by word counts.
+Another reason is that when modeling texts as vectors you will have many dimensions, thousands, the euclidean distance is not very good for very high dimensional data.
+Cosine similarity ONLY measures angular similarity and not geometric distance. If we need to use the geometric distance for the problem you want to use, we use Euclidean distance and not cosine-similarity.
+
+As k increases decision surface becomes smoother and smoother.
+
+what should be the k value ?
+	k could be anything from 1 to n (no of points).
+	k=1 no mistakes on training data.(high variance) (overfit)
+	k=n all values are mejority class.(high bias) (underfit)
+	general rule of thumb is k = sqrt(n)
+	k is generally taken as odd no as it is easier to find.
+	k value can be found by plotting train error and cross validation error.
+	
+when k=1 then algorithm is called Nearest Neighbour algorithm.
+when k is small impact of outliers is large.
+knn requires column standardization.
+knn feature interpretability = majority of points lies in given area so it is ans.
+
+Best cases
+	1) when dimensionality is small(<10)
+		problems with large dimensionality
+		1)curse of dimensionality when using eucludian distance
+		2)interpretability reduces.
+		3)runtime complexity of kdtree or LSH increses.
+		
+	Worst cases
+	1) when required low latency system.
+		If needed to use kNN then try to use with LSH or kdtree.
+		
+lazy algorithm = it does not use the training data points to do any generalization. In other words, there is no explicit training phase or it is very minimal.
+
+training time complexity = O(1)
+
+evaluation time complexity = k*nd
+	where k = no of classes, n = no of datapoints(rows), d = dimension of data(no of columns)
+	as k is very small typically 5 to 10 we can ignore it. 
+	final training space complexity = O(nd)
+	
+evaluation space complexity = nd
+
+knn for regression = instead of voting use mean or median of k point to decide value.
+
+Mulit Class classification = some algo just support binary and some to multiclass classification. KNN supports multi class classification. In case of binary algo such as logistic regression it will extend to multiclass by checking if every class is present or not. by this way it will get extended to multiclass.
+
+KNN classifier = If accuracy is same for different values of k then take largest k value as smaller k values are prone to outliers.
+
+Local density = 
+
+k distance = distance of k th nearest neighbour of xi from xi.
+Neighbourhood of k=3 of xi = top 3 nearest neighbours of xi.
+reachability distance = reachability distance between two points xi and xj is max of k th distance of xj and distance between xi and xj.
+K in reachability distance = Deciding what “k” to use is very problem-specific. In the real-world, we try various values of “k” and pick the one that makes the most logical sense to the problem at hand. Please note that we do NOT have an absolute truth in outlier detection like in classification where we have a class-label to predict. Hence, we cannot apply cross-validation based methods that we typically use in classification to determine the optimal “k”.
+An alternative data-driven method to determine the appropriate “k” is to use elbow method which we have described multiple times in this course as follows:
+1. Plot various values of “k” on the x-axis and plot the number of outlier points as determined by LOF (which uses reachability-dist) on the y-axis.
+2. At some value of “k”, the curve suddenly changes its direction. This point is called the elbow point or inflection point. For diagrams, google search: elbow method
+3. The corresponding “k” where the elbow point occurs is taken as the “k”.
+
+Local Reachability density(LRD)
+LRD of xi =  inverse of average reachability distance of xi from its neighbours.
+if LOF is large then it is outlier and vice versa.
+
+procedure to find LOF
+	for each point xi find its LOF(xi)
+	pick points with highest LOF as outliers.
+	Domain knowledge is important to decide threshhold for deciding which LOF values are outliers.
+	if LOF value less than 1 means its clearly inlier but there is nothing such thing for outliers.
+	LOF value could be anything in between 0 to infinity.
+	
+threshold for LOF = when we have to decide on the threshold, we have to use some of these methods:
+1. Use manual validation and domain knowledge to determine which of the points flagged as outliers are actually outliers. We can choose our threshold now to ensure that our model mostly flags outliers only.
+2. If you have lots of data and if you are ok throwing out x% of your data, you can choose a threshold that discard x% of data.
+3. You can use elbow/knee method as we saw in determining “k” in k-nn to remove extreme outliers. Here, we can sort and plot LOF values on y-axis for each data-point represented om x-axis. You can now choose to use the elbow/knee point to discard outliers.
+
+You need to use column standardization with k nearest neighbours.
+
+interpretability =  if model gives reason why it given that answer then it is called interpretable model.
+model which cannot give reasons are called black box model.KNN is interpretable if Data and k is small.

@@ -1,0 +1,115 @@
+
+distribution = The distribution of a variable is a description of the relative numbers of times each possible outcome will occur in a number of trials.
+
+difference between distribution and function ?
+
+Discrete Distribution = A statistical distribution whose variables can take on only discrete values. 
+Continuous Distribution = A statistical distribution for which the variables may take on a continuous range of values.
+probability distribution = a probability distribution is a mathematical function that provides the probabilities of occurrence of different possible outcomes in an experiment. 
+Symmetric distribution = A symmetric distribution is a type of distribution where the left side of the distribution mirrors the right side. By definition, a symmetric distribution is never a skewed distribution.
+
+skewness = skewness is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean. The skewness value can be positive or negative, or undefined.
+Skewness is asymmetry in a statistical distribution, in which the curve appears distorted or skewed either to the left or to the right. Skewness can be quantified to define the extent to which a distribution differs from a normal distribution.A symmetrical distribution will have a skewness of 0.
+
+when is the skewness too much ?
+If the skewness is between -0.5 and 0.5, the data are fairly symmetrical.
+If the skewness is between -1 and -0.5(negatively skewed) or between 0.5 and 1(positively skewed), the data are moderately skewed.
+If the skewness is less than -1(negatively skewed) or greater than 1(positively skewed), the data are highly skewed.
+
+negative skewness = When a distribution is skewed to the left , the tail on the curve's left-hand side is longer than the tail on the right-hand side, and the mean is less than the mode. This situation is also called negative skewness.
+
+Kurtosis = measure of the "tailedness" of the probability distribution of a real-valued random variable.The kurtosis of any univariate normal distribution is 3.This distribution is called Mesokurtic.Distributions with kurtosis less than 3 are said to be platykurtic,Distributions with kurtosis greater than 3 are said to be leptokurtic
+
+positive skewness = When a distribution is skewed to the right , the tail on the curve's right-hand side is longer than the tail on the left-hand side, and the mean is greater than the mode. This situation is also called positive skewness.
+
+Are the Skewness and Kurtosis Useful Statistics ?
+No.
+sample size changes skewness and kurtosis to completely different values.
+
+normal variate = 
+standard normal variate = normal variate with mean µ=0 and standard deviation σ =1 
+
+probability density function (pdf) = from histogram we can make pdf by smoothing by using kernel density estimation.
+	1) take a point in our dataset. draw a gaussian curve centered on a given point.
+	2) do this same for all points.
+	3) at any point sum of all overlapping kernel on that point to get height of pdf.
+
+what is kernel = Kernel is a way of computing the dot product of two vectors x and y in some (possibly very high dimensional) feature space, which is why kernel functions are sometimes called "generalized dot product".A kernel is a function k that corresponds to this dot product, i.e. k(x,y)=φ(x)Transpose * φ(y).
+A very simple and intuitive way of thinking about kernels (at least for SVMs) is a similarity function. Given two objects, the kernel outputs some similarity score. The objects can be anything starting from two integers, two real valued vectors, trees whatever provided that the kernel function knows how to compare them.
+I would not call a kernel a decision function since the kernel is used inside the decision function. Given a data point to classify, the decision function makes use of the kernel by comparing that data point to a number of support vectors weighted by the learned parameters α. The support vectors are in the domain of that data point and along the learned parameters α are found by the learning algorithm.
+
+Gaussian kernel = Given two vectors, the similarity will diminish with the radius of σ. The distance between two objects is "reweighted" by this radius parameter.
+
+Density Estimation: Use statistical models to find an underlying probability distribution that gives rise to the observed variables.
+
+Non-parametric density estimation = estimate the density directly from the data without assuming a particular form for the underlying distribution. The simplest form of non-parametric DE is the histogram
+
+kernel density estimation = 
+1) consider estimating the density at a point x0 by taking the local density of the points within distance h of x0
+2) instead of giving every point in the neighborhood equal weight, let's assign a weight which dies toward zero in a continuous fashion as we get further away from the target point x0.
+3) The function K is called the kernel, and it controls the weight given to the observations fxig at each point x0 based on their proximity.
+ for more detailed explaination please check pdf 10-28.pdf  
+
+normal/gaussian distribution = continuous probability distribution. In a normal distribution, the pdf graph appears as a classical, symmetrical "bell-shaped curve." The mean, or average, and the mode, or maximum point on the curve, are equal.In a perfect normal distribution, the tails on either side of the curve are exact mirror images of each other.
+The first characteristic of the normal distribution is that the mean  (average), median , and mode  are equal.
+it fits many natural phenomena. For example, heights, blood pressure, measurement error, and IQ scores follow the normal distribution.
+formula to standardize a value = (x_i - x_mean)/standard deviation.
+gaussian distribution = found by carl fredrick gauss. It is called normal due to someone's mistake but it became so famous that everyone now use it that way only.
+
+normal distribution is most widely used distribution. It is so important due to central limit theorem.You can not collect complete population you can only collect subset of it.which we call as sample.So from sample it is impossible to find its distribution.Here comes central limit theorem which by some process converts summary statistics of sample into normal distribution.
+
+cdf (cumulative distribution function)= It is sum of pdf upto given point. Its total sum should be one.
+
+sampling distribution
+	consider n is the size of random sample from population.this set is called set 1. mean of set 1 is called x_1.
+	we same such a m sample sets.
+	now we have m sample means.
+	now the distribution of sample means is called "sampling distribution of sample means."
+	
+central limit theorem = consider if x is random variable with finite population mean.
+We take m sample of size n from population whose distribution not necessarily normal. 
+then we calculate means of each sample.
+The distribution of sampling means.
+central limit theorem says any distribution will have gaussian distribution of mean mu(same as population mean) and variance of this is (variance of population/sample size n) when it have finite mean and variance.  
+
+distribution could have infinite mean and variances. examples of such distribution is pareto distribution.
+
+how/where to use distributions ?
+It is used for data analysis. take the example of t-shirts for 100k employee.
+
+chebyshev inequality = consider we have data with normal distribution having mean mu and standard deviation sigma. then we can say in 2 sigma range lies 95% of all the values in given datasets.
+but what if we don't know the distribution but we know mu is finite and sigma is finite and non-zero. can i find what x% of data lies between +- 2sigma.
+chebyshev inequality statement = x is random variable with finite mean and non-zero finite variance.then P(|x-mu|>k*sigma) <= 1/k^2
+
+discrete uniform distribution = uniform distribution for discrete values.
+continous uniform distribution = uniform distribution for continous values.
+pdf tells us the density of data whose has the value equal to one which is on the respective x-axis where as the pmf tells us the probability of finding the value which is on the respective x-axis.
+random generator uses uniform distribution to produce random sample.
+
+discrete distribution = uniform, bernoulli,binominal
+
+bernoulli distribution = bernoulli distribution is used when you have only two possible probabilities and one of them is p and another one is 1-p.
+https://www.statisticshowto.datasciencecentral.com/bernoulli-distribution/
+
+binomial distribution = bin(n,p)
+p = probability of getting head (probability in each trial.)
+n = no of times the experiment ran.(no of trials)
+https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/binomial-theorem/binomial-distribution-formula/
+
+log normal distribution = random variable x is said to log normal if log(x) is normally distributed. In this distribution mu is zero.
+why mu (mean) is zero in log normal distribution ?
+
+power law (80-20 rule) = In top 20 % of values you will find 80% of mass. It is found in internet companies. 
+
+pareto distribution(follows power law) = It has two parameters. scale x_m(mean) and shape (alpha) (sigma). value of x_m is one(fixed). greater the alpha shorter the tail.
+derac delta function = special case of pareto distribution = alpha = infinity and x_m=1.everywhere else x_m is zero.
+real world example = size of cities and villages,file size distribution on internet. 
+
+to check if x and y has power law relationship you plot graph of log(x) and log(y) if its straight line then you call it is power law relationship.
+
+we convert log normal to gaussian by taking log of it. to convert pareto/power law distributions to gaussian we use box-cox transform. 
+Note : box-cox didn't work for every power law/pareto distribution. You have to verify it by usi
+ng q-q plot.
+
+box-cox transform = A Box Cox transformation is a way to transform non-normal dependent variables into a normal shape. At the core of the Box Cox transformation is an exponent, lambda (λ), which varies from -5 to 5.All values of λ are considered and the optimal value for your data is selected; The “optimal value” is the one which results in the best approximation of a normal distribution curve. 
+https://www.statisticshowto.datasciencecentral.com/box-cox-transformation/

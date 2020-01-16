@@ -1,0 +1,70 @@
+CNN ( convolutional neural network, convnet ) = designed for visual tasks.
+
+In human brain there are different neurons for edge detection,motion detection,depth, shape, face detection
+
+Hierachical structure between various visual cortex layers.
+
+sobel horizontal edge detector
+https://medium.com/datadriveninvestor/understanding-edge-detection-sobel-operator-2aada303b900
+gradient magnitude = sqrt(g_x^2 + g_y^2)
+gradient angle =  cot(g_y/g_x)
+
+convolution = given two matrices element wise multiplication followed by addition.
+padding(p) = when we do cnn operation there are two downsides of it.
+	1) shrinking output
+	2) loosing info on corners as they covered only once and middle part covered two times.
+	to avoid that we use padding.It will just add zeroes on all side to give desired shape.
+strides (s) = decides by how many units kernel should revolve around stride.
+kernel matrix(k*k)
+input matrix(n*n)
+final matrix = 
+     k*k
+n*n ------->   ((n-k+2p/s)+1) * ((n-k+2p/s)+1)  (final matrix)
+     p,s
+	 
+pooling(downsampling layer) = 
+
+location invariant = where ever the object it should detect, what size it should it should detect.it can be also rotated.
+
+max-pooling = it selects maximum in given k*k multiplication over n*n.
+	 This basically takes a kernel (normally of size 2x2) and a stride of the same length. It then applies it to the input volume and outputs the maximum number in every subregion that the kernel convolves around.
+
+data augmentation = addition of data. different operations = enlarging image, making it small, flipping, horizontal shifting, vertical shift,adding noise,rotation,sheer, combination of any of previous.
+
+dropout layers = This layer “drops out” a random set of activations in that layer by setting them to zero.
+Note : this layer is only used during training, and not during test time.
+
+batch normalization = Batch normalisation is a technique for improving the performance and stability of neural networks, and also makes more sophisticated deep learning architectures work in practice.
+The idea is to normalise the inputs of each layer in such a way that they have a mean output activation of zero and standard deviation of one. This is analogous to how the inputs to networks are standardised.
+Benefits :
+1) Allows higher learning rates.
+2) Makes weights easier to initialise.
+3) Makes more activation functions viable. Sigmoid and ReLU.
+4) Provides some regularisation.
+https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
+
+alexNet
+VGGNet
+Residual Network (ResNet) = 
+skip connection 
+identity/residual block
+Inception Network
+
+Transfer learning = transfer knowledge/learning of one dataset for different task to another dataset with some another different task is called transfer learning.
+
+How transfer learning works :
+1) In transfer learning we will take pre-trained model. 
+2) discard the output layer. 
+3) freeze the weights of all remaining layers.
+4) add an output layer of size the no of labels we have.
+5) train the model on our own data for sufficient no of epochs to stabilize the output. 
+6) Now we can use this model for predictions.
+
+deep learning model training cases :
+1) case 1 : transfer learning.
+2) case 2 : froze model for some layers as edge detection and basic shape detection will be same and then fine tune the last layers for our use case.
+3) case 3 : use pre-trained model and initialization then fine tune it for our use case.
+4) case 4 : build and retrain the network from scratch.(least preferred way.)
+
+choosing one of the above case
+size of dataset, how different is your dataset from pre-trained dataset.

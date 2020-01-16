@@ -1,0 +1,74 @@
+Reinforcement Learning
+
+There is no supervisor only reward signal.
+Feedback is delayed not instantaneous.
+Time really matters.
+Agents actions affects subsequent data it receives.
+
+Reward
+	a reward Rt is a scaler feedback.
+	indicates how well the agent is doing at step t.
+	the agents job is to maximize cumulative reward.
+	
+Goal : select action that maximizes total future reward.
+
+observation(input)Ot + reward Rt = action At
+
+At each step t the agent
+	executes action At, receives observation Ot, receives scaler reward Rt
+At each step t the environment 
+	receives action At, emits Observation Ot, emits scaler reward Rt
+	
+History Ht at time t 
+	Ht = A1,O1,R1,..... At,Ot,Rt i.e. all observable variables upto time t.
+	
+State = the information used to determine what happens next.
+	St = f(Ht)
+	environment state = private internal representation of environment.
+	agent state = agents internal representation.(State)
+	
+Components of RL agent 
+	Policy = agents behaviour function 
+	value function = how good is each state or action. prediction of future reward
+	model = agents representation of environment.
+	
+Types of RL agents
+	Value based
+	policy based 
+	both value and policy based
+	model based = model + policy and/or value
+except model based all others are also called model free.
+
+Markov decision process = describes environment for reinforcement learning. Here the environment is fully observable.
+Markov process/chain = tuple(s,p) s = set of states and p is state transition probability matrix.
+Sample = sequence of states. Sample length should be finite.
+
+Markov Reward Process = markov chain with values.
+Markov Reward process = tuple(s,p,r,gamma)  r is reward function, gamma is discount factor.
+Return  = the return Gt is sum of discounted rewards from time step t.
+discount (gamma) = [0,1] is present value of future rewards
+
+Most markov reward and decision process are discounted, why ?
+	the uncertainity about future may not be fully represented.
+	mathematically conveinient to discount rewards
+	avoid infinite returns in cyclic markov process.
+	In financial settings immediate reward will earn more interest than delayed rewards.
+	human behaviour shows preference to immediate reward.
+	It is also possibility that use undiscounted markov reward process(i.e. gamma=1)
+
+Bellman equation for MRP(Markov Reward Process) = 
+
+Markov decision process = 
+
+policy = policy fully defines the behaviour of agent. policies depends on current state( not on history) policies are stationary(time independant)
+state value function = of an MDP is expected returns starting from state and then following policy pie.
+action value function = expected returns from state s taking action a and then following policy pie.
+optimal state value function = maximum value function over all policies.
+optimal action value function = maximum action value function over all policies.
+optimal policy = better than or equal to all other policies. optimal policy achieves optimal value function. also achieves optimal action-value function.
+
+Bellman optimally equation is non linear.
+No closed form solution. There are many iterative solution methods such as value iteration, policy iteration, q learning, Sarsa.
+
+
+

@@ -1,0 +1,57 @@
+Numpy
+
+1D array = vector
+2D array = matrix
+nD array = tensor
+
+ndarray.data = will give us actual elements.
+
+np.zeros vs np.zeros_like = zeros and empty allocate memory 'on-the-fly', while zeros_like allocates everything up front.
+https://stackoverflow.com/questions/27464039/why-the-performance-difference-between-numpy-zeros-and-numpy-zeros-like
+
+np.empty = will have random initializations.
+
+Array creation
+np.array([1,2,3])
+np.arrange(start=0,stop,steps=1) = to create numpy array   dtype = int64
+np.linspace(start,end,no of points) = to create numpy array
+
+to force numpy print full array 
+np.set_printoptions(threshold=np.nan)
+
+np.array vs np.asarray vs np.asanarray
+np.array = by default will make a copy of data.if data structure is 
+np.asarray = only make copy of data if given data is not compatible with np.ndarray.
+asanyarray = The input will be returned uncopied if it's a compatible ndarray or subclass like matrix (copy=False, subok=True).
+
+
+np.eye(shape tuple) = gives diagonal matrix with 1 at diagonal   dtype = int64
+np.diag(list of diagonal element values) = diagonal matrix with given diagonal values.    dtype = int64
+np.random.rand(no of elements) or np.random.randn( no of elements), np.random.randint
+difference in above two is explained in probability part.
+
+np.cumsum = cumulative sum along given axis.
+axis 0 along columns
+axis 1 along rows.
+
+np.vectorize is essentially a for loop an no performance gain can be made.
+
+numpy broadcasting = add one element in matrix and it will added in all cells of matrix.
+
+shallow copy : a = b    # a will just point to b location.
+deep copy : a = b.copy()   # a will copy b element in different memory location.
+
+argmax = maximum value index out of all values in given matrix.
+argsort = sorts element along given axis.
+Imp Note = argmax,argmin,argsort returns indices of element and not actual elements.
+
+stack,hstack,vstack
+
+ravel = flattens the numpy array.
+
+flatten function flattens array row wise.
+axis=0   column wise 
+axis= 1 row wise
+
+
+

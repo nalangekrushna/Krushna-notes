@@ -1,0 +1,66 @@
+
+
+Reinforcement Learning = science of decision making
+	There is no superviser only reward signal.
+	Feedback is delayed not instantaneous.
+	Time really matters(sequential process.)
+	Agents action affects subsequent data.
+	
+Reward = a scalar feedback signal. agents job is to maximize the reward.
+Goal = select actions to maximize total future reward.
+History = is sequence of observation action and reward.
+State = is information used to determine what happens next.state is function of history.
+	s_t = f(H_t)
+	environment state = environments private representation.It is the data environment use to pick its next move. environment state is not visible to agent. and even if it is visible it may not contain very useful information for agent.
+	Agent State = internal representation of agent. It is data used by agent to decide its next move. It can be function of history.
+	Information State(markov state)  = contains all useful information from history.
+		p[S_t+1|S_t] = p[S_t+1|S_1,...,S_t]
+		markov property = future is independant of past given present.
+		
+Full observability = agent directly observes environmental states.(best case) Here agent state is environmental state. formally this is markov decision process.
+Partial observability = agent indirectly observes environment. Here agent state != env state. It is known as partially observable markov decision process.Agent constructs its own state representation. Following are the different state representations.
+	1) complete history
+	2) belief on environmental state.
+	3) RNN
+	
+Reinforcement Learning Agent = may include one or more below elements.
+	1) policy : agents behviour function. It is map of state and action. policy could be deterministic(function) or stochastic(probabilistic)
+	2) value function = how good is each state and/or action. prediction of future reward. used to evaluate goodness or badness of state.
+	3) model = agents representation of environment. model sometime predicts what the environment will do next.
+	4) Transition = p predicts next state. (i.e. dynamics)
+	
+Maze example = 
+	reward = -1 per time-step.
+	action = any of four directions.
+	states = agents location.(time required to reach the end.)
+	policy = which direction to go.(here it is deterministic.)
+	
+Categorizing RL agent 
+	1) value based (no policy) = only used value function.
+	2) policy based (no value function) 
+	3) actor critic = uses both value and policy.
+	
+Another way to classify it is as 
+	1) model free (only uses value and/or policy)
+	2) model based (model+value+policy)
+	
+Problems with RL 
+	Problem in sequential decision making 
+		1) the environment is initially unknown.
+		
+		
+RL is like trial and error method.
+
+	
+	
+	
+	
+	
+
+
+
+	
+	
+
+
+	

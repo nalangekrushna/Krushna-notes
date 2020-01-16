@@ -1,0 +1,3 @@
+overfitting = Overfitting happens when a model learns the detail and noise in the training data to the extent that it negatively impacts the performance of the model on new data. This means that the noise or random fluctuations in the training data is picked up and learned as concepts by the model. The problem is that these concepts do not apply to new data and negatively impact the models ability to generalize.
+
+Underfitting = Underfitting refers to a model that can neither model the training data nor generalize to new data.It will have poor performance on training data. The remedy is to move on and try alternate machine learning algorithms.

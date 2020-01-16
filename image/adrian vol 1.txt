@@ -1,0 +1,4 @@
+Image processing book1 starter guide adrian rosebrock
+
+pixel = a pixel is considered the “color” or the “intensity” of light that appears in a given
+place in our image.

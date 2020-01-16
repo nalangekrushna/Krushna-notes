@@ -1,0 +1,64 @@
+decision tree = axis parallel hypperplanes that divides complete region into cubes and cuboids.
+
+Assumptions :
+1) At begining whole training set is considered as root.
+2) feature values are prefer to be categorical.
+3) records are distributed recursively on basis of property values.
+4) order to placing attributes as root or internal is done by statistical approach.
+
+Entropy = Entropy measures uncertainty or we can say randomness.In other words, its a measure of unpredictability.
+for two class case entropy is maximum (i.e. 1) when both classes are 50-50.
+for multi class case entropy is maximum when all classes are equi probable.
+entropy can be also used for data analysis.
+entropy = -P(x)*log(p(x)). here x is a feature.we take sum of probabilities of all possible outcomes. here logs base is 2.
+
+Information gain of a label for given feature = entropy at parent - weighted entropy of child nodes.
+Gini impurity = it is same as entropy but just less scaling(i.e. max value of entropy is 1 while gini is 0.5).
+and also gini impurity is computationally less expensive.
+gini impurity = 1- sum( p(x)^2 )
+
+decision stump = decision tree having depth one.
+
+runtime space and time complexity of decision tree are very low. so they can be used for low latency applications.
+
+We use MSE(mean square error) or MAE(median absolute error) for regression in decision tree instead we using information gain.
+
+information theory
+
+Cases
+	Imbalanced data = you don't need to balance the data.
+	large dimensionality =  for categorical feature avoid one hot encoding. instead try using probabilistic method. An unpruned model is much more likely to overfit as a consequence of the curse of dimensionality. some detailed explaination can be found at link given at the end of page.
+	Similarity matrix = decision tree cannot work on it.
+	as depth increases outliers impact will increase. depth needs to be decided by cross validation
+	decision tree are interpretable as they can be written as if else conditions.
+	does not requires feature standardization.
+	
+Pros :
+1) easy to explain if else condition high interprtability.
+2) no need of hyper parameter tuning.
+3) low runtime complexity. can be used in low latency applications. 
+
+Cons : 
+1) high probability of overfitting.
+2) It gives low prediction accuracy than other algoritms.
+
+	
+trainnig complexity
+  time complexity = O(nlogn*d)
+  
+run time complexity
+	time complexity = k   (k is max depth of tree.)
+	space complexity = no of internal nodes+ no of leaf nodes.
+	
+how to build a decision tree ?
+1) first calculate entropy for label i.e. root entropy.(y variable).
+2) for every feature in dataset d
+	a) split it by available categories
+	b) calculate entropy at every child node.
+	c) sum weighted average of all child node categories for given feature.
+	d) calculate information gain by subtracting step c output from root node.
+3) split the dataset by the feature which gives maximum information gain.
+4) follow step two for remaining features and again do step 3 until you reach pure node or max depth is reached or all features ended.
+
+The depth of the tree grows linearly with the number of variables, but the number of branches grows exponentially with the number of states. Decision trees are useful when the number of states per variable is limited (e.g. binary YES/NO) but can become quite overwhelming when the number of states increases.
+https://blog.waylay.io/the-curse-of-dimensionality-in-decision-trees-branching-problem/

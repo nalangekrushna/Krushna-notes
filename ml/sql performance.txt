@@ -1,0 +1,43 @@
+Complete guide to sql performance tuning. 
+
+NoSQL - ACID Properties and RDBMS Story
+
+ACID - Another term that we frequently use while talking about relational databases is ACID properties of the database.
+
+ACID is an acronym of Atomicity, Consistency, Isolation and Durablity.
+
+Atomicity means transaction either completes or fails in entirety. There is no state in between. No body sees a partial completion of a transaction.
+
+Consistency means the transaction leaves the database in the valid state.
+
+Isolation means no two transactions mingle or interfere with each other. The result of two transactions executed in parallel would be same as sequential execution.
+
+Durability means the changes of the transaction are saved. It remains there even if power is turned off.
+
+Every relational database such as MySQL, postgresql, oracle and microsoft sql guarantees ACID properties of transaction.
+
+Lets me take you through a typical story before NoSQL.
+
+On the initial public launch, we would move a database from local workstation to shared, remotely hosted MySQL instance with a well-defined schema. This is our beginning.
+
+Soon, enough our service becomes popular and we have a problem: there are just too many reads hitting the database.
+
+This is quite usual with any server. And the solution is pretty simple - start caching frequently executed queries. We generally use memcached for caching. But note that the reads are no longed ACIDic. The moment we have two places for data, it generally becomes inconsistent. It would sometimes update the cache and till then cache would be serving older data.
+
+Still, if service continues to grow in popularity. Then too many writes would hit the database. To solve this, if we have money, we would vertically scale our hardware to say 16 cores processor, 128 GB of RAM and banks of really fast hard drives.
+
+Soon enough, new features would increase query complexity. We will have too many joins. If you take a look at Amazon details page, there are more than 100 features on the page. If each feature was in its own table, to prepare such page, 100s of joins would be required.
+
+So, you start denormalizing to avoid joins between tables. Yes, denormalizing. If you are from DBA background, this is going to be a very hard moment.
+
+If your service further goes popular, it would swamp the server. Things would become too slow. So, we should stop doing server side computations such as stored procedures and move those to the client side. For example, date time computations.
+
+Ever after this, there would be some queries that are still slow. So, we periodically prematerialize the most complex queries and try to stop joining in most cases. Pre-materializing means keeping the results of the queries that are often required ready.
+
+Now, the reads might be okay but writes are getting slower and slower. So, you drop secondary indexes and triggers.
+
+Now, at this point you will realize that you db is left with: 1. No ACID properties due to caching 2. No Normalized schema 2. No stored proceduces, triggers and secondary indexes
+
+Now the question is "why do we need relational database then?"
+
+Thats why NoSQL databases originated.

@@ -1,0 +1,23 @@
+Practical notes on big data technologies
+
+Ambari = provisioning, managing, and monitoring Apache Hadoop clusters.
+Hue = do sql tasks and monitor every other big data app.
+Linux = everthing else works on it.
+Java = popular programming language for big data.
+Zookeeper = centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
+HDFS/hadoop = distributed file system
+YARN (install using cmd)= comes with apache hadoop
+MapReduce(inside hadoop) = 
+Pig = 
+Pig Latin = 
+Hive = 
+Sqoop = 
+Flume = 
+Oozie = 
+NoSql = 
+HBase = 
+Scala = 
+Spark = 
+Spark Streaming = 
+GraphX = 
+Kafka = 

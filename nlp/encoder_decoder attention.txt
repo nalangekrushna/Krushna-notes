@@ -1,0 +1,34 @@
+encoder-decoder in depth explaination. for short explaination see below in short summary.
+https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/
+
+seq2seq model(machine translation) (only RNN and no attention) 
+sentence => split => input(word embedding),hidden state => encoder => context(vector)(last hidden state) => decoder => output/hidden state (depends upon objective such as classification/translation)
+short summary :
+	We take a statement. Split it into words. Convert word to word vector by using different word embedding techniques.then we send each word one-by-one to encoder. encoder takes complete sentence and process it. the last state of encoder RNN called as context and passed to decoder as input. decoder then one-by-one spits output.
+
+
+Good explaination on what output to should be in case of rnn/lstm in different problems. 
+https://discuss.pytorch.org/t/the-difference-and-use-of-output-and-hidden-state-of-an-rnn/15108
+
+practical aspect to build a rnn.
+https://stackoverflow.com/questions/52734659/meaning-of-the-hidden-state-in-keras-lstm
+
+Attention techniques ?
+why = The context vector produced by encoder turned out to be a bottleneck for these types of models. It made it challenging for the models to deal with long sentences. Attention allows the model to focus on the relevant parts of the input sequence as needed.
+
+difference with RNN = 	Attention technique will pass all the hidden state vectors instead of sending only the last hidden state(context) as a input to decoder model.
+
+how it works = In attention decoder does an extra thing. After receiving multiple hidden states in context(each hidden state is associated with certain word in given input),  
+		It assigns each hidden state a score. Then it multiplies each hidden states by its softmaxed score, thus amplifying hidden states with high scores, and drowning out hidden states with low scores. This scoring exercise is done at each time step on the decoder side.
+		
+How attention decoder works (high level overview) = 
+	1. The attention decoder RNN takes in the embedding of the <END> token, and an initial decoder hidden state.
+	2. The RNN processes its inputs, producing an output and a new hidden state vector (h4). The output is discarded.
+	3. Attention Step: We use the encoder hidden states and the h4 vector to calculate a context vector (C4) for this time step.
+	4. We concatenate h4 and C4 into one vector.
+	5. We pass this vector through a feedforward neural network (one trained jointly with the model).
+	6. The output of the feedforward neural networks indicates the output word of this time step.
+	7. Repeat for the next time steps
+		
+In attention how the score gets assigned ?
+=> 

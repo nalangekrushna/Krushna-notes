@@ -1,0 +1,69 @@
+best Library for image processing
+OpenCV
+
+Libraries for image processing 
+scikit-image, Pillow, simpleCV
+
+what is difference between h5 and hdf5 ?
+
+what one is better numpy.ndarray or cv2.mat ?
+-> Mat object was needed because C/C++ lacked a standard/native implementation of matrices.
+However, numpy's array is a perfect replacement for that functionality. Hence, the cv2 module accepts numpy.arrays wherever a matrix is indicated in the docs.
+
+FLANN = Fast Library for Approximate Nearest Neighbors. FLANN is a library for performing fast approximate nearest neighbor searches in high dimensional spaces. It contains a collection of algorithms we found to work best for nearest neighbor search and a system for automatically choosing the best algorithm and optimum parameters depending on the dataset.FLANN is written in C++ and contains bindings for the following languages: C, MATLAB and Python.
+
+when cv2 read image it reads in three modes BGR(default)(1),greyscale(0),with transparancy(-1). matplotlib takes image in RGB mode. So to convert BGR to RGB following are two ways.
+1) img = cv2.imread(path); img2 = img[:,:,::-1]   # this will do the trick.
+2) img2 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)    # cv2 way.
+
+img.shape if returns three values then it is color. If it returns two values only then it is greyscale.
+cv2.split method returns b,g,r values in seperate arrays.
+
+COLOR CHANGE
+HSV (hue saturation and value) = this way human perceives colors.This is the simplest method in object tracking.
+
+How to find HSV values to track?
+-> For example, to find the HSV value of Green, try following commands in Python terminal:
+>>> green = np.uint8([[[0,255,0 ]]])
+>>> hsv_green = cv.cvtColor(green,cv.COLOR_BGR2HSV)
+>>> print( hsv_green )    [[[ 60 255 255]]]
+Now you take [H-10, 100,100] and [H+10, 255, 255] as lower bound and upper bound respectively.
+
+IMAGE RESIZE
+cv2.resize(img,interpolation = cv.INTER_LINEAR) (default)
+Preferable interpolation methods are cv.INTER_AREA for shrinking and cv.INTER_CUBIC (slow) & cv.INTER_LINEAR for zooming.
+
+Thresholding = to blacken or white the images.
+corner detection 
+change colors
+geometric transformation
+image smoothing
+morphological transformation
+edge detection algorithms = canny (wide,thin,auto)
+
+difference between black and white and greyscale ?
+in black and white value will be either 0 or 1.
+In greyscale we will normalize value between 0 to 1.
+
+How to convert color image to greyscale without using any function ?
+
+
+edge detection : 
+1) find gradient (laplacian method)
+2) apply any edge detection algorithm(canny,sobel)
+
+Laplacian method = Here you need to use 64 bit float as otherwise you will miss edges specifically white to black transactions.then take absolute value of image and convert it back into 8 bit unsigned integer.
+As white to black transaction is  considered as negative slope and opencv will clip negative values to zero.
+
+Canny edge detector :
+1) blur/smooth the imge using gaussian filter to remove noise.
+2) compute gradient magnitude and orientation using sobel in both x and y direction.
+3) apply non-maximal suppression to gradient magnitude image to suppressing edges.( pixels that are not local maxima are removed. also thins edges to one pixel density.)
+4) hysterisis thresholding to detect and link edges.
+
+Hysteresis thresholding = 
+Uses two thresholds Tlow and Thigh
+If an edge response is above Thigh, those pixels constitute a definite edge. Individual weak responses usually correspond to noise.
+If weak responses are connected to pixels with strong responses and they are above Tlow they are edge pixels
+The Tlow and Thigh thresholds are set according to an estimated signal-to-noise ratio.
+

@@ -1,0 +1,12 @@
+Python
+
+what is unicode, ASCII and utf-8 ?
+unicode is superset of ascii and utf-8 is one of the encoding method for unicode. for detailed explaination go to below link.
+https://medium.com/better-programming/strings-unicode-and-bytes-in-python-3-everything-you-always-wanted-to-know-27dc02ff2686
+
+Best practices to handle unicode and bytes 
+https://nedbatchelder.com/text/unipain.html
+
+why \ at the end of any string will fail ?
+
+ASUS ROG Strix G G731GT

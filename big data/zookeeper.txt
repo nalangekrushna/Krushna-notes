@@ -1,0 +1,19 @@
+APACHE ZOOKEEPER 
+
+race condition = two process trying to access same resource at same time causing unpredictable results.
+dead lock = when two process are waiting for completion of each other directly or indirectly.
+zookeeper = it is responsible for central storage. 
+	central store of key value pairs using this distributed systems can coordinate. It uses data model like directory tree.It is used for synchronization, locking, maintaining configuration and failover maangement. It avoids race condition and dead lock.
+	
+ls / = to get all top level nodes
+ls /brokers = get all nodes under brokers.
+get /brokers = to get data of brokers.	
+
+
+data model =  highly available file systems.
+znode =  data storage entity.data should be in json format. znode can be only updated. It does not support append operation. also read or write operation should be atomic. There are three types of znodes.
+	1) Persistent = Such kind of znodes remain in zookeeper untill deleted. This is the default type of znode. To create such node you can use the command: create /name_of_myznode "mydata"
+	2) Ephermal = Ephermal node gets deleted if the session in which the node was created has disconnected. Though it is tied to client's session but it is visible to the other users. An ephermal node can not have children not even ephermal children.
+	3) Sequential = we need to create sequential numbers such ids. In such situations we use sequential nodes. Sequential znode are created with number appended to the provided name. You can create a znode by using create -s. The following command would create a node with a zoo followed by a number: create -s /zoo v This number keeps increasing monotonically on every node creation inside a particular node. The first sequential child node gets a suffix of 0000000000 for any node.
+
+

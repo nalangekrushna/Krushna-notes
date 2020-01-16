@@ -1,0 +1,67 @@
+
+perceptron = 1957 by rosen blatt 
+
+Alen turing = father of modern computing
+neuron = 
+biological neuron 
+backpropagation algorithm = chain rule of differentiation. = 1986 = jeff hinton
+how to learn a deep neural network = 2006 = jeff hinton
+multilayer perceptrons(mlp) 
+
+neuron is activated/fired = if there is enough input then cell fires out(sends signal/output).
+dendrites = input to neuron.
+axos = output of neuron.
+nucleus = core of neuron(in neural network it is summation + activation function)
+
+train a neural network = weights on edges/vertices.
+logistic regression = sigmoid(neuron)
+
+neural network(mlp) = input -> hidden layer -> output layer -> output 
+
+why should we use mlp?
+1) biological inspiration (this structure is found in human rat and monkey brains)
+2) mathematical argument 
+
+Training neural network = finding the best edge weights in neural network model using training data.
+edge weights = 
+identity function = function f(x) which return x as output is called identity function.
+
+what is loss function ?
+It is a function used to penalized the prediction which is different from actual value according to its difference with actual value.Loss function in different function
+	logistic regression = sigmoid function
+	linear regression = identity function
+	perceptron = threshold function
+	
+Memoization = if there is any operation that is used repeatedly then compute it once and reuse it.
+backpropagation(backprop) = chain rule + memoization
+backprop works only when your activation function is differentiable.
+
+backprop procedure 
+1) intialize weights by using different methods(for now consider randomly).
+2) for each point x_i in dataset D : 
+   a. give inputs and prdict y_pred and calculate loss function.(forward propagation.)
+   b. calculate all derivative for every layer using chain rule and store it.(memoization).
+   c. update weights from end of neural network to start.
+3) repeat step two until convergence is achieved.
+
+convergence = means difference between new value and old value almost reaches to zero.   
+one epoch  = pass all your datapoints in train through neural network once.
+
+How to decide activation function is differentiable ?
+
+sgd = stochastic gradient descend.
+sgd = take one point each and calculate.
+mini batch sgd = take subset of points and calculte gd.
+gd = take all points and calculate gd
+
+activation function = popular pre deep learning era functions : 1)sigmoid 2)tanh
+sigmoid function (logistic regression) = 1/(1+e^(-z)) or   e^z/(1+e^z)
+sigmoid is popular as its derivative is sigmoid(z)*(1-sigmoid(z))
+derivative of tanh(z) = 1- (tanh(z))^2
+
+vanishing gradients = difference between new value and old value is very small due to use of sigmoid or tanh function.
+exploding gradients = difference between new value and old value is very large. It occurs when derivatives are greater than one.
+
+Bias Variance trade off for MLP = 
+1) as no of layers increases then we have more weights then there is higher chance of overfitting.i.e. high variance. to solve problem of underfitting we add l2 or l1 regualarization.
+2) if no of layers are very few then there is chances of underfitting .i.e. high bias.

@@ -1,0 +1,29 @@
+pip install package_name==version -U --ignore-installed        # specific version/update to latest version. 
+pip list
+conda info
+os.listdir()          # return list of all files and directories.
+python -c "import tensorflow"           # to run python code on command line.
+python -m pip install package_name      # to install package when pip is not available in command line.
+
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+import os
+import warnings
+import numpy as np
+import pandas as pd
+from glob import glob
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+warnings.filterwarnings("ignore")
+
+import h5py
+f = h5py.File(filename, 'r')
+groups = f.keys()     # works as directories or folders
+dataset = f[key]      # workds as numpy array.
+
+read multiple parquet files and save in single dataframe from given folder.
+df = pd.concat( pd.read_parquet(file) for file in glob('./data/drive/*.parquet'))
+
+ 
+

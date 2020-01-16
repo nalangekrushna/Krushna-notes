@@ -1,0 +1,25 @@
+
+NLP systems treat words as discrete atomic symbol and assign them random values such as for cat 'Id985' and for dog 'Id782'. So we cannot use this information for any purpose. These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols.
+This means that the model can leverage very little of what it has learned about ‘cats’ when it is processing data about ‘dogs’ (such that they are both animals, four-legged, pets, etc.). 
+Representing words as unique, discrete ids furthermore leads to data sparsity, which means more data is needed in order to successfully train statistical models.
+
+WordNet = 
+
+Basic approach = one hot encoding for word
+	cons = vector size will be in millions ( no of words are very large.)
+	       there is no way to represent similarity between two words( hotel or motel)
+Distributional semantics = a words meaning is given by the words that frequently appears close by.
+
+Word vectors/Word embeddings/word representation = Word embeddings is simply a vector representations of words.
+Overview = 1) we have large corpus of text
+		   2) Every word in fixed vocabulary is represented by a vector.
+		   3) go through each position in t in text which has center word c and context words o.
+		   4) use similarity of word vectors for c and o to calculate the probability of o given c.
+		   5) keep adjusting the word vectors to maximize this probability.
+		   
+		   
+		   
+Word2Vec explained : 
+https://israelg99.github.io/2017-03-22-Vector-Representations-of-Words/
+
+		   

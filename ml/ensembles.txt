@@ -1,0 +1,78 @@
+ensembles = group of things
+
+Types of ensembles :
+	1) Bagging (bootstraped aggregation) = 
+	2) Boosting 
+	3) Stacking 
+	4) Cascading
+	
+bootstrap sample = here we choose no of bootstrap sample we want to draw and generally assume each sample size is size of original dataset. then we do sampling with replacement to get decided no of samples.
+sampling with replacement = draw a row from original dataset and put that row back in dataset so it can be picked again.
+
+bootstrap sampling = sampling with replacement.
+
+Random forest(rf) = decision tree as base models  + row sampling + column sampling + aggregation
+	random = random bootstrap sampling with replacement.
+	forest = group of decision tree
+	feature bagging = bootstrap sampling( row sampling) + feature sampling (column sampling ).
+	bagging = bootstrap + aggregation
+	out of bag(oob) rows  =  rows which are skipped in particular model.
+	oob error =  error on oob points.
+	bias = low as learners(decision tree) are low bias models. bias value is bias of individual model. 
+	variance = in rf output is aggregation of no of models k. so as k increases variance decreases.
+	aggregation method = voting or mean
+	
+oob = out of bag error = It is the test data remaining after we do row sampling that is not used for training so we can directly get test error here. No need to do seperate train-test split.
+
+Hyper parameters in random forest :
+n_estimators
+max_depth
+	
+Extremely randomized tree = decision tree as base models  + row sampling + column sampling + aggregation + randomization when selecting threshold to check maximum gini impurity reduction.
+	
+Cases  = all the cases taken by decision tree are also applicable here.
+
+bagging = low bias,high variance + randomization(column+row sampling) + aggregation
+boosting = low variance,high bias + additive combining. (will reduce bias)
+
+additive combining have different ways one of them is gradient boosting.
+low variance,high bias example = shallow decision tree
+
+Gradient Boosting
+	Gradient boosting builds an ensemble of trees one-by-one, then the predictions of the individual trees are summed.The next decision tree tries to cover the discrepancy between the target function f(x) and the current ensemble prediction by reconstructing the residual.
+
+	residual = actual value - predicted value 
+	negative gradient(residual) = pseudo residua
+	loss minimization 
+		classification = logistic loss
+		linear regression = squared loss
+		svm = hinge loss
+	you can minimize any loss function in gradient boost so gradient boost performs slightly well than random forest as random forest cannot minimize any loss function.
+	in gradient boosting as no of base models(m) increases then chances of overfitting also increases.
+	also as shrinkage coef increases chances of overfitting also increases.
+http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html
+https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
+
+Gradient Boosting explained = The idea of boosting came out of the idea of whether a weak learner can be modified to become better.weak learner is defined as one whose performance is at least slightly better than random chance.
+Hypothesis boosting was the idea of filtering observations, leaving those observations that the weak learner can handle and focusing on developing new weak learns to handle the remaining difficult observations.The idea is to use the weak learning method several times to get a succession of hypotheses, each one refocused on the examples that the previous ones found difficult and misclassified.
+
+Adaboost = The weak learners in AdaBoost are decision trees with a single split, called decision stumps for their shortness.AdaBoost works by weighting the observations, putting more weight on difficult to classify instances and less on those already handled well. New weak learners are added sequentially that focus their training on the more difficult patterns.Predictions are made by majority vote of the weak learners’ predictions, weighted by their individual accuracy.
+
+how gradient boosting works ?
+-> Gradient boosting involves three elements:
+   1) A loss function to be optimized.
+   2) A weak learner to make predictions.
+   3) An additive model to add weak learners to minimize the loss function.
+   
+   Loss function = depends upon type of problem such as classification and regression.
+   Weak Learner = regression decision tree with constrained max_depth,leaf_nodes,no of trees etc. so to learner remains weak. So the outputs of decision trees could be added together and “correct” the residuals in the predictions.
+   Additive Model = Trees are added one at a time, and existing trees in the model are freezed. A gradient descent procedure is used to minimize the loss when adding trees.After calculating the loss, to perform the gradient descent procedure, we must add a tree to the model that reduces the loss (i.e. follow the gradient). We do this by parameterizing the tree, then modify the parameters of the tree and move in the right direction by reducing the residual loss.
+   
+   
+XGboost = GBDT + row sampling + column sampling
+XGBoost stands for eXtreme Gradient Boosting.
+
+Stacking classifier = m base model of different/same types build seperately.
+	
+generalization error = we must estimate the generalization error by applying our model to an independent test set constituted of a random selection of data points that were withheld from our training set. Generalization error can be minimized by avoiding overfitting in the learning algorithm.
+training error = The training error is the error of our model as calculated on the training data set.

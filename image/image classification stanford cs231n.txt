@@ -1,0 +1,124 @@
+Image Classification     stanford  
+
+what is computer vision (cv) ?
+-> field of study that seeks to develop techniques to help computers “see” and understand the content of digital images such as photographs and videos.
+
+computer vision touches following fields of studies
+physics, biology, computer science, mathematics, engineering
+
+history
+camera obscura
+hubel and wiesel 1959  simple cell responds to oriented edges.first thing they do is edge detection.
+david marr 1970 three steps to reach full 3d image model 
+	1) primal sketch : zero crossing, blobs, edges, bars, ends, virtual lines, groups, curves, boundaries.
+	2) 2&1/2 d sketch : local surface orientation, discontinuities in depth and in surface orientations.
+	3) 3d model representation : 3d model hierachically organized in terms of surface and volumetric primitives.
+Fischler and Elschlager 1973 generalized cylinder, pictorial structure 
+	general idea is that everything is build of cylinders or elastic distance structure.
+david lowe 1987 reconstructions of shaving razors by using edges
+shi and malik 1997 normalized cut for object segmentation using graph theory.
+david lowe 1999 sift and object recognition 
+viola and jones 2001 face detection in real time.
+Dalal and Triggs 2005 Histogram of Gradients (HoG)
+Lebnik and Schmid 2006 spatial pyramid matching 
+Falzenswalab and Ramanan 2009 Deformable part model.
+
+Different Image recognition challenges
+Pascal visual object recognition challenge (2d object categories) 
+
+"CNN WERE NOT INVENTED OVERNIGHT" key takeaway from this sentence is there will be always some solution lying around you. you just need to "see" it.
+
+graph : data structure defined by two components : i) node or vertex and ii)edges.
+graph theory : It is application of graph for to represent something.
+SIFT (Scale Invariant Feature Transform)
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_sift_intro/py_sift_intro.html
+
+object segmentation : take a picture and group it into meaningful areas.e.g. seperate all pixels of human from background.
+
+different image variations
+1) different angle of view 
+2) scale(size) variation
+3) deformation
+4) occulsion ( some part of image may be hidden.)
+5) Illumination condition (brightness)
+6) background clutter( background of image)
+7) Intra-class variation ( eg. chair can have different shapes and sizes.)
+
+data driven approach = Therefore, instead of trying to specify what every one of the categories of interest look like directly in code, the approach that we will take is not unlike one you would take with a child: we’re going to provide the computer with many examples of each class and then develop learning algorithms that look at these examples and learn about the visual appearance of each class.
+
+convolve the filter with image = slide over the image spatially computing dot product.
+
+what convolution visualization shows ?
+-> It shows us that "what input looks like that maximizes the activation of that particular neuron." The way do it is by backpropagation from particular neuron activation and seeing what input will trigger and give highest value to this neuron.
+
+Can we use different strides for vertical or horizontal ?
+-> Yes but in practise we rarely do this. (good idea can be tried.)
+
+why there are always odd no of kernel size ?
+https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size
+
+should we pad image or not ?
+padding is done to avoid shrinkage of image.
+https://stats.stackexchange.com/questions/246512/convolutional-layers-to-pad-or-not-to-pad
+https://stats.stackexchange.com/questions/192451/cnn-filter-sizes-and-padding
+
+Pooling = In pooling we try not to have overlap.We generally use maxpooling, the intution behind this is that this are activations of my neurons and how much this neuron fired in this location." maxpooling is how much activation function fired in this location.
+
+If pooling and strides both have same downsampling effect then which one should be used ?
+-> current trends is more and more people are using strides for downsampling purpose.
+
+data preprocessing for deep learning
+1) zero centered data
+2) normalized data
+3) PCA
+4) Whitening
+In image generally zero centering is preferred over normalization.
+
+Weight Initializations
+1) zero initialization (all neurons will learn the same thing.) = consider you set all weigths and biases to zero. and you are using sigmoid function so sigmoid(0)=0.5 so you will get same value across network with no assymetry.
+
+You can add batch normalization after every fully connected(dense) layer.
+
+Some cnn architects
+LeNet
+AlexNet
+VGG
+GoogLeNet
+ResNet
+
+Pooling layers has no parameters.
+
+why use smaller filters ?
+-> stack of three conv layer of 3*3 has same effecticte receptive field of one 7*7 layer.but it is deeper. It can have more non-linearity and no of parameters are less compared to 7*7 is less.
+
+Deeper models are harder to optimize.
+
+different methods of processing
+upsampling, 
+
+object detection
+In object detection instead of sliding window over every possible combination we use some traditional computer vision technique to find blobby region which will give us limited no of regions to search. This technique is called R-CNN.
+
+R-CNN cons 
+1) ad-hoc training objective.
+2) high training time
+3) high prediction(inference) time.
+
+to solve this problem Fast R-CNN comes in picture.
+Here in training instead of passing every region proposal seperately we will pass them together to get training feature map.
+
+RoI pooling layer 
+
+computing region proposal using fixed function becomes bottleneck in Fast R-CNN so we come up with Faster R-CNN. In it network itself proposes regions.
+How it works(Faster R-CNN) ?
+in training we will pass all images through convolution layers to get feature map and then we have seperate network or model over it which will propose regions.
+
+YOLO (You Only Look Once)
+SSD (Single Shot Detection)
+
+Faster R-CNN vs SSD
+Faster R-CNN is slower but more accurate compared to SSD.
+SSD is faster but less accurate than Faster R-CNN
+
+Instance segmentation = does accurate segmentation and instead of giving bounding boxes will actually gives correct values.
+Mask R-CNN is the best method currently for instance segmentation. Mask R-CNN also does pose estimation, object detection.

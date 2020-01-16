@@ -1,0 +1,80 @@
+SUPERVISED LEARNING:
+
+Accuracy = no of correctly clasified points/ total no of points.
+	accuracy =(correctly predicted class / total testing class) × 100%
+	             (TP + TN)/(TP + TN + FP + FN)
+	when you have imbalanced dataset never use accuracy as performance matrix.
+	when model also returns probability score then there is no way to incorporate probability in accuracy metrics.
+	
+Confusion matrix 
+https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62
+
+precision = TP/TP+FP (out of total positive prediction how many are actually positive.)
+recall/TPR/sensitivity = TP/TP+FN (out of all actual positive values how many are correctly predicted.)
+specificity/TNR  = TN/TN+FP
+
+Receiver Operating Characteristic curve(ROC) = 
+	1) sort all data in decreasing order of y predicted.
+	
+Area under Curve(AUC) = for dumb model auc could be high.
+AUC didn't depend on predicted y scores but only there order.
+AUC of random model will be exactly 0.5.
+consider a case where auc of your model is 0.2 then change the output class label from 0 to 1 and vice versa and then your auc will be 0.8.
+https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5
+
+Log loss/logistic loss/cross entropy loss = log-loss used probability scores. log loss value lies between 0 to infinity. The closer the value to 0 better is the model.
+log loss for binary classification = -1/n * summation from i=1 to n ( log(p_i)*y_i + log(1-p_i)*(1-y_i))
+We need to use log loss with calibrated cv as in case of classification model just returns classification value which calibration model uses to predict probability for given possible set of predictions.
+
+f1 score = It is difficult to compare two models with low precision and high recall or vice versa. So to make them comparable, we use F-Score. F-score helps to measure Recall and Precision at the same time. It uses Harmonic Mean in place of Arithmetic Mean by punishing the extreme values more.
+
+
+R squared/coef of determination = the coefficient of determination is an overall measure of the accuracy of the regression model. It helps to describe how well a regression line fits
+near it is to 1 better it is. and less than 0 worst than simple mean model. equal to zero then same as mean model. equal to 1 then it is best model as it is predicting everything correct.
+residual sum of squares SS_res = avg((y_i-y_pred_i)^2)
+total Sum of squares SS_tot = avg((y_i-y_mean)^2)
+R squared = 1- (SS_res/SS_tot)
+
+Adjusted R squared = The Adjusted Coefficient of Determination (Adjusted R-squared) is an adjustment for the Coefficient of Determination that takes into account the number of variables in a data set. It also penalizes you for points that don’t fit the model.
+https://www.dummies.com/education/math/business-statistics/how-to-calculate-the-adjusted-coefficient-of-determination/
+
+Some of the points you add will be significant (fit the model) and others will not. R2 doesn’t care about the insignificant points. The more you add, the higher the coefficient of determination. 
+The adjusted R^2 will increase only if a new data point improves the regression more than you would expect by chance. 
+
+
+median absolute deviation (MAD) = r squared is not robust for outliers. so we use MAD.
+
+Measurement matrix in data science
+
+classification
+	1) accuracy 
+	2) Sensitivity/recall/TPR
+	3) precision 
+	4) specificity 
+	5) ROC curve
+	6) Log loss  
+	7) f1-score
+	
+Regression
+	1) R squared or coef of determination 
+	2) MAD (median absolute deviation)
+	3) adjusted r squared
+	4) Root Mean Squared Error (RMSE)
+	
+Type I error (false positive) : spam filter example
+Type II error (false negative) : test for disease.why
+	
+list of all loss functions
+https://isaacchanghau.github.io/post/loss_functions/
+
+UNSUPERVISED LEARNING :
+Performance metrics to evaluate unsupervised learning ?
+-> how well a particular unsupervised method performs will largely depend on why one is doing unsupervised learning in the first place.
+If your unsupervised learning method is probabilistic, another option is to evaluate some probability measure (log-likelihood, perplexity, etc) on held out data. The motivation here is that if your unsupervised learning method assigns high probability to similar data that wasn't used to fit parameters, then it has probably done a good job of capturing the distribution of interest. A domain where this type of evaluation is commonly used is language modeling.
+The last option I'll mention is using a supervised learner on a related auxiliary task. If you're unsupervised method produces latent variables, you can think of these latent variables as being a representation of the input. Thus, it is sensible to use these latent variables as input for a supervised classifier performing some task related to the domain the data is from. The performance of the supervised method can then serve as a surrogate for the performance of the unsupervised learner. This is essentially the setup you see in most work on representation learning. 
+example of last options is as follows :
+1) Learn representations of words using an unsupervised learner.
+2) Use the learned representations as input for a supervised learner performing some NLP task like parts of speech tagging or named entity recognition.
+3) Assess the performance of the unsupervised learner by its ability to improve the performance of the supervised learner compared to a baseline using a standard representation, like binary word presence features, as input.
+for example of this approach find below link.
+https://arxiv.org/abs/1202.5695

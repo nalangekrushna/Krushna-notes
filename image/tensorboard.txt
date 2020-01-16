@@ -1,0 +1,8 @@
+Tensorboard
+
+different views of tensorflow
+Scalars - Visualize scalar values, such as classification accuracy.
+Graph - Visualize the computational graph of your model, such as the neural network model.
+Distributions - Visualize how data changes over time, such as the weights of a neural network.
+Histograms - A fancier view of the distribution that shows distributions in a 3-dimensional perspective
+

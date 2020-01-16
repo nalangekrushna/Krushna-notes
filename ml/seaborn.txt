@@ -1,0 +1,20 @@
+Seaborn 
+
+https://seaborn.pydata.org/tutorial/aesthetics.html
+
+for seaborn default settings use below function.
+sns.set()
+default theme in seaborn is darkgrid.
+sns.set_style("whitegrid")   # to change theme.  dark, white,ticks
+
+Things to try 
+
+coding 
+add border to seaborn catplot
+add tooltip to same graph showing y values.
+
+
+
+
+bar chart is for discrete values and histogram and boxplot are for continous values. 
+

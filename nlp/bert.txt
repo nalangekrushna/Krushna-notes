@@ -1,0 +1,29 @@
+BERT = Bidirectional Encoder Representation for Transformer
+
+This is a brief of below paper.
+https://arxiv.org/pdf/1810.04805.pdf
+
+bert can be used for question answering and language inference.
+
+Natural Language Inference = Natural language inference is the task of determining whether a “hypothesis” is true (entailment), false (contradiction), or undetermined (neutral) given a “premise”.
+http://nlpprogress.com/english/natural_language_inference.html
+
+There are two ways we can apply pre-trained model to specific tasks one way is feature-based and other is fine-tuning.
+In feature-based approach such as ELMo uses tasks specific architecture that includes pre-trained representation as additional feature.
+In fine tuning approach such as Generative Pre-trained Transformer(GPT) is trained on downstream tasks by focussing on fine tuning of parameters.
+both uses uni-directional language model to learn general language representation. this limits the choice of architecture that can be used for training.e.g. OpenAI GPT uses left to right architecture where every token can attend only previous tokens in self attention layer of transformer. such restriction are sub optimal in sentence level tasks and harmful when applying fine tuning based approach in token based tasks such as question answering.
+
+BERT eliminates above constraint by using masked language model(MLM) pre-training objective. MLM randomly masks some of the tokens from input and objective is to predict original vocabulary id of masked word using only context.It allows us to use both left and right context which allows training of pre-trained deep bidirectional transformer. In addition to MLM we also use next sentence prediction to pretrain text-pair representation.
+
+bert takes fine tuning approach. bert training consist of two steps 1) pre-training and 2) fine-tuning. 
+During pre-training model is trained on unlabeled data over different pre-training tasks. for fine-tuning the model is first initialized with pre-trained parameters.
+and all parameters are fine tuned using labeled data from downstream task depending upon the task. So we get different model for each different task.
+
+Model Architecture : BERT uses only encoder part of Transformer.
+
+
+
+Input/Output to BERT : to handle variety of downstream tasks our input should able to represent single as well as multiple sentence representation in single sequence . for that to indicate start of sentence we use special cls token. we differentiate sentences by add sep token in between them and a learned embedding which will tell which sentence it belongs to. An input representation contains corresponging tokena and positional vector.
+
+bert training
+http://jalammar.github.io/illustrated-bert/

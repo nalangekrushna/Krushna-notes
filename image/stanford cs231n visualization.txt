@@ -1,0 +1,22 @@
+
+what is going inside convnets ?
+
+First Layer : no of convolutional filters.for convolutional filter size check image classification stanford cs231n.txt
+almost on all deep net architects first layer you will get edge detection.
+
+Last Layer : you can visualize weights using pca or tsne in last layer.
+
+middle layers : visualize feature maps will be helpful in some cases.
+				guided backprop = find a part of image that neurons respond to
+				gradient ascent = generate a synthetic image that maximally activates the neuron.
+
+testing 
+one way to check what network is learning is occlusion experiment.
+Saliency maps are another way to find which pixels are important for image classification.
+
+one more Idea
+train the deep learning model using data.
+Then apply gradient ascent with regularization onto it.
+get the image back for every class.
+now try to preprocess testing images to look like gradient ascented images.
+ 

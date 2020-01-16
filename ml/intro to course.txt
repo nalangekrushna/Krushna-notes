@@ -1,0 +1,62 @@
+
+Notes are IMPORTANT!
+
+Feynman technique = 1) pick and study topic
+					2) explain topic to child( unfamiliar person with subject)
+					3) indentify any gaps in your understanding.
+					4) go back to content to fill the gaps.
+
+spced interval learning = 
+	1) after 1 day try to explain concept using feynman techniques.
+	2) after 1 week try to solve q and a in applied ai course
+	3) after 1 month again use feynman's technique.
+	
+learning to learn 
+	No course in world can teach you everything..
+	Image search is great way.
+	post comment on video that you don't understand
+	you will get email responsed to all questions you posted.
+	additional reading report 
+	weekly progress reports
+	submit assignments in ipynb and pdf format
+	take response on whatsapp or email.
+	save your work on google drive
+	error dubug using just google.
+	
+most important aspects of data science by order
+1) feature engineering
+2) Bias-Variance Tradeoff
+3) Data analysis and visualization.
+
+Can you explain the difference between ML and DL without using any technical term like features or multilayer neuron?
+
+what is ai ?
+abiity  to perform  tasks that normally require human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages.
+
+what is ml ?
+Machine learning is a subset of AI.
+ML is ability of computers to learn without explicitly programming them.
+In ml we will give input and output and ML will make model or program that is able to give output next time when we give input.This is called data driven approach.
+
+what is dl ?
+Deep learning is a subset of machine learning.
+Deep is a technical term. It refers to the number of layers in a neural network.
+Deep learning is a class of machine learning algorithms that:[10](pp199–200) use multiple layers to progressively extract higher level features from raw input. For example, in image processing, lower layers may identify edges, while higher layer may identify human-meaningful items such as digits/letters or faces.
+	
+magnetism by richard feynman 
+https://www.youtube.com/watch?v=Q1lL-hXO27Q
+Inspirational video : you can learn anything.
+https://youtu.be/JC82Il2cjqA
+difference between predictive modelling and machine learning
+https://www.educba.com/machine-learning-vs-predictive-modelling/
+
+Recommended books
+http://greenteapress.com/thinkstats/thinkstats.pdf
+Introduction to Probability and Statistics for engineers and scientists, Sheldon M Ross
+Linear Algebra and Its Applications, Gilbert Strang
+Video lectures: https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/
+The Elements of Statistical Learning: Trevor Hastie https://web.stanford.edu/~hastie/ElemStatLearn/
+Pattern Recognition and Machine Learning, Christopher Bishop
+Deep Learning, Ian Goodfellow http://www.deeplearningbook.org/
+
+

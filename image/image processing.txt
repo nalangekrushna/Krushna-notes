@@ -1,0 +1,95 @@
+subimage/kernel/mask/template/window
+value of kernel is referred as coefficient rather than pixels.
+
+spatial filtering = operations performed directly on pixels.
+
+Different image preprocessing operations
+
+1) Translation : shifting image along x or y axis.
+	for up and down = [1,0,tx] where tx is by how many points image should be moved down or up. negative tx value means image will go up insted of down.
+	for left and right = [0,1,ty] where ty is by how many points image should be moved left or right. negative ty means image will move to left instead of right.
+	
+2) Rotation : rotating an image by some angle theta.
+generally we assume we are going to rotate around center but we can specify any other points for rotation.
+In rotation first we find center and then rotate image around center by given anlge we can also specify scale to change image size.
+
+3) Resize : cv2.resize()
+we need to take care of aspect ratio. apsect ration can be found by dividing new image width by old image width. or we can use height here.
+cv2.resize(img,interpolation = cv.INTER_LINEAR) (default)
+Preferable interpolation methods are cv.INTER_AREA for shrinking and cv.INTER_CUBIC (slow) & cv.INTER_LINEAR for zooming.
+
+4) Flipping : rotate image by 90 or 180 degrees.
+
+5) Cropping : done by using numpy array slice.
+
+6) Arithmatic : when performaing arithmatic operations like addition or subtraction on image use opencv as it takes care of clipping it to 255.
+e.g. if you add 200+100 in opencv you will get 255 as output.
+ 
+7) Bitwise Operation : and,or,not ans xor
+xor = true only if either one of both the values is true but not the both.
+
+8) Masking : allows us to focus on only important portion of image. It is done by using bitwise and.
+
+Histogram = just by looking at histogram we get general understanding of contrast brightness and intensity distribution.
+
+IMAGE BLURRING/SMOOTHING : practically this means each pixel of image is mixed with surrounding pixels. thresholding and edge detection performs better when image issmoothed or blurred.
+	1) Averaging(linear) = we use different kernel size to do averaging and larger is the kernel size more the blurred image is.
+	2) Gaussian(weighted average)(linear) = it is same as averaging only difference is instead of using simple mean here  we use weighted average where neighbourhood pixels to center will contribute more weight to average. The end result will be image is less blurred but more natually blurred than average.
+	3) median(non-linear) = It is most effective way to remove noise when image has salt and paper noise(i.e. tiny dots in images)
+	4) bilateral blurr = to reduce noise while maintaining edges.It accomplished this by using two gaussian 
+	distributions.
+	The first Gaussian function only considers spatial neighbors,that is, pixels that appear close together in the (x, y) coordinate space of the image. The second Gaussian then models the pixel intensity of the neighborhood, ensuring that only pixels with similar intensity are included in the actual computation of the blur.
+	only downside of this method is it is slow.
+	
+SHARPENING : It is exactly opposite of smoothing.objective is highlight fine details or enhance blurred details. since we do smoothing by averaging it is analogous to integration so sharpening can be done by differentiatio.
+We are interested in the behavior of these derivatives in areas of constant gray level(flat segments), at the onset and end of discontinuities(step and ramp discontinuities), and along gray-level ramps. These types of discontinuities can be noise points, lines, and edges.
+first derivative will be zero for constant values(flat segment) and non-zero for step and ramp.
+second derivative will be zero for ramp of constant slope and non-zero for steps.
+filtered = conv(image,mask)
+filtered = filtered-min(filtered)
+sharpened = image + filtered
+
+unsharp masking = A process to sharpen images consists of subtracting a blurred version of an image from the image itself. This process, called unsharp masking.
+High-pass  = original image - low-pass
+	
+Thresholding = binarization of image.In general we will convert greyscale pixel value to either zero or 255.
+following are the methods of thresholding
+	1) simple = It required human intervention to set threshold value.
+	2) adaptive = It considers small neighborhoods and find threshold value for that neighborhood only.
+	3) otsu and riddler-calvar = this method assumes there are two peaks in greyscale histogram of image. It then tries to find optimal value that seperates this two peaks i.e. threshold value.
+	
+Countours = curve of point with no gap between them.
+1) binarize image using thresholding or edge detection.
+
+SPATIAL FILTERING : The word “filtering” has been borrowed from the frequency domain. Filters are classified as:
+	1) Low-pass (i.e., preserve low frequencies)
+	2) High-pass (i.e., preserve high frequencies)
+	3) Band-pass (i.e., preserve frequencies within a band)
+	4) Band-reject (i.e., reject frequencies within a band)
+	
+Linear spatial filtering method = 
+	1) correlation = measures the similarity between images or parts of images (e.g., pattern matching).
+	2) convolution
+	
+Low-pass filter(smoothing) = reduces noise and eliminates small details.
+High-pass filter(sharpening) = highlights fine details. 
+
+High-boost(sharpening) = original - lowpass
+= (A-1) original + highpass
+
+perspective transform =  you could use a perspective transform to obtain a top-down, “birds eye view” of an image — provided that you could find reference points, of course.
+
+dilation = Dilation adds pixels to the boundaries of objects in an image. The value of the output pixel is the maximum value of all pixels in the neighborhood. Morphological dilation makes objects more visible and fills in small holes in objects.
+
+Erosion = erosion removes pixels on object boundaries. The value of the output pixel is the minimum value of all pixels in the neighborhood. Morphological erosion removes islands and small objects so that only substantive objects remain.
+
+Morphological Operations = 
+1) image opening = erosion => dilation = Morphological opening is useful for removing small objects from an image while preserving the shape and size of larger objects in the image. 
+2) image closing = dilation => erosion = Morphological closing is useful for filling small holes from an image while preserving the shape and size of the objects in the image.
+3) morphological gradient => difference between dilation and erosion of image. used to find outline of an object.
+4) top hat => difference between input image and opening.
+5) black hat => difference between closed image and original image. black hat operation is used to reveal dark regions against light background.(i.e. text on passport.)
+
+for more morphological operations go to below link.
+https://in.mathworks.com/help/images/morphological-dilation-and-erosion.html
+

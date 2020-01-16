@@ -1,0 +1,5 @@
+generator function : A generator function is like a normal python function, but it behaves like an iterator. It has a special keyword yield, which is similar to return as it returns some value. When the generator is called, it will return some value and save the state. Next time when we call the generator again, it will resume from the saved state, and return the next set of values just like an iterator.
+
+Image augmentation : Image Augmentations techniques are methods of artificially increasing the variations of images in our data-set by using horizontal/vertical flips, rotations, variations in brightness of images, horizontal/vertical shifts etc.
+
+keras ImageDataGenerator = generator function + Image augmentation.

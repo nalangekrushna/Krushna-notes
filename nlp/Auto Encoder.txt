@@ -1,0 +1,24 @@
+Auto Encoder = its neural network which performs dimensionality reduction.
+
+simple auto encoder = 
+
+ways to get w2v structure
+	CBOW (continous bag of words) = predict focus word given context words.
+		works well for frequently occuring words.
+		it is faster than skip-gram.
+		V = vocabulary, v = length or size of words
+	skip-gram = predict context words given focus word.
+		works well with infrequent words.
+		works well with less data.
+		
+	No of weights to train in both cbow and skip-gram  = (k+1)(v*n)
+		k= no of context words.
+		n = no of dimensions.
+		
+Algorithmic optimizations to train w2v 
+1) hierachical softmax = use binary tree instead of linear structure.
+2) negative sampling = update only sample of words in each iteration instead of updating all weights.
+
+sampling technique for negative sampling = 
+1)always keep the target word.
+2) amongst all non-targeted word only update sample of words.

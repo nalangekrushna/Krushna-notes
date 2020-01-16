@@ -1,0 +1,50 @@
+non-linear = If you describe something as non-linear, you mean that it does not progress or develop smoothly from one stage to the next in a logical way. Instead, it makes sudden changes, or seems to develop in different directions at the same time.
+
+what is dimensionality reduction = process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction(feature projection).
+
+One of the most common application of this technique is Image processing.
+To identify the matched celebrity image, we use pixel data and each pixel is equivalent to one dimension. In every image, there are high number of pixels i.e. high number of dimensions. And every dimension is important here. You can’t omit dimensions randomly to make better sense of your overall data set. In such cases, dimension reduction techniques help you to find the significant dimension(s) using various method(s). 
+
+What are the common methods to perform Dimension Reduction?
+1) missing value = if there are too many missing values then we can drop that feature.
+2) Low Variance: remove feature having all constant values.
+3) High corelation = Dimensions exhibiting higher correlation can lower down the performance of model. Moreover, it is not good to have multiple variables of similar information or variation also known as “Multicollinearity”. You can use Pearson (continuous variables) or Polychoric (discrete variables) correlation matrix to identify the variables with high correlation and select one of them using VIF (Variance Inflation Factor). Variables having 
+higher value ( VIF > 5 ) can be dropped.
+4) Backward/Forward feature selection = Both Backward Feature Elimination and Forward Feature Selection techniques take a lot of computational time and are thus generally used on smaller datasets
+5) Factor Analysis: Let’s say some variables are highly correlated. These variables can be grouped by their correlations i.e. all variables in a particular group can be highly correlated among themselves but have low correlation with variables of other group(s).two ways of doing factor analysis = 1) exploratory 2)confirmatory.
+It divides the variables based on their correlation into different groups, and represents each group with a factor
+6) PCA (principal component analysis) = This is one of the most widely used techniques for dealing with linear data. It divides the data into a set of components which try to explain as much variance as possible
+7) Partial Least Squares (PLS) regression
+8) ABC (Approximate Bayesian Computation method)
+9) Random forest/decision tree = train on them  using OHE and then plot feature importance graph.
+10) Independent Component Analysis(ICA) = We can use ICA to transform the data into independent components which describe the data using less number of components
+11) t-SNE = This technique also works well when the data is strongly non-linear. It works extremely well for visualizations as well
+12) Uniform Manifold Approximation and Projection (UMAP) = This technique works well for high dimensional data. Its run-time is shorter as compared to t-SNE
+13) ISOMAP = We use this technique when the data is strongly non-linear
+
+PCA explained 
+https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
+it constructs some new features from summarizing the old features. PCA looks for features that show as much variation across dataset as possible and also PCA looks for features that allow to reconstruct the original features as well as possible.
+
+how pca tries to find best features ?
+summary of above link
+pca uses two criteria's First, the variation of values along this line should be maximal. Second, if we reconstruct the original two features from the new one the reconstruction error will be given by the length of the connecting red line.If you stare at this animation for some time, you will notice that "the maximum variance" and "the minimum error" are reached at the same time, namely when the line points to the magenta ticks I marked on both sides of the wine cloud. This line corresponds to the new wine property that will be constructed by PCA. this new property is called "first principal component".
+the both goals gives same result due to pythagoras theorem.
+
+how PCA is related to eigenvectors and eigenvalues ?
+
+T-SNE(t-stochastic neighbor embedding) = extremely useful for visualizing high-dimensional data.
+The goal is to take a set of points in a high-dimensional space and find a faithful representation of those points in a lower-dimensional space, typically the 2D plane. The algorithm is non-linear and adapts to the underlying data, performing different transformations on different regions. 
+
+PCA Limitation = 
+A major problem with, linear dimensionality reduction algorithms is that they concentrate on placing dissimilar data points far apart in a lower dimension representation. But in order to represent high dimension data on low dimension, non-linear manifold, it is important that similar datapoints must be represented close together, which is not what linear dimensionality reduction algorithms do.
+
+how TSNE works ?
+Local approaches seek to map nearby points on the manifold to nearby points in the low-dimensional representation. Global approaches on the other hand attempt to preserve geometry at all scales, i.e mapping nearby points to nearby points and far away points to far away points.
+It is important to know that most of the nonlinear techniques other than t-SNE are not capable of retaining both the local and global structure of the data at the same time.
+
+
+
+
+
+

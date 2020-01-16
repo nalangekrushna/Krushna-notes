@@ -1,0 +1,10 @@
+Performance matrix for text
+
+1. GLUE (General Language Understanding Evaluation) = study later.
+https://gluebenchmark.com/
+
+2. MultiNLi
+https://www.nyu.edu/projects/bowman/multinli/
+
+3. SQuAD
+https://rajpurkar.github.io/SQuAD-explorer/

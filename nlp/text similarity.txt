@@ -1,0 +1,25 @@
+Text Similarity = 
+
+	Word Movers distance(words similarities in word embedding space) = WMD uses the word embeddings of the words in two texts to measure the minimum distance that the words in one text need to “travel” in semantic space to reach the words in the other text. The assumption is that similar words should have similar vectors. It allows transfer every word from sentence 1 to sentence 2 because algorithm does not know “obama” should transfer to “president”. At the end it will choose the minimum transportation cost to transport every word from sentence 1 to sentence 2.
+	Earth Mover’s distance (EMD) = measure of the distance between two probability distributions over a region D (known as the Wasserstein metric). EMD [2] solves transportation problem. For instance, we have m and n while m and n denote a set of suppliers and warehouses. The target is going to minimize transportation cost such that shipping all goods from m to n. detailed explaination on WMD is given in below link.
+	https://towardsdatascience.com/word-distance-between-word-embeddings-cc3e9cf1d632
+	
+	LSA/LSI (Latent Semantic Analysis/Indexing) = (Tf-Idf/BoW + SVD) = It is often assumed that the underlying semantic space of a corpus is of a lower dimensionality than the number of unique tokens. Therefore, LSA applies principal component analysis on our vector space and only keeps the directions in our vector space that contain the most variance.
+	Latent Semantic Analysis arose from the problem of how to find relevant documents from search words. The fundamental difficulty arises when we compare words to find relevant documents, because what we really want to do is compare the meanings or concepts behind the words. LSA attempts to solve this problem by mapping both words and documents into a “concept” space and doing the comparison in this space. Below is the complete example for LSA.
+	https://technowiki.wordpress.com/2011/08/27/latent-semantic-analysis-lsa-tutorial/
+	
+	LDA (Latent Dirichlet allocation) = one of the way to topic modeling. 
+	https://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/
+	
+	Variational Auto Encoder = 
+	
+	
+	
+Metrics 
+	Kulback-Leibler(KL) distance = very well and detailed explaination.
+	https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained/
+	Jensen-Shannon distance = 
+	
+	
+	
+

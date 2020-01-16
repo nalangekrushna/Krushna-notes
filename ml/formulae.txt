@@ -1,0 +1,18 @@
+Formulae
+
+mean/avg = sum of elements/no of elements
+
+median = Median is the middle number in a sorted list of numbers.
+median =  (no of values/2)+1 (odd count) position value is median.
+	   x = no of values/2
+	   y = (no of values/2)+1
+median value for even no of values = (x+y)/2
+
+variance(sigma^2) =  (sum of square of (x_i-mean(x)))/ no of x_i
+				  = avg((x_i-mean(x)^2)
+standard deviation = sqrt(variance)
+
+co-variance = avg((x_i - mean(x)) * (y_i - mean(y)))
+
+Pearson correlation coef = covarince(X,y)/(sigma(x)*sigma(y))
+

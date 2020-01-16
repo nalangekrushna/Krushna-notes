@@ -1,0 +1,31 @@
+Recurrent Neural Network(RNN) = 
+
+application of RNNs
+1) time series data
+2) machine translation(language translation)
+3) problems containing text information
+4) speech recognition
+5) image captioning.
+
+If your output depends on sequence of input and not just set of input then RNN is best choice.
+
+MLP works on vectors
+CNN works on image data.
+RNN works on text data.
+backprop over time = simple rnn has vanishing/exploding gradient problem.
+
+Types of RNN
+1) many to one RNN (sentiment analysis,movie ratings)
+2) one to many RNN (image captioning)
+3) many to many RNN same no of inputs and output( parts of speech)
+4) many to many RNN different no of inputs and output (machine translation)
+5) one to one RNN = MLP
+
+long term dependancy = later output depends on earlier input.
+dot product = 
+merge = dot product
+LSTM (long short term memory) = lstm decides how much to remember and how much to forget.
+GRU (gated recurrent unit) = simplied version of lstm.
+	faster to train than lstm. but as powerful as lstm. but sometimes lstm works better. So check both.
+	
+Bi-directional RNN =

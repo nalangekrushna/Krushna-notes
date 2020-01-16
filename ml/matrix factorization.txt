@@ -1,0 +1,35 @@
+
+sparsity of matrix = number of empty cells/ total no of cells.
+matrix factorization is one way to fill empty values.
+
+Recommender system = seeks to predict the "rating" or "preference" a user would give to an item.
+
+two types of recommendation system
+1) content based = Content-based filtering methods are based on a description of the item and a profile of the user’s preferences.
+2) collaborative = by knowing users preferences.
+
+Similarity based algorithm types =
+1) Item-Item based similarity
+2) User-User based similarity.
+
+if you have more user then use item-item instead of user-user recommendation system.
+matrix factorization used for recommender based system problems.
+
+matrix factorization/decomposition = Matrix factorization algorithms work by decomposing the user-item interaction matrix into the product of two lower dimensionality rectangular matrices.
+Consider a given matrix A we can decompose it into product of matrix BCD
+A = BCD
+
+pca = eigen decomposition of co-variance matrix. pca can be performed on only on co-variance, square and symmetric matrix only.
+
+Collaborative filtering (CF) is a technique used by recommender systems. Collaborative filtering has two senses, a narrow one and a more general one.
+In the newer, narrower sense, collaborative filtering is a method of making automatic predictions (filtering) about the interests of a user by collecting preferences or taste information from many users (collaborating). The underlying assumption of the collaborative filtering approach is that if a person A has the same opinion as a person B on an issue, A is more likely to have B's opinion on a different issue than that of a randomly chosen person.
+
+svd = singular value decomposition = MF technique related to PCA. svd can be performed on any rectangular matrix.
+
+nnmf = non negative matrix factorization
+
+cold start problem = 
+1) new user comes = show top items by given metadata such as location.
+2) new product launches = use product category,price
+
+Eigen faces = 

@@ -1,0 +1,183 @@
+
+
+co-variance = Covariance is a measure of strength of corelation between two random variables.
+	covariance is a measure of the joint variability of two random variables.
+co-variance sign if positive tells us about if x increase then y also or if negative then x increase 	then y decreases. but by magnitude we cannot tell how much big difference is cause magnitude depends on metric system.
+consider example of height and weight if we take weight in kg or pound then there will be different magnitude.
+	co-variance = avg((x_i - mean(x)) * (y_i - mean(y)))
+
+Pearson correlation coef = covarince(X,y)/(sigma(x)*sigma(y))
+	pearson coef lies between -1 to +1. it will be +1 or -1 for all points falling on same line.
+	covarince and pearson coef are biased towards linear relationships.
+	pearson coef slope of line doesn't matter.also cannot capture non-linear complex relationships.
+	
+Spearman rank correlation coef = it creates new variable by sorting all x and all y in ascending order and then calculate pearson correlation coef rank.
+
+correlation doesn't imply causation.
+two random variable are correlated doesnot mean one causes another.e.g. no of nobel prize winners vs chocolate consumption per capita. Its correlation is 0.8 but chocolate consumption cannot get you nobel prize.
+find a general life example
+
+Causul model =  advance area of statistics and machine learning.
+
+https://sciencebasedmedicine.org/evidence-in-medicine-correlation-and-causation/
+
+what is confidence interval ?
+-> It is a range for which we can tell probability of finding datapoints.
+confidence interval = height between 160 to 180 cm(interval) with 95% probability(confidence) vs
+point estimate = height 168.5 cm
+
+Correlation = Correlation is a statistical technique that can show whether and how strongly pairs of variables are related.
+
+collinearity = The term collinearity, or multicollinearity, refers to the condition in which two or more predictors(independant variables) are highly correlated with one another.
+
+mean for normal random variable 
+	case 1: you have sample and std-dev = just by using simple formula. = using central limit theorem.
+	case 2: you just have sample = t -distribution/student's t dist = sample follows t-1 degrees of freedom.
+	case 3: empirical bootstrap method to calculate confidence interval.
+
+bootstrap samples : sample generated using uniform distribution.(sample with replacement).
+non-parametric technique : doesn't make any assumption related to distribution.
+
+confidence interval = a range of values so defined that there is a specified probability that the value of a parameter lies within it.
+A Confidence Interval is a range of values we are fairly sure our true value lies in.
+
+
+Hypothesis testing = A statistical hypothesis is an assumption about a population parameter. This assumption may or may not be true. Hypothesis testing refers to the formal procedures used by statisticians to accept or reject statistical hypotheses.
+Null hypothesis = no difference between mean values of two set of data. A null hypothesis is a type of hypothesis used in statistics that proposes that no statistical significance exists in a set of given observations.
+Alternative hypothesis = inverse of null hypothesis
+example : not long ago it was assumed that earth is flat.
+null hypothesis = The world is flat.
+Alternate hypothesis = The world is round.
+Proof contradiction	= here we assume null hypothesis is true and prove alternative hypothesis is false.
+p-value = probability of observing difference between mean values of two set of data if null value is true.
+p-value = probability of observing already observed value when the assumption (null hypothesis) is true.
+
+resampling = Once we have a data sample, it can be used to estimate the population parameter.The problem is that we only have a single estimate of the population parameter, with little idea of the variability or uncertainty in the estimate.One way to address this is by estimating the population parameter multiple times from our data sample. This is called resampling.
+types of resampling = 
+1) Bootstrap =  Samples are drawn from the dataset with replacement (allowing the same sample to appear more than once in the sample), where those instances not drawn into the data sample may be used for the test set.
+2) k-fold Cross-Validation = A dataset is partitioned into k groups, where each group is given the opportunity of being used as a held out test set leaving the remaining groups as the training set.
+
+permutation test = in permutation test we try all combinations and take their average and check if there is any difference between currently selected group average and this average.
+
+k-s test  = we assume some distribution for given single random variable. then we check difference between that distribution and actual variable values.(i.e. deviation from null hypothesis.)if difference is small then we said it is satisfying null hypothesis.
+
+use of hypothesis testing = Why do we even need hypothesis tests? After all, we took a random sample and our sample mean of 330.6 is different from 260. That is different, right? Unfortunately, the picture is muddied because we’re looking at a sample rather than the entire population.
+Sampling error is the difference between a sample and the entire population. Thanks to sampling error, it’s entirely possible that while our sample mean is 330.6, the population mean could still be 260. Or, to put it another way, if we repeated the experiment, it’s possible that the second sample mean could be close to 260. A hypothesis test helps assess the likelihood of this possibility!
+
+mean = arithmetic mean  = sum of all values/ no of values.
+variance(sigma square) = The variance is a measure of how far each value in the data set is from the mean. For each data point x_i, the (x_i-mean(x)) could be either a positive or negative value. Hence if we take them as they are, they will get cancelled. Hence in order to make sure they aren’t cancelled, we take the square of each term and add all the squares to compute variance.
+variance(sigma^2) =  (sum of square of (x_i-mean(x)))/ no of x_i
+standard deviation = sqrt(variance)
+standard deviation = measure that is used to quantify the amount of variation or dispersion of a set of data values.
+The Standard Deviation is a measure of how spread out dataset relative to its mean
+
+bias = Bias is the tendency of a statistic to overestimate or underestimate a parameter.
+
+median = Median is the middle number in a sorted list of numbers.
+median =  (no of values/2)+1 (odd count) position value is median.
+	   x = no of values/2
+	   y = (no of values/2)+1
+median value for even no of values = (x+y)/2
+
+percentile = A percentile is a measure used in statistics indicating the value below which a given percentage of observations in a group of observations falls. For example, the 20th percentile is the value below which 20% of the observations may be found.
+Percentile relates to where a particular individual item stands within a population.
+percentile denotes the rank.
+
+percentile calculation = 
+1) Order all the values in the data set from smallest to largest.
+2) Multiply k percent by the total number of values, n. this value is called index.
+3) If the index obtained in Step 2 is not a whole number, round it up to the nearest whole number and go to Step 4. If the index obtained in Step 2 is a whole number, go to Step 5
+4) Count the values in your data set from left to right (from the smallest to the largest value) until you reach the number indicated by Step 3.The corresponding value in your data set is the kth percentile.
+5) Count the values in your data set from left to right until you reach the number indicated by Step 2. The kth percentile is the average of that corresponding value in your data set and the value that directly follows it.
+
+mad ( median absolute deviation) = Consider the data (1, 1, 2, 2, 4, 6, 9). It has a median value of 2. The absolute deviations about 2 are (1, 1, 0, 0, 2, 4, 7) which in turn have a median value of 1 (because the sorted absolute deviations are (0, 0, 1, 1, 2, 4, 7)). So the median absolute deviation for this data is 1.
+it is median of difference between x_i and its median when arranged in ascending order.
+measure of the variability of a univariate sample of quantitative data. 
+
+interquartile range = measure of where the “middle fifty” is in a data set.
+Step 1: Put the numbers in order.
+1, 2, 5, 6, 7, 9, 12, 15, 18, 19, 27.
+Step 2: Find the median.
+1, 2, 5, 6, 7, 9, 12, 15, 18, 19, 27.
+Step 3: Place parentheses around the numbers above and below the median. 
+Not necessary statistically, but it makes Q1 and Q3 easier to spot.
+(1, 2, 5, 6, 7), 9, (12, 15, 18, 19, 27).
+Step 4: Find Q1 and Q3
+Think of Q1 as a median in the lower half of the data and think of Q3 as a median for the upper half of data.
+(1, 2, 5, 6, 7),  9, ( 12, 15, 18, 19, 27). Q1 = 5 and Q3 = 18.
+Step 5: Subtract Q1 from Q3 to find the interquartile range.
+18 – 5 = 13.
+
+vector = a quantity having direction as well as magnitude, especially as determining the position of one point in space relative to another.
+	vector is an geometric object having magnitude and direction.
+	vecor is represented by its co-ordinates in space.When a vector is represented graphically, its magnitude is represented by the length of an arrow and its direction is represented by the direction of the arrow.e.g. 5N force
+length of vector ||a|| = sqrt(sum(x_i^2))
+
+dot product of vector = Dot product of two vectors ā and b  can be defined as a scalar quantity that is equal to the product of magnitudes of vectors multiplied by the cosine of the angle between vectors:
+a·b  = |a| · |b| cos α
+a·b  = ax·bx + ay·by
+
+cross product of two vectors = The Cross Product a × b of two vectors is another vector that is at right angles to both ( the angle of resultant vector is decided by right hand rule.)
+	a × b = |a| |b| sin(θ) n
+		|a| is the magnitude (length) of vector a
+		|b| is the magnitude (length) of vector b
+		θ is the angle between a and b
+		n is the unit vector at right angles to both a and b
+right hand rule for vector  = With your right-hand, point your index finger along vector a, and point your middle finger along vector b: the cross product goes in the direction of your thumb.
+magnitude can be calculated using matrix cross product method see below link for mulitplication.
+https://en.wikipedia.org/wiki/Cross_product
+
+distance of point x0 from equation of hyperplane w'x+b=0
+d = |w'.x0+b|  / ||w'||
+
+
+row vector = single row
+column vector = one column
+unit vector = given vector / || given vector ||
+			= given vector / norm/length of vector
+			= vector of magnitude one.
+
+Equation of line
+y = mx + c
+Equation of plane
+ax+by+cz +d = 0
+Equation of hyper plane
+a1x1+a2x2+ .. +anxn = d
+
+Equation of circle 
+x^2 + y^2 = r^2
+Equation of sphere
+x^2 + y^2 +z^2 = r^2
+Equation of hyper sphere
+x^2 + y^2 + .. +z^2 = r^2
+
+Equation of ellipse
+x^2/a^2 + y^2/b^2 = 1
+Equation of ellipsoid
+x^2/a^2 + y^2/b^2 + z^2/c^2 = 1
+
+area of squre  = a^2
+perimeter of square = 4a
+
+area of rectange = a*b
+perimiter of rectange = 2(a+b)
+
+volume of cube  = a^3
+surface area = 6a
+
+population = set of all possible outcomes/observations.
+sample =  subset of population.
+
+central limit theorem = consider if x is random variable with finite population mean.
+We take m sample of size n from population whose distribution not necessarily normal. 
+then we calculate means of each sample.
+The distribution of sampling means.
+central limit theorem says this distribution will have gaussian distribution of mean mu(same as population mean) and variance of this is variance of population/sample size n as n tends to infinity.  
+
+standardization = In statistics, standardization is the process of putting different variables on the same scale.
+
+A Q-Q plot is a scatterplot created by plotting two sets of quantiles against one another. If both sets of quantiles came from the same distribution, we should see the points forming a line that's roughly straight. 
+https://www.statisticshowto.datasciencecentral.com/q-q-plots/
+
+Chebyshev's inequality = for a wide class of probability distributions, no more than a certain fraction of values can be more than a certain distance from the mean.
+

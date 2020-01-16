@@ -1,0 +1,8 @@
+
+Grandient boosting = 
+
+How to read machine learning research paper ?
+1) have all fundamentals concept cleared.
+2) read abstract and try to understand the problem paper is trying to solve.
+3) find the concept that you don't know mathematically and try to understand that.
+4) 

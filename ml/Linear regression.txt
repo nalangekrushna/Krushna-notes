@@ -1,0 +1,108 @@
+Linear Regression
+Concept = Here our objective is to find the line or plane or hyperplane in 3d.thats the geometric intution of it.
+
+Assumptions
+1) LINEAR RELATIONSHIP =First, linear regression needs the relationship between the independent and dependent variables needs to be linear.
+2) MULTIVRIATE NORMAL =the linear regression analysis requires all variables to be multivariate normal. 
+3) NO MULTI-COLINEARITY =there is no or little multi-collinearity between different features.
+4) NO AUTOCORELATION =there is little or no autocorrelation in the data.
+5) Homoscedasticity = This assumption means that the variance around the regression line is the same for all values of the predictor variable (X).
+http://davidmlane.com/hyperstat/A121947.html
+
+Equation :
+y = a1*x1+c
+Here we have given x(features) and y(label). Using below formula we can find out values of m and c.
+m = sum((x(i) - mean(x)) * (y(i) - mean(y))) / sum( (x(i) - mean(x))^2 )
+c = mean(y) - a1 * mean(x)
+
+Imbalanced Data
+there is no need of handing imbalanced data as class labels are not there.
+
+Outliers 
+outliers = outliers need to be removed from training data. As we are taking square of loss outliers affect too much.
+
+Column Standardization
+Yes.
+
+Advantages
+
+Disadvantages
+
+time and space complexity
+training complexity
+	time complexity   nd
+runtime complexity
+	space complexity  d
+	time complexity   d
+
+Hyper parameters 
+no hyper parameters
+
+how to check if model is suffering from multi-collinearity ? Can we build better model without loosing information ?
+To check multicollinearity, we can create a correlation matrix to identify & remove variables having correlation above 75% (deciding a threshold is subjective). In addition, we can use calculate VIF (variance inflation factor) to check the presence of multicollinearity. VIF value <= 4 suggests no multicollinearity whereas a value of >= 10 implies serious multicollinearity. 
+But, removing correlated variables might lead to loss of information. In order to retain those variables, we can use penalized regression models like ridge or lasso regression. 
+
+Variance Inflation Factor = ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone.
+VIF = 1/(1-R_f1^2)
+R = coef of determination or R squared
+f1 = feature one
+
+SGD ( stochastic gradient descend )= In many big data setting (say several million data points), calculating cost or gradient takes very long time, because we need to sum over all data points. (GD)
+We do NOT need to have exact gradient to reduce the cost in a given iteration. Some approximation of gradient would work OK.
+Stochastic gradient decent (SGD) approximate the gradient using only one data point. So, evaluating gradient saves a lot of time compared to summing over all data.
+With "reasonable" number of iterations (this number could be couple of thousands, and much less than the number of data points, which may be millions), stochastic gradient decent may get a reasonable good solution. 
+
+what is linear or non-linear?
+how to check if relationship is linear ?
+-> we can use scatterplot for this.
+what if relationship is not linear?
+how can we convert it into linear?
+
+what is multivariate normal?
+-> the multivariate normal distribution, multivariate Gaussian distribution, or joint normal distribution is a generalization of the one-dimensional (univariate) normal distribution to higher dimensions.
+
+how to check variables are multivariate normal ?
+-> This assumption can best be checked with a histogram or a Q-Q-Plot.We can also use K-S test(Kolmogorov-Smirnov test)
+how to convert them into multi variate normal form?
+-> there are different techniques for different distributions.on of them is to take the log.
+
+what is multi-colinearity ?
+-> Multicollinearity occurs when the independent variables are too highly correlated with each other.
+ways to find muli-colinearity ?
+1) correlation matrix
+2) VIF (variance inflation factor) 
+3) pearson correlation coef
+4) spearman correlation coef 
+
+what is autocorrelation ?
+-> Autocorrelation occurs when the residuals are not independent from each other.  For instance, this typically occurs in stock prices, where the price is not independent from the previous price.
+
+how to check for autocorrelation ?
+-> you can test the linear regression model for autocorrelation with the Durbin-Watson test.  
+
+how to check for homoscedasticity ?
+-> scatter plot can be used for it.
+
+VIF = Variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables.
+formula = vif = 1/(1-R_i^2)
+where R_i^2 is called R squared or coef of determination.
+and i is the ith feature for which you are calculating vif. 
+
+what should be vif value? how it is decided that this is threshold ?
+vif value greter than 10 means there is high multi-collinearity. It is thumb rule.
+
+Lasso and Ridge regression
+https://www.analyticsindiamag.com/ridge-regression-vs-lasso-how-these-2-popular-ml-regularisation-techniques-work/
+Lasso and Ridge are regularization technique for linear regression which adds a penalty term in equation to generalize the model.
+
+Lasso (l1) regression (Least Absolute Shrinkage Selector Operator) = It is generally used when we have more number of features, because it automatically does feature selection.
+
+Ridge (l2) regression = 
+It shrinks the parameters, therefore it is mostly used to prevent multicollinearity.
+It reduces the model complexity by coefficient shrinkage.
+
+Elastic net = Lasso + Ridge
+
+why l1 regularizer creates sparsity ?
+https://www.analyticsvidhya.com/blog/2017/06/a-comprehensive-guide-for-linear-ridge-and-lasso-regression/
+study and write brief notes on it.

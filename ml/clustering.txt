@@ -1,0 +1,28 @@
+
+measurement of good clustering
+	intra cluster distance should be small.
+	inter cluster distance should be large.
+	
+metrics for clustering
+There are two types of performance matrix 
+I) Internal matrix
+https://medium.com/@ODSC/assessment-metrics-for-clustering-algorithms-4a902e00d92d
+1) Dunn index = minimum inter cluster distance/ maximun intra cluster distance
+	Its value should be greater than one.
+	
+2) Silhouette coefficient = The Silhouette Coefficient tells us how well-assigned each individual point is. If S(i) is close to 0, it is right at the inflection point between two clusters. If it is closer to -1, then we would have been better off assigning it to the other cluster. If S(i) is close to 1, then the point is well-assigned and can be interpreted as belonging to an ‘appropriate’ cluster.
+
+3) Davies-Bouldin index = The intuition behind Davies-Bouldin index is the ratio between the within cluster distances and the between cluster distances and computing the average overall the clusters. It is therefore relatively simple to compute, bounded – 0 to 1, lower score is better. However, since it measures the distance between clusters’ centroids it is restricted to using Euclidean distance function.
+You must however be aware that there are algorithms such as k-means that try to optimize exactly these parameters, and as such you introduce a particular type of bias; essentially this is prone to overfitting.
+https://stats.stackexchange.com/questions/21807/evaluation-measures-of-goodness-or-validity-of-clustering-without-having-truth
+
+II) External matrix = which consists in comparing the results of a cluster analysis to an externally known result, such as externally provided class labels such as rand index.
+1) Corrected Rand index = measure of the similarity between two data clusterings. The corrected Rand index varies from -1 (no agreement) to 1 (perfect agreement).
+https://datascience.stackexchange.com/questions/19530/difference-between-rand-index-and-adjusted-rand-index
+
+III) Relative validation = which evaluates the clustering structure by varying different parameter values for the same algorithm (e.g. varying the number of clusters k). It’s generally used for determining the optimal number of clusters. 
+
+
+	
+
+	

@@ -1,0 +1,6 @@
+A/B test/bucket test/ controlled experiment/ split test  = A/B testing
+A/B testing = A/B testing is a way to compare two versions of a single variable, typically by testing a subject's response to variant A against variant B, and determining which of the two variants is more effective.
+
+e.g. Version A might be the currently used version (control), while version B is modified in some respect (treatment). For instance, on an e-commerce website the purchase funnel is typically a good candidate for A/B testing, as even marginal improvements in drop-off rates can represent a significant gain in sales.
+
+another example could be email with small change in mail language and check response in both cases.

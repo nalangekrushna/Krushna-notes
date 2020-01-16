@@ -1,0 +1,76 @@
+Deep MLP
+
+issues pre 2012 era neural networks
+1) vanishing or exploding gradient problem.
+2) too little data.
+3) too little compute power.
+
+dropout = randomization for regualarization (most popular way to regularize deep neural networks.)
+
+Rectified Linear Units(ReLU) = 
+	activation function for ReLU f(z) =  z plus = max(0,Z)
+	derivative of f(z) = {0,1} (i.e. either zero or one)
+	problem with ReLU = dead activation,not differentiable at zero.
+	to solve problem of non-differentiable at zero = we use softplus function.
+	softplus function f(z) = log(1+exp^z)
+	derivative of softplus function = logistic function 1/(1+exp^-z)
+	variants of ReLU = noisy ReLU, leaky ReLU
+	when using ReLU always check how many activation units are dead. If too many are dead then very simple fix is instead of using zero use ax where a is small value. but it could also again put us in vanishing gradient problem. 
+	
+weights initialization = 
+1) weights should not be zero as then model gets in problem of symmetry. i.e. each neuron will be training the same thing.
+2) weights should not be large negative number as it will be zero in case of ReLU and runs into vanishing gradient problem in case of sigmoid or tanh function.
+3) weights should be small (but not too small.)
+4) weights should not be all same values.
+5) there should be variance in between weights.
+6) So all weights  = N(0,sigma)  where 0 is mean N is normal distributed and sigma(std deviation) is small variance.
+i.e. gaussian/normal initialization. it works fairly well in most of the cases.
+
+fan-in  = no of input to given neuron 
+fan-out = no of output from given neuron.
+
+7) uniform initialization = uniform distribution[-1/sqrt(fan-in), 1/sqrt(fan-out)]
+	it works fairly well in case of sigmoid function.
+8) xavier/glorot initialization = 
+	a) weights(xavier/glorot normal) = N(0,sigma)  sigma = sqrt(2/ (fan-in +fan-out))
+	b) weights(xavier/glorot uniform)= uniform[ -sqrt(sigma)/ sqrt(fan-in + fan-out), sqrt(sigma)/ sqrt(fan-in + fan-out)]
+9) He initialization = 
+	a) He uniform = uniform[ -sqrt(sigma/fan-in), sqrt(sigma/fan-in)]
+	b) He normal = N(0,sigma) sigma = sqrt(2/fan-in)
+
+there is no concrete agreement between researchers that which initialization is best.
+
+batch normalization = to solve internal co-variance shift problem we add batch normalization layere in between which will make that input distribution normal.
+
+saddle point = 
+
+optimizers and when to use which one.
+	mini batch sgd (small/shallow neural network)
+	momentum with batch sgd ( works well in most cases,slow)
+	nesterov accelerated gradient(NAG) ( works well in most cases,slow)
+	adagrad (adaptive gradient)  ( sparse data )
+	adadelta (adaptive delta) ( sparse data )
+	RMSProp ( sparse data )
+	exponential decay average(eda) = 
+	adam (adaptive moment estimation) ( most favorite, fastest)
+	
+gradient clipping
+
+internal co-variance shift = although the inputs to first layer are slightly different but after some layer there value changes dramatically. this problem is called internal co-variance shift.
+
+softmax classifier = generalization of logistic regression for multi-class setting without using one vs rest.
+
+how to train a MLP ?
+1) pre process the data(data normalization)
+2) weights initialization = xavier/glorot normal or uniform  for sigmoid or tanh
+							He normal or uniform for ReLU activation
+							Gaussian with small variance.
+3) choose the activation function = ReLU, SeLU, 
+4) add batch normalization esp for deep MLP for later layers.
+5) dropouts
+6) optimizers = adam
+7) Hyper parameters = no of layers, no of neuron, dropout rate, 
+8) Loss function = log loss for binary classification, multi-class log loss for multi-class classification, squared loss for regression
+9) always monitor gradient and apply gradient clipping if needed.
+10) plot train loss vs epoch ideally it should be increase in epoch will reduce your training loss.
+11) avoid overfitting, by checking difference between train,test loss.

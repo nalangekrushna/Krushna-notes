@@ -1,0 +1,8 @@
+article   gpu for amazon fine food reviews.
+
+pyOpenCL and pyCUDA is 5 times faster than numba
+https://stackoverflow.com/questions/45164459/what-is-the-difference-between-pycuda-and-numbapro-cuda-python
+
+Be cautious when using gpu.
+https://stackoverflow.com/questions/47710707/cuda-gpu-is-slower-than-cpu-in-simple-numpy-operation
+https://stackoverflow.com/questions/45898942/pyomo-solves-over-nvidia-cuda

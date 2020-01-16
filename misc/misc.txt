@@ -1,0 +1,34 @@
+
+
+how is the calibration plot drawn ? 
+	1) first we predcit y_pred from given data.
+	2) then we sort by y_pred in ascending order. it has three columns id,y_pred,y_actual
+	3) then we make set of m rows. and calculate average of it.
+	4) if y_actual also is in increasing order for average of m rows same as y_pred then our model is sensible.
+	5) then we plot graph of y_actual and y_pred. Ideally it should be 45 degree angle from origin.
+	
+platt calibration = plat calibration works only when calibration plot looks like sigmoid function.
+
+Isotonic calibration = piecewise linear model
+	It works well with stepwise curve. but it requires many more points to work.
+	
+RANSAC = RANdom SAmpling Consensus = 
+	1) take random dataset d zero from d train.
+	2) build a linear regression model on d zero which is called l zero.
+	3) calculate outliers based on model l zero by taking difference between y_pred and y_actual.
+	4) that outlier set will be called o zero.
+	5) create a new dataset by subtracting o zero from d train which is called d train one.
+	6) repeat above procedure to find d train two.
+	7) check if both models give same results. if not then continue the procedure.
+	8) then finally u get a model l i and l i+1 which is almost same which u can use as training data.
+	
+VC dimensions(Vapnik chervanes) = measures how powerful the algorithm is.
+vc dimension of linear model = maximum no of points that can be shattered by linear regression in all possible configuration = 3 
+vc dimension rbf-svm kernel = infinity
+theoratically rbf svm is most powerful algorithm. but practically it is not because in theory we make lot of assumptions which are not possible in real world scenario.
+
+Hamming Loss  = xor of multi label classification.
+
+OVO (one vs one classifier) = In this case you will pick two classes at a time and then train on both ignoring other classes. In this case if you have N classes then you will get N(N-1)/2 no of classifiers. In time of prediction you will be doing voting of all classifier to predict the results.
+
+OVR (one vs rest) = In OVR we taken one class as positive and all other classes as negative. Here we get N no of classifiers.

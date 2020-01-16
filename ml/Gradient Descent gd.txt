@@ -1,0 +1,27 @@
+Gradient Descent
+
+GD = 
+Gradient Descent is an optimization algorithm used for minimizing the cost function in various machine learning algorithms. It is basically used for updating the parameters of the learning model.
+
+gd formula : b1 = b0 - learning_rate*error
+where b1 and b0 are the same feature with different iteration numbers.
+In depth explaination
+https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e
+
+Types of gradient Descent:
+1) Batch Gradient Descent: This is a type of gradient descent which processes all the training examples for each iteration of gradient descent. But if the number of training examples is large, then batch gradient descent is computationally very expensive. Hence if the number of training examples is large, then batch gradient descent is not preferred. Instead, we prefer to use stochastic gradient descent or mini-batch gradient descent.
+code for gradient descent
+https://ml-cheatsheet.readthedocs.io/en/latest/gradient_descent.html
+
+2) Stochastic Gradient Descent: This is a type of gradient descent which processes 1 training example per iteration. Hence, the parameters are being updated even after one iteration in which only a single example has been processed. Hence this is quite faster than batch gradient descent. But again, when the number of training examples is large, even then it processes only one example which can be additional overhead for the system as the number of iterations will be quite large.
+    
+3) Mini Batch gradient descent: This is a type of gradient descent which works faster than both batch gradient descent and stochastic gradient descent. Here b examples where b<m are processed per iteration. So even if the number of training examples is large, it is processed in batches of b training examples in one go. Thus, it works for larger training examples and that too with lesser number of iterations. 
+
+SGD
+first decide a random value of k.    1<= k <= n(total no of points)
+then pick random k points for each iteration.
+for x iterations you will reach w = w*
+
+Convergence trends in different variants of Gradient Descents:
+In case of Batch Gradient Descent, the algorithm follows a straight path towards the minimum. If the cost function is convex, then it converges to a global minimum and if the cost function is not convex, then it converges to a local minimum. Here the learning rate is typically held constant.
+In case of stochastic gradient Descent and mini-batch gradient descent, the algorithm does not converge but keeps on fluctuating around the global minimum. Therefore in order to make it converge, we have to slowly change the learning rate. However the convergence of Stochastic gradient descent is much noisier as in one iteration, it processes only one training example.

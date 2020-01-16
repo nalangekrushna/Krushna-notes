@@ -1,0 +1,10 @@
+There are three data splitting techniques
+
+1) Random splitting
+2) Time Based Splitting (TBS)
+	In this we split data based on timing. TBS works well for time series data such as food reviews which constantly changes with time. So to check on future data we could train on 10 days before today and apply it to last 10 days to check for future predictions. There are some limitations also consider a new category of food is added in last 10 days so in training data we don't have that new category.
+	One caution is that check train and test data distribution should be same.
+	How to determine if data is changing over time ?
+	check applied ai video train and test set differences.
+3) Stratified splitting = In this you will do splitting in proportions as it is in original dataset.
+

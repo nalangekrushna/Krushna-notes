@@ -1,0 +1,62 @@
+Logistic Regression(lr) = 
+
+Assumptions = 
+(a) binary logistic regression requires the dependent variable to be binary and
+(b) ordinal logistic regression requires the dependent variable to be ordinal.
+There needs to be a linear relationship between any continuous independent variables and the logit transformation of the dependent variable.
+little or no multi-collinearity among the independent variables.
+
+logit function logit(p) =  log(p/(1-p))
+
+Equation
+sigmoid function f(x) = 1/1+e^-z
+
+Imbalanced data
+not sure about the answer.  do some experiments.
+Imbalanced data needs to be handled.
+Here we tries to find weights first like in linear regression and then apply sigmoid function on top of this. To find the weights we need to standardize our solution.
+
+Outliers
+lr is prone to outliers.outliers needs to be handled.
+
+feature standardization is mandatory in logistic regression.
+we can get feature importance using weights. higher is the weights then more is the feature importance.
+model can be interpreted using its weights assigned with feature.
+
+monotonic function  = if x increases then f(x) also increases.
+
+Advantages :
+low space and time complexity can be used in low latency applications.
+It is easy to interprete
+
+Disadvantages :
+can't solve non-linear problem as decision surface is linear.
+Needs large sample data to achieve stable results.
+
+ways to convert non linear datapoints to linear datapoints.(feature engineering).
+1) polynomial function( f1,f1 square,f1 cube)
+2) trignometric function (sin cos tan)
+3) boolean functions ( and or xor)
+4) log or exponential functions.
+
+training complexity
+	time complexity = nd
+run time complexity 
+	time complexity = d
+	space complexity = d
+	
+very good for low latency applications.	
+
+hyperparameters 
+no hyperparameters.
+
+
+why-isnt-logistic-regression-called-logistic-classification ?
+Logistic regression is emphatically not a classification algorithm on its own. It is only a classification algorithm in combination with a decision rule that makes dichotomous the predicted probabilities of the outcome. Logistic regression is a regression model because it estimates the probability of class membership as a (transformation of a) multilinear function of the features.
+
+Is it possible to apply a logistic regression algorithm on a 3-class Classification problem?
+True
+
+
+
+ 
