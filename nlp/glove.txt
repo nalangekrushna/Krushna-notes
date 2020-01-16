@@ -2,3 +2,9 @@ GLOVE = global vector for word representation
 https://nlp.stanford.edu/projects/glove/
 https://mlexplained.com/2018/04/29/paper-dissected-glove-global-vectors-for-word-representation-explained/
 https://cai.tools.sap/blog/glove-and-fasttext-two-popular-word-vector-models-in-nlp/
+
+Glove combines both matrix factorization technique(co-occurence matrix) and local context based learning such as word2vec.
+glove model trains on global co-occurence counts of word produced using given document to get context related to that document.
+
+Consider a co-occurence matrix X, each entry of which corresponds to no of times word j occured in context of word i. So
+Pij = Xij/Xi is the probability that word j occured in context of word i. we modify it to add for another word as well as context and use it.

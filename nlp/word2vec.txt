@@ -1,0 +1,15 @@
+
+what is Word2Vec ?
+Word2Vec is shallow two layer neural network. It takes large corpus of word as input and produces vector space typically 50,100,200 or 300 dimensions. word vectors are built such that word that share common context in corpus are located in close proximity. It is prediction based embedding.(There are two types of embedding one in frequency based and other is predictive.)
+
+Word2Vec is also thought of word embedding method used for converting word into vector representation that machine can understand.
+
+Word2Vec Architecture :
+There are two neural network architecture used for word2vec training 1. CBOW   2. Skip-gram
+CBOW = in this we predict single word from surrounding words.
+Skip-gram = It produces surrounding context(words) given single word.
+
+Word2Vec training :
+Word2Vec is neural network which has one hidden layer. and in training our purpose is to adjuct weights so to minimize loss function. But instead of using trained model for the purpose it is trained we discard the last layer and take hidden weights as use them as word embeddings.
+
+https://israelg99.github.io/2017-03-23-Word2Vec-Explained/
