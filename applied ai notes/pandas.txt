@@ -1,6 +1,0 @@
-Pandas
-
-df.groupby('column name')  = same as group by in sql
-df.merge  =  joins in database
-loc = location ( index value)
-iloc = index location ( row number )

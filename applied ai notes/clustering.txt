@@ -1,9 +1,0 @@
-
-measurement of good clustering
-	intra cluster distance should be small.
-	inter cluster distance should be large.
-	
-metrics for clustering
-1) Dunn index = minimum inter cluster distance/ maximun intra cluster distance
-	Its value should be greater than one.
-	

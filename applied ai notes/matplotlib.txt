@@ -1,6 +1,0 @@
-Matplotlib notes
-
-if you give single list to matplotlib it plots its values on y axis and index becomes x axis.
-for grid just use plt.grid()
-plt.legends for getting legends and it will take labels from plt.plot
-use plt.figure and plt.subplot(211) and (212)to get two figures. here 2 is no of rows then 1 is no of columns and last 1 and 2 for which the figure to select.
