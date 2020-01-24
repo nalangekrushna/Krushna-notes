@@ -1,0 +1,37 @@
+
+Below are the different text processing steps. We can change order and add/remove any of them depends upon use case.
+
+
+
+remove special characters punctuation marks and html tags.
+check words that are alphanumeric it should be of alphabets only.
+word length should be greater that 2.
+convert words to lower case.
+remove stopwords.
+expand contractions such as can't to can not
+word stemming (porter or snowball) or lemmatization
+
+
+stock market text analysis flow.
+
+think of giving more weight to capitalized words. 
+convert words to lower case and trim spaces and both ends of text.
+remove dates from news as we already taking time stamp seperately.
+replace slangs use this link for list of slangs  https://github.com/Deffro/text-preprocessing-techniques/blob/master/slang.txt
+seperate numbers having . in between them. e.g. 10.25 = 10 25
+convert numbers to text.
+expand abbreviations. expand contractions such as can't to can not
+remove urls,emails, @ and hashtags.
+
+remove punctuation marks using customized punctuation list.
+remove smileys and custom symbols such as ™ ©
+convert some symbols such as < > $ & to text.
+remove extra spaces.
+
+Replace Negations with Antonyms
+remove stop words
+remove words of length 1 and 2.
+word stemming (porter or snowball) or lemmatization
+Collocation extraction
+spelling correction 
+part of speech tagging.
