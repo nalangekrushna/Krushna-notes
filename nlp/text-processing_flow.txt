@@ -14,12 +14,15 @@ word stemming (porter or snowball) or lemmatization
 
 stock market text analysis flow.
 
-think of giving more weight to capitalized words. 
+think of giving more weight to capitalized words. (not useful as capitals are only used to write short forms. idea : if we can convert them back to full form. but 
+	don't see much usefulness of this. maybe later connecting with short forms will be useful in next steps. but how ramains mystery.)
 convert words to lower case and trim spaces and both ends of text.
 remove dates from news as we already taking time stamp seperately.
 replace slangs use this link for list of slangs  https://github.com/Deffro/text-preprocessing-techniques/blob/master/slang.txt
+	(slang listed here are no use in our context. and getting slangs in our context is very difficult. consider making your own slangs list.)
+	better slang dictionary as per our requirement https://github.com/rishabhverma17/sms_slang_translator/blob/master/slang.txt
 seperate numbers having . in between them. e.g. 10.25 = 10 25
-convert numbers to text.
+convert numbers to text. (scope to improve here.)
 expand abbreviations. expand contractions such as can't to can not
 remove urls,emails, @ and hashtags.
 
@@ -35,3 +38,11 @@ word stemming (porter or snowball) or lemmatization
 Collocation extraction
 spelling correction 
 part of speech tagging.
+
+=================================================================================================
+Actual done things.
+convert words to lower case and trim spaces and both ends of text.
+remove dates from news as we already taking time stamp seperately.
+seperate numbers having . in between them. e.g. 10.25 = 10 25
+convert numbers to text. (scope to improve here.)
+expand abbreviations. expand contractions such as can't to can not
