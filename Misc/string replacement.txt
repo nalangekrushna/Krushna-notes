@@ -1,0 +1,8 @@
+Python text processing performance
+
+competitors for fastest string search/replacement are 
+	str.translate
+	pandas str replace
+	regex compiled re.sub
+	flashtext library 
+do performance comparison between them.

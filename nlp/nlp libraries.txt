@@ -2,3 +2,7 @@
 Expand abbreviations
 	contractions
 	pycontractions
+	normalise
+	
+fast text preprocessing library
+	flashtext

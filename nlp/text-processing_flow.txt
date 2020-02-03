@@ -44,5 +44,11 @@ Actual done things.
 convert words to lower case and trim spaces and both ends of text.
 remove dates from news as we already taking time stamp seperately.
 seperate numbers having . in between them. e.g. 10.25 = 10 25
+convert slangs to original form.
 convert numbers to text. (scope to improve here.)
-expand abbreviations. expand contractions such as can't to can not
+expand abbreviations. expand contractions such as can't to can not  (just strip them.)
+remove urls,emails, @ and hashtags.
+remove punctuation marks using customized punctuation list.
+remove smileys and custom symbols such as ™ ©
+convert some symbols such as < > $ & to text.
+remove extra spaces.
