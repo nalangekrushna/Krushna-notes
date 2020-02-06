@@ -1,0 +1,15 @@
+
+To Setup Local server
+
+1) initialize local directory where you want to setup with below command
+git init --bare directory_name.git
+
+2) In your project setup remote to local directory by using below command.
+git remote add origin directory_name.git
+
+3) push code to remote server
+git push origin master
+
+4) setup pull to check everything working
+git branch --set-upstream-to=origin/master
+git pull
