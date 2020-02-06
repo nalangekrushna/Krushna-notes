@@ -1,0 +1,46 @@
+
+POS Tagging = (Part Of Speech tagging) = this is opposite to lemmatization or stemming as it add info to text. It should be applied before any text preprocessing.
+It classifies every word as type of speech and returns a tuple containing word and its type. There are two main ways of doing it. 
+	1) rule-based = human crafted rules based on lexicon and other linguistic knowledge.
+	2) Learning based = It has three subtypes.
+		a) supervised = trained on human annotated corpora like penn treebank.
+		b) statistical model = hidden markov model (HMM), maximum entropy markov model(MEMM), Conditional Random Field(CRF).
+		3) Rule Learning = Transformation Based Learning.
+	Learning based supervised method gives best results.
+	
+Markov chain = 
+
+
+POS statistical model = we can build statistical model by different ways. some of them are following
+	1) just return tag having maximum number of association with given word.
+	2) decide tag depending upon previous N words(i.e. N-gram approach)
+	3) Hidden Markov Model(HMM) = 
+
+NER/NEE (Named Entity Recognition/Extraction) = this technique is widely used in Information Retrieval(IR). It gives us relation and knowledge base. NER is about finding names of places, organizations, people so on.
+below are some use cases of NER 1) Information retrieval  2) text summarization. 3) Natural Language Understanding 4) Question Answering 5) Ontology Construction
+Following are some NER tools 1)Stanford NER 2)GATE ANNIE  3) Minor Third  4) Open Calais 
+Different Approach for NER 
+	1) knowledge based NER = hard coded rules, small training data, expensive dev and test cycle, doamain dependant, changes over time. Create regex for extract.
+	2) Learning based NER = higher recall, lot of training data, 
+		a) supervised = methods hidden Markov Method(HMM), K-nearest neighbour, decision tree, AdaBoost, SVM
+		b) unsupervised = method: clustering.
+		
+Dependancy Parsing = A parse tree is the graph representation of the syntactic structure of a string according to some context free grammars. A parse tree is usually constructed based upon either the constituency relation of constituency grammars or the dependency relation of dependence grammars.A parse tree contains morphological structures in the text in a more machine readable format.From the perspective of parsing a sentence, a sentence can be parsed by relating each word to other words in the sentence which depend on it.
+need to study in detail.
+
+watch below video to understand dependancy parsing 
+https://www.coursera.org/learn/text-mining-analytics/lecture/vJZ2I/3-3-explanations-of-dependency-parsing
+
+what is dependancy ?
+-> Dependency is the notion that syntactic units (words) are connected to each other by directed links which describe the relationship possessed by the connected words.
+
+what is dependancy tree ?
+-> These dependencies map directly onto a directed graph representation, in which words in the sentence are nodes in the graph and grammatical relations are edge labels. This directed graph representation is also called as the dependency tree.
+https://www.analyticsvidhya.com/blog/2017/12/introduction-computational-linguistics-dependency-trees/
+
+what is morphology ?
+-> morphology is the study of words, how they are formed, and their relationship to other words in the same language.
+
+Chunking = Chunking is a process of extracting phrases from unstructured text. Instead of just simple tokens which may not represent the actual meaning of the text, its advisable to use phrases such as “South Africa” as a single word instead of ‘South’ and ‘Africa’ separate words.
+Chunking works on top of POS tagging, it uses pos-tags as input and provides chunks as output. 
+

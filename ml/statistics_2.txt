@@ -1,0 +1,6 @@
+
+Chi-square test = It is used to accept or reject null/alternative hypothesis.
+	It has two main components chi-square and degree of freedom.
+	degree of freedom = total no of observed values - 1 
+	chi-square = sum( (expected-observed)^2 / expected )
+	If chart value found using probability of 5% and degree of freedom is less than chi-square value then we reject null hypothesis.  

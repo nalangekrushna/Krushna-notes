@@ -31,7 +31,7 @@ remove smileys and custom symbols such as ™ ©
 convert some symbols such as < > $ & to text.
 remove extra spaces.
 
-Replace Negations with Antonyms
+Replace Negations with Antonyms (need to implement it. didn't find any readymade library.)
 remove stop words
 remove words of length 1 and 2.
 word stemming (porter or snowball) or lemmatization
@@ -51,4 +51,7 @@ remove urls,emails, @ and hashtags.
 remove punctuation marks using customized punctuation list.
 remove smileys and custom symbols such as ™ ©
 convert some symbols such as < > $ & to text.
+remove words of length 1 and 2.
 remove extra spaces.
+remove stop words	
+word stemming snowball

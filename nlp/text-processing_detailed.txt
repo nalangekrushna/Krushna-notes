@@ -8,6 +8,7 @@ text-preprocessing
 2) convert to lower case
 3) stemming = the process of reducing inflected words to their word stem, base or root form. stemp needs not be word form.
 there is one root word, but there are many variations of the same words. For example, the root word is "eat" and it's variations are "eats, eating, eaten and like so". In the same way, with the help of Stemming, we can find the root word of any variations. 
+Stemming only removes suffixes and not prefixes.
 
 Potter’s Stemmer algorithm
 It is based on the idea that the suffixes in the English language are made up of a combination of smaller and simpler suffixes.
