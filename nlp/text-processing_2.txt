@@ -8,13 +8,21 @@ It classifies every word as type of speech and returns a tuple containing word a
 		3) Rule Learning = Transformation Based Learning.
 	Learning based supervised method gives best results.
 	
-Markov chain = 
+Markov property = It states that probability of next action depends upon current state and probability distribution. A Markov chain is a mathematical system that experiences transitions from one state to another according to certain probabilistic rules.
+
+Transition probability = probability of changing from one label to another.
 
 
 POS statistical model = we can build statistical model by different ways. some of them are following
 	1) just return tag having maximum number of association with given word.
 	2) decide tag depending upon previous N words(i.e. N-gram approach)
-	3) Hidden Markov Model(HMM) = 
+	3) Hidden Markov Model(HMM) = In the part of speech tagging problem, words are used as observations in the given sequence. POS tags are states. The transition probabilities would be somewhat like P(VP | NP) that is, what is the probability of the current word having a tag of Verb Phrase given that the previous tag was a Noun Phrase.
+	If we had a set of states, we could calculate the probability of the sequence. But we don’t have the states. All we have are a sequence of observations. This is why this model is referred to as the Hidden Markov Model — because the actual states over time are hidden.
+	Emission probabilities would be P(john | NP) or P(will | VP) that is, what is the probability that the word is, say, John given that the tag is a Noun Phrase.
+	detailed explaination of POS tagger and viterbi algorithm. Very  in depth and highly technical article.
+	https://www.freecodecamp.org/news/a-deep-dive-into-part-of-speech-tagging-using-viterbi-algorithm-17c8de32e8bc/
+
+
 
 NER/NEE (Named Entity Recognition/Extraction) = this technique is widely used in Information Retrieval(IR). It gives us relation and knowledge base. NER is about finding names of places, organizations, people so on.
 below are some use cases of NER 1) Information retrieval  2) text summarization. 3) Natural Language Understanding 4) Question Answering 5) Ontology Construction

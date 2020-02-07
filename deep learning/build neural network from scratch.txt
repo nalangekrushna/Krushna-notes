@@ -1,0 +1,8 @@
+
+This steps got from this article.
+https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
+
+Steps
+1) load data.
+2) convert data to pandas dataframe.
+3) build your first neuron.

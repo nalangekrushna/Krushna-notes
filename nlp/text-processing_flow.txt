@@ -40,7 +40,7 @@ spelling correction
 part of speech tagging.
 
 =================================================================================================
-Actual done things.
+Actual done things.  (Word2Vec flow)
 convert words to lower case and trim spaces and both ends of text.
 remove dates from news as we already taking time stamp seperately.
 seperate numbers having . in between them. e.g. 10.25 = 10 25
