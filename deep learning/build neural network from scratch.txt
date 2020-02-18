@@ -5,4 +5,7 @@ https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-p
 Steps
 1) load data.
 2) convert data to pandas dataframe.
-3) build your first neuron.
+3) build your first neuron. use random to assign weights to that neuron.
+4) use for loop to build multiple neurons
+5) use for loop to build network of multiple layers. (list(neurons) inside list(layers))
+6) write function to get activation value per neuron. and add it into that neurons output key.
