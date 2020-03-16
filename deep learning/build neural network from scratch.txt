@@ -9,3 +9,6 @@ Steps
 4) use for loop to build multiple neurons
 5) use for loop to build network of multiple layers. (list(neurons) inside list(layers))
 6) write function to get activation value per neuron. and add it into that neurons output key.
+7) do forward pass by sending a row through all the network.
+8) pass this output as input to next layer.
+ 
