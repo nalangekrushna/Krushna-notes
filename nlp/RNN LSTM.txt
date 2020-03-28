@@ -6,6 +6,9 @@ http://karpathy.github.io/2015/05/21/rnn-effectiveness/
 Nice visualization of internals of RNN and LSTM and in depth explaination of LSTM.
 https://colah.github.io/posts/2015-08-Understanding-LSTMs/
 
+build RNN from scratch
+http://wp.firrm.de/index.php/2018/04/13/building-a-lstm-network-completely-from-scratch-no-libraries/
+
 If your input and output is fixed vector then also you can process them in sequential manner.(use RNN)
 
 unrolled view = instead of showing the one decoder, we show a copy of it for each time step. This way we can look at the inputs and outputs of each time step.

@@ -14,7 +14,18 @@ File Paths : It’s broken up into three major parts:
 	
 Also by default use Unicode(UTF-8) character encoding as ASCII is subset of unicode.
 
+In python use method file.read() to read complete file instead of file.readlines().
+
 
 difference between windows and linux/mac ?
 windows used CR+LF(\r\n) Carriage Return as line ending. linux uses only LF(\n) Line Feed as end of line.
 for EOF (End of File) windows uses 26 while linux uses 4.
+
+There are three types of file objects.
+	1. text files = 
+	2. buffered binary file = A buffered binary file type is used for reading and writing binary files.
+	3. raw file = generally used as a low-level building-block for binary and text streams. It is therefore not typically used.
+Tricks
+__file__ will give relative file path.
+you can open multiple files 
+	with open(file1) as f1, open(file2) as f2 : 

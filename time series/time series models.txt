@@ -1,0 +1,33 @@
+AR (Auto Regressive) model = A linear model where current period values are sum of past period values multiplied by a numeric factor. It works best with stationary data. In AR models we generally rely on PACF.
+AR models are less reliable when estimating non-stationary data.
+AR model made good predictions but failed to adjust quickly to unexpected shocks.
+
+X_t = C + fi * X_t-1 + E_t
+
+fi = any numeric constant by which we multiply lagged values. fi < 1 
+E_t (epselon at time t) = Residual the difference between our prediction for time t and correct value.
+C = constant value.
+
+Log likelihood ratio test(LLR test) = 
+
+to stop adding next lag in model we check for two conditions.
+1. non-significant p value for LLR test.
+2. non-significant p value for highest lag coef. 
+
+MA (moving average) model = This models adjust very well with unexpected shocks such as recession and earthquakes. Here we rely on ACF. MA models do not perform well on non-stationary data. MA model are great in modelling random walk because they take their mistakes into account.
+X_t = C+ theta_1*E_t-1 + E_t
+
+theta_1 = numeric coef of value associated with first lag.
+
+ARMA (Auto regressive Moving average) model = 
+MA models smooth out the predictions. Also MA model accounted for residuals.and these need a baseline to perform well. we can use previous values to provide that. Thus if we have model that accounts both past values(AR) and past errors(MA) then it should solve issues each one has individually.
+
+R_t = C + fi_1 * r_t-1 + theta_1 * E_t-1 + E_t
+
+R_t = values in current period
+R_t-1 = values in previous period
+fi_1 = weightage of values of last period.
+theta_1 = weightage of errors of last period.
+All the coef must be in range of -1 to 1.
+
+the order parameter in ARMA consist of two orders. order=(AR,MA)

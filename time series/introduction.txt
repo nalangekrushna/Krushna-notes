@@ -1,0 +1,38 @@
+
+time series = sequence of info which attaches time period to each value.
+time period = interval between recording of two time series values.
+All time periods must be equal and clearly defined.
+
+Notations
+	T = entire time period
+	t = single time period
+	X_t = value at time t.
+	
+time series will be split into three things
+	1) trend(pattern)
+	2) seasonality (cyclical effects)
+	3) residual.(error of prediction)
+	
+Naive decomposition
+	additive = trend + seasonal + residual
+	multiplicative = trend*seasonal*residual
+
+use timeframe as index
+use asfreq method (for what?)
+
+white noise = special type of time series where data doesn't follow patterns. mean zero and constant variance
+random walk = special type of time series where values tends to persist over time and difference between periods is simply random noise.
+covariance-stationarity = 
+	assumptions = constant mean and variance.
+	
+Dickey-Fuller test = It assumes that data is non-stationary ( null hypothesis)
+seasonality = 
+auto correlation(ACF) = the correlation between sequence and itself. auto correlation finds relation with multiple lags at same time so we don't have to manually do it.(ACF). Thumb rule is to do it for 40 values.A time series can have components like trend, seasonality, cyclic and residual. ACF considers all these components while finding correlations hence it’s a ‘complete auto-correlation plot’.
+
+stationarity = stationarity means that the statistical properties of a process generating a time series do not change over time.
+
+Partial ACF (PACF)= it finds correlation of the residuals (which remains after removing the effects which are already explained by the earlier lag(s)) with the next lag value hence ‘partial’ and not ‘complete’ as we remove already found variations before we find the next correlation.  
+
+How to select time series model ?
+1. significant coef = we start with simple model and add terms one after another. the added terms should be significantly different than zero. then only we accept that term.
+2. parsimonius(as simple as possible) = we prefer simpler model than complex model unless complex model provides significant boost over simpler model. to check significance we use log-likelihood ratio test. this works only  when there is different no of lags. For same no of lags we use information criteria AIC and BIC and prefer lower values of it as low value suggest less data requirement for prediction.
