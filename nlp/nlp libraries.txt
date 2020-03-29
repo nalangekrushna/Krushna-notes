@@ -6,3 +6,20 @@ Expand abbreviations
 	
 fast text preprocessing library
 	flashtext
+	
+common text processing libraries
+nltk
+spacy
+gensim
+polygot
+corenlp
+pattern
+textblob
+vocabulary
+pinlpi
+quepy
+flair
+scikit-learn
+montylingua
+pytorch-nlp
+opennlp

@@ -1,0 +1,16 @@
+Strings are immutable in python.
+The ord() function returns the integer value for a given character. But you can only specify a single character (a string of length 1).
+chr() = converts integer to character.
+
+String operations
+	* = s*n where s is string and n is integer.You’d think it would be required to be a positive integer, but amusingly, it can be zero or negative, in which case the result is an empty string.
+	
+negative indexing for string
+s = 'foobar'
+>>> s[-1]
+'r'
+>>> len(s)
+6
+>>> s[-len(s)]
+'f'
+

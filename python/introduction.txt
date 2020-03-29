@@ -1,0 +1,52 @@
+
+Python is interpreted language. Many languages are compiled, meaning the source code you create needs to be translated into machine code, the language of your computer’s processor, before it can be run. Programs written in an interpreted language are passed straight to an interpreter that runs them directly. One potential downside to interpreted languages is execution speed. Programs that are compiled into the native language of the computer processor tend to run more quickly than interpreted programs.
+Python 3 has 33 keywords.
+
+Data Types
+	Integers = In Python 3, there is effectively no limit to how long an integer value can be.
+	The following strings can be prepended to an integer value to indicate a base other than 10.The underlying type of a Python integer, irrespective of the base used to specify it, is called int.
+		0b/ 0B = binary  e.g. 0b1011
+		0o/ O0 = octal
+		0x/ 0X = hexadecimal
+		
+	Float = float values are specified with a decimal point. Optionally, the character e or E followed by a positive or negative integer. e.g. 4.2, .2, 3., 1e2=100.0 . The maximum value a floating-point number can have is approximately 1.8 * 10^308. Python will indicate a number greater than that by the string inf. e.g. 1.9e308 = inf
+	
+	Complex number = Complex numbers are specified as <real part>+<imaginary part>j. e.g. 4+2j, 3j
+	
+	Strings = we use backslash (\) character to escape in string. To break up a string over more than one line, include a backslash before each newline. A raw string literal is preceded by r or R, which specifies that escape sequences in the associated string are not translated. Triple-quoted strings can be used add multiline strings. Escape sequences still work in triple-quoted strings, but single quotes, double quotes, and newlines can be included without escaping them. 
+	
+	Boolean Type(bool)
+	
+Python also allows chained assignment, which makes it possible to assign the same value to several variables simultaneously.
+
+variables in python 
+n = 300
+This assignment creates an integer object with the value 300 and assigns the variable n to point to that object.
+m = n
+What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, m, which points to the same object that n points to.
+m = 400
+Python creates a new integer object with the value 400, and m becomes a reference to it.
+n = "foo"
+Now Python creates a string object with the value "foo" and makes n reference that.
+There is no longer any reference to the integer object 300. It is orphaned, and there is no way to access it. An object stays alive, as it were, so long as there is at least one reference to it. Python will eventually notice that object is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.
+
+After the assignment m = n, m and n both point to the same object, confirmed by the fact that id(m) and id(n) return the same number. Once m is reassigned to 400, m and n point to different objects with different identities.
+
+The result of standard division (/) is always a float, even if the dividend is evenly divisible by the divisor. e.g. 10/2 = 5.0   10/4 = 2.5
+When the result of floor division (//) is positive, it is as though the fractional portion is truncated off, leaving only the integer portion. When the result is negative, the result is rounded down to the next smallest (greater negative) integer e.g. 10//4 = 2   10/-4 = -3    -10/4 = -3
+
+Equality Comparison on Floating-Point Values = it is poor practice to compare floating-point values for exact equality. Consider this example:
+>>> x = 1.1 + 2.2
+>>> x == 3.3
+False
+The internal representations of the addition operands are not exactly equal to 1.1 and 2.2, so you cannot rely on x to compare exactly to 3.3.
+>>> tolerance = 0.00001
+>>> x = 1.1 + 2.2
+>>> abs(x - 3.3) < tolerance
+True
+
+All the following are considered false when evaluated in Boolean context:
+	Any value that is numerically zero (0, 0.0, 0.0+0.0j)
+	An empty string
+	An object of a built-in composite data type which is empty. (list)
+	The special value denoted by the Python keyword None

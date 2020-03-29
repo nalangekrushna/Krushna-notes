@@ -1,0 +1,8 @@
+Sentiment Analysis
+
+sentiment analysis pre-trained models
+Here in our news analysis problem we don't have labels so we cannot check the accuracy manually checking is not possible as we have 15k articles. So best way is to get model which is trained on data which is near to news data. so we can get some accuracy.
+Another approach is try doing it unsupervised way.
+some research suggested that fine tuning the pre-trained model on financial data will significantly improve our models performance.
+So if we use previously trained model and predict our current dataset and use this label as true labels. them on wiki/news dataset our deep learning model could perform very well.
+for that condition must be they must be labeled positive or negative by all the models.Anything else should be discarded. This will solve our data labeling problem.

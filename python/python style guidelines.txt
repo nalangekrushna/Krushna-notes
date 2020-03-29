@@ -1,0 +1,14 @@
+
+variable names = Officially, variable names in Python can be any length and can consist of uppercase and lowercase letters (A-Z, a-z), digits (0-9), and the underscore character (_). An additional restriction is that, although a variable name can contain digits, the first character of a variable name cannot be a digit.
+
+One of the additions to Python 3 was full Unicode support, which allows for Unicode characters in a variable name as well.
+
+PEP-8 guideline :
+    Snake Case should be used for functions packages, modules and variable names.(all small no caps and underscore to seperate)
+    Pascal Case should be used for class names and exceptions.(Identical to Camel Case, except the first word is also capitalized.)
+	all caps for constants.
+	two ways to write dictionary can be key_value or key_value_dict.(personal opinion).
+	for list it is add s at the end.
+	
+Reserved words are case-sensitive. They are all entirely lowercase, except for False, None, and True.
+Trying to create a variable with the same name as any reserved word results in an SyntaxError.
