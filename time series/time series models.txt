@@ -31,3 +31,19 @@ theta_1 = weightage of errors of last period.
 All the coef must be in range of -1 to 1.
 
 the order parameter in ARMA consist of two orders. order=(AR,MA)
+
+ARIMA(Auto Regressive Integrated Moving Average) = (p,d,q) where p =AR q = MA d= Integration
+d = no of times we need to integrate the time series to ensure stationarity.
+we only rely on integration when our time series don't come from stationary process. if single layer(d=1) accomplishes this then any additional layers are unnecessary.
+
+X_t is our price then
+delta_X_t = C + fi * delta_X_t-1 + theta_1*E_t-1 + E_t    for ARIMA(1,1,1)
+delta_X_t = price difference in period X_t and X_t-1
+
+ARIMAX model = 
+delta_X_t = C + beta * X + fi * delta_X_t-1 + theta_1*E_t-1 + E_t
+here X can be any variable which we want to consider in time series.
+
+ARCH model (Auto Regressive conditional heteroskedasticity model)= to measure the volatility.
+Heteroscedasticity = different dispersion
+conditional = a value that depends upon others.

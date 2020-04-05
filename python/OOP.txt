@@ -1,0 +1,43 @@
+OOP in python 3
+
+What Is Object-Oriented Programming (OOP)?
+Object-oriented Programming, or OOP for short, is a programming paradigm which provides a means of structuring programs so that properties and behaviors are bundled into individual objects.
+For instance, an object could represent a person with a name property, age, address, etc., with behaviors like walking, talking, breathing, and running.
+
+Another common programming paradigm is procedural programming which structures a program like a recipe in that it provides a set of steps, in the form of functions and code blocks, which flow sequentially in order to complete a task.
+
+Since Python is a multi-paradigm programming language, you can choose the paradigm that best suits the problem at hand, mix different paradigms in one program, and/or switch from one paradigm to another as your program evolves.
+
+Classes in Python : each thing or object is an instance of some class.
+Classes are used to create new user-defined data structures that contain arbitrary information about something.It’s important to note that a class just provides structure—it’s a blueprint for how something should be defined.
+
+Python Objects (Instances) = While the class is the blueprint, an instance is a copy of the class with actual values, literally an object belonging to a specific class.
+Put another way, a class is like a form or questionnaire. It defines the needed information. After you fill out the form, your specific copy is an instance of the class; it contains actual information relevant to you. 
+
+what is use of self ?
+-> Similarly, the self variable is also an instance of the class. Since instances of a class have varying values we could state Dog.name = name rather than self.name = name. But since not all dogs share the same name, we need to be able to assign different values to different instances. Hence the need for the special self variable, which will help to keep track of individual instances of each class.
+
+Instance Attributes = all objects contain characteristics called attributes (referred to as properties in the opening paragraph). Use the __init__() method to initialize (e.g., specify) an object’s initial attributes by giving them their default value (or state). This method must have at least one argument as well as the self variable.
+
+Class Attributes = While instance attributes are specific to each object, class attributes are the same for all instances—which in this case is all dogs.
+e.g. 
+class Dog:
+
+    # Class Attribute
+    species = 'mammal'
+
+    # Initializer / Instance Attributes
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+Python Object Inheritance = 
+Inheritance is the process by which one class takes on the attributes and methods of another. Newly formed classes are called child classes, and the classes that child classes are derived from are called parent classes. 
+It’s important to note that child classes override or extend the functionality (e.g., attributes and behaviors) of parent classes. In other words, child classes inherit all of the parent’s attributes and behaviors but can also specify different behavior to follow. The most basic type of class is an object, which generally all other classes inherit as their parent.
+When you define a new class, Python 3 it implicitly uses object as the parent class. So the following two definitions are equivalent:
+
+class Dog(object):
+    pass
+# In Python 3, this is the same as:
+class Dog:
+    pass

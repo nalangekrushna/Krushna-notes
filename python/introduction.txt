@@ -1,15 +1,15 @@
 
-Python is interpreted language. Many languages are compiled, meaning the source code you create needs to be translated into machine code, the language of your computer’s processor, before it can be run. Programs written in an interpreted language are passed straight to an interpreter that runs them directly. One potential downside to interpreted languages is execution speed. Programs that are compiled into the native language of the computer processor tend to run more quickly than interpreted programs.
+Python is interpreted,general purpose, object oriented programming language. Many languages are compiled, meaning the source code you create needs to be translated into machine code, the language of your computer’s processor, before it can be run. Programs written in an interpreted language are passed straight to an interpreter that runs them directly. One potential downside to interpreted languages is execution speed. Programs that are compiled into the native language of the computer processor tend to run more quickly than interpreted programs.
 Python 3 has 33 keywords.
 
 Data Types
 	Integers = In Python 3, there is effectively no limit to how long an integer value can be.
-	The following strings can be prepended to an integer value to indicate a base other than 10.The underlying type of a Python integer, irrespective of the base used to specify it, is called int.
+	The following strings can be prefix to an integer value to indicate a base other than 10.The underlying type of a Python integer, irrespective of the base used to specify it, is called int.
 		0b/ 0B = binary  e.g. 0b1011
 		0o/ O0 = octal
 		0x/ 0X = hexadecimal
 		
-	Float = float values are specified with a decimal point. Optionally, the character e or E followed by a positive or negative integer. e.g. 4.2, .2, 3., 1e2=100.0 . The maximum value a floating-point number can have is approximately 1.8 * 10^308. Python will indicate a number greater than that by the string inf. e.g. 1.9e308 = inf
+	Float = float values are specified with a decimal point. Optionally, the character e or E followed by a positive or negative integer/float. e.g. 4.2, .2, 3., 1e2=100.0 . The maximum value a floating-point number can have is approximately 1.8 * 10^308. Python will indicate a number greater than that by the string inf. e.g. 1.9e308 = inf
 	
 	Complex number = Complex numbers are specified as <real part>+<imaginary part>j. e.g. 4+2j, 3j
 	
@@ -18,6 +18,10 @@ Data Types
 	Boolean Type(bool)
 	
 Python also allows chained assignment, which makes it possible to assign the same value to several variables simultaneously.
+x = y = [2]
+x.append(4)
+>> y
+[2,4]
 
 variables in python 
 n = 300
@@ -42,11 +46,74 @@ False
 The internal representations of the addition operands are not exactly equal to 1.1 and 2.2, so you cannot rely on x to compare exactly to 3.3.
 >>> tolerance = 0.00001
 >>> x = 1.1 + 2.2
->>> abs(x - 3.3) < tolerance
+>>> abs(x - 3.3) <= tolerance
 True
+In python 3.5 they provided math.isclose() function to compare two floating point numbers.
 
-All the following are considered false when evaluated in Boolean context:
+
+All the following are considered false when evaluated in Boolean context bool():
 	Any value that is numerically zero (0, 0.0, 0.0+0.0j)
 	An empty string
-	An object of a built-in composite data type which is empty. (list)
+	An object of a built-in composite data type which is empty. (list,set ,tuple ,dict)
 	The special value denoted by the Python keyword None
+	
+Python lists = list are ordered and their order is maintained in lifetime. Lists that have the same elements in a different order are not the same.
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a[1:4]
+['bar', 'baz', 'qux']
+>>> a[1:4] = [1.1, 2.2, 3.3, 4.4, 5.5]
+>>> a
+['foo', 1.1, 2.2, 3.3, 4.4, 5.5, 'quux', 'corge']
+>>> a[1:6]
+[1.1, 2.2, 3.3, 4.4, 5.5]
+>>> a[1:6] = ['Bark!']
+>>> a
+['foo', 'Bark!', 'quux', 'corge']
+The number of elements inserted need not be equal to the number replaced. Python just grows or shrinks the list as needed.
+
+You can also insert elements into a list without removing anything. Simply specify a slice of the form [n:n] (a zero-length slice) at the desired index.
+>>> a = [1, 2, 7, 8]
+>>> a[2:2] = [3, 4, 5, 6]
+>>> a
+[1, 2, 3, 4, 5, 6, 7, 8]
+
+Why use a tuple instead of a list?
+	Program execution is faster when manipulating a tuple than it is for the equivalent list. 
+	Sometimes you don’t want data to be modified. 
+	dictionary which requires as one of its components a value that is of an immutable type. A tuple can be used for this purpose, whereas a list can’t be.
+	
+to define a singleton tuple, include a trailing comma (,) just before the closing parenthesis.
+
+Neither a list nor another dictionary can serve as a dictionary key, because lists and dictionaries are mutable. string,int, float, bool and tuple can serve as dictionary keys.
+	
+	Set = set are unordered meaning the insertion order will not be maintained. Also duplicate values will be removed. We can only add immutable data types in set meaning set cannot have list or dict as a element.
+	
+Set Operations = 
+union (|) = x1 | x2 or x1.union(x2)
+intersection (&) = x1 & x2  x1.intersection(x2)
+difference (-) = x1 - x2    x1.difference(x2) return all element in x1 which not in x2.
+symatric difference (^) = x1 ^ x2  x1.symmetric_difference(x2) return the set of all elements in either x1 or x2, but not both.
+x1.isdisjoint(x2) = Determines whether or not two sets have any elements in common.
+
+sets are mutable. frozensets are immutable. means you cannot modify frozensets once assigned. 
+>>> f = frozenset(['foo', 'bar', 'baz'])
+>>> s = {'baz', 'qux', 'quux'}
+
+>>> f &= s
+>>> f
+frozenset({'baz'})
+
+Python does not perform augmented assignments on frozensets in place. The statement x &= s is effectively equivalent to x = x & s. It isn’t modifying the original x. It is reassigning x to a new object, and the object x originally referenced is gone.
+If you really feel compelled to define a set of sets (hey, it could happen), you can do it if the elements are frozensets, because they are immutable.
+
+Python allows an optional else clause at the end of a while loop. When <additional_statement(s)> are placed in an else clause, they will be executed only if the loop terminates “by exhaustion”—that is, if the loop iterates until the controlling condition becomes false. If the loop is exited by a break statement, the else clause won’t be executed.
+
+Iterators = Part of the elegance of iterators is that they are “lazy.” That means that when you create an iterator, it doesn’t generate all the items it can yield just then. It waits until you ask for them with next(). Items are not created until they are requested.
+
+range() function returns an iterable that yields a sequence of integers.  range objects are lazy—the values in the specified range are not generated until they are requested.
+
+A for loop can have an else clause as well. The interpretation is analogous to that of a while loop. The else clause will be executed if the loop terminates through exhaustion of the iterable.
+
+By default, print() sends its output to a default stream called sys.stdout, which is usually equivalent to the console. The file=<stream> argument causes output to be sent to an alternate stream designated by <stream> instead.

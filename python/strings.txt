@@ -2,6 +2,16 @@ Strings are immutable in python.
 The ord() function returns the integer value for a given character. But you can only specify a single character (a string of length 1).
 chr() = converts integer to character.
 
+Python string comparison
+>>> a = 'pub'
+>>> b = ''.join(['p', 'u', 'b'])
+>>> a == b
+True
+>>> a is b
+False
+In other words: is is the id(a) == id(b)
+is is used for identity comparison, while == is used for equality comparison.the rule is to choose between == and is based on what kind of check you want. If you care about the strings being equal (that is, having the same contents) then you should always use ==. If you care about whether any two Python names refer to the same object instance, you should use is. 
+
 String operations
 	* = s*n where s is string and n is integer.You’d think it would be required to be a positive integer, but amusingly, it can be zero or negative, in which case the result is an empty string.
 	
@@ -14,3 +24,16 @@ s = 'foobar'
 >>> s[-len(s)]
 'f'
 
+Byte Object = A bytes object is an immutable sequence of single byte values. Each element in a bytes object is a small integer in the range 0 to 255. The 'r' prefix may be used on a bytes literal to disable processing of escape sequences, as with strings.
+byt = rb'foo bar baz'
+
+If you try to use list as dict key/keys it will give TypeError : unhashable type :'list'
+Why does the error message say “unhashable”? 
+-> Technically, it is not quite correct to say an object must be immutable to be used as a dictionary key. More precisely, an object must be hashable, which means it can be passed to a hash function. A hash function takes data of arbitrary size and maps it to a relatively simpler fixed-size value called a hash value (or simply hash), which is used for table lookup and comparison.
+
+Python’s built-in hash() function returns the hash value for an object which is hashable, and raises an exception for an object which isn’t.
+
+All of the built-in immutable types you have learned about so far are hashable, and the mutable container types (lists and dictionaries) are not. So for present purposes, you can think of hashable and immutable as more or less synonymous.
+but there are some mutable objects which are also hashable.
+
+In dictionary, The .items(), .keys(), and .values() methods actually return something called a view object. A dictionary view object is more or less like a window on the keys and values.

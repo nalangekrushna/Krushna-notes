@@ -1,0 +1,22 @@
+variable scope : follows LEGB rule(Local, Enclosing, Global, Built-in)	
+Python resolves names using the so-called LEGB rule, which is named after the Python scope for names. The letters in LEGB stand for Local, Enclosing, Global, and Built-in. Here’s a quick overview of what these terms mean:
+	Local (or function) scope is the code block or body of any Python function or lambda expression. This Python scope contains the names that you define inside the function. These names will only be visible from the code of the function. It’s created at function call, not at function definition, so you’ll have as many different local scopes as function calls. This is true even if you call the same function multiple times, or recursively. Each call will result in a new local scope being created.
+
+	Enclosing (or nonlocal) scope is a special scope that only exists for nested functions. If the local scope is an inner or nested function, then the enclosing scope is the scope of the outer or enclosing function. This scope contains the names that you define in the enclosing function. The names in the enclosing scope are visible from the code of the inner and enclosing functions.
+
+	Global (or module) scope is the top-most scope in a Python program, script, or module. This Python scope contains all of the names that you define at the top level of a program or a module. Names in this Python scope are visible from everywhere in your code.
+
+	Built-in scope is a special Python scope that’s created or loaded whenever you run a script or open an interactive session. This scope contains names such as keywords, functions, exceptions, and other attributes that are built into Python. Names in this Python scope are also available from everywhere in your code. It’s automatically loaded by Python when you run a program or script.
+Python will look that name up sequentially in the local, enclosing, global, and built-in scope. If the name exists, then you’ll get the first occurrence of it. Otherwise, you’ll get an error.
+
+Nonlocal = Similarly to global names, nonlocal names can be accessed from inner functions, but not assigned or updated. If you want to modify them, then you need to use a nonlocal statement.In contrast to global, you can’t use nonlocal to create lazy nonlocal names. Names must already exist in the enclosing Python scope if you want to use them as nonlocal names.
+
+What is the difference between Python Arrays and lists?
+Arrays and lists, in Python, have the same way of storing data. But, arrays can hold only a single data type elements whereas lists can hold any data type elements.
+
+which is better None or NaN ?
+NaN is used as a placeholder for missing data consistently in pandas. I usually read/translate NaN as "missing". and there are API functions isnull and notnull which can be used across the dtypes to detect NA values. the main reason to use NaN (over None) is that it can be stored with numpy's float64 dtype, rather than the less efficient object dtype. np.nan allows for vectorized operations; its a float value, while None, by definition, forces object type, which basically disables all efficiency in numpy.
+https://stackoverflow.com/questions/17534106/what-is-the-difference-between-nan-and-none
+
+expert level python tutorials
+https://dbader.org/

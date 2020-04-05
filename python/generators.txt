@@ -1,0 +1,9 @@
+
+Generators = generator functions are a special kind of function that return a lazy iterator. 
+
+In Python, yield is the keyword that works similarly as the return statement does in any program by returning the values from the function called. The return statement only returns the value from the function but yield statements also return multiple values by returning one value and wait, then it again resumes by saving that local state. The yield statement stops the execution of the function and resumes by returning the values one by one from the generator function called.
+
+When you call a generator function or use a generator expression, you return a special iterator called a generator. You can assign this generator to a variable in order to use it. When you call special methods on the generator, such as next(), the code within the function is executed up to yield.
+When the Python yield statement is hit, the program suspends function execution and returns the yielded value to the caller. (In contrast, return stops function execution completely.) When a function is suspended, the state of that function is saved. This includes any variable bindings local to the generator, the instruction pointer, the internal stack, and any exception handling.
+
+This allows you to resume function execution whenever you call one of the generator’s methods. In this way, all function evaluation picks back up right after yield.
