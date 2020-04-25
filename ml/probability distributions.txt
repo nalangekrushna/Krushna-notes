@@ -1,32 +1,9 @@
-
 distribution = The distribution of a variable is a description of the relative numbers of times each possible outcome will occur in a number of trials.
-
-difference between distribution and function ?
 
 Discrete Distribution = A statistical distribution whose variables can take on only discrete values. 
 Continuous Distribution = A statistical distribution for which the variables may take on a continuous range of values.
 probability distribution = a probability distribution is a mathematical function that provides the probabilities of occurrence of different possible outcomes in an experiment. 
-Symmetric distribution = A symmetric distribution is a type of distribution where the left side of the distribution mirrors the right side. By definition, a symmetric distribution is never a skewed distribution.
-
-skewness = skewness is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean. The skewness value can be positive or negative, or undefined.
-Skewness is asymmetry in a statistical distribution, in which the curve appears distorted or skewed either to the left or to the right. Skewness can be quantified to define the extent to which a distribution differs from a normal distribution.A symmetrical distribution will have a skewness of 0.
-
-when is the skewness too much ?
-If the skewness is between -0.5 and 0.5, the data are fairly symmetrical.
-If the skewness is between -1 and -0.5(negatively skewed) or between 0.5 and 1(positively skewed), the data are moderately skewed.
-If the skewness is less than -1(negatively skewed) or greater than 1(positively skewed), the data are highly skewed.
-
-negative skewness = When a distribution is skewed to the left , the tail on the curve's left-hand side is longer than the tail on the right-hand side, and the mean is less than the mode. This situation is also called negative skewness.
-
-Kurtosis = measure of the "tailedness" of the probability distribution of a real-valued random variable.The kurtosis of any univariate normal distribution is 3.This distribution is called Mesokurtic.Distributions with kurtosis less than 3 are said to be platykurtic,Distributions with kurtosis greater than 3 are said to be leptokurtic
-
-positive skewness = When a distribution is skewed to the right , the tail on the curve's right-hand side is longer than the tail on the left-hand side, and the mean is greater than the mode. This situation is also called positive skewness.
-
-Are the Skewness and Kurtosis Useful Statistics ?
-No.
-sample size changes skewness and kurtosis to completely different values.
-
-normal variate = 
+ 
 standard normal variate = normal variate with mean µ=0 and standard deviation σ =1 
 
 probability density function (pdf) = from histogram we can make pdf by smoothing by using kernel density estimation.
@@ -34,21 +11,9 @@ probability density function (pdf) = from histogram we can make pdf by smoothing
 	2) do this same for all points.
 	3) at any point sum of all overlapping kernel on that point to get height of pdf.
 
-what is kernel = Kernel is a way of computing the dot product of two vectors x and y in some (possibly very high dimensional) feature space, which is why kernel functions are sometimes called "generalized dot product".A kernel is a function k that corresponds to this dot product, i.e. k(x,y)=φ(x)Transpose * φ(y).
-A very simple and intuitive way of thinking about kernels (at least for SVMs) is a similarity function. Given two objects, the kernel outputs some similarity score. The objects can be anything starting from two integers, two real valued vectors, trees whatever provided that the kernel function knows how to compare them.
-I would not call a kernel a decision function since the kernel is used inside the decision function. Given a data point to classify, the decision function makes use of the kernel by comparing that data point to a number of support vectors weighted by the learned parameters α. The support vectors are in the domain of that data point and along the learned parameters α are found by the learning algorithm.
-
-Gaussian kernel = Given two vectors, the similarity will diminish with the radius of σ. The distance between two objects is "reweighted" by this radius parameter.
-
 Density Estimation: Use statistical models to find an underlying probability distribution that gives rise to the observed variables.
 
 Non-parametric density estimation = estimate the density directly from the data without assuming a particular form for the underlying distribution. The simplest form of non-parametric DE is the histogram
-
-kernel density estimation = 
-1) consider estimating the density at a point x0 by taking the local density of the points within distance h of x0
-2) instead of giving every point in the neighborhood equal weight, let's assign a weight which dies toward zero in a continuous fashion as we get further away from the target point x0.
-3) The function K is called the kernel, and it controls the weight given to the observations fxig at each point x0 based on their proximity.
- for more detailed explaination please check pdf 10-28.pdf  
 
 normal/gaussian distribution = continuous probability distribution. In a normal distribution, the pdf graph appears as a classical, symmetrical "bell-shaped curve." The mean, or average, and the mode, or maximum point on the curve, are equal.In a perfect normal distribution, the tails on either side of the curve are exact mirror images of each other.
 The first characteristic of the normal distribution is that the mean  (average), median , and mode  are equal.

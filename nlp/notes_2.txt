@@ -1,0 +1,20 @@
+Text Similarity = people can say same thing many different ways.
+Types of text similarity 
+	morphological similarity = stemming
+	spelling similarity = edit distance
+	synonyms
+	homophony
+	semantic similarity =word2vec
+	sentence similarity (paraphrase)
+	document similarity (two different news about same event.)
+	cross-lingual similarity
+	
+Context free grammer (NERS)
+		N = non terminal symbols
+		E = terminal symbols (e.g. names)
+		R = rules (N -> beta) beta is combination of E and N
+		S = start symbol for N
+		
+Sentences are not just bag of words
+e.g. Alice bought Bob a flower.
+	 Bob bought Alice a flower.

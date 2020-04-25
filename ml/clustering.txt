@@ -20,9 +20,4 @@ II) External matrix = which consists in comparing the results of a cluster analy
 1) Corrected Rand index = measure of the similarity between two data clusterings. The corrected Rand index varies from -1 (no agreement) to 1 (perfect agreement).
 https://datascience.stackexchange.com/questions/19530/difference-between-rand-index-and-adjusted-rand-index
 
-III) Relative validation = which evaluates the clustering structure by varying different parameter values for the same algorithm (e.g. varying the number of clusters k). It’s generally used for determining the optimal number of clusters. 
-
-
-	
-
-	
+III) Relative validation = which evaluates the clustering structure by varying different parameter values for the same algorithm (e.g. varying the number of clusters k). It’s generally used for determining the optimal number of clusters.

@@ -33,7 +33,7 @@ In case of single coin toss height of y axis is 0.5 for both x values head and t
 In case of fair die height of y axis is 1/6 for all 6 x values.
 i.e. all pmf should sum to 1.
 
-box plot = A boxplot splits the data set into quartiles.This type of graph is used to show the shape of the distribution, its central value, and its variability. The body of the boxplot consists of a "box" (hence, the name), which goes from the first quartile (Q1) to the third quartile (Q3).Within the box, a vertical line is drawn at the Q2, the median of the data set. Two horizontal lines, called whiskers, extend from the front and back of the box. The front whisker goes from Q1 to the smallest non-outlier in the data set, and the back whisker goes from Q3 to the largest non-outlier. 
+box plot = A boxplot splits the data set into quartiles.This type of graph is used to show the shape of the distribution, its central value, and its variability. The body of the boxplot consists of a "box" (hence, the name), which goes from the first quartile (Q1) to the third quartile (Q3).Within the box, a horizontal line is drawn at the Q2, the median of the data set. Two vertical lines, called whiskers, extend from the front and back of the box. The front whisker goes from Q1 to the smallest non-outlier in the data set, and the back whisker goes from Q3 to the largest non-outlier. 
 In box plot the whiskers are generally defined as 1.5 times the inter-quartile range. Anything this outside the whiskers is considered as an outlier. the value 1.5 times interquatritle range (from 25% to 75%)came from normal distribution as it convers almost 3*sigma i.e. 99.3% of total data. remaining data is considered as outlier in boxplot.
 
 violin plot = box plot + kernel density plot

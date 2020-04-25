@@ -16,3 +16,13 @@ co-variance = avg((x_i - mean(x)) * (y_i - mean(y)))
 
 Pearson correlation coef = covarince(X,y)/(sigma(x)*sigma(y))
 
+Linear regression
+y = a1*x1+c
+Here we have given x(features) and y(label). Using below formula we can find out values of m and c.
+m = sum((x(i) - mean(x)) * (y(i) - mean(y))) / sum( (x(i) - mean(x))^2 )
+c = mean(y) - a1 * mean(x)
+
+R squared
+residual sum of squares SS_res = avg((y_i-y_pred_i)^2)
+total Sum of squares SS_tot = avg((y_i-y_mean)^2)
+R = 1- (SS_res/SS_tot)

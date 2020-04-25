@@ -19,7 +19,7 @@ what is use of self ?
 
 Instance Attributes = all objects contain characteristics called attributes (referred to as properties in the opening paragraph). Use the __init__() method to initialize (e.g., specify) an object’s initial attributes by giving them their default value (or state). This method must have at least one argument as well as the self variable.
 
-Class Attributes = While instance attributes are specific to each object, class attributes are the same for all instances—which in this case is all dogs.
+Class Attributes = While instance attributes are specific to each object, class attributes are the same for all instances.
 e.g. 
 class Dog:
 

@@ -23,3 +23,5 @@ scikit-learn
 montylingua
 pytorch-nlp
 opennlp
+flair
+allennlp

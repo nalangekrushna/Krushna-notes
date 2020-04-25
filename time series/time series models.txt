@@ -47,3 +47,12 @@ here X can be any variable which we want to consider in time series.
 ARCH model (Auto Regressive conditional heteroskedasticity model)= to measure the volatility.
 Heteroscedasticity = different dispersion
 conditional = a value that depends upon others.
+It has two parts in its equation.
+1. mean = C + fi_1 * mu_t-1 + E_t
+2. variance (sigma^2) = Vt|Vt-1 = alpha_0 + alpha_1 * E_t-1^2
+	Vt|Vt-1 = current values depends upon past one.(conditional variance)
+	E_t = equivalent to theta_1
+	
+Volatility = numeric measurement of uncertainity.
+
+GARCH model = generalized ARCH model = In GARCH model we add previously calculated ARCH model. reason behind this is it is observed that period of low volatility are followed by period of low volatility and vice versa.

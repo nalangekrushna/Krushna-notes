@@ -8,11 +8,18 @@ git init --bare directory_name.git
 git init
 git remote add origin directory_name.git
 
+directory_name.git = absolute full path
+
 3) push code to remote server
 git add .
 git commit -m "initial commit"
-git push origin master
+git push -u origin master
+
+-u = for first time push.
 
 4) setup pull to check everything working
 git branch --set-upstream-to=origin/master
 git pull
+
+to remove origin
+git remote rm origin

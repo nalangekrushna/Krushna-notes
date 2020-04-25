@@ -1,0 +1,16 @@
+Website Scrapping
+
+get proxies for scrapping from following website.
+https://free-proxy-list.net/
+	only level 2 anonymous proxies should be used.
+	need to scrap list dynamically when there is certain no of failures in proxy lists.
+	
+	
+try newspaper3k to scrap newspapers.
+	tested working fine. need to store somewhere.
+	
+Think of different data storage options from ELK,MySql,feather,pickle and a standard format for data storage.
+
+for data processing may be we can use pyspark. (not right now). use pandas more efficiently.
+
+think of improving performance of flair library.(could be as contribution.)

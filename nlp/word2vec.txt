@@ -1,4 +1,20 @@
 
+Vector representation of words = natural language processing systems traditionally treat words as discrete atomic symbols, and therefore ‘cat’ may be represented as Id537 and ‘dog’ as Id143.
+These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols.
+This means that the model can leverage very little of what it has learned about ‘cats’ when it is processing data about ‘dogs’ (such that they are both animals, four-legged, pets, etc.).
+Representing words as unique, discrete ids furthermore leads to data sparsity, which means more data is needed in order to successfully train statistical models.
+Vector representations of words (word embeddings) can overcome these obstacles.
+
+What are word embeddings ?
+Word embeddings is simply a vector representations of words.
+Wj = [w1j,w2j,w3j,...,wtj]
+Specifically, it is a vector space model (VSM) which represents words in a continuous vector space such that words that share common contexts and semantics are located in close proximity to one another in the space.
+
+How to compute word embeddings?
+There are 2 methods to compute word embeddings: count-based methods (e.g. Latent Semantic Analysis), and predictive methods (e.g. neural probabilistic language models).
+All methods assume the Distributional Hypothesis, which states that linguistic items with similar distributions have similar meanings, more simply, words which appear in the same contexts share semantic meaning.
+
+
 what is Word2Vec ?
 Word2Vec is shallow two layer neural network. It takes large corpus of word as input and produces vector space typically 50,100,200 or 300 dimensions. word vectors are built such that word that share common context in corpus are located in close proximity. It is prediction based embedding.(There are two types of embedding one in frequency based and other is predictive.)
 
@@ -13,3 +29,15 @@ Word2Vec training :
 Word2Vec is neural network which has one hidden layer. and in training our purpose is to adjuct weights so to minimize loss function. But instead of using trained model for the purpose it is trained we discard the last layer and take hidden weights as use them as word embeddings.
 
 https://israelg99.github.io/2017-03-23-Word2Vec-Explained/
+
+Alternative models to Word2Vec 
+LDA( statistical based, co-occurence )
+Glove
+fasttext
+Doc2vec
+ELMo
+BERT
+wang2vec
+Sentence2Vec
+
+https://www.quora.com/What-are-the-main-differences-between-the-word-embeddings-of-ELMo-BERT-Word2vec-and-GloVe

@@ -29,7 +29,7 @@ Dickey-Fuller test = It assumes that data is non-stationary ( null hypothesis)
 seasonality = 
 auto correlation(ACF) = the correlation between sequence and itself. auto correlation finds relation with multiple lags at same time so we don't have to manually do it.(ACF). Thumb rule is to do it for 40 values.A time series can have components like trend, seasonality, cyclic and residual. ACF considers all these components while finding correlations hence it’s a ‘complete auto-correlation plot’.
 
-stationarity = stationarity means that the statistical properties of a process generating a time series do not change over time.
+stationarity = stationarity means that the statistical properties of a process generating a time series do not change over time. A stationary time series is one whose statistical properties such as mean, variance, autocorrelation, etc. are all constant over time. for our purpose we mean a flat looking series, without trend, constant variance over time, a constant autocorrelation structure over time and no periodic fluctuations
 
 Partial ACF (PACF)= it finds correlation of the residuals (which remains after removing the effects which are already explained by the earlier lag(s)) with the next lag value hence ‘partial’ and not ‘complete’ as we remove already found variations before we find the next correlation.  
 

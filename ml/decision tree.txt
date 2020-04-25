@@ -1,5 +1,7 @@
 decision tree = axis parallel hypperplanes that divides complete region into cubes and cuboids.
 
+https://www.xoriant.com/blog/product-engineering/decision-trees-machine-learning-algorithm.html
+
 Assumptions :
 1) At begining whole training set is considered as root.
 2) feature values are prefer to be categorical.
@@ -10,12 +12,13 @@ Entropy = Entropy measures uncertainty or we can say randomness.In other words, 
 for two class case entropy is maximum (i.e. 1) when both classes are 50-50.
 for multi class case entropy is maximum when all classes are equi probable.
 entropy can be also used for data analysis.
-entropy = -P(x)*log(p(x)). here x is a feature.we take sum of probabilities of all possible outcomes. here logs base is 2.
+entropy = -P(x)*log(p(x)). here x is a feature.we take sum of probabilities of all possible outcomes. (labels or targets). here logs base is 2.
 
 Information gain of a label for given feature = entropy at parent - weighted entropy of child nodes.
 Gini impurity = it is same as entropy but just less scaling(i.e. max value of entropy is 1 while gini is 0.5).
 and also gini impurity is computationally less expensive.
 gini impurity = 1- sum( p(x)^2 )
+https://victorzhou.com/blog/gini-impurity/
 
 decision stump = decision tree having depth one.
 

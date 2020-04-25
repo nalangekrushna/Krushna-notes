@@ -1,0 +1,38 @@
+softmax function
+https://medium.com/data-science-bootcamp/understand-the-softmax-function-in-minutes-f3a59641e86d
+
+
+Transformer model = a model that uses attention to boost the speed with which these models can be trained.
+
+Every encoder network in transformer consist of self attention layer and feed forward neural network.
+
+self attention layer = a layer that looks to other word in input statement as it encodes specific word.
+encoder-decoder attention layer = helps the decoder focus on relevant parts of the input sentence.
+
+How transformer works ?
+first do text preprocessing and then use any word embedding technique to convert text to vectors.
+Encoder 
+	1) encoder input first go through self attention layer.
+	2) output of self attention layer is fed to feed forward neural network.
+3) output of encoder i.e. (above two) is fed to decoder.
+Decoder
+	4) output passes through self attention then encoder-decoder attention and feed forward network.
+	
+
+
+Encoder = self attention => feed forward network
+Decoder = self attention => Encoder-Decoder attention => feed forward network
+
+how to calculate self attention using word vector ?
+=>1) create three vectors named as query,key and value vector from single word vector. This vectors are created by multiplying three matrices that we trained during training process.
+Notice that these new vectors are smaller in dimension than the embedding vector. Their dimensionality is 64, while the embedding and encoder input/output vectors have dimensionality of 512. They don’t HAVE to be smaller, this is an architecture choice to make the computation of multiheaded attention (mostly) constant.
+2) calculate a score by taking the dot product of the query vector with the key vector of the respective word we’re scoring. 
+Say we’re calculating the self-attention for the first word in this example, “Thinking”. We need to score each word of the input sentence against this word. The score determines how much focus to place on other parts of the input sentence as we encode a word at a certain position.
+3) The third step is to divide the scores by 8 (the square root of the dimension of the key vectors used in the paper – 64.
+4) pass the result of third step through a softmax operation. Softmax normalizes the scores so they’re all positive and add up to 1.
+This softmax score determines how much how much each word will be expressed at this position. Clearly the word at this position will have the highest softmax score, but sometimes it’s useful to attend to another word that is relevant to the current word.
+5) The fifth step is to multiply each value vector by the softmax score (in preparation to sum them up). The intuition here is to keep intact the values of the word(s) we want to focus on, and drown-out irrelevant words (by multiplying them by tiny numbers like 0.001, for example).
+6) The sixth step is to sum up the weighted value vectors. This produces the output of the self-attention layer at this position (for the first word).
+
+what are query,key and value matrices ?
+They’re abstractions that are useful for calculating and thinking about attention.

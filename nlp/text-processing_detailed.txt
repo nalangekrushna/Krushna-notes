@@ -33,6 +33,8 @@ n-gram = an n-gram is a contiguous sequence of n words from a given sample of te
 BoW =A popular and simple method of feature extraction with text data is called the bag-of-words model of text. A bag-of-words is a representation of text that describes the occurrence of words within a document. It involves two things:
 	A vocabulary of known words.
 	A measure of the presence of known words. 
+Very simple explaination
+https://victorzhou.com/blog/bag-of-words/
 	
 Tokenization = Tokenization is the process of tokenizing or splitting a string, text into a list of tokens. One can think of token as parts like a word is a token in a sentence, and a sentence is a token in a paragraph. Tokenization didn't remove punctuations.
 more about tokenization

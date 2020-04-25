@@ -1,0 +1,67 @@
+when we talk their is one speaker and other is listener.
+speaker should have following things.
+	Intention (goals, shared knowledge and belief).
+	Generation (tactical)
+	Synthesis (text to speech)
+Listener should have following things.
+	Perception
+	Interpretation (syntactic, semantic, pragmatic)
+	Incorporation(internalization, understanding)
+Both 
+	context (grounding)
+	
+language (understanding) -> computer (generation) -> language
+
+CL = Computational Linguistic
+IR = Information retrieval
+SP = Speech Processing
+HLT = Human Language Technology
+NLE = Natural language Engineering
+
+Backgroud
+	probabilities
+	statistical models
+	hypothesis testing
+	linear algebra
+	optimization
+	Numerical methods
+	
+Mathematical and computation tools
+	language models
+	estimation methods
+	context free grammer - for trees
+	Hidden Markov model - for sequences
+	Conditional Random Fields
+	Generative/discriminative model
+	maximum entropy model
+	
+Statistical Techniques
+	Vector Space representation for word sense disambiguation (WSD)
+	Noisy channel model for MT (machine Translation)
+	Graph based Random walk methods for sentiment analysis
+	
+NLP tasks
+	pos tagging
+	parsing
+	dependancy parsing
+	NER
+	Information extraction
+	semantic analysis
+	Reading comphrehension(q&a)
+	word disambiguation
+	sentiment analysis
+	Machine Translation(noisy channel model)
+	text summarization
+	Entailment and paraphrasing
+	text generation
+	
+Application of Parsing
+	grammer checking
+	question answering
+	machine Translation
+	Information extraction
+	speech generation
+	speech understanding
+	Interpretation
+	
+	

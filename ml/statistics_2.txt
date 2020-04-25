@@ -4,3 +4,20 @@ Chi-square test = It is used to accept or reject null/alternative hypothesis.
 	degree of freedom = total no of observed values - 1 
 	chi-square = sum( (expected-observed)^2 / expected )
 	If chart value found using probability of 5% and degree of freedom is less than chi-square value then we reject null hypothesis.  
+
+difference between probability and likelihood ?
+https://qr.ae/pNr8s5
+In probability you usually want to find the probability of a possible event based on a model/parameter/probability distribution, etc.
+
+In likelihood you have observed some outcome, so you want to find/create/estimate the most likely source/model/parameter/probability distribution from which this event has raised.
+
+MLE (maximum likelihood estimation) = MLE helps us to answer following question. which are the best parameters/coef for my model.
+	
+Ordinary Least Squares(OLS) = 
+
+error function is also called cost function.
+
+softmax function = activation function that turns numbers aka logits into probabilities that sum to one. Softmax function outputs a vector that represents the probability distributions of a list of potential outcomes.
+
+In deep learning, the term logits layer is popularly used for the last neuron layer of neural network for classification task which produces raw prediction values as real numbers ranging from [-infinity, +infinity ]. — Wikipedia
+Logits are the raw scores output by the last layer of a neural network. Before activation takes place.

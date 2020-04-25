@@ -40,7 +40,7 @@ non-parametric technique : doesn't make any assumption related to distribution.
 
 confidence interval = a range of values so defined that there is a specified probability that the value of a parameter lies within it.
 A Confidence Interval is a range of values we are fairly sure our true value lies in.
-
+.
 
 Hypothesis testing = A statistical hypothesis is an assumption about a population parameter. This assumption may or may not be true. Hypothesis testing refers to the formal procedures used by statisticians to accept or reject statistical hypotheses.
 Null hypothesis = no difference between mean values of two set of data. A null hypothesis is a type of hypothesis used in statistics that proposes that no statistical significance exists in a set of given observations.
@@ -65,7 +65,8 @@ use of hypothesis testing = Why do we even need hypothesis tests? After all, we 
 Sampling error is the difference between a sample and the entire population. Thanks to sampling error, it’s entirely possible that while our sample mean is 330.6, the population mean could still be 260. Or, to put it another way, if we repeated the experiment, it’s possible that the second sample mean could be close to 260. A hypothesis test helps assess the likelihood of this possibility!
 
 mean = arithmetic mean  = sum of all values/ no of values.
-variance(sigma square) = The variance is a measure of how far each value in the data set is from the mean. For each data point x_i, the (x_i-mean(x)) could be either a positive or negative value. Hence if we take them as they are, they will get cancelled. Hence in order to make sure they aren’t cancelled, we take the square of each term and add all the squares to compute variance.
+variance(sigma square) = The average of the squared differences from the Mean.
+The variance is a measure of how far each value in the data set is from the mean. For each data point x_i, the (x_i-mean(x)) could be either a positive or negative value. Hence if we take them as they are, they will get cancelled. Hence in order to make sure they aren’t cancelled, we take the square of each term and add all the squares to compute variance.
 variance(sigma^2) =  (sum of square of (x_i-mean(x)))/ no of x_i
 standard deviation = sqrt(variance)
 standard deviation = measure that is used to quantify the amount of variation or dispersion of a set of data values.
@@ -109,7 +110,6 @@ Step 5: Subtract Q1 from Q3 to find the interquartile range.
 18 – 5 = 13.
 
 vector = a quantity having direction as well as magnitude, especially as determining the position of one point in space relative to another.
-	vector is an geometric object having magnitude and direction.
 	vecor is represented by its co-ordinates in space.When a vector is represented graphically, its magnitude is represented by the length of an arrow and its direction is represented by the direction of the arrow.e.g. 5N force
 length of vector ||a|| = sqrt(sum(x_i^2))
 
@@ -172,7 +172,7 @@ central limit theorem = consider if x is random variable with finite population 
 We take m sample of size n from population whose distribution not necessarily normal. 
 then we calculate means of each sample.
 The distribution of sampling means.
-central limit theorem says this distribution will have gaussian distribution of mean mu(same as population mean) and variance of this is variance of population/sample size n as n tends to infinity.  
+central limit theorem says this(The distribution of sampling means) distribution will have gaussian distribution of mean mu(same as population mean) and variance of this is variance of population/sample size n as n tends to infinity.  
 
 standardization = In statistics, standardization is the process of putting different variables on the same scale.
 
@@ -180,4 +180,3 @@ A Q-Q plot is a scatterplot created by plotting two sets of quantiles against on
 https://www.statisticshowto.datasciencecentral.com/q-q-plots/
 
 Chebyshev's inequality = for a wide class of probability distributions, no more than a certain fraction of values can be more than a certain distance from the mean.
-

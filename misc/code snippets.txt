@@ -33,3 +33,6 @@ train1['Summary'] = train1['Summary'].str.findall('\w{3,}').str.join(' ')
 train1['Summary'] = train1['Summary'].str.lower()
 train1['Summary'] = train1['Summary'].apply(lambda x : ' '.join([item for item in x.split() if item not in stop]))
 train1['Summary'] = train1['Summary'].apply(lambda x: [sno.stem(y) for y in x.split()])
+
+progress bar
+from tqdm.notebook import tqdm

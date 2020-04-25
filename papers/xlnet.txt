@@ -1,0 +1,4 @@
+
+XLNET model = There are two types of models 
+	1) Auto Regressive model(AR) = e.g. BoW, TfIdf
+	2) Auto Encoding model (AE) = e.g. BERT, Word2Vector
