@@ -18,3 +18,111 @@ Context free grammer (NERS)
 Sentences are not just bag of words
 e.g. Alice bought Bob a flower.
 	 Bob bought Alice a flower.
+	 
+Dependancy Parsing
+
+Probabilistic Language Modeling
+	take sentence as input and assigns probability to sentence.the probability of sentence is joint probability of joint event of sequence from word 1 to all the way word n. The idea is that take all the sentence in given language and calculate their probability which is impossible to do.This is related to the problem of predicting next word given some words.
+	P(S) = P(w1,w2,w3....,wn)
+	P(S) = P(w1)|P(w2|w1)|P(w3|w2,w1) ..... P(wn|w1,w2,w3.....wn-1)
+	Smoothing/Regularization = If we encounter any previously unseen word (word not in training data) the probability of that word would be zero. So the probability of sentence will become zero. To avoid this we will use advanced smoothing techniques.
+	Advanced Smoothing Techniques = 
+		Good Turing = try to predict probability of unseen events based on probability of seen events.
+		Kneser-nay = 
+		Class based n grams = 
+		
+	how to deal with sparse data ?
+	1. backoff = going back to lower order n-gram model if higher order model is sparse.(e.g. freq >= 1)
+	2. interpolation = linear combination of bigram unigram and trigram models.
+	
+	Evaluation of quality of language model = 
+		Extrinsic = use in speech recognition or machine translation and check how good it works.
+		Intrinsic = 
+			perplexity = good model gives high probability to a real sentence.Lower perplexity is better.
+			Word Error Rate = same as Levenshtein edit distance and normalized by sentence length.
+			
+	Language Models doesn't works well with long distance dependancies.
+	
+	application of this techniques
+		speech recognition
+		text generation
+		spelling correction.
+		machine translation
+		
+Part of Speech tagging (POS tagging) = different techniques for pos tagging are
+	1. rule based
+	2. machine learning(conditional random fields, maximum entropy markov models.)
+	3. tranformation based
+	
+	application = parsing,translation, text to speech, word sense disambiguation.
+	
+	there could be different tags that can be applied to same word in same sentence. how to pick the right one. There are essentially three techniques for this.
+	1. check global statistics. which tags comes most with given word.
+	2. based on context = check previous words and decide which is more suitable.
+	3. check tags of prev words and use english grammer rules such this adjective should be before noun to decide which one should be used.
+	
+	Evaluation = pos taggers have very high baseline of 90%. 
+	
+	Rule Based POS tagging = use dictionary or finite state transducers to find all possible pos.
+	
+POS hidden Markov models = markov property is that next steps only depends on current state and not on prev state. So our original forumula
+	P(S) = P(w1)|P(w2|w1)|P(w3|w2,w1) ..... P(wn|w1,w2,w3.....wn-1)
+becomes
+	P(S) = P(w1)|P(w2|w1)|P(w3|w2) ..... P(wn|wn-1)
+in markov model.
+
+	Hidden Markov Model = The sequence of states that led to generation of symbol is hidden. It is used in pos tagging, speech recognition, gene sequencing. HMM is generative algorithm.
+	
+Viterbi Algorithm = 
+
+Information extraction = here we try to find who when and why .
+	Named Entity = person, organization, locations
+	Times =
+		absolute = 03/04/2020
+		relative = last night
+	Lot of information extraction task can be modellled as sequence labeling problem. e.g. POS,NER,SRL
+	
+NER = consist of two parts
+	1. segmentation = which word belongs to Named Entity.
+	2. classification = labeling with type.
+	
+Relation Extraction = 
+
+Q&A systems
+Components of QA system :
+	source( web or specific doc)(semi-structured or text)
+	Query modulation = best paraphrase of NL question given syntax of search engine.
+	Document Retrieval
+	Sentence ranking (n-gram matcing, okapi)
+	Answer extraction ( question type classification, phrase chunking[new york])
+	Answer ranking (question type, proximit to query words, frequency)
+	
+live example
+	what is largest city in northern afganistan ?
+	Query modulation { (largest or biggest) city "northern afghanistan" }
+	document retrieval { some links containing the word. }
+	sentence ranking { passage of text }
+	answer extraction { noun phrases }
+	Answer ranking 
+	
+Question type classification = type of named entity which matches question asked
+passage retrieval = match to proper nouns in query. if multiple proper nouns then they should be near to each other.
+Answer retrieval = use NER to identify the matching phrase.e.g. date also distance of NER entity from query words. and answer type and wordnet similarity and redundancy
+
+predictive annotation = It is between knowledge based(NLP) and knowledge poor(word vectors).It labels NER with appropriate tag.
+
+Answer ranking = different features are used for ranking some of them are
+	average distance of phrase from starting of passage.
+	notiq = no of words that do not appear in span 
+	frequency = no of times the word came in passage.
+	Sscore = search engine relavance score.
+	Number = position of span among all the spans returned in current passage.
+	count of no of span classes retrieved withing current passage.
+	type = position of span type in list of potential span types.
+	
+Q&A challenges
+	word sense disambiguation 
+	co-reference resolution (uses he she it )
+	semantic role labeling
+	Temporal questions (answer of question change with time e.g. who is president of USA.)
+	category of jeopardy

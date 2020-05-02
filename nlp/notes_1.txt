@@ -65,3 +65,19 @@ Application of Parsing
 	Interpretation
 	
 	
+collocation = a collocation is a series of words or terms that co-occur more often than would be expected by chance.
+
+word sense disambiguation
+	a single word such as bar or may have multiple meaning in english or any other language. In word sense disambiguation given the word and context we try to find right meaning of word.some of method to resolve this as below.
+	1. dictionary method = collect all dictionary meanings of given word. one which overlaps most will be our answer.
+	2. decision list method = one sense per collocation.
+	3. bootstrpping (semi-supervised)= select one strongly related word to two senses. if that word comes in sentence then select that sense. dataset for this can be taken from senseval/semcor 
+word sense disambiguation problem can be solved like classification problem.
+
+Noisy channel model
+	hand writing recognition
+	text generation
+	text summarization
+	machine translation
+	spelling correction
+	
