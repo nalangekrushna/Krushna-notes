@@ -1,0 +1,51 @@
+Text Summarization
+	Typical summarization systems have three stages.
+	content identification = what to pass forward for summary.
+	conceptual organization = how to organize summary.
+	realization = some additional issue.e.g. some documents didn't fit neat to each other.
+	
+Extractive summarizer = It just selects some sentence from given text.Summary should includes most important facts. It could contain full sentences or partial sentences. No simplification and no rewriting.
+
+Different summarization techniques 
+	positional method(boxdale)(1958)(extractive) = works well with some domains such as scientific papers. He found that first and last sentence of paragraph contains the most information. It also contains the topic sentence.
+	
+	Luhn(1958)(extractive) = he also works on summarization of technical documents. He does stemming and stop word removal. Also uses frequency of word feature for summarization. He said the words that are not the most frequent one(stopwords) and not the least frequent one(i.e. comes only once in text) are the most informative ones.
+
+	Edumdson(1969)(extractive) = positional method + Luhn + cue words(hardly,significant,impossible)+ document structure (is sentence title or heading of doc or right under one of this.)
+		It uses linear combination of above four features to produce results.
+		
+	Frump(1979)(knowledge based) = It was first knowledge base approach. It will go through news and try to understand the scenario. Using this scenario it will try to fill some predetermined slots. The sentence which will fill the slots will be our summary. This slots will be from 50 sketchy scripts and which script to use is decided by using manually selected keywords so impossible to port to other domains.
+	
+	paice(1990) = detailed study of almost all (failed) summarization techniques upto that point.
+	
+	Summons(Radev)(knowledge based) = first paper to work on multi-document summarization. Here multi documents were the same stories coming from different news papers. Approach was knowledge based. first you convert document into MUC template(information extraction). Next step is to generate text using slot fillers of MUC template.
+	
+	Mitra (graph based) = It uses wikipedia article. It uses symantic hyperlinks between pairs of paragraph with lexical similarity above threshold. The idea is Paths linking highly connected paragraphs are more likely to contain information central to topic of the article.
+
+	Marcu = focuses on text coherence. In this first sentence will tell us something important(nucleaus) and second sentence gives us more information about the first one(satelite). So first sentence cannot be omitted in summarization.
+
+	Noisy channel model = (source/target)
+	
+	Osborne(2002) = don't assume feature independance. used maxent(log-linear) model.
+	
+	Lexrank(Radev)(2004) = random walks used in multi/single doc summarization. It uses concept of lexical centrality means if sentence is visited in random walk then it is worth consider to include in summary.
+
+Summary Evaluation
+	
+	
+	
+sometime journalist are asked to write summary at top. So see if it can be useful in our economic times dataset.
+
+anaphora word = Anaphora is a figure of speech in which words repeat at the beginning of successive clauses, phrases, or sentences.
+
+Text summarization corpora
+	DUC and TAC corpora
+	summbank corpus
+	summac corpus
+	NY times corpus(LDC)
+
+		
+	
+		
+	
+	

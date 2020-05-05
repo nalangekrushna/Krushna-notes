@@ -1,0 +1,42 @@
+Information Retrieval = building search engines.
+
+Types of search engines
+	conventional(keyword,title, author)
+	text based (lexis-nexis, google, yahoo)
+	image based (color, shape,keywordL)
+	question answering system(ask.com)
+	clustering systems(vivisimo, clusty)
+	research systems(Lemur,Nutch)
+
+Search Engine Architecture
+	decide what to index
+	collect it.
+	Index it.
+	Keep the index upto date.
+	provide user friendly query facilities.
+	
+Inverted index
+
+Evaluation matrix for IR system
+size of index
+speed of indexing
+speed of retrieval
+accuracy
+timeliness
+Ease of use
+Expressiveness of search language
+
+Types of sentiment analysis
+	subjectivity analysis
+	polarity analysis
+	negation analysis
+	viewpoint analysis
+	
+Sentiment Lexicons
+	SentiwordNet
+	General Inquirer = includes annotations
+	LIWC
+	MPQA subjectivity lexicon
+	
+PMI (pointwise mutual information) = checks how often given unlabelled word appears with known positive/negative word.
+	
