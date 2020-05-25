@@ -2,7 +2,9 @@
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 import warnings
+
 warnings.filterwarnings("ignore")
+import logging
 import pandas as pd
 import numpy as np
 
@@ -36,3 +38,13 @@ train1['Summary'] = train1['Summary'].apply(lambda x: [sno.stem(y) for y in x.sp
 
 progress bar
 from tqdm.notebook import tqdm
+
+python
+	all imports should be in one place
+	all hard-coded value should be kept in dict at the top.
+	All file paths must be compatible in windows and linux and must be absolute.
+	Naming conventions :
+		all constansts should be in caps.
+		dict naming should be key_value and if needed as dict suffix.
+		add plural forms in words to indicate list
+	use logger instead of print statements.	and shoould be in file and stdout.

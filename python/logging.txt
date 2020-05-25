@@ -1,0 +1,27 @@
+Logging in Python
+
+python logging moudule have 5 severity levels.
+1. debug
+2. info
+3. warning
+4. error
+5. critical
+
+logging module logs event by default from warning to critical level. to add logs for info level
+logging.basicConfig(level=logging.INFO)
+
+to store logs in file use below snippet.
+logging.basicConfig(filename='app.log')
+
+complete config logging both at file and console and setting level to info. Also added formatting.
+
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s — %(name)s — %(levelname)s — %(funcName)s:%(lineno)d — %(message)s",
+    handlers=[
+        logging.FileHandler("debug.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)

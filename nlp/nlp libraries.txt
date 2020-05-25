@@ -18,7 +18,6 @@ textblob
 vocabulary
 pinlpi
 quepy
-flair
 scikit-learn
 montylingua
 pytorch-nlp
