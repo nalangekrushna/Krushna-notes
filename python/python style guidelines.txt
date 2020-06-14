@@ -12,3 +12,16 @@ PEP-8 guideline :
 	
 Reserved words are case-sensitive. They are all entirely lowercase, except for False, None, and True.
 Trying to create a variable with the same name as any reserved word results in an SyntaxError.
+
+python
+	all imports should be in one place
+	all hard-coded value should be kept in dict at the top.
+	All file paths must be compatible in windows and linux and try to keep absolute.
+	(best way to do this is use unix file nameing system. e.g. use this "C:/temp/abc")
+	(python added new module pathlib for file paths use it in future instad of os module.)
+	we will combine both approaches ie. using unix file naming inside pathlib module. 
+	Naming conventions :
+		all constansts should be in caps.
+		dict naming should be key_value and if needed as dict suffix.
+		add plural forms in words to indicate list
+	use logger instead of print statements.	and should be in file and stdout.

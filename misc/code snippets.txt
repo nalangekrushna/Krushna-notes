@@ -2,11 +2,22 @@
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 import warnings
-
 warnings.filterwarnings("ignore")
 import logging
-import pandas as pd
 import numpy as np
+import pandas as pd
+from tqdm.notebook import tqdm
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s — %(name)s — %(levelname)s — %(funcName)s:%(lineno)d — %(message)s",
+    handlers=[
+        logging.FileHandler("debug.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
 
 # label encoder
 from sklearn.preprocessing import LabelEncoder
@@ -39,12 +50,18 @@ train1['Summary'] = train1['Summary'].apply(lambda x: [sno.stem(y) for y in x.sp
 progress bar
 from tqdm.notebook import tqdm
 
-python
-	all imports should be in one place
-	all hard-coded value should be kept in dict at the top.
-	All file paths must be compatible in windows and linux and must be absolute.
-	Naming conventions :
-		all constansts should be in caps.
-		dict naming should be key_value and if needed as dict suffix.
-		add plural forms in words to indicate list
-	use logger instead of print statements.	and shoould be in file and stdout.
+For writing:
+import pickle
+with open('last_run.pkl', 'wb') as fp:
+    pickle.dump(today, fp)
+
+For reading:
+import pickle
+with open('last_run.pkl', 'rb') as fp :
+    cur_date = pickle.load(fp)
+
+import traceback
+try:
+    whatever()
+except Exception as e:
+    logging.error(traceback.format_exc())
