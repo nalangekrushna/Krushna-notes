@@ -25,3 +25,7 @@ python
 		dict naming should be key_value and if needed as dict suffix.
 		add plural forms in words to indicate list
 	use logger instead of print statements.	and should be in file and stdout.
+
+Naming conventions for db
+	try to use python naming conventions as it will be consistent with backend.
+	https://launchbylunch.com/posts/2014/Feb/16/sql-naming-conventions/

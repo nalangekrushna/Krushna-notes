@@ -1,0 +1,6 @@
+Linux details version ubuntu LTS 20.4
+shell :   bash
+
+~/.profile sets path for complete desktop session.
+.bash_profile will only be used on bash login shell.
+~  is short form for home directoryl

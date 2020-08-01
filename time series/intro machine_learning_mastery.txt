@@ -1,0 +1,4 @@
+time series data can be phrased as supervised learning problem. Advantage of this is we can use standard machine learning supervised techniques to solve this problem. we can do this by using prev time step as input and next time step as output. this technique is called sliding window method or lag method.
+
+multi-step = when we want to predict multiple time steps ahead of one output variable.
+

@@ -1,0 +1,27 @@
+Requirements for new projects.
+
+try to use latest libraries/language versions.
+use proper folder structure.
+uee proper naming conventions    
+use logging(should have different modes such as debug/info)
+use error handling = specific/generic (TBD)
+use oop programming(classes and inheritance.)
+Use ORM for db objects.
+write unit testing.
+use version control for code
+take backup of specific environment (especially python) look for realpython article
+have different properties for different environment for file paths etc.
+look for best security practices
+use latest technologies such as async programming/multi threading.
+use different sign-in apis (google,facebook)
+do deployments of cloud.
+think of using coding styles.
+use jira to track issues.
+generate api documentation.
+first deploy in local ubuntu env
+use code analysis tools 
+
+lets get started....
+
+python
+	use pyproject.toml instead of setup.cfg
