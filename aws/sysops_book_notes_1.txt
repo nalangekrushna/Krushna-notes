@@ -1,0 +1,81 @@
+
+There is generally three tier architecture.
+	front-end/web = it should only talk with middle ware.
+	backend/middle ware = it should talk with both frontend and db layer.
+	db layer = it should only be accessible from middleware.
+
+Architecture/system lives inside aws region.(eg. us-west-2 oregon). regions are made of multiple availability zones. Each aws region is seperate geographic area. Each region has multiple isolated physical locations known as availability zones.
+
+AZ = Availability Zones
+nACL = network access control list
+IAM = Identity and Access Management
+Amazon Route 53 = Domain Name System (DNS)
+Amazon CloudFront = content delivery network (CDN)
+Internet Gateways = VPC component that allows communication between instances in your VPC and the Internet.
+Subnets  = A subnetwork or subnet is a logical subdivision of an IP network.
+Route tables = A route table is a set of rules that is used to determine where data packets traveling over an Internet Protocol (IP) network will be directed.
+EC2 = Elastic Compute Cloud.
+DynamoDB = fully-managed NoSQL database service
+ElastiCache = an in-memory data store or cache in the cloud.
+s3 = simple storage service(object storage.)
+EBS = Elastic Block Service = persistent block storage volumes
+Glacier = extremely low-cost storage service that provides secure, durable, and flexible storage for data backup and archival.
+Inspector =  automated security assessment service
+Lambda = run code without provisioning or managing servers.
+Kinesis = platform for streaming data on AWS,
+KMS (key management service) = managed service that makes it easy for you to create and control the encryption keys used to encrypt your data.
+SQS = Simple Queue Service = fully-managed message queuing service
+SNS = Simple Notification Service = coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
+SES = Simple Email Service = for sending automated emails
+WAF = Web Application Firewall = which traffic to allow or block to your web applications
+Shield = managed Distributed Denial of Service (DDoS) protection service
+ARN = amazon resource name
+
+
+Amazon Virtual Private Cloud (VPC) is a commercial cloud computing service that provides users a virtual private cloud, by "provision[ing] a logically isolated section of Amazon Web Services (AWS) Cloud"
+
+secure network example
+Public Elastic Load Balancing The only security group that allows full public access
+Web Tier Amazon EC2 This accepts traffic only from public Elastic Load Balancing.
+Private Elastic Load Balancing This accepts traffic only from Web Tier Amazon EC2.
+Application Tier Amazon EC2 This accepts traffic only from private Elastic Load Balancing.
+Amazon ElastiCache This accepts traffic only from Application Tier Amazon EC2.
+Amazon Relational Database Service (Amazon RDS) This accepts traffic only from Application Tier Amazon EC2.
+Network Address Translation (NAT) This is used only for internally initiated outbound traffic.
+AMI = Amazon Machine Image
+
+Amazon CloudFront is the AWS content delivery network service (CDN)
+
+difference between storage type EBS s3 amd ephemeral ?
+
+AWS IAM controls access to AWS services and resources. It does not control access to the Amazon EC2 operating system or application-level authentication. There are some specific AWS security tools, such as Amazon Inspector, Amazon VPC Flow Logs and Amazon CloudWatch Logs.
+
+cloudwatch provides monitoring for thousands of metrics for 90 services.
+AWS CloudTrail records every API call in the AWS system.These records and other log files are processed through Amazon CloudWatch Logs, which analyze text data for patterns that trigger alerts and corresponding actions.
+
+Some security features users of cloud must use
+	individual user account and credentials
+	SSL/TLS for data transmission
+	encryption of data at storage.
+	user activity logging
+aws is also responsible for security configuration of its products that are considered as managed services.
+e.g. DynamoDB, RDS, for this aws will handle basic security tasks such as guest operating system and database patching, firewall config and disaster recovery. for most of the managed services all you have to do is configure logical access control and and protect account credentials.
+
+AMI will get critical security patches automatically from amazon.(like managed service.)
+
+AWS provides following security features.
+	Distributed Denial of Service (DDoS) attacks
+	
+	Man-in-the-Middle (MITM) attacks = All of the AWS APIs are available via SSL-protected endpoints that provide server authentication. Amazon EC2 Amazon Machine Images (AMIs) automatically generate new Secure Shell (SSH) host certificates on first boot and log them to the instance’s console. You can then use the secure APIs to call the console and access the host certificates before logging into the instance for the first time. AWS encourages you to use SSL for all of your interactions.
+	need to study above in detail.
+	
+	IP spoofing = Amazon EC2 instances cannot send spoofed network traffic. The AWS controlled, host-based firewall infrastructure will not permit an instance to send traffic with a source IP or Machine Access Control (MAC) address other than its own.
+	
+	Port scanning = Unauthorized port scans by Amazon EC2 customers are a violation of the AWS Acceptable Use Policy. Violations of the AWS Acceptable Use Policy are taken seriously, and every reported violation is investigated. Customers can report suspected abuse via the contacts available on the AWS website. When unauthorized port scanning is detected by AWS, it is stopped and blocked. Port scans of Amazon EC2 instances are generally ineffective because, by default, all inbound ports on Amazon EC2 instances are closed and are only opened by the customer. Strict management of security groups can further mitigate the threat of port scans. If you configure the security group to allow traffic from any source to a specific port, then that specific port will be vulnerable to a port scan. In these cases, you must use appropriate security measures to protect listening services that may be essential to their application from being discovered by an unauthorized port scan. For example, a web server must clearly have port 80 (HTTP) open to the world, and the administrator of this server is responsible for the security of the HTTP server software, such as Apache®. You may request permission to conduct vulnerability scans as required to meet your specifi c compliance requirements. These scans must be limited to your own instances and must not violate the AWS Acceptable Use Policy. Advance approval for these types of scans can be requested by submitting a request via the AWS website.
+	
+the connection using aws cli 2.0 always uses TLS 1.2 security.
+	
+	Packet sniffing by other tenants = Although you can place your interfaces into casual mode, the Hypervisor will not deliver any traffic to them that is not addressed to them. Even two virtual instances that are owned by the same customer located on the same physical host cannot listen to each other’s traffic. Although Amazon EC2 does provide ample protection against one customer inadvertently or maliciously attempting to view another customer’s data, as a standard practice, you should encrypt sensitive traffic.
+	
+It is not possible for a virtual instance running in promiscuous mode to receive, or “sniff,” traffic that is intended for a different virtual instance.
+Attacks such as Address Resolution Protocol (ARP) cache poisoning do not work within Amazon EC2 and Amazon VPC.

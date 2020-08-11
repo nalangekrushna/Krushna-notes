@@ -1,0 +1,114 @@
+aws compute 
+
+aws lambda = compute service that runs code without need to provision and manage server.
+aws elastic beanstalk = quickly deploy and manage applications on aws cloud without worrying about infrastructure that runs those applications.
+EC2 container service = container management service for docker in EC2 instacne.
+lightsail = This service is for developers who need virtual private servers. Amazon Lightsail includes everything you need to launch your project quickly—a virtual machine, SSD-based storage, data transfer, Domain Name System (DNS) management, and a static IP address.
+Batch = computing workloads on the AWS Cloud.
+
+aws EC2 instance has following features
+	Virtual computing environments, known as instances
+	Preconfigured templates for your instances, known as AMIsVarious configurations of CPU, memory, storage, and networking capacity for your instances, known as instance types
+	Secure login information for your instances using key pairs (AWS stores the public key, and you store the private key in a secure place.)
+	Storage volumes for temporary data that’s deleted when you stop or terminate your instance, known as instance store volumes
+	Persistent storage volumes for your data using Amazon Elastic Block Store (Amazon EBS), known as Amazon EBS volumes
+	Multiple physical locations for your resources, such as instances and Amazon EBS volumes, known as regions and Availability Zones
+	A firewall that enables you to specify the protocols, ports, and source IP ranges that can reach your instances using security groups
+	Static IPv4 addresses for dynamic cloud computing that can be assigned to an individual instance, known as Elastic IP addresses
+	IPv6 addresses that can also be assigned to instances 
+	Virtual networks that you can create that are logically isolated from the rest of the AWS Cloud and that you can optionally connect to your own network, known as Amazon Virtual Private Clouds (Amazon VPCs)
+	
+instance storage = physical storage attached to your instance.
+EBS(Elastic Block Storage) = logical storage can be extended reduced.
+
+Although you can only access instance metadata and user data from within the instance itself, the data is not protected by cryptographic methods. Anyone who can access the instance can view its metadata. Therefore, you should take suitable precautions to protect sensitive data (such as long-lived encryption keys). You should not store sensitive data, such as passwords, as user data.
+
+snapshots = You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point-intime snapshots. Snapshots are incremental backups, which means that only the blocks on the device that have changed after your most recent snapshot are saved.
+
+Monitoring the Status of Your AWS Cloud Services 
+aws provides below two ways to do that 
+	AWS Service Health Dashboard = With the AWS Service Health Dashboard, you can view current as well as past service health for all services across all regions except china and us gov.you can personalize it to track your AWS Cloud services.
+	AWS Personal Health Dashboard = provides information about AWS health events that can affect your account. The information is presented in two ways: a dashboard that shows recent and upcoming events organized by category and a full event log that shows all events from the past 90 days.
+
+Monitoring with Amazon CloudWatch
+Amazon CloudWatch monitoring is turned on by default for Amazon EC2 instances. Basic monitoring, which collects metrics every five minutes, is provided by default.
+
+Using AWS CloudTrail = get a history of AWS API calls and related events for your account.
+
+private ip address = it is assigned at instace creation and only removed when instace is terminated. It has no impact on instance reboot and stop.
+public and elastic IP address behave differently than private ip address. when instance will stop public ip address will be returned to aws. elastic ip address is kept in same account available for reassignment for particular aws account.
+
+aws instance pricing
+on-demand = no upfront commitment, pay as you go.
+reserved instance = upfront commitment, discount on on-demand pricing.
+spot = bidding for instance when your price exceed bidding amount you get spot instace.
+
+Estimating Costs
+two tools for estimating costs
+	AWS Simple Monthly Calculator = this is general purpose to calculate your total cost.
+	AWS Total Cost of Ownership (TCO) Calculator = AWS TCO Calculator allows you to estimate the cost savings when using AWS and provides a detailed set of reports that can be used in executive presentations.
+	
+AWS Trusted Advisor = recommendations on how to potentially reduce your spending with AWS.
+Placement Groups = logical grouping of instances in a single Availability Zone. It is useful when you want to do high performance computing.
+AWS Service Catalog = allows IT administrators to create, manage, and distribute portfolios of approved products to end users who can then access the products they need in a personalized portal.
+
+The primary tool used for monitoring your Amazon ECS clusters is Amazon CloudWatch. There is no additional cost for using Amazon ECS. The only charges are for the Amazon EC2 instances or AWS Lambda requests and compute time.
+	
+AWS Lambda = AWS Lambda is a serverless compute service.
+AWS Lambda functions are invoked by the following:
+	Push event model Some event sources can publish events to AWS Lambda and directly invoke your AWS Lambda function. The push model applies to Amazon S3, Amazon SNS, Amazon Cognito, Amazon Echo, and user applications, where each event triggers the AWS Lambda function.
+	Pull event model Some event sources publish events, but AWS Lambda must poll the event source and invoke your AWS Lambda function when events occur. This model applies when AWS Lambda is used with streaming event sources such as Amazon Kinesis and Amazon DynamoDB Streams. For example, AWS Lambda polls your Amazon Kinesis stream, or Amazon DynamoDB Stream, and it invokes your AWS Lambda function when it detects new records on the stream.
+	Direct invocation model This invocation type causes AWS Lambda to execute the function synchronously and returns the response immediately to the calling application. This invocation type is available for custom applications.
+	
+One of the recommendations for writing code for AWS Lambda is to make sure that the code is stateless (that is, it does not make reference to any underlying infrastructure).
+
+Amazon CloudWatch provides metrics for AWS Lambda. These metrics include,
+but are not limited to, the following:
+	Invocation count
+	Invocation duration
+	Number of requests
+	Latency per request
+	Duration of code execution
+	
+The AWS Lambda function is executed once it is invoked. If the execution fails, two more attempts are made. You can, as an option, confi gure AWS Lambda to forward a failed payload to a Dead Letter Queue (DLQ). This DLQ can take the form of an Amazon Simple Notifi cation Service (Amazon SNS) topic or an Amazon Simple Queue Service (Amazon SQS) queue.
+
+Networking
+AWS Direct Connect = allows you to establish dedicated network connection from your premise to AWS.
+subnet cannot span Availability zone and VPC cannot span regions. for example If you want VPC in two regions you must have two VPC (one per region) you can have maximum five VPC per region per account.
+
+AWS reserves the four IP and the last IP addresses. In a 10.0.0.0/24, the following IPs are reserved:
+	10.0.0.0: Network address.
+	10.0.0.1: Reserved by AWS for the Amazon VPC router.
+	10.0.0.2: Reserved by AWS. The IP address of the DNS server is always the base of the Amazon VPC network range; however, the base of each subnet range is also reserved.
+	10.0.0.3: Reserved by AWS for future use.
+	10.0.0.255: Network broadcast address. AWS does not support broadcast in an Amazon VPC; therefore, we reserve this address.
+	
+Once you choose the size of your Amazon VPC, you cannot change it. Therefore, err on the side of caution and make your VPC large. A best practice is to identify a private /16 network that is not being used and dedicate that to your VPC.
+
+A clear understanding of route tables and network ACLs and how they operate and control access is fundamental. Know what type of traffic gets controlled by each of these and how they interact. Network connectivity troubleshooting is a key skill for this exam.
+
+Route Tables = When a VPC is created, a route table associated with that VPC is also created. This is called the default route table.What this table is telling us is that any IP packet with a destination address in the 10.155.0.0/16 network (thus any packet with an address between 10.155.0.0 and 10.155.255.255) would be delivered within this VPC. What it also tells us is that any IP packet with any other IP address would be dropped because there are no instructions on how to route that packet.
+
+we can add destination 0.0.0.0/0 and target Internet-gateway-id to go to internet gateway.
+
+Network Access Control Lists (ACLs) = A VPC also has a default network Access Control List (ACL). This default network ACL will allow all traffic. You can modify network ACLs either by allowing or denying inbound or outbound traffic based on port, protocol, and IP address. You create a number of rules that are evaluated in order, and when a match occurs, that rule gets invoked.
+
+Security Groups = A VPC also has a default security group. This default security group allows all traffic.
+
+One of the other things that is created with a VPC is a Dynamic Host Configuration Protocol (DHCP) option set. The DHCP option set controls various configuration parameters that are passed to compute instances created in the VPC. Some of the parameters are domain name, domain name server, NTP servers, NetBIOS name type, and NetBIOS node type. AWS provides a DNS server by default, but other DNS servers can be used instead.
+
+Our recommended practice is to create two subnets per Availability Zone: one public subnet and one private subnet. The public subnet’s route table includes a route to the Internet. The private subnet’s route table does not include a route to the Internet. An instance in a public subnet has either a public IP or an Elastic IP address assigned to it, while an instance in a private subnet has only a private IP address assigned to it. For an instance in a private subnet to send a packet to the Internet, that packet must be routed through either a Network Address Translation (NAT) instance or a NAT gateway. For an instance in a private subnet to receive a packet from the Internet, that packet must be routed through either the Classic Load Balancer or Application Load Balancer, or through another compute instance with load balancing software installed.
+
+A VPC can be created that has no connection to resources outside of the VPC. However, most VPCs have some sort of connection to resources outside the VPC. These connections can take the form of gateways, endpoints, and peering connections. There are three major gateways for the VPC. They are as follows:
+	Internet gateway
+	NAT gateway
+	VPN gateway
+	
+Internet Gateway = An Internet gateway serves two purposes: to provide a target in your VPC route tables for Internet-routable traffic and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses.
+
+NAT Gateway = You can use a network address translation (NAT) gateway to enable instances in a private subnet to connect to the Internet or other AWS services, but prevent the Internet from initiating a connection with those instances.
+To create a NAT gateway, you must specify the public subnet in which the NAT gateway will reside. You must also specify an Elastic IP address to associate with the NAT gateway when you create it. After you’ve created a NAT gateway, you must update the route table associated with one or more of your private subnets to point Internet-bound traffic to the NAT gateway. This enables instances in your private subnets to communicate with the Internet. Each NAT gateway is created in a specific Availability Zone and implemented with redundancy in that zone.
+
+VPN Gateway = A VPN gateway is used either to provide (1) an IPsec VPN connection through the Internet to your location or (2) an AWS Direct Connect connection to your location.
+
+Elastic Network Interfaces (ENIs) are static, public IPv4 addresses that are associated with the account that created them. Because they are associated with the account (and not the instance), these IP addresses can be associated with any instance or network interface in that VPC. These ENIs, once assigned to an instance, will continue to remain associated with the instance even when that instance is turned off. If the instance is deleted, the ENI will remain associated with the account that created it.

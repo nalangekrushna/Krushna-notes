@@ -9,13 +9,19 @@ Docker uses a client-server architecture. The Docker client talks to the Docker 
 
 All best practices are taken from pythonspeed.com and docker official guide.
 docker best practices
-	use python:3.7.3-stretch instead of python:3
+	use python:3.7.8-burster instead of python:3
 	use requirements.txt instead of RUN pip install package_name.
 	use COPY after pip install as you will able to get benefit of docker layer caching which will build fast.
 	by default docker runs as root user, create another non-root user instead of using root.
 	caching can lead to insecure images.
 		https://pythonspeed.com/articles/official-docker-best-practices/   #1
 	don't use alpine linux for python as it uses different implementation of gcc.
+	to avoid image being too large use below link.
+		https://pythonspeed.com/articles/system-packages-docker/
+	to understand security risk for containers.
+		http://canihaznonprivilegedcontainers.info/
+	use docker buildkit to pass secrets.
+	
 	
 	
 buster = current stable release
