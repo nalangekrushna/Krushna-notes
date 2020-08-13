@@ -112,3 +112,13 @@ To create a NAT gateway, you must specify the public subnet in which the NAT gat
 VPN Gateway = A VPN gateway is used either to provide (1) an IPsec VPN connection through the Internet to your location or (2) an AWS Direct Connect connection to your location.
 
 Elastic Network Interfaces (ENIs) are static, public IPv4 addresses that are associated with the account that created them. Because they are associated with the account (and not the instance), these IP addresses can be associated with any instance or network interface in that VPC. These ENIs, once assigned to an instance, will continue to remain associated with the instance even when that instance is turned off. If the instance is deleted, the ENI will remain associated with the account that created it.
+
+EIP (elastic IP address) = static public IP address. An Elastic IP address is associated with your AWS account and allows you to mask the failure of an instance or software by remapping the address to another Amazon EC2 instance in your account. The two major tools used to manage and troubleshoot VPC issues are as follows:
+■■ AWS CloudTrail
+■■ Amazon VPC Flow Logs
+
+Elastic Load Balancing distributes incoming application traffic across multiple Amazon EC2 instances, in multiple Availability Zones within a single AWS Region. Elastic Load Balancing supports two types of load balancers:
+■■ Application Load Balancers
+■■ Classic Load Balancers
+
+Amazon Route 53 = 
