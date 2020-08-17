@@ -83,11 +83,11 @@ AWS reserves the four IP and the last IP addresses. In a 10.0.0.0/24, the follow
 	10.0.0.3: Reserved by AWS for future use.
 	10.0.0.255: Network broadcast address. AWS does not support broadcast in an Amazon VPC; therefore, we reserve this address.
 	
-Once you choose the size of your Amazon VPC, you cannot change it. Therefore, err on the side of caution and make your VPC large. A best practice is to identify a private /16 network that is not being used and dedicate that to your VPC.
+Once you choose the size of your Amazon VPC, you cannot change it. Therefore on the side of caution and make your VPC large. A best practice is to identify a private /16 network that is not being used and dedicate that to your VPC.
 
 A clear understanding of route tables and network ACLs and how they operate and control access is fundamental. Know what type of traffic gets controlled by each of these and how they interact. Network connectivity troubleshooting is a key skill for this exam.
 
-Route Tables = When a VPC is created, a route table associated with that VPC is also created. This is called the default route table.What this table is telling us is that any IP packet with a destination address in the 10.155.0.0/16 network (thus any packet with an address between 10.155.0.0 and 10.155.255.255) would be delivered within this VPC. What it also tells us is that any IP packet with any other IP address would be dropped because there are no instructions on how to route that packet.
+Route Tables = When a VPC is created, a route table associated with that VPC is also created. This is called the default route table. Any IP packet with a destination address in the 10.155.0.0/16 network (thus any packet with an address between 10.155.0.0 and 10.155.255.255) would be delivered within this VPC. What it also tells us is that any IP packet with any other IP address would be dropped because there are no instructions on how to route that packet.
 
 we can add destination 0.0.0.0/0 and target Internet-gateway-id to go to internet gateway.
 

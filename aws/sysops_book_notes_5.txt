@@ -38,3 +38,19 @@ Leader Nodes = A leader node receives queries from client applications, parses t
 Compute Nodes = Compute nodes execute the steps specified in the execution plans and transmit data among themselves to serve these queries. The intermediate results are sent back to the leader node for aggregation before being sent to the client applications.
 
 ElastiCache = a distributed in-memory cache environment in the cloud.
+
+Simple Queue Service(SQS) = access to message queues that store messages waiting to be processed. Amazon SQS queues retain messages for a set period of time. The default setting is four days; however, you can configure a queue to retain messages for up to 14 days.
+
+Dead Letter Queue (DLQ) is an Amazon SQS queue that you configure to receive messages from other Amazon SQS queues, referred to as “source queues.” Typically, you set up a DLQ to receive messages after a maximum number of processing attempts has been reached.
+
+Simple Notification Service (SNS) = manages the delivery or sending of messages to subscribing endpoints or clients. In Amazon SNS, there are two types of clients—publishers and subscribers, which are also referred to as producers and consumers. Publishers communicate asynchronously with subscribers by producing and sending a message to a topic, which is a logical access point and communication channel. Subscribers (for example web servers, email addresses, Amazon SQS queues, and AWS Lambda functions) consume or receive the message or notification over one of the supported protocols (such as Amazon SQS, HTTP/S, email, Short Message Service [SMS], or AWS Lambda) when they are subscribed to the topic.
+
+Recovery time objective (RTO) = This represents the time it takes after a disruption to restore a business process to its service level.
+
+Recovery point objective (RPO) = This is the acceptable amount of data loss measured in time. For example, if a disaster occurs at 12:00 PM (noon) and the RPO is one hour, the system should recover all data that was in the system before 11:00 AM.
+
+Warm-Standby Method = a scaled-down version of a fully-functional environment is always running in the cloud.
+
+pilot light method = a minimal version of an environment is always running in AWS.
+
+Multi-Site Solution Method = A multi-site solution runs in AWS, as well as on your existing on-site infrastructure, in an active-active configuration.

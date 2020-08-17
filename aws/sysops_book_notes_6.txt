@@ -1,0 +1,27 @@
+Amazon CloudWatch = monitors the health and status of AWS resources in real time.
+Amazon CloudWatch Logs = collects and monitors log files, can set alarms, and automatically reacts to changes in AWS resources.
+Amazon CloudWatch Alarms = monitor a single metric and perform one or more actions based on customer-defined criteria. 
+Amazon CloudWatch Events = delivers a near real-time stream of system events that describe changes in AWS resources.
+
+AWS CloudTrail = monitors calls made to the Amazon CloudWatch Events Application Programming Interface (API) for an account.
+
+AWS Config = AWS Config provides a detailed view of the configuration of AWS resources in an AWS account, including how the resources are related to one another.
+
+Metrics = At the core of Amazon CloudWatch are metrics , which are time-ordered sets of data points that contain information about the performance of resources.
+
+Amazon CloudWatch collectd plugin = publishing extension for collectd , an open-source statistic gathering daemon. All configured collectd metrics are automatically published to Amazon CloudWatch. 
+
+Data points are not returned from Amazon CloudWatch in chronological order.
+
+Namespaces = A namespace is a container for a collection of Amazon CloudWatch metrics. There are no default namespaces. When creating a custom metric, a namespace is required.
+
+Dimensions = A dimension is a name/value pair that uniquely identifi es a metric and further clarifi es the metric data stored. A metric can have up to 10 dimensions. Think of dimensions as categories or metadata for those characteristics.
+
+If unit is not provided for metrics then amazon cloudwatch uses None as unit. For metrics that are continuously emitted, Amazon CloudWatch sends a notification until three failures are found. When monitoring, using an average value can hide events that are drastically different than normal ones. When monitoring a maximum value, however, a single, random spike can skew the results. To avoid this, monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load.
+
+Inside Amazon EC2, there are two types of status checks: a system status check and an instance status check.
+
+An Amazon CloudWatch Alarm is always in one of three states: OK , ALARM , or INSUFFICIENT_DATA .
+■ When the monitored metric is within the range that has been defined as acceptable, it is in the OK state.
+■ When a metric breaches a user-defined threshold, it transitions to the ALARM state.
+■ If the data needed to make a decision is missing or incomplete, it is in the INSUFFICIENT_DATA state.

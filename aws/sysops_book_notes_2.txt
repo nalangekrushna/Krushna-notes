@@ -66,5 +66,3 @@ Best Practices for Securing Your AWS Account :
 16. Use IAM roles to provide cross-account access.
 
 Access flow = root(MFA) -> IAM Admin User(to give permission to other users.)(MFA) -> IAM Users(MFA-power user) -> IAM groups -> IAM roles -> Policy condition[extra security] -> monitor activity
-
-page no 107
