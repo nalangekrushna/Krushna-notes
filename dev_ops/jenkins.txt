@@ -1,0 +1,15 @@
+Jenkins
+
+Jenkins uses pipelines to create automated deployment process. pipeline can use both declarative vs scripted pipeline syntax. declarative is latest one and feature rich than scripted. This pipeline can be stored in root folder of project to track in source control management(git) in "Jenkinsfile" file.
+
+jenkins single line comment  //
+jenkins multi-line comment   /* comment */
+
+If we didn't add agent in declarative syntax then syntax is not valid.
+genkins uses groovy language for scripting.
+
+The basic statements and expressions which are valid in Declarative Pipeline follow the same rules as Groovy’s syntax with the following exceptions:
+	The top-level of the Pipeline must be a block, specifically: pipeline { }.
+	No semicolons as statement separators. Each statement has to be on its own line.
+	Blocks must only consist of Sections, Directives, Steps, or assignment statements.
+	A property reference statement is treated as a no-argument method invocation. So, for example, input is treated as input().
