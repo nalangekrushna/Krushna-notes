@@ -1,5 +1,9 @@
 Jenkins
 
+to setup jenkins build with git commit 
+https://www.edureka.co/community/49753/auto-build-job-jenkins-there-change-code-github-repository
+http://localhost:8070/github-webhook/
+
 Jenkins uses pipelines to create automated deployment process. pipeline can use both declarative vs scripted pipeline syntax. declarative is latest one and feature rich than scripted. This pipeline can be stored in root folder of project to track in source control management(git) in "Jenkinsfile" file.
 
 jenkins single line comment  //

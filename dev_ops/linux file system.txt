@@ -1,0 +1,29 @@
+Linux System folders
+
+linux uses /(forward slash) instead of \(backward slash) of windows.
+~ = to home directory of logged in user.(root/user_name/)
+/ = absolute root (containing all folders such as bin boot dev lib var tmp)
+FileSystem Hierachy Standard = FHS = maintained by linux foundation.
+
+bin(binary) = it contains ls, cat like things. which normal user will have access to.(multi user mode or general mode.)
+sbin = it contains programs which only system admin have access to.(single user mode)
+boot = bootloader inside this folder.
+dev (device) = contains all device files, which are not regular files but instead refer to various hardware devices on the system, including hard drives.
+etc = system wide configuration
+home = personal files and documents.
+lib/lib32/lib64/libx32 = binaries required by bin and sbin.
+media = external hard disk/floppies/CD / pendrive
+mnt = external network drive such as network filesystem or manually mounted devices.
+opt (optional)= manually installed softwares.
+proc = Virtual filesystem providing process and kernel information as files.
+root = home directory for super(root) user.
+run  = tmpfs file system.Files under this directory are removed or truncated at the beginning of the boot process. (It deprecates various legacy locations such as /var/run, /var/lock, /lib/init/rw in otherwise non-ephemeral directory trees as well as /dev/.* and /dev/shm  which are not device files.)
+snap = snap applications stored. snap application are self contained packages which runs differently than regular packages.
+srv = service data stored here. to store files accessed by external user to run web server or ftp server.
+sys (system) = another temporary directory to store system information.
+tmp = temporary directory.
+usr = user application space
+usr/share/src = header files and kernel source.
+var = variable directory.
+var/log = logs of system and applications.
+ 

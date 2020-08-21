@@ -1,0 +1,23 @@
+Ubuntu 20 LTS
+
+to install specific python version
+sudo apt-get install python3.6
+
+ubuntu can use debian based packages(.deb). APT(Advance Packaging Tool) is package manager for ubuntu.
+aptitude is front end for APT.
+
+deb vs rpm
+Ubuntu, Linux Mint, Kali is based on Debian’s package manage based on APT and DPKG. Red Hat, openSuSE, CentOS and Fedora are based on the old Red Hat Linux package management system, RPM.
+
+differences between apt and apt-get:
+The apt merges functionalities of apt-get and apt-cache
+Two new functionalities exclusive to the apt command.
+apt-get is old tool whereas apt is new tool which after sometime will replace apt-get. So whenever possible use apt instead of apt-get.
+
+apt update vs apt upgrade vs apt full-upgrade
+When you update, it only makes the newer versions of packages available in the repository. However, it does not update the packages you already have installed. In order to do that, you have to do apt upgrade. 
+The full-upgrade searches for dependencies with newer versions, installs new packages, and removes old ones on its own. On the other hand, upgrade never installs or removes packages on its own. It only installs the latest versions of the installed packages on your system. You should be careful when using full-upgrade as it may remove some packages you still want and need on your system.
+
+apt remove vs apt purge
+You can remove a package with the apt remove command. However, this command only removes the package, leaving its configuration files on the system. If you want to remove the package along with its configuration files, then use apt purge
+ 

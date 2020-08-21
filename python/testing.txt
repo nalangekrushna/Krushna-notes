@@ -1,0 +1,8 @@
+Python Testing
+
+exploratory testing = exploring the application and checking its features are working fine.
+unit test = checks if single component operates in right way.
+integration test = checks that components in your application operate with each other.
+
+fixture = The data that you create as an input
+parameterization = If you’re running the same test and passing different values each time and expecting the same result
