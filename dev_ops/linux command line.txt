@@ -1,0 +1,31 @@
+Linux command line power usage
+
+bash = Bourne-Again Shell
+to check which shell you are using = echo $SHELL
+~ = user home directory
+/ = root directory.
+pwd = print working directory
+ls -a = print all files including hidden one.
+ls -A = print all files including hidden one except current dir(.) and parent dir(..)
+ls -d = only directories including hidden one.
+ls -l = show file details.
+ls -r = reverse
+ls -R = recursive, also prints subdirectories.
+whoami = to get username and home directory will be  /home/<user_name>/
+mkdir = create directory.
+mkdir -p dir/sub_dir = create both directory and subdirectory without argument if dir is not present then mkdir will fail.
+rmdir = delete empty directory/sub directory.
+rm -r dir_name = deletes directory containing files/directories.
+rm = delete files
+cp/mv = copy/move files takes two arguments. The first is the location of the file to be copied, the second is where to copy.
+locate -i = searches inside file contains, i to ignore the case.
+echo = print statement.
+cat = to see the file contains.
+sudo = "SuperUser Do" runs other commands with admin priv.
+chmod = eg. chmod 777 file.py the no denotes sum of all permissions, first value is for owner second value is for owner group and third value is for all the others. after that you give file name for which this permisson should be applied.
+	1 = execute
+	2 = write
+	4 = read
+sudo halt = shutdown
+sudo reboot = restart
+

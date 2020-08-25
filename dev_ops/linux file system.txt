@@ -1,4 +1,4 @@
-Linux System folders
+Linux System folders(ubuntu 20 LTS)
 
 linux uses /(forward slash) instead of \(backward slash) of windows.
 ~ = to home directory of logged in user.(root/user_name/)
@@ -11,7 +11,7 @@ boot = bootloader inside this folder.
 dev (device) = contains all device files, which are not regular files but instead refer to various hardware devices on the system, including hard drives.
 etc = system wide configuration
 home = personal files and documents.
-lib/lib32/lib64/libx32 = binaries required by bin and sbin.
+lib/lib32/lib64/libx32 = binaries required by bin and sbin. libx32 contains more advanced/new features/instruction set.
 media = external hard disk/floppies/CD / pendrive
 mnt = external network drive such as network filesystem or manually mounted devices.
 opt (optional)= manually installed softwares.
