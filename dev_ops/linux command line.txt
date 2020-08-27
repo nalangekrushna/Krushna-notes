@@ -4,7 +4,24 @@ bash = Bourne-Again Shell
 to check which shell you are using = echo $SHELL
 ~ = user home directory
 / = root directory.
+$ = used to access variables e.g. $PATH. to perform some operations on variable you can do this way. 	 	${PATH:0:6}
+!command = rerun the command with last time parameters to repeat the command.
+	e.g. echo total $ENV   to repeat this.
+		 !echo             you will get output of  "echo total $ENV"
+# = comment. It will be ignored by bash. but you can still see it in command history.
+? = any single character not including space.
+* = any no of characters including space.
+[char1char2char3] = should contain any on char
+[char1-char2] = any character in range of char1 to char2 both included.
+; = multiple commands in same line can be seperated using this. commands will run irrespective of other commands i.e. no effect of success or failure on this commnads.
+command1 && command2 = run command2 only if command1 succeded
+& = at the end of command will launch command in background and you can use terminal.
+\ = to allow command to expand to next line.(like in python)
+
+#!/bin/bash = this first line of linux script is called shebang which tells us to use which program to interpret the script.
+
 pwd = print working directory
+alias = give another name to command e.g. alias cls=clear
 ls -a = print all files including hidden one.
 ls -A = print all files including hidden one except current dir(.) and parent dir(..)
 ls -d = only directories including hidden one.
@@ -28,4 +45,40 @@ chmod = eg. chmod 777 file.py the no denotes sum of all permissions, first value
 	4 = read
 sudo halt = shutdown
 sudo reboot = restart
+type = display information about command type.
+type -a =  display all locations containing an executable named NAME; includes aliases, builtins, and functions
+type -p = gives location of exact file to be executed.
+type -t = returns signle word which is one of alias,keyword, function, builtin, filetyp
+command > file = write output to file.
+command >> file = append output to file.
+sort -nr = sort file n for numeric and r for reverse.
+head /tail = prints top/last 10 values
+find -PL =  search for file in dictionary hierachy. P is default which means only search for symlink and don't look to the link symlink is pointing. L does exact opposite behavior of this.
+uniq = returns only unique values
+fmt = convert text into standard output format.
+pr = adds pagination to output
+diff -y = gives difference between two files. y to show difference side by side.
+history = show all command history.
+kill = to kill the process
+ps = shows all running processes.
 
+$$ = pid of bash shell
+$0 = name of shell
+$? = exit status of most recently executed command
+
+VERY IMPORTANT COMMANDS
+grep (Global Regular Expression Print)
+sed
+awk
+
+In linux single quotes(') suppress everything.(everything gets printed as it is. no evaluation happens. see below). In dobule quotes(") only things after $ works.
+below is the example and its outputs.
+	without any quotes.
+[me@linuxbox me]$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+text /home/me/ls-output.txt a b foo 4 me
+	with double quotes
+[me@linuxbox me]$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+text ~/*.txt {a,b} foo 4 me
+	with single quotes.
+[me@linuxbox me]$ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER

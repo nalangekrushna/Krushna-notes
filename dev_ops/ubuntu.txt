@@ -20,4 +20,28 @@ The full-upgrade searches for dependencies with newer versions, installs new pac
 
 apt remove vs apt purge
 You can remove a package with the apt remove command. However, this command only removes the package, leaving its configuration files on the system. If you want to remove the package along with its configuration files, then use apt purge
+
+which vs type
+On Bourne-like shells, we're comparing the output of which with the output of type (type being a shell builtin, it's meant to be the ground truth, as it's the shell telling us how it would invoke a command).
+
+<command> is hashed = means command and its path is stored in hash table for quick reference next time.
+
+interactive vs non-interactive shell
+interactive shell = An interactive shell is simply any shell process that you use to type commands, and get back output from those commands. That is, a shell with which you interact. it reads .bash_profile file at starting of it.
+Non-interactive shell = when you run a shell script, a non-interactive shell is started that runs the commands in the script, and then exits when the script finishes. It reads .bashrc file instead of .bash_profile.
  
+login vs non-login shell short answer 
+simply put any shell that asks password before start is login shell otherwise non-login shell. to check if shell is login or not use echo $0 if output(-bash) has hyphen(-) prefix then it is login shell. 
+ 
+login vs non-login shell explaination
+login shell = The idea is that a user should have (at most) one login shell per host.  (Perhaps I should say, one login shell per host per terminal — if you are simultaneously logged in to a host through multiple terminals, you would expect to have multiple login shells.)  This would typically (always?) be the first shell you get upon logging in (hence the name).  So, this scheme allows you to specify actions that you want to happen only once per login and things that you want to happen every time you start a new (interactive) shell. Another notion is that the login initialization files (and only they) should do “heavy lifting”, i.e., resource-intensive actions.  For example, you might want to have certain processes running in the background whenever you’re logged in (but only one copy (instance) of them).  You might want to have some status information (e.g., df or who) displayed when you login, but not every time you start a new interactive shell.  Especially if you have an interactive program/dialog (i.e., one that demands input from you) that you want to run every time you login, you probably don’t want to have it run every time you start a new shell.
+
+Non-login shell = Normally, every other shell you run after logging in will be a descendant (a child of a child of a child …) of the login shell hence non-login shell.
+
+login shell executes following scripts
+/etc/profile
+~/.bash_profile
+
+Non-login shell executes following scripts
+/etc/bash.bashrc
+~/.bashrc
