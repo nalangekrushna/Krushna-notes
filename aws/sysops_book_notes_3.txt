@@ -3,12 +3,12 @@ aws compute
 aws lambda = compute service that runs code without need to provision and manage server.
 aws elastic beanstalk = quickly deploy and manage applications on aws cloud without worrying about infrastructure that runs those applications.
 EC2 container service = container management service for docker in EC2 instacne.
-lightsail = This service is for developers who need virtual private servers. Amazon Lightsail includes everything you need to launch your project quickly—a virtual machine, SSD-based storage, data transfer, Domain Name System (DNS) management, and a static IP address.
+lightsail = This service is for developers who need virtual private servers. It is readymade template which includes everything to run server running.
 Batch = computing workloads on the AWS Cloud.
 
 aws EC2 instance has following features
 	Virtual computing environments, known as instances
-	Preconfigured templates for your instances, known as AMIsVarious configurations of CPU, memory, storage, and networking capacity for your instances, known as instance types
+	Preconfigured templates for your instances, known as AMIs Various configurations of CPU, memory, storage, and networking capacity for your instances, known as instance types
 	Secure login information for your instances using key pairs (AWS stores the public key, and you store the private key in a secure place.)
 	Storage volumes for temporary data that’s deleted when you stop or terminate your instance, known as instance store volumes
 	Persistent storage volumes for your data using Amazon Elastic Block Store (Amazon EBS), known as Amazon EBS volumes
@@ -18,11 +18,18 @@ aws EC2 instance has following features
 	IPv6 addresses that can also be assigned to instances 
 	Virtual networks that you can create that are logically isolated from the rest of the AWS Cloud and that you can optionally connect to your own network, known as Amazon Virtual Private Clouds (Amazon VPCs)
 	
-instance storage = physical storage attached to your instance.
+instance storage = physical storage attached to your instance. you cannot stop only terminate instance store backed ec2 instance. Also it takes more boot time than EBS backed storage. 
 EBS(Elastic Block Storage) = logical storage can be extended reduced.
+EFS (Elastic File System)
 
 Although you can only access instance metadata and user data from within the instance itself, the data is not protected by cryptographic methods. Anyone who can access the instance can view its metadata. Therefore, you should take suitable precautions to protect sensitive data (such as long-lived encryption keys). You should not store sensitive data, such as passwords, as user data.
 
+User data is that which you can pass to the instance both upon initial boot up and, if desired, in subsequent boots. User data allows you to specify parameters for configuring your instance or attach a simple script. You can also use this data to build more generic AMIs that can be modified by configuration files supplied at launch time. For example, you can change a basic AWS Linux AMI to become a web server using user data. User data is limited to 16 KB, but it can have links to locations (like an Amazon S3 bucket) to load larger files.
+
+In summary, the differences between Dedicated Instances and Dedicated Hosts are:
+	Use Dedicated Hosts for more visibility into the physical host for BYOL. You should also try Dedicated Hosts if your app requires minimal latency between instances(where you have per-socket, per-core, or per-VM software licenses.)
+	Use Dedicated Instances if you are only concerned with compliance with regulations
+	
 snapshots = You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point-intime snapshots. Snapshots are incremental backups, which means that only the blocks on the device that have changed after your most recent snapshot are saved.
 
 Monitoring the Status of Your AWS Cloud Services 
@@ -61,6 +68,7 @@ AWS Lambda functions are invoked by the following:
 	Direct invocation model This invocation type causes AWS Lambda to execute the function synchronously and returns the response immediately to the calling application. This invocation type is available for custom applications.
 	
 One of the recommendations for writing code for AWS Lambda is to make sure that the code is stateless (that is, it does not make reference to any underlying infrastructure).
+AWS lambda can run continously only for 15 minutes.
 
 Amazon CloudWatch provides metrics for AWS Lambda. These metrics include,
 but are not limited to, the following:
@@ -70,7 +78,7 @@ but are not limited to, the following:
 	Latency per request
 	Duration of code execution
 	
-The AWS Lambda function is executed once it is invoked. If the execution fails, two more attempts are made. You can, as an option, confi gure AWS Lambda to forward a failed payload to a Dead Letter Queue (DLQ). This DLQ can take the form of an Amazon Simple Notifi cation Service (Amazon SNS) topic or an Amazon Simple Queue Service (Amazon SQS) queue.
+The AWS Lambda function is executed once it is invoked. If the execution fails, two more attempts are made. You can, as an option, configure AWS Lambda to forward a failed payload to a Dead Letter Queue (DLQ). This DLQ can take the form of an Amazon Simple Notification Service (Amazon SNS) topic or an Amazon Simple Queue Service (Amazon SQS) queue.
 
 Networking
 AWS Direct Connect = allows you to establish dedicated network connection from your premise to AWS.
@@ -82,6 +90,7 @@ AWS reserves the four IP and the last IP addresses. In a 10.0.0.0/24, the follow
 	10.0.0.2: Reserved by AWS. The IP address of the DNS server is always the base of the Amazon VPC network range; however, the base of each subnet range is also reserved.
 	10.0.0.3: Reserved by AWS for future use.
 	10.0.0.255: Network broadcast address. AWS does not support broadcast in an Amazon VPC; therefore, we reserve this address.
+	
 	
 Once you choose the size of your Amazon VPC, you cannot change it. Therefore on the side of caution and make your VPC large. A best practice is to identify a private /16 network that is not being used and dedicate that to your VPC.
 
@@ -111,9 +120,9 @@ To create a NAT gateway, you must specify the public subnet in which the NAT gat
 
 VPN Gateway = A VPN gateway is used either to provide (1) an IPsec VPN connection through the Internet to your location or (2) an AWS Direct Connect connection to your location.
 
-Elastic Network Interfaces (ENIs) are static, public IPv4 addresses that are associated with the account that created them. Because they are associated with the account (and not the instance), these IP addresses can be associated with any instance or network interface in that VPC. These ENIs, once assigned to an instance, will continue to remain associated with the instance even when that instance is turned off. If the instance is deleted, the ENI will remain associated with the account that created it.
+Elastic Network Interfaces (ENIs) = Each instance in your VPC has a default network interface (the primary network interface) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC.
 
-EIP (elastic IP address) = static public IP address. An Elastic IP address is associated with your AWS account and allows you to mask the failure of an instance or software by remapping the address to another Amazon EC2 instance in your account. The two major tools used to manage and troubleshoot VPC issues are as follows:
+EIP (elastic IP address) = static public IPv4 address. An Elastic IP address is associated with your AWS account and allows you to mask the failure of an instance or software by remapping the address to another Amazon EC2 instance in your account. The two major tools used to manage and troubleshoot VPC issues are as follows:
 ■■ AWS CloudTrail
 ■■ Amazon VPC Flow Logs
 
@@ -122,3 +131,35 @@ Elastic Load Balancing distributes incoming application traffic across multiple 
 ■■ Classic Load Balancers
 
 Amazon Route 53 = 
+
+Lightsail vs Beanstalk = If you need more flexibility on configuration,go with Elastic Beanstalk. But if you just want to run a simple application in the cloud, Lightsail might suit your need. Elastic Beanstalk is an easy-to-use service that manages, deploys, and scales Web App by handling capacity provisioning, load balancing, auto-scaling, and application health monitoring. Under the hood, it uses Cloud Formation to provision its resources such as EC2 Instances, Auto Scaling Group, Load Balancers, S3 and optionally AWS Relational Database Service (RDS). Lightsail gives you a pre-configured Virtual Private Server platform with the simplified management console. Lightsail plan comes in a bundle with a fixed amount of RAM, vCPUs, SSD and a free data transfer allowance, with static IP addresses and DNS management.
+
+for docker elastic beanstalk is the only option. beanstalk supports autoscaling while lightsail didn't.
+
+You have implemented a Classic Load Balancer. You now need to collect some information, specifically what is the IP address of the client making the request on the Classic Load Balancer. How would you collect this information?
+	-> Access logs contain more detailed information than Amazon CloudWatch, including information on the IP address of the client making the request.
+	
+You need to establish a highly available connection between your Amazon VPC and your datacenter. What is the best way to accomplish this?
+A. Create an AWS Direct Connect connection between your datacenter and your AWS VPC.
+B. Spin up multiple Amazon EC2 instances across two Availability Zones. Load VPN
+software onto the Amazon EC2 instances. Set internal routing such that if one Amazon
+EC2 instance fails the other takes over.
+C. Set up a Virtual Private Gateway with a route out to your datacenter.
+D. Set up a Virtual Private Gateway. Make sure that you have two customer gateways
+configured.
+	-> Set up a Virtual Private Gateway. Make sure that you have two customer gateways configured. In order to make things highly available, you need to eliminate single points of failure. Answers A and C have single points of failure. Answer B does not give you the scaling that you may need.
+	
+You are using Amazon Route 53 as your DNS provider. You have a web application that is running in your datacenter located in Las Vegas, NV and in the AWS Frankfort, Germany Region. What steps would you take to minimize the load times for this web application?
+	-> The latency measurement from your Las Vegas location will not be based on Las Vegas but will be based on the AWS Region that you associate with that record. In this case, it is recommended that you associate the us–west-1 Region located in Northern California. AWS can only create latency record sets in an AWS Region, not in a customer location.
+	
+You are trying to SSH in to an Amazon EC2 instance in your Amazon VPC but are unable to do so. What should you be checking?
+	-> Make sure that you have an Internet gateway attached to your Amazon VPC, that the VPC route table has an entry that routes packets to the Internet, that the Network ACL has an inbound and an outbound rule that allows SSH, and that the Amazon EC2 instance has a security group rule that allows inbound SSH. Make sure that the EC2 instance has a Public or Elastic IP address associated with it.
+	
+Origin Access Identity (OAI) is used to restrict access to your Amazon S3 content.
+The subnet inherits the route table from the Amazon VPC.
+
+When you configure Amazon CloudFront, an origin refers to which of the following? 
+	-> For static content, it is either an HTTP server or an Amazon S3 bucket. For media files on demand it is an S3 bucket.
+	
+A default Amazon VPC has a netmask of /20. It comes with an Internet gateway and a route table refl ecting that Internet gateway. NAT and VPN can be added to the default VPC.
+

@@ -61,6 +61,7 @@ diff -y = gives difference between two files. y to show difference side by side.
 history = show all command history.
 kill = to kill the process
 ps = shows all running processes.
+source = to reload .bash_profile or any other file in current shell. One special usecase is when we add any variable in .bash_profile then instead of restarting we can just reload using source command.
 
 $$ = pid of bash shell
 $0 = name of shell

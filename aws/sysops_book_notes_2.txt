@@ -21,8 +21,7 @@ Access keys comprise two components:
 	Access key ID
 	Secret access key
 The access key is active by default. Each user can have two active access keys. This enables access keys to be rotated without the user temporarily losing access to his AWS account.
-IAM roles provide
-temporary credentials, which are not only automatically loaded to the target instance, but are also automatically rotated multiple times a day.
+IAM roles provide temporary credentials, which are not only automatically loaded to the target instance, but are also automatically rotated multiple times a day.
 
 A best practice is to rotate access keys regularly for all of the IAM users in an AWS account. Unnecessary credentials should be removed from users who do not need them. The root user access keys should not be used. The recommended practice is to delete the root user access keys.
 
@@ -35,7 +34,7 @@ An IAM policy consists of four main elements:
 	Conditions (optional)
 	
 IAM policy rules have an order of precedence. If an action is explicitly denied, it is denied; then if an action is explicitly allowed, it is allowed. Otherwise, all other actions are implicitly denied.
-An IAM policy can also use policy conditions for extra security. For example, conditions could be set so that requests must originate from a specifi c range of IP addresses, or a request must use SSL or MFA.
+An IAM policy can also use policy conditions for extra security. For example, conditions could be set so that requests must originate from a specific range of IP addresses, or a request must use SSL or MFA.
 There are two types of IAM policies:
 	Managed policies = Managed policies can be customer- and AWS-managed. These policies are standalone policies that are attached to multiple users, groups, and roles. AWS-managed policies are created by AWS. Customer-managed policies are created and managed by customers.
 	Inline policies = Inline policies are embedded in a principal entity such as a user, group, or role. The policy is an inherent part of the entity. The same policy can be used for multiple entities, but those entities do not share the policy. Instead, each entity has its own copy of the policy (that is, inline policies cannot be centrally managed).
@@ -52,7 +51,7 @@ Best Practices for Securing Your AWS Account :
 2. Do not share root credentials with anyone other than the account holder.
 3. Physically secure root account hardware MFA devices in a safe place, such as a vault.
 4. Create individual IAM users.
-5. Use groups to assign permissions to IAM users.
+5. Use policies to assign permissions to IAM users.
 6. Enable MFA for privileged users.
 7. Use IAM roles for applications that run on Amazon EC2 instances.
 8. Delegate by using IAM roles instead of sharing credentials.
@@ -66,3 +65,5 @@ Best Practices for Securing Your AWS Account :
 16. Use IAM roles to provide cross-account access.
 
 Access flow = root(MFA) -> IAM Admin User(to give permission to other users.)(MFA) -> IAM Users(MFA-power user) -> IAM groups -> IAM roles -> Policy condition[extra security] -> monitor activity
+
+AWS Config records configuration changes within an AWS account. Using AWS Config logs in conjunction with AWS CloudTrail logs allows changes to be identified and details about those changes (who, when, how) to be seen.

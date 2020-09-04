@@ -1,5 +1,5 @@
 Amazon Aurora = fully managed, MySQL-compatible, relational database engine. An Amazon Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone containing a copy of the cluster data. Two types of instances make up an Aurora DB cluster
-	Primary Instance = A primary instance supports read-write workloads and performs all of the data modifi cations to the cluster volume. Each Amazon Aurora DB cluster has one primary instance.
+	Primary Instance = A primary instance supports read-write workloads and performs all of the data modifications to the cluster volume. Each Amazon Aurora DB cluster has one primary instance.
 	Aurora Replica = An Aurora Replica supports only read operations. Each DB cluster can have up to 15 Aurora Replicas in addition to the primary instance
 Aurora cluster volume/table can grow to a maximum size of 64 TB.	
 
@@ -15,9 +15,9 @@ Amazon RDS Multi-AZ deployments do not fail over automatically in response to da
 
 DynamoDB = NoSQL database supporting both document and key/value store models.
 Items = Each table contains multiple items. An item is a group of attributes uniquely identifi able among all of the other items.Items in Amazon DynamoDB are similar in many ways to rows, records, or tuples in relational database systems.
-Attributes = Each item is composed of one or more attributes. An attribute is a fundamental data element something that does not need to be broken down any further. Attributes in Amazon DynamoDB are similar to fi elds or columns in relational database systems.
+Attributes = Each item is composed of one or more attributes. An attribute is a fundamental data element something that does not need to be broken down any further. Attributes in Amazon DynamoDB are similar to fields or columns in relational database systems.
 
-Streams = ordered fl ow of information about changes to items. A stream record contains information about a data modifi cation to a single item in a DynamoDB table.
+Streams = ordered flow of information about changes to items. A stream record contains information about a data modification to a single item in a DynamoDB table.
 
 Data Types = 
 	Scalar = Number, String, Binary, Boolean, and Null
@@ -25,9 +25,9 @@ Data Types =
 	Document = There are two document types, list and map, that can be nested within each other to represent complex data structures up to 32 levels deep. There is no limit on the number of values in a list or a map as long as the item containing the values fits within the Amazon DynamoDB item size limit of 400 KB. An attribute value cannot be an empty string or an empty set; however, empty lists and maps are allowed.
 		List = A list type attribute can store an ordered collection of values. Lists are enclosed in square brackets: [ ... ]. A list is similar to a JSON array. There are no restrictions on the data types that can be stored in a list element, and the elements in a list element can be different types.
 		Map = A map type attribute can store an unordered collection of name/value pairs. Maps are enclosed in curly braces: { ... }. A map is similar to a JSON object. There are no restrictions on the data types that can be stored in a map element, and elements in a map do not have to be the same type.
-		Set = number, string, or binary, All of the elements within a set must be of the same type. There is no limit on the number of values in a set, as long as the item containing the values fi ts within the Amazon DynamoDB 400 KB item size limit. Each value within a set must be unique. The order of the values within a set are not preserved. Amazon DynamoDB does not support empty sets.
+		Set = number, string, or binary, All of the elements within a set must be of the same type. There is no limit on the number of values in a set, as long as the item containing the values fits within the Amazon DynamoDB 400 KB item size limit. Each value within a set must be unique. The order of the values within a set are not preserved. Amazon DynamoDB does not support empty sets.
 
-Amazon DynamoDB supports eventually consistent and strongly consistent reads. Unless specified otherwise, DynamoDB uses eventually consistent reads as the default. When a strongly consistent read is requested, Amazon DynamoDB returns a response with the most up-to-date data that refl ects the updates from all prior write operations that were successful.
+Amazon DynamoDB supports eventually consistent and strongly consistent reads. Unless specified otherwise, DynamoDB uses eventually consistent reads as the default. When a strongly consistent read is requested, Amazon DynamoDB returns a response with the most up-to-date data that reflects the updates from all prior write operations that were successful.
 
 Redshift = fully managed data warehousing solution. It automates infrastructure provisioning and administrative tasks, such as backups, replication, and patching.
 
@@ -39,18 +39,31 @@ Compute Nodes = Compute nodes execute the steps specified in the execution plans
 
 ElastiCache = a distributed in-memory cache environment in the cloud.
 
-Simple Queue Service(SQS) = access to message queues that store messages waiting to be processed. Amazon SQS queues retain messages for a set period of time. The default setting is four days; however, you can configure a queue to retain messages for up to 14 days.
+Deployment Strategies
+	provisioning infrastructure = manual or automated
+	configuration management = see below.
+	scalability
+	monitoring 
+	continous deployment = see below
+	
+Configuration Management
+	tagging = Cost allocation reports aggregate costs based on tags.
+	custom variables = you need to customize config values such as db string, security credentials etc. Defining variables can help loosely couple your application configuration. Additionally, you can differentiate environments into development, test, and production based on customized variables.
+	Baking AMI = Baking an image is the process of creating your own AMI. Instead of using a bootstrap script to deploy your application, which could take an extended amount of time, this custom AMI could contain a portion of your application artifacts within it. The key factor to keep in mind is how long it takes for the instance to launch. Alternatively, copying the block of a volume where your application is already installed could be faster.
+	logging
+	instance profile = Applications that run on an Amazon EC2 instance must include AWS credentials in their API requests. Instead of doing it manually, you can use IAM roles to manage temporary credentials for applications that run on an Amazon EC2 instance. 
+	
+bootstrapping an instance = practice of automatically installing an application on an instance at the first boot. The bootstrapping process can be slower if you have a complex application or multiple applications to install. Managing a fleet of applications with several build tools and dependencies can be a challenging task during rollouts. Furthermore, your deployment service should be designed to perform faster rollouts to take advantage of Auto Scaling.
 
-Dead Letter Queue (DLQ) is an Amazon SQS queue that you configure to receive messages from other Amazon SQS queues, referred to as “source queues.” Typically, you set up a DLQ to receive messages after a maximum number of processing attempts has been reached.
+Continous deployment(cd) = two methods for cd
+	In-place upgrade = performing application updates on existing Amazon EC2 instances. There are several deployment services that are especially useful for an in-place upgrade: AWS CodeDeploy, AWS OpsWorks, and AWS Elastic Beanstalk. AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances. when using aws opworks for deployment, AWS OpsWorks Stacks triggers a Deploy event, which runs each layer’s Deploy recipes. AWS OpsWorks Stacks also installs stack configuration and deployment attributes that contain all of the information needed to deploy the application, such as the application’s repository and database connection data. AWS Elastic Beanstalk provides several options for how deployments are processed, including deployment policies (All at Once, Rolling, Rolling with Additional Batch, and Immutable) and options that let you configure batch size and health check behavior during deployments.
+	Replacement upgrade = provisioning new Amazon EC2 instances, redirecting traffic to the new resources, and terminating older instances. For replacement upgrades, you provision a new environment with the deployment services, such as AWS Elastic Beanstalk, AWS CloudFormation, and AWS OpsWorks.
+	
+Blue/Green Deployments = Blue/green is a method where you have two identical stacks of your application running in their own environments. You use various strategies to migrate the traffic from your current application stack (blue) to a new version of the application (green). This method is used for a replacement upgrade. During a blue/green deployment, the latest application revision is installed on replacement instances and traffic is rerouted to these instances either immediately or as soon as you are done testing the new environment.
 
-Simple Notification Service (SNS) = manages the delivery or sending of messages to subscribing endpoints or clients. In Amazon SNS, there are two types of clients—publishers and subscribers, which are also referred to as producers and consumers. Publishers communicate asynchronously with subscribers by producing and sending a message to a topic, which is a logical access point and communication channel. Subscribers (for example web servers, email addresses, Amazon SQS queues, and AWS Lambda functions) consume or receive the message or notification over one of the supported protocols (such as Amazon SQS, HTTP/S, email, Short Message Service [SMS], or AWS Lambda) when they are subscribed to the topic.
+AWS OpsWorks Stacks = AWS OpsWorks is also recommended if you want to manage your infrastructure with 
+a configuration management system such as Chef. 
 
-Recovery time objective (RTO) = This represents the time it takes after a disruption to restore a business process to its service level.
+we need to have optional mapping section in aws cloudformation template to enable multi-region deployments.
 
-Recovery point objective (RPO) = This is the acceptable amount of data loss measured in time. For example, if a disaster occurs at 12:00 PM (noon) and the RPO is one hour, the system should recover all data that was in the system before 11:00 AM.
-
-Warm-Standby Method = a scaled-down version of a fully-functional environment is always running in the cloud.
-
-pilot light method = a minimal version of an environment is always running in AWS.
-
-Multi-Site Solution Method = A multi-site solution runs in AWS, as well as on your existing on-site infrastructure, in an active-active configuration.
+to deploy new version of application in different environment you need to change cname. 

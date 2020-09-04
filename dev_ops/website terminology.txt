@@ -1,0 +1,17 @@
+website terminology
+
+nameserver = authorative server provided by domain name registrar to get ip address of website.
+
+child nameserver = 
+
+A(host) record
+
+CNAME(alias) record = 
+
+TTL = DNS TTL (time to live) is a setting that tells the DNS resolver how long to cache a query before requesting a new one. The information gathered is then stored in the cache of the recursive or local resolver for the TTL before it reaches back out to collect new, updated details.
+
+srv
+caa
+AAAA(ipv6 address record)
+txt
+MX (mail exchanger)

@@ -5,6 +5,8 @@ linux uses /(forward slash) instead of \(backward slash) of windows.
 / = absolute root (containing all folders such as bin boot dev lib var tmp)
 FileSystem Hierachy Standard = FHS = maintained by linux foundation.
 
+we should focus on bin, etc, opt and usr. 
+
 bin(binary) = it contains ls, cat like things. which normal user will have access to.(multi user mode or general mode.)
 sbin = it contains programs which only system admin have access to.(single user mode)
 boot = bootloader inside this folder.
@@ -24,6 +26,6 @@ sys (system) = another temporary directory to store system information.
 tmp = temporary directory.
 usr = user application space
 usr/share/src = header files and kernel source.
-var = variable directory.
+var = Variable files: files whose content is expected to continually change during normal operation of the system, such as logs, spool files, and temporary e-mail files.
 var/log = logs of system and applications.
  

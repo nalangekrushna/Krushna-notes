@@ -7,7 +7,7 @@ There is generally three tier architecture.
 Architecture/system lives inside aws region.(eg. us-west-2 oregon). regions are made of multiple availability zones. Each aws region is seperate geographic area. Each region has multiple isolated physical locations known as availability zones.
 
 AZ = Availability Zones
-nACL = network access control list
+nACL = network access control list. A network access control list (ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
 IAM = Identity and Access Management
 Amazon Route 53 = Domain Name System (DNS)
 Amazon CloudFront = content delivery network (CDN)
@@ -19,20 +19,26 @@ DynamoDB = fully-managed NoSQL database service
 ElastiCache = an in-memory data store or cache in the cloud.
 s3 = simple storage service(object storage.)
 EBS = Elastic Block Service = persistent block storage volumes
-Glacier = extremely low-cost storage service that provides secure, durable, and flexible storage for data backup and archival.
-Inspector =  automated security assessment service
+Glacier = extremely low-cost storage service for data backup and archival.
+Inspector =  automated security assessment service. Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices. Examples of built-in rules include checking for access to your EC2 instances from the internet, remote root login being enabled, or vulnerable software versions installed.
 Lambda = run code without provisioning or managing servers.
-Kinesis = platform for streaming data on AWS,
-KMS (key management service) = managed service that makes it easy for you to create and control the encryption keys used to encrypt your data.
+Kinesis = platform for streaming data on AWS
+KMS (key management service) = managed service for you to create and control the encryption keys used to encrypt your data.
 SQS = Simple Queue Service = fully-managed message queuing service
 SNS = Simple Notification Service = coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
 SES = Simple Email Service = for sending automated emails
 WAF = Web Application Firewall = which traffic to allow or block to your web applications
 Shield = managed Distributed Denial of Service (DDoS) protection service
 ARN = amazon resource name
+Amazon Virtual Private Cloud (VPC) = provides users a virtual private cloud, by "provision[ing] a logically isolated section of Amazon Web Services (AWS) Cloud"
+AMI = Amazon Machine Image. AMIs are regionally scoped—to use an image in another region, you will need to copy the image to all regions where it will be used.
+NAT = Network Address Translator.
+CNAME = Canonical Name Record or Alias Record.
+cloudformation = Infrastructure as a service. Automates the processs of infrastructure provisioning by using a wizard to create a template which can be used in any region. Alternatively you can write it manually.
 
-
-Amazon Virtual Private Cloud (VPC) is a commercial cloud computing service that provides users a virtual private cloud, by "provision[ing] a logically isolated section of Amazon Web Services (AWS) Cloud"
+Security Groups = acts as a virtual firewall that controls the traffic for one or more instances
+snapshots = back up the data on your Amazon EBS volumes to Amazon S3 by taking point-intime snapshots.
+tag = user defined key-value pair.  
 
 secure network example
 Public Elastic Load Balancing The only security group that allows full public access
@@ -42,11 +48,11 @@ Application Tier Amazon EC2 This accepts traffic only from private Elastic Load 
 Amazon ElastiCache This accepts traffic only from Application Tier Amazon EC2.
 Amazon Relational Database Service (Amazon RDS) This accepts traffic only from Application Tier Amazon EC2.
 Network Address Translation (NAT) This is used only for internally initiated outbound traffic.
-AMI = Amazon Machine Image
-
-Amazon CloudFront is the AWS content delivery network service (CDN)
 
 difference between storage type EBS s3 amd ephemeral ?
+Ephemeral storage depends upon your instance size and vary accordingly. It is temporary storage and will be deleted when instance stopped, rebooted or terminated. fastest boot time.
+EBS is persistent storages so stopping or rebooting will not loose data from it. but terminating will delete the data. medium boot time.
+S3 is also persistent storage but in case of EC2 instace backed by S3 it will behave like Ephemeral storage. slow boot time.
 
 AWS IAM controls access to AWS services and resources. It does not control access to the Amazon EC2 operating system or application-level authentication. There are some specific AWS security tools, such as Amazon Inspector, Amazon VPC Flow Logs and Amazon CloudWatch Logs.
 

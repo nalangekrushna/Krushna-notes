@@ -1,0 +1,71 @@
+website technical details
+
+Notes from below websites
+https://howhttps.works/
+
+
+why https required ?
+simply put https required for PII(Privacy, Integraty, Identification.)
+privacy = no one should able to understand your network traffic except intended webservice. (as any middle man can read it but due to encryption he will not able understand it.)
+Integraty = no one should able to tamper with the message.
+Identification = Identify and send data to only intended website/person.
+Full form of HTTPS is HyperText Transfer Protocol Secure
+
+how https works ?
+Http achieves above PII by using encryption. Encryption is process of converting message into unreadable form so that only person with key can read(decrypt) it. There are two types of encryptions.
+	1.Symetric(only one key) = In this anyone with key can encrypt or decrypt message.
+	2. Asymmetric(two keys-public and private) = In this person with public key can encrypt message but cannot decrypt it. To decrypt message you need private key and only person with private key can decrypt it. 
+
+how https connection gets established ?
+the process of setting up https connection by negotiation between server and browser is called handshake. 
+
+how handshake happens ?
+when you type website link in browser and press enter below handshake will happen.
+This handshake happens in 5 steps.
+	1. browser sends list of encryption algorithms(cipher suite) and tls version it can work with.
+	2. server decides which algorithm and tls suite to use based on its preference and reply with servers ssl certificate which also contains its public key(Asymmetric encryption).
+	3. Browser verifys websites ssl certificate. browser generates a unique pre-master key. Encrypt the key using public key in ssl certificate. Send this encrypted key to server.
+	4. server decrypt asymmetric key using its own private key. 
+	5. browser sends a test message and server replies with success. So now both have pre-master key which they will use for symmetric encryption. 
+	
+until step 4 all communication is open and using Asymmetric encryption but from step 5 https gets activated using symmetric encryption for which both side uses pre-master key for encryption and decryption.
+
+SSL = secure socket layer
+TLS = Transport Layer Security
+
+what is CA( Certification Authority) ?
+CA is third party organization with three objectives. 1. issue certificates. 2. confirrm identity of certificate owner. 	3. provide proof that certificate is valid.
+becomeing CA is intense task. It requires lot of compliance and auditing. Also CA needs to get accepted to root store. 
+
+what is root store ?
+root store is basically database of trusted CA. Apple,mozilla, windows and google run their own root store that they pre-install in your computer and device.
+
+Types of certificates ?
+1. Domain validated = the certificate just verifies your domain name and nothing else. you probably need this one.
+2. Organization validated = This certificate requires validation and manual verification of organization behind the certificate.
+3. Extended validation = this certificate requies exhaustive verification of your business.
+All valid certificates shows green bar in browser address bar. for Extended validation it also shows company name in address bar in green.   
+
+How browser verifies ssl certificate ?
+a website provides browser a certificate and name of CA (Certificate Authorities). when CA issues a certificate, they sign certificate with their root certificate pre-installed in root store. The certificate validation process is based on chain of trust. follwing things happens.
+1. your browser connects to website and download the certificate.
+2. then browser downloads the certificate that is used to sign the certificate on website.
+3. This process goes on until it finds root certificate. This entire chain is trusted so site certification is also trusted.
+4. In case of last certificate is not root and there are no more certificates to download then the connection is not secure and the chain is untrusted.
+
+how dns works ?
+you type url in browser. but computer and other devices communicate with each other using ip addresses. dns joins this ip address with website names(urls). Lets see how it happens step by step
+1. you type a url in browers address bar. browser checks it in its cache. if its not there then browser asks os to check for this url. os checks url in its own cache. If it is not there then it requests to resolver. Resolver is generally our ISP (Internet Service Provider). Resolver then check url in its own cache. Then it asks root server to locate TLD (Top Level Domain e.g. com,net,edu,in). In our case it is com.
+TLD will check its own cache for ip address if not there then it will return authorative name server for that url.(e.g. if you're looking for example.com then name server will be ns1.example.com or ns.another_website.com). Name server provides IP address of website. This is how dns works.
+
+After getting IP address browser connects to that ip address to get content(i.e. html css and javascript) 
+
+what is root server ?
+Root server is just one of 13 root name server that exists today. Root server sits at top of dns hierachy. They are scattered around globe and operated by 12 independant organizations. they are named as [a-m].root-servers.net (e.g. b.root-servers.org ). It didn't mean there are only 13 servers to support internet. Each organization has multiple physical servers distributed around globe. 
+
+how TLD knows name server for given website ?
+due to domain registrar. when you purchase domain name from domain registrar then domain registrar reserves that name and communicates TLD registry the authorative name server.
+
+The co-ordination of most TLD belongs to Internet Corporation for Assigned Names and Numbers(ICANN). Infrastructre TLD such as .arpa mostly used for reverse DNS lookup. (i.e. converting ip address to urls.)
+
+glue records = when resolver asked .com TLD about example.com extra information was attached to the response. the resolver got atleast one ip address per name server. we call that glue. So resolver not only gets name server but also ip address of that name server.
