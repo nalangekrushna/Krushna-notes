@@ -26,6 +26,8 @@ An Amazon CloudWatch Alarm is always in one of three states: OK , ALARM , or INS
 ■ When a metric breaches a user-defined threshold, it transitions to the ALARM state.
 ■ If the data needed to make a decision is missing or incomplete, it is in the INSUFFICIENT_DATA state.
 
+aws cloudwatch is push service i.e. cloudwatch didn't pull changes but changes and metrics are pushed to it by other services. Also cloudwatch cannot monitor multiple metrics for a single alarm to do this we need to aggregate all the metrics and send to cloudwatch. cloudwatch preserve history for two weeks. Also you cannot change the name of existing alarm. The number of evaluation period for an alarm multiplied by length of each evaluation period cannot exceed one day.
+
 aws rotue 53 and RDS service provides detailed monitering(1 min interval) without any additional charges.
 min time period for basic cloudwatch logs monitoring is 5 mins and for detailed min time possible is 1 min.
 Amazon CloudWatch will receive and aggregate statistical data based on the namespace and metric.

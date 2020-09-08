@@ -1,0 +1,38 @@
+AWS misc 
+
+policies = You manage access in AWS by creating policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources. AWS evaluates these policies when an IAM principal (user or role) makes a request. Most policies are stored in AWS as JSON documents. There are 6 types of policies
+1. Identity-based policies – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). They can be further categorized as 
+	a. Managed Policies = can be further classified as
+		i. AWS managed
+		ii. Customer managed
+	b. Inline policies = tightly coupled with either single user,user group or role. gets deleted when coupled entity is deleted.
+
+2. Resource-based policies – Attach inline policies to resources. e.g. permission of s3 bucket.
+3. Permissions boundaries – Use a managed policy as the permissions boundary for an IAM entity (user or role). That policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions. 
+4. Organizations SCPs – Use an AWS Organizations service control policy (SCP) to define the maximum permissions for account members of an organization or organizational unit (OU). SCPs limit permissions that identity-based policies or resource-based policies grant to entities (users or roles) within the account, but do not grant permissions.
+5. Access control lists (ACLs) – ACL does not use the JSON policy document structure. ACLs are cross-account permissions policies that grant permissions to the specified principal.
+6. Session policies – Pass advanced session policies when you use the AWS CLI or AWS API to assume a role or a federated user. Session policies limit permissions for a created session, but do not grant permissions.
+
+example of aws json policy
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+        }
+    ]
+} 
+
+at top level contains policy wide applicable optional elements.
+version = As a best practice, use the latest version.
+Statement = list of container for following elements.
+	Sid(Statement id)(optional) = to differentiate between different policy statements.
+	Effect – Use Allow or Deny to indicate whether the policy allows or denies access.
+	Principal(only for resource based policy) = If you create a resource-based policy, you must indicate the account, user, role, or federated user to which you would like to allow or deny access. 
+	Action – Include a list of actions that the policy allows or denies.
+	Resource (Required in only some circumstances) – If you create an IAM permissions policy, you must specify a list of resources to which the actions apply. If you create a resource-based policy, this element is optional. If you do not include this element, then the resource to which the action applies is the resource to which the policy is attached.
+	Condition (Optional) – Specify the circumstances under which the policy grants permission.
+
+ 
