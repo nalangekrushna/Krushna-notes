@@ -1,7 +1,8 @@
 Amazon CloudWatch = monitors the health and status of AWS resources in real time.
-Amazon CloudWatch Logs = collects and monitors log files, can set alarms, and automatically reacts to changes in AWS resources.
+Amazon CloudWatch monitors your Amazon Web Services (AWS) resources and the applications you run on AWS in real time. You can use CloudWatch to collect and track metrics, which are variables you can measure for your resources and applications.
+Amazon CloudWatch Logs = collects and monitors log files, can set alarms, and automatically reacts to changes in AWS resources. You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.
 Amazon CloudWatch Alarms = monitor a single metric and perform one or more actions based on customer-defined criteria. 
-Amazon CloudWatch Events = delivers a near real-time stream of system events that describe changes in AWS resources.
+Amazon CloudWatch Events = delivers a near real-time stream of system events that describe changes in AWS resources. Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in Amazon Web Services (AWS) resources. An event indicates a change in your AWS environment. AWS resources can generate events when their state changes. For example, Amazon EC2 generates an event when the state of an EC2 instance changes from pending to running, and Amazon EC2 Auto Scaling generates events when it launches or terminates instances. AWS CloudTrail publishes events when you make API calls.
 
 AWS CloudTrail = monitors calls made to the Amazon CloudWatch Events Application Programming Interface (API) for an account.
 

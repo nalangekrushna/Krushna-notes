@@ -2,16 +2,33 @@ website terminology
 
 nameserver = authorative server provided by domain name registrar to get ip address of website.
 
-child nameserver = 
+A(host) record = The ‘A’ stands for ‘address’ and this is the most fundamental type of DNS record: it indicates the IP address of a given domain. For example, if you pull the DNS records of cloudflare.com, the A record currently returns an IP address of: 104.17.210.9.
+A records only hold IPv4 addresses. If a website has an IPv6 address, it will instead use an ‘AAAA’ record.
 
-A(host) record
+@ = @ symbol in dns record indicates this record is for root domain.
 
-CNAME(alias) record = 
+CNAME(alias) record =A Canonical Name (CNAME) Record is used in the Domain Name System (DNS) to create an alias from one domain name to another domain name. A common example is the www subdomain which is provided as an alias to the root domain name - users accessing “www.example.com” are referred to the root domain (or DNS zone apex) “example.com”.
 
 TTL = DNS TTL (time to live) is a setting that tells the DNS resolver how long to cache a query before requesting a new one. The information gathered is then stored in the cache of the recursive or local resolver for the TTL before it reaches back out to collect new, updated details.
 
-srv
-caa
-AAAA(ipv6 address record)
-txt
-MX (mail exchanger)
+srv = SRV (Service) records are custom DNS records. They are used to establish connections between a service and a hostname. When an application needs to find the location of a specific service, it will search for a related SRV record.
+https://www.pair.com/support/kb/what-is-an-srv-record/
+
+caa = A Certification Authority Authorization (CAA) record is used to specify which certificate authorities (CAs) are allowed to issue certificates for a domain. CAA records allow domain owners to declare which certificate authorities are allowed to issue a certificate for a domain.
+
+txt = TXT records are a type of Domain Name System (DNS) record that contains text information for sources outside of your domain. You add these records to your domain settings. You can use TXT records for various purposes. Google uses them to verify domain ownership and to ensure email security.
+
+MX (mail exchanger) = A mail exchanger record (MX record) specifies the mail server responsible for accepting email messages on behalf of a domain name. 
+
+TCP = It handle packet ordering or error checking. The TCP/IP relationship is similar to sending someone a message written on a puzzle through the mail. The message is written down and the puzzle is broken into pieces. Each piece then can travel through a different postal route, some of which take longer than others. When the puzzle pieces arrive after traversing their different paths, the pieces may be out of order. The Internet Protocol makes sure the pieces arrive at their destination address. The TCP protocol can be thought of as the puzzle assembler on the other side who puts the pieces together in the right order, asks for missing pieces to be resent, and lets the sender know the puzzle has been received. TCP maintains the connection with the sender from before the first puzzle piece is sent to after the final piece is sent.
+IP is a connectionless protocol, which means that each unit of data is individually addressed and routed from the source device to the target device, and the target does not send an acknowledgement back to the source. That’s where protocols such as the Transmission Control Protocol (TCP) come in. TCP is used in conjunction with IP in order to maintain a connection between the sender and the target and to ensure packet order.
+For example, when an email is sent over TCP, a connection is established and a 3-way handshake is made. First, the source send an SYN “initial request” packet to the target server in order to start the dialogue. Then the target server then sends a SYN-ACK packet to agree to the process. Lastly, the source sends an ACK packet to the target to confirm the process, after which the message contents can be sent.
+
+UDP(User Datagram Protocol) = UDP is a communication protocol used across the Internet for especially time-sensitive transmissions such as video playback or DNS lookups. It speeds up communications by not requiring what’s known as a “handshake”, allowing data to be transferred before the receiving party agrees to the communication. Applications that utilize UDP must be able to tolerate errors, loss, and duplication. 
+Voice, Video games and video traffic are sent using this protocol. DNS and NTP servers operate using UDP.
+
+NTP server = NTP stands for Network Time Protocol, and it is an Internet protocol used to synchronize the clocks of computers to some time reference.
+
+ICMP (Internet Control Message Platform)  = The Internet Control Message Protocol (ICMP) is a network layer protocol used by network devices to diagnose network communication issues. ICMP is mainly used to determine whether or not data is reaching its intended destination in a timely manner. 
+
+General convention is that we use port 80 for http communication and port 443 for https communication although we can use https on port 80 and http on port 443. SSH servers use port 22.

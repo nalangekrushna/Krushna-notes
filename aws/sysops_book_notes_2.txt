@@ -1,5 +1,6 @@
 IAM = Identity and Access Management = this controls what anyone can do with aws cloud service.
 An IAM best practice is to use the principle of least privilege
+Use IAM to control who can use your AWS resources (authentication) and what resources they can use in which ways (authorization).
 
 IAM User = An IAM user is an entity created in an AWS account that provides a way to interact with
 the resources in the account. A user can be any individual, system, or application that

@@ -1,0 +1,17 @@
+aws misc
+Generally aws services are regional scope.
+Highesh scope is global. Regional is middle scope and lowest is AZ (Availability Zone) scope.
+aws global scope services = cloudfront, WAF(Web Application Firewall), Route 53, IAM
+aws AZ scope services = only subnet(VPC is regional), ec2 instance, ebs volume 
+All other services are regional in scope.
+
+Elastic Load Balancer (elb) = You can select the appropriate load balancer based on your application needs. If you need flexible application management, we recommend that you use an Application Load Balancer. If extreme performance and static IP is needed for your application, we recommend that you use a Network Load Balancer. If you have an existing application that was built within the EC2-Classic network, then you should use a Classic Load Balancer.
+
+cloudformation template = json/yaml text file. you can save file in .json, .yaml, .template or .txt format. 
+template can have multiple section but only Resources section is mandatory. some of important sections as below.
+	Format Version, Description, Metadata sections = are used to provide more information about template.
+	Parameters = Values to pass to your template at runtime (when you create or update a stack). You can refer to parameters from the Resources and Outputs sections of the template.
+	Mappings(key=values pair) = useful when you want to create resources in other region.
+	conditions = decide whether certain resources are created or whether certain resource properties are assigned a value during stack creation or update. For example, you could conditionally create a resource that depends on whether the stack is for a production or test environment.
+	Resources(required) = Specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket.
+	Outputs = Describes the values that are returned whenever you view your stack's properties.
