@@ -32,3 +32,5 @@ NTP server = NTP stands for Network Time Protocol, and it is an Internet protoco
 ICMP (Internet Control Message Platform)  = The Internet Control Message Protocol (ICMP) is a network layer protocol used by network devices to diagnose network communication issues. ICMP is mainly used to determine whether or not data is reaching its intended destination in a timely manner. 
 
 General convention is that we use port 80 for http communication and port 443 for https communication although we can use https on port 80 and http on port 443. SSH servers use port 22.
+
+There are generally two main web servers are used for deployemnt today. They are apache httpd called as apache and nginx (pronounced as engine-x)
