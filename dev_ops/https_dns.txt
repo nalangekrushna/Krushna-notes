@@ -69,3 +69,17 @@ due to domain registrar. when you purchase domain name from domain registrar the
 The co-ordination of most TLD belongs to Internet Corporation for Assigned Names and Numbers(ICANN). Infrastructre TLD such as .arpa mostly used for reverse DNS lookup. (i.e. converting ip address to urls.)
 
 glue records = when resolver asked .com TLD about example.com extra information was attached to the response. the resolver got atleast one ip address per name server. we call that glue. So resolver not only gets name server but also ip address of that name server.
+
+ipv6 = An Ipv6 address uses 128 bits as opposed to 32 bits in IPv4. IPv6 addresses are written using hexadecimal, as opposed to dotted decimal in IPv4. Because an hexadecimal number uses 4 bits this means that an IPv6 address consists of 32 hexadecimal numbers. These numbers are grouped in 4’s giving 8 groups or blocks. The groups are written with a : (colon) as a separator.
+group1:group2: ……etc…. :group8
+In IPv4 an address is split into two components a network component and a node component. This was done initially using Address classes and later using subnet masking. In IPv6 we do the same. The first step is to split the address into two parts. The address is split into 2 64 bit segments the top 64 bits is the network part and the lower 64 bits the node part :
+	The upper 64 bits are used for routing. If we look at the upper 64 bits in more detail we can see that it is split into 2 blocks of 48 and 16 bits respectively the lower 16 bits are used for subnets on an internal networks, and are controlled by a network administrator(interface id). The upper 48 bits are used for the global network addresses and are for routing over the internet.(global unicast address)
+	The lower 64 bits identify the address of the interface or node, and is derived from the actual physical or MAC address using IEEE’s Extended Unique Identifier (EUI-64) format. (interface id)
+	
+Address Types and Scope = IPv6 addresses have three types:
+	Global Unicast Address –Scope Internet- routed on Internet. Global addresses are routable on the internet and start with 2001
+	Unique Local — Scope Internal Network or VPN internally routable, but Not routed on Internet
+	Link Local – Scope network link- Not Routed internally or externally.
+	
+video to explain ipv6 in details
+	https://youtu.be/dUmhZOnz_qc

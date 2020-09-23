@@ -1,32 +1,29 @@
-IAM = Identity and Access Management = this controls what anyone can do with aws cloud service.
-An IAM best practice is to use the principle of least privilege. Principals are users,roles,federated users and applications.Root user is first principal.
+IAM = Identity and Access Management = An IAM best practice is to use the principle of least privilege. Principals are users,roles,federated users and applications.Root user is first principal.
 Use IAM to control who can use your AWS resources (authentication) and what resources they can use in which ways (authorization). We use identity based policies to give access to users. Resource based policies are used to give cross account access to resources.
 
-IAM User = An IAM user is an entity created in an AWS account that provides a way to interact with
-the resources in the account. A user can be any individual, system, or application that
-interacts with AWS resources, either programmatically or manually. When an AWS account is created, the credentials used at account creation become the root user account ID. A best practice is not to use the root user account credentials and instead create a separate IAM user with all administrative privileges.
+IAM User = A user can be any individual, system, or application that interacts with AWS resources. When an AWS account is created, the credentials used at account creation become the root user account ID. A best practice is not to use the root user account credentials and instead create a separate IAM user with all administrative privileges. 
 Use that IAM user to apply the principle of least privilege by creating additional individual IAM accounts for your various users.
 
 IAM Credentials
 Email address and password = Associated with the AWS account root user
 IAM user name and password = Used to access the AWS Management Console
 aws cli and sdk = access key ID  and secret access key
-key pairs = Used only for specific AWS Cloud services like Amazon EC2
-
-good resource to how to avoid MITM attack.
-https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
-
-Signature Version 4 = calculates the signature using the Keyed-Hash Message Authentication Code (HMAC)-Secure Hash Algorithm (SHA) 256 protocol. Version 4 provides an additional measure of protection over previous versions by requiring that you sign the message using a key that is derived from your secret access key instead of using the secret access key itself. In addition, you derive the signing key based on credential scope, which facilitates cryptographic isolation of the signing key.
+key pairs = Used only for specific AWS Cloud services like Amazon EC2 linux instances.
 
 Access keys comprise two components:
 	Access key ID
 	Secret access key
 The access key is active by default. Each user can have two active access keys. This enables access keys to be rotated without the user temporarily losing access to his AWS account.
-IAM roles provide temporary credentials, which are not only automatically loaded to the target instance, but are also automatically rotated multiple times a day.
+IAM roles provide temporary credentials, which are automatically loaded to the target instance, and  automatically rotated multiple times a day.
 
-A best practice is to rotate access keys regularly for all of the IAM users in an AWS account. Unnecessary credentials should be removed from users who do not need them. The root user access keys should not be used. The recommended practice is to delete the root user access keys.
+A best practice is to rotate access keys regularly for all of the IAM users. Unnecessary credentials should be removed from users who do not need them. The recommended practice is to delete the root user access keys.
 
-IAM Policies = IAM Polices are JSON-formatted permission documents that are used to grant or deny access to IAM users. By default, an IAM user cannot do anything with any service in an AWS account, even if he has authentication credentials. Permission to take actions with a service must be explicitly provided to individual users, groups, or roles.
+IAM policies 
+trust policy = A JSON policy document in which you define the principals that you trust to assume the role. (principals that can take the role). A role trust policy is a required resource-based policy that is attached to a role in IAM. The principals that you can specify in the trust policy include users, roles, accounts, and services.
+
+service control policy = Service control policies (SCPs) are primarily used in conjunction with AWS Organizations to specify the maximum permissions for member accounts in the organization.
+
+IAM Permission Policies = IAM Polices are JSON-formatted permission documents that are used to grant or deny access to IAM users. By default, an IAM user cannot do anything with any service in an AWS account, even if he has authentication credentials. Permission to take actions with a service must be explicitly provided to individual users, groups, or roles.
 
 An IAM policy consists of four main elements:
 	Action
@@ -37,7 +34,7 @@ An IAM policy consists of four main elements:
 IAM policy rules have an order of precedence. If an action is explicitly denied, it is denied; then if an action is explicitly allowed, it is allowed. Otherwise, all other actions are implicitly denied.
 An IAM policy can also use policy conditions for extra security. For example, conditions could be set so that requests must originate from a specific range of IP addresses, or a request must use SSL or MFA.
 There are two types of IAM policies:
-	Managed policies = Managed policies can be customer- and AWS-managed. These policies are standalone policies that are attached to multiple users, groups, and roles. AWS-managed policies are created by AWS. Customer-managed policies are created and managed by customers.
+	Managed policies = Managed policies can be customer and AWS-managed. These policies are standalone policies that are attached to multiple users, groups, and roles. AWS-managed policies are created by AWS. Customer-managed policies are created and managed by customers.
 	Inline policies = Inline policies are embedded in a principal entity such as a user, group, or role. The policy is an inherent part of the entity. The same policy can be used for multiple entities, but those entities do not share the policy. Instead, each entity has its own copy of the policy (that is, inline policies cannot be centrally managed).
 The IAM console provides “service last accessed data” about when IAM users and roles last attempted to access AWS Cloud services.
 
@@ -68,3 +65,6 @@ Best Practices for Securing Your AWS Account :
 Access flow = root(MFA) -> IAM Admin User(to give permission to other users.)(MFA) -> IAM Users(MFA-power user) -> IAM groups -> IAM roles -> Policy condition[extra security] -> monitor activity
 
 AWS Config records configuration changes within an AWS account. Using AWS Config logs in conjunction with AWS CloudTrail logs allows changes to be identified and details about those changes (who, when, how) to be seen.
+
+good resource to how to avoid MITM attack.
+https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html

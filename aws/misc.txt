@@ -1,6 +1,6 @@
 AWS misc 
 
-policies = You manage access in AWS by creating policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources. AWS evaluates these policies when an IAM principal (user or role) makes a request. Most policies are stored in AWS as JSON documents. There are 6 types of policies
+Permission policies = You manage access in AWS by creating permission policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources. AWS evaluates these policies when an IAM principal (user or role) makes a request. Most policies are stored in AWS as JSON documents. There are 6 types of policies
 1. Identity-based policies – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). They can be further categorized as 
 	a. Managed Policies = can be further classified as
 		i. AWS managed
@@ -35,4 +35,9 @@ Statement = list of container for following elements.
 	Resource (Required in only some circumstances) – If you create an IAM permissions policy, you must specify a list of resources to which the actions apply. If you create a resource-based policy, this element is optional. If you do not include this element, then the resource to which the action applies is the resource to which the policy is attached.
 	Condition (Optional) – Specify the circumstances under which the policy grants permission.
 
- 
+Ephemeral Ports = The ephemeral ports are the short-lived transport protocol ports for Internet Protocol (IP) communications. Ephemeral ports are allocated automatically from a predefined range by the IP stack software. An ephemeral port is typically used by the Transmission Control Protocol (TCP), User Datagram Protocol (UDP) or the Stream Control Transmission Protocol (SCTP) as the port assignment for the client end of a client-server communication to a well-known port on a server. 
+What that means is, when a client initiates a request it choose a random port from ephemeral port range and it expects the response at that port only. Take note of the below statement:
+When we say that the client initiates an HTTPs or HTTP request it actually means that the destination port is 443 or 80. It is NOT the sender port.
+It is the client’s operating system that chooses the sender’s port from the ephemeral port range and this range varies depending on the OS. 
+For HTTPS, the outbound rule in our case allows the response at port 443. Now, this doesn’t allow outbound HTTPS traffic because that is not the port from which request was initiated. For the request to succeed we would have to set Outbound Port Range to 1024-65535 and NOT to 443.
+As discussed above, the client that initiates the request chooses the ephemeral port range. So in order to allow outbound IPv4 responses to clients, for example serving web pages to people visiting the web servers in the subnet, you need to allow traffic through the ephemeral ports depending on the clients.

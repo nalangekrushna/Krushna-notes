@@ -9,12 +9,15 @@ In case of update block storage will only update affected block (default 512 byt
 object storage has two types 
 	hot(S3) = available immediately to download on multiple parallel locations.
 	cold(glaciar) = need to wait minimum 3-4 hours before being available.
-object storage automatically replicated in multiple availability zones to be fail safe. block storage has no such difference but speed can still be affected by use of magnetic(hard cap 100 IOPS) or SSD (min 3000 IOPS). S3 standard is stored minimum three Availability Zones.
+all storages(s3, glacier, ebs) automatically replicated in multiple availability zones to be fail safe. block storage speed can still be affected by use of magnetic(hard cap 100 IOPS) or SSD (min 3000 IOPS). S3 standard is stored minimum three Availability Zones.
 In block storage you have to pre-provision the space required by you and in object storage there is no concept of provisioning. your billing starts when you upload the object and stops when you deletes the object.
 
 Amazon Glaciar = Individual Amazon S3 Glacier archives can range in size from 1 byte to 40 terabytes. The largest archive that can be uploaded in a single Upload request is 4 gigabytes.
+A vault lock policy is different than a vault access policy. Both policies govern access controls to your vault. However, a vault lock policy can be locked to prevent future changes, providing strong enforcement for your compliance controls. You can use the vault lock policy to deploy regulatory and compliance controls, which typically require tight controls on data access. In contrast, you use a vault access policy to implement access controls that are not compliance related, temporary, and subject to frequent modification. Vault lock and vault access policies can be used together.
 
-EFS (Elastic File System) = fully managed file storage service. It is used to be accessible by thousands of ec2 instance at same time with consistent performance. efs didn't support windows os.
+For example, you can implement time-based data retention rules in the vault lock policy (deny deletes), and grant read access to designated third parties or your business partners (allow reads).
+
+EFS (Elastic File System) = fully managed file storage service. It is used to be accessible by thousands of ec2 instance at same time with consistent performance. efs didn't support windows os. Amazon EFS is a regional service storing data within and across multiple Availability Zones (AZs) for high availability and durability.
 
 Simple Storage Service (Amazon S3) = regionally provisioned object storage service. Content saved into Amazon S3 is automatically replicated into at least three facilities. Buckets are globally unique named objects; they are unique across all AWS accounts. all content in Amazon S3 is automatically web-enabled. When content is saved into Amazon S3, there is a unique URL created for the object, which includes the bucket name as the domain, hence the need for global uniqueness.
 Amazon S3 defines a bucket name as a series of one or more labels, separated by periods, which adhere to the following rules:
@@ -34,16 +37,25 @@ Default properties of Amazon S3 keep content private for the account owner until
 Amazon S3 – Reduced Redundancy Storage (Amazon S3-RRS) = only backed up in two place and provide durability upto only 4 points. it is your option when questions looking for cheapest solution and does not mention about duarability or where data can be reproduced from some way.
 
 Amazon S3 Infrequent Access (Amazon S3-IA) = high durablity but if only needed to access two times a month. Exam questions that specifically call out objects that are only accessed once a month or less than 20 times a year should most likely be addressed with Amazon S3-IA.
-
-an additional attribute of Amazon S3-IA is minimum file size (128 KB). Standard Amazon S3 has no file size minimum—a 4 KB file in Amazon S3 is only billed for the 4 KB space. The same 4 KB file stored in Amazon S3-IA would be billed at 128 KB, so even if Amazon S3-IA was normally half the cost of regular Amazon S3, in this edge case, Amazon S3-IA would be 16 times the cost of storing the same 4 KB file in Amazon S3. If the exam question specifically mentioned tiny files (less than 64 KB in size), that would be a signal not to choose Amazon S3-IA as the cost-effective answer.
-
-The other edge case, where Amazon S3-IA is not the best answer, is when files are only stored for a few days. Amazon S3-IA has a minimum 30-day storage time. Content stored for one week is still billed for the entire month.
+S3-IA is cost effective only when storage time is min 30 days and min 64 KB file size.
 
 After you enable versioning on a bucket, it can be in either the enabled or suspended state; you cannot disable versioning on a bucket. If you suspend versioning, Amazon S3 suspends the creation of object versions for all operations but preserves any existing object versions. If you delete after versioning enabled it will only delete current object and not prev object which you have to delete from console.
 
-Amazon Glacier = In all S3 cases high availability was necessary. when high availability is not needed then you should use glacier.Archives stored in Amazon Glacier are immutable (that is, archives can be uploaded and deleted but cannot be edited or overwritten).
+Amazon Glacier = In all S3 cases high availability was necessary. when high availability is not needed then you should use glacier. Archieves stored in Amazon Glacier are immutable (that is, archives can be uploaded and deleted but cannot be edited or overwritten).
 
-AWS EBS snapshots = EBS volumes are only replicated within an Availability Zone (AZ) thereby not providing much durability in case of that AZ failure. Snapshots create permanent images of the volume and store them at the regional level (across multiple Availability Zones) in Amazon S3. snapshots only store the sectors that have changed (the delta) from the previous snapshot, allowing the total volume of data stored (and thus billed) to be dramatically reduced. but If more than 10 GB of data has changed from last snapshot then instead of parsing changes system will save 100% new snapshot.
+AWS EBS = you can mount multiple ebs volumes on single instance or you can attach single volume to multiple instances using ebs multi-attach(max 16). ebs volumes are created in an AZ can only be attached to instance in same AZ. you can create snapshot and restore snapshot any wehere in the region to attach to instance outside current AZ. you can use aws managed AWS Backup for ebs volumes. you cannot use hdd (sc1, st1) as boot volume. use raid 0 to maximize utilization of instance resources. Although recommended is raid 1 as it provides fault tolerance. Raid 5 and 6 are not at all recommended.  
+The maximum ratio of provisioned IOPS to requested volume size (in GiB) is 50:1.
+For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS. On a supported instance type, any volume 1,280 GiB in size or greater allows provisioning up to the 64,000 IOPS maximum (50 × 1,280 GiB = 64,000).
+EBS volume can be categorized into two main categories. SSD (gp2,io1) or HDD (st1,sc1) . io1 provides both high throughput and high io. whereas gp2 provides balanced performance with most cost effective. st1 provides high throughput. while sc1 is cheapest one with moderate throughput and used for infrequent workloads.
+The gp2 SSD volumes used for boot volume, virtual machine, interactive applications and dev environments. It provides 3 IOPS per GiB baseline in range of min 100 to max 10,000 IOPS. i.e. it you have 500 GiB capacity then you get 1500 IOPS. Its latency is single digit milisecond.
+The io1 mission critical SSD volumes used for large databases both SQL and Non-SQL. It can provide IOPS upto 80,000 and throughput upto 500 MB/s. Its latency is single digit milisecond. If you want latency less than 1 ms or IOPS greter than 80,000 then use instance store backed storage.
+The st1 throughput optimized volume used for streaming workload such as big data, data warehouses and analog processing. throughput = 500 MB/S 
+The sc1 is used when we want lowest storage cost. some examples are Transcoding , Encoding and rendering. throughput = 250 MB/S
+
+EBS optimized vs Non-optimized = EBS non-optimized uses shared network pipe. Sharing of network can cause increased io latency to EBS volumes. EBS optimized instances have dedicated bandwidth. provides increased performance in IO. They also provided dedicated throughput between 400 to 14000 MB/S. EBS optimized instances provides 99% provisioned IOPS performance 99.99% time. 
+So in Conclusion to get best performance you should use EBS optimized provisioned iops instance.
+
+AWS EBS snapshots = EBS volumes are only replicated within an region (AZ) thereby not providing much durability in case of that AZ failure. Snapshots create permanent images of the volume and store them at the regional level (across multiple Availability Zones) in Amazon S3. snapshots only store the sectors that have changed (the delta) from the previous snapshot, allowing the total volume of data stored (and thus billed) to be dramatically reduced. but If more than 10 GB of data has changed from last snapshot then instead of parsing changes system will save 100% new snapshot.
 
 Securing Amazon EBS = two ways 1. client  2. volume
 	client = user is responsible for this.
@@ -67,13 +79,12 @@ AWS Storage Gateway Options =
 	There are two configuration modes using the volume interface. The cached mode is designed to extend your local storage. All content is saved in AWS, and only the frequently accessed data is cached locally. This is an excellent operational solution for on-premises storage solutions that are exceeding their local capacity limits. The other mode is the stored mode, which is a one-to-one backup of all local content on AWS. This is a primary solution when durable and inexpensive off-site backups are needed. The third option for AWS Storage Gateway is the tape interface. In this configuration, you connect to your existing backup application using an iSCSI Virtual Tape Library (VTL). These virtual tapes are then asynchronously stored in Amazon S3 or Amazon Glacier if less expensive, longer-term storage is needed.
 	
 AWS Snowball = a physically hardened, secure appliance that ships directly to your on-premises location.
+aws snowmobile = If your volume is more than 10 PB then use aws snowmobile.
 
 Different instance types will support different storage options. The three major types of storage for Amazon EC2 are instance storage, Amazon EBS, and Amazon Elastic File System (Amazon EFS).
-
-amazon ebs optimized vs piops for db ?
 
 You want to use AWS Storage Gateway to increase the amount of storage available to your on-premises application block storage systems. What is the correct configuration?
 	-> AWS Storage Gateway volume interface with cached mode
 	
 You are restoring an Amazon Elastic Block Store (Amazon EBS) volume from a snapshot. How long will it be before the data is available?
-	-> The data will be available immediately. The volume is created immediately, but the data is loaded lazily. This means that the volume can be accessed upon creation, and if the data being requested has not yet been restored, it will be restored upon fi rst request.
+	-> The data will be available immediately. The volume is created immediately, but the data is loaded lazily. This means that the volume can be accessed upon creation, and if the data being requested has not yet been restored, it will be restored upon first request.

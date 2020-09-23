@@ -1,7 +1,7 @@
 Amazon Aurora = fully managed, MySQL-compatible, relational database engine. An Amazon Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone containing a copy of the cluster data. Two types of instances make up an Aurora DB cluster
 	Primary Instance = A primary instance supports read-write workloads and performs all of the data modifications to the cluster volume. Each Amazon Aurora DB cluster has one primary instance.
 	Aurora Replica = An Aurora Replica supports only read operations. Each DB cluster can have up to 15 Aurora Replicas in addition to the primary instance
-Aurora cluster volume/table can grow to a maximum size of 64 TB.	
+Aurora cluster volume/table can grow to a maximum size of 64 TB.
 
 Performance metrics by aws
 IOPS = The number of I/O operations completed per second.
@@ -13,8 +13,9 @@ all above metrics given as average in given time interval
 
 Amazon RDS Multi-AZ deployments do not fail over automatically in response to database operations such as long running queries, deadlocks, or database corruption errors.
 
-DynamoDB = NoSQL database supporting both document and key/value store models.
-Items = Each table contains multiple items. An item is a group of attributes uniquely identifi able among all of the other items.Items in Amazon DynamoDB are similar in many ways to rows, records, or tuples in relational database systems.
+DynamoDB = NoSQL database supporting both document and key/value store models. 
+Amazon DynamoDB global tables  = provide a fully managed solution for deploying a multi-region, multi-master database, without having to build and maintain your own replication solution. When you create a global table, you specify the AWS regions where you want the table to be available. DynamoDB performs all of the necessary tasks to create identical tables in these regions, and propagate ongoing data changes to all of them.
+Items = Each table contains multiple items. An item is a group of attributes uniquely identifiable among all of the other items. Items in Amazon DynamoDB are similar in many ways to rows, records, or tuples in relational database systems.
 Attributes = Each item is composed of one or more attributes. An attribute is a fundamental data element something that does not need to be broken down any further. Attributes in Amazon DynamoDB are similar to fields or columns in relational database systems.
 
 Streams = ordered flow of information about changes to items. A stream record contains information about a data modification to a single item in a DynamoDB table.
@@ -27,7 +28,7 @@ Data Types =
 		Map = A map type attribute can store an unordered collection of name/value pairs. Maps are enclosed in curly braces: { ... }. A map is similar to a JSON object. There are no restrictions on the data types that can be stored in a map element, and elements in a map do not have to be the same type.
 		Set = number, string, or binary, All of the elements within a set must be of the same type. There is no limit on the number of values in a set, as long as the item containing the values fits within the Amazon DynamoDB 400 KB item size limit. Each value within a set must be unique. The order of the values within a set are not preserved. Amazon DynamoDB does not support empty sets.
 
-Amazon DynamoDB supports eventually consistent and strongly consistent reads. Unless specified otherwise, DynamoDB uses eventually consistent reads as the default. When a strongly consistent read is requested, Amazon DynamoDB returns a response with the most up-to-date data that reflects the updates from all prior write operations that were successful.
+Amazon DynamoDB supports eventually consistency and strongly consistent reads. Unless specified otherwise, DynamoDB uses eventually consistent reads as the default. When a strongly consistent read is requested, Amazon DynamoDB returns a response with the most up-to-date data that reflects the updates from all prior write operations that were successful.
 
 Redshift = fully managed data warehousing solution. It automates infrastructure provisioning and administrative tasks, such as backups, replication, and patching.
 
@@ -53,7 +54,8 @@ Configuration Management
 	logging
 	instance profile = Applications that run on an Amazon EC2 instance must include AWS credentials in their API requests. Instead of doing it manually, you can use IAM roles to manage temporary credentials for applications that run on an Amazon EC2 instance. 
 	
-bootstrapping an instance = practice of automatically installing an application on an instance at the first boot. The bootstrapping process can be slower if you have a complex application or multiple applications to install. Managing a fleet of applications with several build tools and dependencies can be a challenging task during rollouts. Furthermore, your deployment service should be designed to perform faster rollouts to take advantage of Auto Scaling.
+bootstrapping an instance = practice of automatically installing an application on an instance at the first boot. The bootstrapping process can be slower if you have a complex application or multiple 
+applications to install. Managing a fleet of applications with several build tools and dependencies can be a challenging task during rollouts. Furthermore, your deployment service should be designed to perform faster rollouts to take advantage of Auto Scaling.
 
 Continous deployment(cd) = two methods for cd
 	In-place upgrade = performing application updates on existing Amazon EC2 instances. There are several deployment services that are especially useful for an in-place upgrade: AWS CodeDeploy, AWS OpsWorks, and AWS Elastic Beanstalk. AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances. when using aws opworks for deployment, AWS OpsWorks Stacks triggers a Deploy event, which runs each layer’s Deploy recipes. AWS OpsWorks Stacks also installs stack configuration and deployment attributes that contain all of the information needed to deploy the application, such as the application’s repository and database connection data. AWS Elastic Beanstalk provides several options for how deployments are processed, including deployment policies (All at Once, Rolling, Rolling with Additional Batch, and Immutable) and options that let you configure batch size and health check behavior during deployments.
@@ -65,5 +67,6 @@ AWS OpsWorks Stacks = AWS OpsWorks is also recommended if you want to manage you
 a configuration management system such as Chef. 
 
 we need to have optional mapping section in aws cloudformation template to enable multi-region deployments.
+The cfn-signal helper script signals AWS CloudFormation to indicate whether Amazon EC2 instances have been successfully created or updated. If you install and configure software applications on instances, you can signal AWS CloudFormation when those software applications are ready.
 
 to deploy new version of application in different environment you need to change cname. 

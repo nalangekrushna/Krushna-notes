@@ -1,0 +1,20 @@
+AWS Lambda
+
+AWS Lambda = AWS Lambda is a serverless compute service.
+AWS Lambda functions are invoked by the following:
+	Push event model = Some event sources can publish events to AWS Lambda and directly invoke your AWS Lambda function. The push model applies to Amazon S3, Amazon SNS, Amazon Cognito, Amazon Echo, and user applications, where each event triggers the AWS Lambda function.
+	Pull event model = Some event sources publish events, but AWS Lambda must poll the event source and invoke your AWS Lambda function when events occur. This model applies when AWS Lambda is used with streaming event sources such as Amazon Kinesis and Amazon DynamoDB Streams. For example, AWS Lambda polls your Amazon Kinesis stream, or Amazon DynamoDB Stream, and it invokes your AWS Lambda function when it detects new records on the stream.
+	Direct invocation model = This invocation type causes AWS Lambda to execute the function synchronously and returns the response immediately to the calling application. This invocation type is available for custom applications.
+	
+One of the recommendations for writing code for AWS Lambda is to make sure that the code is stateless (that is, it does not make reference to any underlying infrastructure).
+AWS lambda can run continously only for 15 minutes.
+
+Amazon CloudWatch provides metrics for AWS Lambda. These metrics include,
+but are not limited to, the following:
+	Invocation count
+	Invocation duration
+	Number of requests
+	Latency per request
+	Duration of code execution
+	
+The AWS Lambda function is executed once it is invoked. If the execution fails, two more attempts are made. You can, as an option, configure AWS Lambda to forward a failed payload to a Dead Letter Queue (DLQ). This DLQ can take the form of an Amazon Simple Notification Service (Amazon SNS) topic or an Amazon Simple Queue Service (Amazon SQS) queue.

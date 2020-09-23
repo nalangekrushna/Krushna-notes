@@ -16,7 +16,7 @@ Data points are not returned from Amazon CloudWatch in chronological order.
 
 Namespaces = A namespace is a container for a collection of Amazon CloudWatch metrics. There are no default namespaces. When creating a custom metric, a namespace is required.
 
-Dimensions = A dimension is a name/value pair that uniquely identifi es a metric and further clarifies the metric data stored. A metric can have up to 10 dimensions. Think of dimensions as categories or metadata for those characteristics.
+Dimensions = A dimension is a name/value pair that uniquely identifies a metric and further clarifies the metric data stored. A metric can have up to 10 dimensions. Think of dimensions as categories or metadata for those characteristics.
 
 If unit is not provided for metrics then amazon cloudwatch uses None as unit. For metrics that are continuously emitted, Amazon CloudWatch sends a notification until three failures are found. When monitoring, using an average value can hide events that are drastically different than normal ones. When monitoring a maximum value, however, a single, random spike can skew the results. To avoid this, monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load.
 
@@ -38,39 +38,36 @@ High Availability
 
 Simple Queue Service(SQS) = access to message queues that store messages waiting to be processed. Amazon SQS queues retain messages for a set period of time. The default setting is four days; however, you can configure a queue to retain messages for up to 14 days.
 
-Visibility timeout is the period of time that a message is invisible to the rest of your application after an application component gets it from the queue. During the visibility timeout, the component that received the message usually processes it and then deletes it from the queue.
+Visibility timeout is the period of time that a message is invisible to the rest of your application after an application component gets it from the queue. During the visibility timeout, the component that received the message usually processes it and then deletes it from the queue. default timeout period is 30 seconds.
 
 Dead Letter Queue (DLQ) is an Amazon SQS queue that you configure to receive messages from other Amazon SQS queues, referred to as “source queues.” Typically, you set up a DLQ to receive messages after a maximum number of processing attempts has been reached.
 
 Simple Notification Service (SNS) = manages the delivery or sending of messages to subscribing endpoints or clients. In Amazon SNS, there are two types of clients—publishers and subscribers, which are also referred to as producers and consumers. Publishers communicate asynchronously with subscribers by producing and sending a message to a topic, which is a logical access point and communication channel. Subscribers (for example web servers, email addresses, Amazon SQS queues, and AWS Lambda functions) consume or receive the message or notification over one of the supported protocols (such as Amazon SQS, HTTP/S, email, Short Message Service [SMS], or AWS Lambda) when they are subscribed to the topic.
 
-To get started with Amazon SNS, fi rst create your topic, select your protocol(s), subscribe to the topic, and then publish to your topic.
+To get started with Amazon SNS, first create your topic, select your protocol(s), subscribe to the topic, and then publish to your topic.
 
 Recovery time objective (RTO) = This represents the time it takes after a disruption to restore a business process to its service level.
 
 Recovery point objective (RPO) = This is the acceptable amount of data loss measured in time. For example, if a disaster occurs at 12:00 PM (noon) and the RPO is one hour, the system should recover all data that was in the system before 11:00 AM.
 
-Warm-Standby Method = a scaled-down version of a fully-functional environment is always running in the cloud.
+Disaster Recovery = there are 4 DR plans that you can use.
+	backup and restore = this plan provides slowest system restoration. Here you take snapshot of data and store in durable s3 storage. This is cheapest option.
+	
+	pilot light = It is quicker than backup and restore. In this we keep running most critical core elements of system is aws. when DR scenario happens we rapidly provision full scale prod env. This is example of active/passive failover configuration. This is more costly than backup and restore.
+	
+	warm-standby = It is quicker than pilot light. Here we keep scaled down version of fully functional env running in aws. This also comes under active/passive failover config. This is more costly than pilot light. Here in DR scenario we add auto scaling or resize the instances.
+	
+	multi site = This is fastest as well as costliest method of active/active failover config. Here we use one to one copy of our infrastructure in other region or AZ.
 
-pilot light method = a minimal version of an environment is always running in AWS.
-
-Multi-Site Solution Method = A multi-site solution runs in AWS, as well as on your existing on-site infrastructure, in an active-active configuration.
 
 You are managing a multi-region application deployed on AWS. You currently use your own DNS. What types of failover does Amazon Route 53 support? (choose three)
 	-> A. Active-active failover
 	   B. Active-active-passive failover
 	   C. Active-passive failover
-You can set up a variety of failover confi gurations using Amazon Route 53 alias, weighted, latency, geolocation routing, and failover resource record sets. You can choose Activeactive failover, Active-passive failover, Active-active-passive, and other mixed confi gurations.	   
+You can set up a variety of failover configurations using Amazon Route 53 alias, weighted, latency, geolocation routing, and failover resource record sets. You can choose Active-active failover, Active-passive failover, Active-active-passive, and other mixed configurations.	   
 
-Amazon Route 53 health checks monitor can monitor one of the following: the health of a specifi ed resource, such as a web server; the status of an Amazon CloudWatch Alarm; and the status of other health checks.
+Amazon Route 53 health checks monitor can monitor one of the following: the health of a specified resource, such as a web server; the status of an Amazon CloudWatch Alarm; and the status of other health checks.
 
 How do you make your hardware VPN redundant? (both options are right but B is best.)
 	-> A. Deploy your own software VPN solution on AWS, ensuring that the software-based VPN is deployed to two separate Availability Zones. Take down the hardware VPN.
 		B. Deploy two customer gateways. Configure your customer gateways to take advantage of the two tunnels provided by the hardware VPN.
-		
-You are part of the disaster recovery team, and you are working to create a DR policy. What is the bare minimum type of disaster recovery that you can perform with AWS?
-	-> Backup-restore method using S3 as backup destination.
-	
-You have an application with a recovery point objective of zero and a recovery time objective of 20 minutes. What type of disaster recovery method should you use?
-	-> A warm-standby solution extends the pilot light elements and preparation. It further decreases the recovery time because some services are always running. By identifying your business-critical systems, you can fully duplicate these systems on AWS and have them always on.
-

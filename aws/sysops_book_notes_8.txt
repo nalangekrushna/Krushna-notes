@@ -26,7 +26,13 @@ traffic policy included below information about routing configuration :
 	
 dns resolver is regional.
 
-Egress only internet gateway = only allows outbound communitcation over ipv6 to internet. it is stateful and you cannot use security group with it but you can use network acl. 
+Route 53 health check = this supports three types of health checks.
+	1. Health checks that monitor an endpoint.(ip address or domanin name)
+	2. calculated health checks = Health checks that monitor other health checks
+	3. cloudwatch alarm = Health checks that monitor CloudWatch alarms. 
+Egress only internet gateway = only allows outbound(didn't allow to initiate from internet) communitcation over ipv6(ipv4 not supported) to internet. it is stateful and you cannot use security group with it but you can use network acl. Ipv6 addresses are globally unique hence they are public.
+
+Oracle db with RAC config is not supported by aws RDS so you have to use ec2 instance to host oracle db.
 
 NAT gateway = you need public subnet, EIP address to create nat gateway. gateway is created in specific AZ and implemented redundancy in same AZ. NAT gateway supports TCP, UDP and ICMP protocols
 
