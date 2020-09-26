@@ -1,0 +1,70 @@
+Applicatio Load Balancing = ALB is having redundancy in single AZ. AWS Elastic Load Balancer(ELB) ensures High Availability(HA) across multiple Availability Zones(AZs) within a Regional Boundary.
+Optionally you can select the Availability Zones where the ELB is placed, which impacts HA (Select multiple AZs for Higher Level of HA). You can also configure for multi-region HA using DNS routing policies to send traffic for multiple ELBs in different regions.
+
+route 53 evaluate target health flag to check health of resources.
+
+things monitored in ec2 monitoring = CPU load, disk I/O, and network I/O
+
+aws RDS(automated backups) and Redshift provides user configurable automatic backup service and backup rotation options without the need for regular user intervention. By default, an RDS created from the AWS console has a backup retention of 7 days. You can further modify this backup retention period between 0-35 days. For Redshift, by default, automated backups are enabled for the data warehouse cluster with a 1-day retention period. RDS automated backup logs db transactions data in every 5 minutes so you can reliably restore it.
+
+If you no longer need your subnet, you can delete it. before that you must terminate any instances in the subnet first. You will be prompted with an error message in the AWS Console when you try to delete a subnet with instances.
+
+subdomain to redirect to new page with domain registered other than amazon
+	you don't need to transfer domain for creation of subdomain. create a hosted zone for subdomain. and point dns service for that subdomain to hosted zone.
+	
+SurgeQueueLenght = total no of requests or connections pending to routed to healthy instance.
+SpillOverCount = When requests exceed the maximum SurgeQueueLength, the SpilloverCount metric starts to measure rejected requests. The maximum SurgeQueueLength is 1024.
+RequestCount = the number of requests completed or connections made during a specified interval (1 or 5 minutes).
+
+analytics application = sequential read/write access to very large data sets. Given that the company is a data analytics firm, they should first be provided with the necessary tools that would enable them to perform data analytics at some velocity, such as RedShift and EMR. 
+
+Instance types
+General purpose
+	T = Turbo(burstable) = can give more performance than baseline for some time.
+	M = Mostly used = general purpose instances with balance of cost and performance.
+	A = ARM processor based
+Memory Optimized(RAM)
+	R = RAM  provides more ram for memery intensive application.
+	X = extra Ram 
+	z1d = high compute and memory
+Storage optimized
+	H1, D2 ,I (nvme SSD), I3en
+Compute Optimized 
+	C, z1d
+for AI and ML
+	G (gpu)
+	P (premium gpu)
+	F (FPGA)
+a = amd   g = graviton   n = network optimized    e = extra capacity     d = directly attached
+	
+e.g. T4g.large   Turbo 4th gen graviton processor 2 vCPU
+large = 2 vCPU
+
+You configured CloudWatch monitoring on an On-Demand, EBS-backed EC2 instance which is deployed on ap-southeast-1 region. Which of the following metrics will always show a value of 0? 
+	-> DiskReadOps is the metric that counts the completed read operations from all instance store volumes available to the instance in a specified period of time. To calculate the average I/O operations per second (IOPS) for the period, divide the total operations in the period by the number of seconds in that period.
+
+	If there are no instance store volumes, either the value is 0 or the metric is not reported. Hence, the correct answer is Option 1. The same behaviour also applies with DiskWriteOps, DiskReadBytes and DiskWriteBytes.
+	
+AWS cloudformation = When you need to make changes to a stack's settings or change its resources, you update the stack instead of deleting it and creating a new stack. For example, if you have a stack with an EC2 instance, you can update the stack to change the instance's AMI ID. When you update a stack, you submit changes, such as new input parameter values or an updated template. AWS CloudFormation compares the changes you submit with the current state of your stack and updates only the changed resources. AWS CloudFormation provides two methods for updating stacks:
+   1. Direct update
+   2. Creating and executing change sets.
+When you directly update a stack, you submit changes and AWS CloudFormation immediately deploys them. Use direct updates when you want to quickly deploy your updates.
+With change sets, you can preview the changes AWS CloudFormation will make to your stack, and then decide whether to apply those changes. Change sets are JSON-formatted documents that summarize the changes AWS CloudFormation will make to a stack. Use change sets when you want to ensure that AWS CloudFormation doesn't make unintentional changes or when you want to consider several options. For example, you can use a change set to verify that AWS CloudFormation won't replace your stack's database instances during an update.
+
+The create-stack CloudFormation CLI command creates a stack as specified in the template. After the call completes successfully, the stack creation starts. You can check the status of the stack via the DescribeStacks API.
+It has an --on-failure optional parameter which determines what action will be taken if stack creation fails. Its default value is ROLLBACK which means that the CloudFormation service will automatically rollback the stack in the event of failures. The value must be one of the following: DO_NOTHING, ROLLBACK, or DELETE.
+
+drift detection is just a feature of CloudFormation that enables you to detect whether a stack's actual configuration differs, or has drifted, from its expected configuration. 
+
+cloudformation system manager state manager = 
+cloudformation system manager parameter store = 
+
+You can aggregate the metrics for AWS resources across multiple resources. Amazon CloudWatch cannot aggregate data across Regions. Metrics are completely separate between Regions. For example, you can aggregate statistics for your EC2 instances that have detailed monitoring enabled. Instances that use basic monitoring are not included. Therefore, you must enable detailed monitoring (at an additional charge), which provides data in 1-minute periods. Therefore, the correct answers are the options that say, "Set up a CloudWatch dashboard. Add a widget for each region which contains the aggregated CPU utilization for all EC2 instances that is running on a specific region" and "Enable detailed monitoring for all EC2 instances."
+
+VPC having private subnet with route table having value 0.0.0.0/0   and status blackhole. If you delete a NAT gateway, the NAT gateway routes remain in a blackhole status until you delete or update the routes.
+
+Detaching internet gateway will not create blackhole status in route table. 
+
+Resource or service-specific tags are often used to filter resources during infrastructure automation activities. Automation tags are used to opt in or opt out of automated tasks or to identify specific versions of resources to archive, update, or delete. For example, many customers run automated start/stop scripts that turn off development environments during non-business hours to reduce costs. In this scenario, Amazon Elastic Compute Cloud (Amazon EC2) instance tags are a simple way to identify the specific development instances to opt out of this action. For scripts used to locate and delete stale, out-of-date, or rolling Amazon EBS snapshots, snapshot tags can add an extra dimension of search criteria.
+
+To connect your internal team members to your aws vpc from internet, Adding a bastion host in a public subnet and other resources in private subnet is best way. In an Amazon Web Services (AWS) context, a bastion host is defined as "a server whose purpose is to provide access to a private network from an external network, such as the Internet”. Because of its limited exposure to potential attack, a bastion host can minimize the chances of penetration.

@@ -27,7 +27,7 @@ KMS (key management service) = managed service for you to create and control the
 SQS = Simple Queue Service = fully-managed message queuing service
 SNS = Simple Notification Service = coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
 SES = Simple Email Service = for sending automated emails
-WAF = Web Application Firewall = which traffic to allow or block to your web applications
+WAF = Web Application Firewall = which traffic to allow or block to your web applications. AWS WAF can help you block common attack patterns to your VPC such as SQL injection or cross-site scripting, this is still not enough to withstand DDoS attacks. 
 Shield = managed Distributed Denial of Service (DDoS) protection service
 ARN = amazon resource name
 Amazon Virtual Private Cloud (VPC) = provides users a virtual private cloud, by "provision[ing] a logically isolated section of Amazon Web Services (AWS) Cloud"

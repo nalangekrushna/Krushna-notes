@@ -1,0 +1,51 @@
+
+ELB does not support load balancing across multiple region. You have to use Route53 to route requests across multiple AWS regions.
+
+connection draining on the load balancer
+
+AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to easily generate and use your own encryption keys on the AWS Cloud. With CloudHSM, you can manage your own encryption keys. 
+
+KMS also offers a high level of security for your cryptographic keys, this service does not reside in your VPC, unlike CloudHSM. KMS does not provide dedicated, third-party validated hardware security modules under your exclusive control, unlike CloudHSM. In KMS, the hardware security modules (HSMs) are managed by AWS and not by you. 
+
+To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
+
+S3 Glacier vs S3 Glacier Deep Archive = 
+
+Storage Gateway offers file-based, volume-based, and tape-based storage solutions. Storage Gateway also offers connectivity to Glacier through Tape Gateway.
+
+CloudTrail captures all API calls for AWS CloudFormation as events, including calls from the AWS CloudFormation console and from code calls to the AWS CloudFormation APIs. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for AWS CloudFormation. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in Event history. 
+
+The delete-vpc CLI command deletes the specified VPC. You must detach or delete all gateways and resources that are associated with the VPC before you can delete it.
+For example, you must terminate all instances running in the VPC, delete all security groups associated with the VPC (except the default one), delete all route tables associated with the VPC (except the default one), and so on. Hence, the option that says, "the new VPC will be deleted immediately" is correct.
+
+enhanced networking in ec2 instance = 
+
+DynamoDB Accelerator = 
+
+Amazon DynamoDB provides on-demand backup capability. It allows you to create full backups of your tables for long-term retention and archival for regulatory compliance needs. You can back up and restore your DynamoDB table data anytime with a single click in the AWS Management Console or with a single API call. Backup and restore actions execute with zero impact on table performance or availability.
+
+amazon aurora = you can also use Amazon Aurora Multi-Master which is a feature of the Aurora MySQL-compatible edition that adds the ability to scale out write performance across multiple Availability Zones, allowing applications to direct read/write workloads to multiple instances in a database cluster and operate with higher availability. You should use Aurora Multi-Master or Amazon Aurora Replicas for high availability.
+
+Aurora backtrack feature = 
+Aurora ML = 
+
+SSE-S3 vs SSE-KMS = 
+
+Redshift didn't support CRR (Cross Region Replication) to replicate data to another region you have to copy snapshots from one cluster to cluster in another region(manually or automatically)
+
+With step scaling policies, you can specify the number of seconds that it takes for a newly launched instance to warm up. Until its specified warm-up time has expired, an instance is not counted toward the aggregated metrics of the Auto Scaling group. While scaling out, AWS also does not consider instances that are warming up as part of the current capacity of the group.
+
+A stack set lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template. All the resources included in each stack are defined by the stack set's AWS CloudFormation template. As you create the stack set, you specify the template to use, as well as any parameters and capabilities that the template requires. Hence, using CloudFormation StackSets to update the stacks on multiple AWS accounts is the best answer in this scenario.
+Using CloudFormation Stack Instances to define and manage stack instances on multiple AWS accounts is incorrect because a stack instance is simply a reference to a stack in a target account within a region. Remember that a stack instance is associated with one stack set which is why this is just one of the components of CloudFormation StackSets.
+
+The general flow of installing the CloudWatch agent is as follows:
+1.Create the IAM roles and users that you need for the CloudWatch agent. They enable CloudWatch to collect metrics from the server, and to integrate with AWS Systems Manager.
+2. If you are installing on an Amazon EC2 instance, attach an IAM role to the instance. If you are installing on an on-premises server, create an IAM user to enable the CloudWatch agent to write information to CloudWatch.
+3. Download the agent package, using either AWS Systems Manager Run Command or a public Amazon S3 download link.
+4. Modify the CloudWatch agent configuration files, and create a named profile for the CloudWatch agent. Creating the named profile is optional when installing the agent on an Amazon EC2 instance.
+5. Start the agent, using either Systems Manager Run Command or the command line.
+
+cloudfront RTMP dist = a CloudFront RTMP distribution is primarily used to stream media files using Adobe Media Server and the Adobe Real-Time Messaging Protocol (RTMP). Take note that you cannot invalidate objects that are served by an RTMP distribution.
+
+You can use Amazon Data Lifecycle Manager (Amazon DLM) to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes.
+
