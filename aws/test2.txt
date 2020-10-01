@@ -1,7 +1,5 @@
 test2
 
-aws provides free of cost detailed monitoring for route 53 and RDS service.
-
 configure an SSL listener to their Classic Load Balancer and EC2 instances ?  
 	-> Before you start using Elastic Load Balancing, you must configure one or more listeners for your Classic Load Balancer. A listener is a process that checks for connection requests. It is configured with a protocol and a port for front-end (client to load balancer) connections, and a protocol and a port for back-end (load balancer to back-end instance) connections.
 
@@ -30,7 +28,7 @@ For an EC2 instance to be able to communicate to the Internet over IPv6, the fol
 scenario connect on premise chicago network with two aws vpc one located in US East and other located in US West ?
 	-> Set up an AWS Direct Connect connection to the on-premises data center. Launch a new AWS Direct Connect Gateway with a virtual private gateway and connect the VPCs from US East and US West regions. Integrate the Direct Connect connection to the Direct Connect Gateway.
 	
-	on premise -> aws direct connect connection -> private virtual interface -> direct connect gateway -> virtual private gateway (in vpc's)
+	on premise -> customer gateway -> aws direct connect connection -> private virtual interface -> direct connect gateway -> virtual private gateway (in vpc's)
 	
 If you notice a significant increase in the number of HTTP 503-slow down responses received for Amazon S3 PUT or DELETE object requests to a bucket that has versioning enabled, you might have one or more objects in the bucket for which there are millions of versions. When you have objects with millions of versions, Amazon S3 automatically throttles requests to the bucket to protect the customer from an excessive amount of request traffic, which could potentially impede other requests made to the same bucket.
 
@@ -38,7 +36,7 @@ To allow administrators to easily manage tags on provisioned products, AWS Servi
 
 Cross-zone load balancing reduces the need to maintain equivalent numbers of instances in each enabled Availability Zone. cross zone load balancing distributes load according total no of instances so all instances are evenly loaded irrespective of their AZ. In case cross zone load balancing disabled load balancer evenly distribute load according no of AZ. So all zones are evenly loaded.
 
-Enabling billing alerts in Account Preferences of the AWS Console is the correct answer. Before you can create an alarm for your estimated charges, you must enable billing alerts on your Accounts Preferences page first, so that you can monitor your estimated AWS charges and create an alarm using billing metric data. After you enable billing alerts, you cannot disable data collection, but you can delete any billing alarms that you created.
+Enabling billing alerts in Account Preferences of the AWS Console. Before you can create an alarm for your estimated charges, you must enable billing alerts on your Accounts Preferences page first, so that you can monitor your estimated AWS charges and create an alarm using billing metric data. After you enable billing alerts, you cannot disable data collection, but you can delete any billing alarms that you created.
 
 The following are a few reasons why your EC2 instance goes from the pending state to the terminated state immediately after restarting it:
 	-You've reached your EBS volume limit.
@@ -50,8 +48,7 @@ To fix the policy, you simply have to specify two items under the Resource secti
 s3:GetObject = arn:aws:s3:::tutorialsdojo/*
 s3:ListBucket = arn:aws:s3:::tutorialsdojo
 
-You are working as a Systems Administrator for a technology consulting company where you have been tasked to launch an RDS-MySQL Instance that will host a heavily used relational database. Manual snapshots of the database are done on schedule when the company conducts their disaster recovery activities. To meet the strict compliance requirement, you have to ensure that there are no outages when a snapshot is being created for the database.   
-Which of the following options is the best way to accomplish this?
+to launch an RDS-MySQL Instance that will host a heavily used relational database. Manual snapshots of the database are done on schedule in disaster recovery activities. there should no outages when a snapshot is being created for the database.   
 	-> The best answer is to re-design the RDS instance to use Multi-AZ deployments configuration.
 
 	This is stated in the AWS documentation: Amazon RDS creates a storage volume snapshot of your DB instance, backing up the entire DB instance and not just individual databases. Creating this DB snapshot on a Single-AZ DB instance results in a brief I/O suspension that can last from a few seconds to a few minutes, depending on the size and class of your DB instance. Multi-AZ DB instances are not affected by this I/O suspension since the backup is taken on the standby.

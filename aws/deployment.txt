@@ -1,0 +1,69 @@
+Deployment
+
+aws lambda = compute service that runs code without need to provision and manage server. AWS Lambda natively supports Java, Go, PowerShell, Node.js, C#, Python, and Ruby code, and provides a Runtime API which allows you to use any additional programming languages to author your functions. 
+Timeout – The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
+
+aws elastic beanstalk = quickly deploy and manage applications on aws cloud without worrying about infrastructure that runs those applications.
+EC2 container service = container management service for docker in EC2 instacne.
+lightsail = This service is for developers who need virtual private servers. It is readymade template which includes everything to run server running. 
+Batch = computing workloads on the AWS Cloud.
+
+Deployment Strategies
+	provisioning infrastructure = manual or automated
+	configuration management = see below.
+	scalability
+	monitoring 
+	continous deployment = see below
+	
+Configuration Management
+	tagging = Cost allocation reports aggregate costs based on tags.
+	custom variables = you need to customize config values such as db string, security credentials etc. Defining variables can help loosely couple your application configuration. Additionally, you can differentiate environments into development, test, and production based on customized variables.
+	Baking AMI = Baking an image is the process of creating your own AMI. Instead of using a bootstrap script to deploy your application, which could take an extended amount of time, this custom AMI could contain a portion of your application artifacts within it. The key factor to keep in mind is how long it takes for the instance to launch. Alternatively, copying the block of a volume where your application is already installed could be faster.
+	logging
+	instance profile = Applications that run on an Amazon EC2 instance must include AWS credentials in their API requests. Instead of doing it manually, you can use IAM roles to manage temporary credentials for applications that run on an Amazon EC2 instance. 
+	
+Lightsail vs Beanstalk = If you need more flexibility on configuration,go with Elastic Beanstalk. But if you just want to run a simple application in the cloud, Lightsail might suit your need. Elastic Beanstalk is an easy-to-use service that manages, deploys, and scales Web App by handling capacity provisioning, load balancing, auto-scaling, and application health monitoring. Under the hood, it uses Cloud Formation to provision its resources such as EC2 Instances, Auto Scaling Group, Load Balancers, S3 and optionally AWS Relational Database Service (RDS). Lightsail gives you a pre-configured Virtual Private Server platform with the simplified management console. Lightsail plan comes in a bundle with a fixed amount of RAM, vCPUs, SSD and a free data transfer allowance, with static IP addresses and DNS management.
+
+for docker elastic beanstalk is the only option. beanstalk supports autoscaling while lightsail didn't.
+
+lightsail supports both linux and windows and Application templates includes WordPress, Drupal, Joomla!, Ghost, Magento, Redmine, LAMP, Nginx (LEMP), MEAN, Node.js, Django, and more.
+
+bootstrapping an instance = practice of automatically installing an application on an instance at the first boot. The bootstrapping process can be slower if you have a complex application or multiple 
+applications to install. Managing a fleet of applications with several build tools and dependencies can be a challenging task during rollouts. Furthermore, your deployment service should be designed to perform faster rollouts to take advantage of Auto Scaling.
+
+Continous deployment(cd) = two methods for cd
+	In-place upgrade = performing application updates on existing Amazon EC2 instances. There are several deployment services that are especially useful for an in-place upgrade: AWS CodeDeploy, AWS OpsWorks, and AWS Elastic Beanstalk. AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances and lambda functions. when using aws opworks for deployment, AWS OpsWorks Stacks triggers a Deploy event, which runs each layer’s Deploy recipes. AWS OpsWorks Stacks also installs stack configuration and deployment attributes that contain all of the information needed to deploy the application, such as the application’s repository and database connection data. AWS Elastic Beanstalk provides several options for how deployments are processed, including deployment policies (All at Once, Rolling, Rolling with Additional Batch, and Immutable) and options that let you configure batch size and health check behavior during deployments.
+	Replacement upgrade = provisioning new Amazon EC2 instances, redirecting traffic to the new resources, and terminating older instances. For replacement upgrades, you provision a new environment with the deployment services, such as AWS Elastic Beanstalk, AWS CloudFormation, and AWS OpsWorks.
+	
+Blue/Green Deployments = Blue/green is a method where you have two identical stacks of your application running in their own environments. You use various strategies to migrate the traffic from your current application stack (blue) to a new version of the application (green). This method is used for a replacement upgrade. During a blue/green deployment, the latest application revision is installed on replacement instances and traffic is rerouted to these instances either immediately or as soon as you are done testing the new environment.
+
+AWS OpsWorks Stacks = AWS OpsWorks is also recommended if you want to manage your infrastructure with 
+a configuration management system such as Chef. 
+
+we need to have optional mapping section in aws cloudformation template to enable multi-region deployments.
+The cfn-signal helper script signals AWS CloudFormation to indicate whether Amazon EC2 instances have been successfully created or updated. If you install and configure software applications on instances, you can signal AWS CloudFormation when those software applications are ready.
+
+to deploy new version of application in different environment you need to change cname. 
+
+Step functions = AWS Step Functions is a serverless function orchestrator that makes it easy to sequence AWS Lambda functions and multiple AWS services into business-critical applications. Through its visual interface, you can create and run a series of checkpointed and event-driven workflows that maintain the application state. The output of one step acts as an input to the next. Each step in your application executes in order, as defined by your business logic.
+
+Auto Scaling = Dynamic scaling responds to changing demand and predictive scaling automatically schedules the right number of EC2 instances based on predicted demand. Dynamic scaling and predictive scaling can be used together to scale faster. Auto Scaling uses both this features for scaling. scaling in means decreasing size whereas scaling out means increasing size. You can specify min, max and desired no of instances. your ec2 instances are orgainzed in groups. groups are treated as logical units for scaling. your group uses launch configuration to launch ec2 instances. we can use lifecycle hooks to to perform custom operations when changing instance state.
+
+If you suspend the Terminate process, your Auto Scaling group can grow up to ten percent larger than its maximum size, because this is allowed temporarily during rebalancing activities. If the scaling process cannot terminate instances, your Auto Scaling group could remain above its maximum size until you resume the Terminate process.
+auto scaling groups cannot scale out to other aws regions. Launching an Auto Scaling Group with subnets across 2 Availability Zones and setting the minimum and maximum capacity to 1 is incorrect as setting the maximum capacity to 1 means that the Auto Scaling group will not be able to scale out as required.
+
+scaling policy type = 
+	Target tracking scaling = scales in or out to keep target metrics value near to user provided value
+	step scaling = adjust in proportional of size of alarm breach. step scaling is better and generally recommended than simple scaling.
+	simple scaling = scale in or out upon breach of threshold.
+	scheduled scaling = scale in or out at specific timing.
+	
+A cooldown period helps you prevent your Auto Scaling group from launching or terminating additional instances before the effects of previous activities are visible. auto scaling marks instance unhealthy if it is in other state than running.
+
+auto scaling standby state = auto scaling didn't do health check on standby instances. standby state is used for performing updates/changes/troubleshooting or replacement instaces being launched.
+
+Resource or service-specific tags are often used to filter resources during infrastructure automation activities. Automation tags are used to opt in or opt out of automated tasks or to identify specific versions of resources to archive, update, or delete. For example, many customers run automated start/stop scripts that turn off development environments during non-business hours to reduce costs. In this scenario, Amazon Elastic Compute Cloud (Amazon EC2) instance tags are a simple way to identify the specific development instances to opt out of this action. For scripts used to locate and delete stale, out-of-date, or rolling Amazon EBS snapshots, snapshot tags can add an extra dimension of search criteria.
+
+AWS codeDeploy = if you have a fleet of EC2 instances inside an Auto Scaling Group and a couple of Lambda functions then you can use code Deploy for automating deployments. CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, or serverless Lambda functions. It allows you to rapidly release new features, update Lambda function versions, avoid downtime during application deployment.
+
+AppSpec file = An application specification file (AppSpec file), which is unique to CodeDeploy, is a YAML-formatted or JSON-formatted file. The AppSpec file is used to manage each deployment as a series of lifecycle event hooks, which are defined in the file.

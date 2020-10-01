@@ -1,8 +1,8 @@
 AWS lesser known services
 
-amazon artifact = No cost, self-service portal for on-demand access to AWS security and  compliance reports from third-party auditors who have tested and verified our compliance with a variety of global, regional, and industry specific security standards and regulations.
+amazon artifact = No cost, self-service portal for on-demand access to AWS security and  compliance reports from third-party auditors.
 
-aws certificate manager = With AWS Certificate Manager, you can quickly request a certificate, deploy it on ACM-integrated AWS resources, such as Elastic Load Balancers, Amazon CloudFront distributions, and APIs on API Gateway, and let AWS Certificate Manager handle certificate renewals.
+aws certificate manager = create security(SSL/TLS) certificate, deploy it on ACM-integrated AWS resources, such as Elastic Load Balancers, Amazon CloudFront distributions, and APIs on API Gateway, manage, renew and retire them to provide secure connection between user and aws infrastructure.
 
 aws elastic transcode(deprecated) = converts media files to different formats
 aws Elemental MediaConvert = same as aws elastic transcode.
@@ -11,23 +11,17 @@ aws sts (security token service) = provides temporary limited priviledge credent
 
 Autonomous System Number (ASN) = An Autonomous System (AS) is a group of one or more IP prefixes (lists of IP addresses accessible on a network) run by one or more network operators that maintain a single, clearly-defined routing policy. Network operators need Autonomous System Numbers (ASNs) to control routing within their networks and to exchange routing information with other Internet Service Providers (ISPs).
 
-CloudWatch metric math = Amazon CloudWatch can create cross-account cross-region dashboards. Use CloudWatch metric math to aggregate and transform metrics from multiple accounts and Regions. Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics. You can visualize the resulting time series on the CloudWatch console and add them to dashboards.
+CloudWatch metric math = Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics. You can visualize the resulting time series on the CloudWatch console and add them to dashboards.
 
 amazon quicksight = a fully managed service that lets you easily create and publish interactive dashboards. 
 
-AWS Cost and Usage report =  It just lists the AWS usage for each service category used by an account and its IAM users in hourly or daily line items, as well as any tags that you have activated for cost allocation purposes.
-
 Amazon Forecast = a fully managed service that uses machine learning to deliver highly accurate forecasts of any time-series data
-
-AWS Cost Explorer = Cost Explorer can display up to 12 months of historical data (if you have that much), the current month, and the forecasted costs for the next three months. for following scenario its best option : The SysOps Administrator needs to view the costs for the current month as well as the last three months. She also needs to be able to forecast expenses for the current billing period.
-
-aws budget = the ability to set custom budgets that alert you when your costs or usage exceed, or are forecasted to exceed, your budgeted amount. 
 
 aws glue = AWS Glue is a fully managed ETL (extract, transform, and load) service that makes it simple and cost-effective to categorize your data, clean it, enrich it, and move it reliably between various data stores and data streams. 
 
 amazon swf = The Amazon Simple Workflow Service (Amazon SWF) makes it easy to build applications that coordinate work across distributed components.
 
-amazon neptune = Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets. 
+amazon neptune = fully managed graph database service 
 
 aws x-ray = You can use AWS X-Ray to trace and analyze user requests as they travel through your Amazon API Gateway APIs to the underlying services. X-Ray gives you an end-to-end view of an entire request, so you can analyze latencies in your APIs and their backend services. 
 
@@ -51,15 +45,14 @@ aws acl = It defines which AWS accounts or groups are granted access and the typ
 
 aws macie = Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII). This can help you meet regulations, such as the Health Insurance Portability and Accountability Act (HIPAA) and General Data Privacy Regulation (GDPR). 
 
-aws budgets = Using AWS Budgets, you can set a budget that alerts you when you exceed (or are forecasted to exceed) your budgeted cost or usage amount. 
-
 aws cost explorer (beginner friendly)= AWS Cost Explorer lets you explore your AWS costs and usage at both a high level and at a detailed level of analysis, and empowering you to dive deeper using a number of filtering dimensions (e.g., AWS Service, Region, Linked Account, etc.).You can get started quickly by exploring your data (in chart and tabular format) at a high level (for example, total costs and usage across all accounts). From there, you can create highly specific requests (for example, m2.2xlarge costs within account Y with the “project: secretProject” tag applied).
+Cost Explorer can display up to 12 months of historical data (if you have that much), the current month, and the forecasted costs for the next three months. for following scenario its best option : The SysOps Administrator needs to view the costs for the current month as well as the last three months. She also needs to be able to forecast expenses for the current billing period.
 
 AWS Cost & Usage Report (very detailed)= The AWS Cost & Usage Report is your one-stop shop for accessing the most detailed information available about your AWS costs and usage. The AWS Cost & Usage Report can be generated at an hourly and/or daily level of granularity.  It includes additional metadata about AWS services, pricing, and reservations (for example, Amazon EC2 Reserved Instances). 
 
-AWS Firewall Manager = used to simplify your AWS WAF administration and maintenance tasks across multiple accounts and resources. 
+aws budget = the ability to set custom budgets that alert you when your costs or usage exceed, or are forecasted to exceed, your budgeted amount. 
 
-AWS Shield Advanced = In addition to the network and transport layer protections that come with Standard, AWS Shield Advanced provides additional detection and mitigation against large and sophisticated DDoS attacks, near real-time visibility into attacks, and integration with AWS WAF, a web application firewall.
+AWS Firewall Manager = used to simplify your AWS WAF administration and maintenance tasks across multiple accounts and resources. 
 
 Elastic Fabric Adapter (EFA) = a network interface for Amazon EC2 instances that enables customers to run applications requiring high levels of inter-node communications at scale on AWS. 
 
@@ -73,3 +66,14 @@ you can only set up permission sets in AWS SSO and not in AWS Organizations.
 EC2Rescue = an easy-to-use tool that is primarily used to diagnose and troubleshoot possible problems in your Amazon EC2 instances. 
 
 cloudformation designer = graphic tool for creating viewing and modifying cloudformation template.
+
+The cfn-get-metadata helper script is only a wrapper script that retrieves either all metadata that is defined for a resource or path to a specific key or a subtree of the resource metadata, but does not interpret the resource metadata, install packages, create files, and start services.
+
+The cfn-init helper script interprets the metadata that contains the sources, packages, files, and services. You run the script on the EC2 instance when it is launched. The script is installed by default on Amazon Linux and Windows AMIs.
+
+The cfn-signal helper script is a wrapper thats signals an AWS CloudFormation WaitCondition for synchronizing other resources in the stack when the application is ready.
+
+The cfn-hup helper script is a daemon that checks for updates to metadata and executes custom hooks when changes are detected. 
+
+Finally, there is no helper script named cfn-deploy.
+

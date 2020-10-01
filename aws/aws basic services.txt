@@ -1,10 +1,12 @@
 
-There is generally three tier architecture.
-	front-end/web = it should only talk with middle ware.
-	backend/middle ware = it should talk with both frontend and db layer.
-	db layer = it should only be accessible from middleware.
-
 Architecture/system lives inside aws region.(eg. us-west-2 oregon). regions are made of multiple availability zones. Each aws region is seperate geographic area. Each region has multiple isolated physical locations known as availability zones.
+
+Generally aws services are regional scope.
+Highesh scope is global. Regional is middle scope and lowest is AZ (Availability Zone) scope.
+aws global scope services = cloudfront, Route 53, IAM
+aws AZ scope services = only subnet(VPC is regional), ec2 instance, ebs volume 
+All other services are regional in scope.
+some service scope depends upon where they used for e.g. WAF when put in front of cdn will be of global scope and when placed in front of load balancer its regional. 
 
 AZ = Availability Zones
 nACL = network access control list. A network access control list (ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
@@ -17,7 +19,7 @@ Route tables = A route table is a set of rules that is used to determine where d
 EC2 = Elastic Compute Cloud.
 DynamoDB = fully-managed NoSQL database service
 ElastiCache = an in-memory data store or cache in the cloud.
-s3 = simple storage service(object storage.)
+s3 = simple storage service(object storage)
 EBS = Elastic Block Service = persistent block storage volumes
 Glacier = extremely low-cost storage service for data backup and archival.
 Inspector =  automated security assessment service. Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices. Examples of built-in rules include checking for access to your EC2 instances from the internet, remote root login being enabled, or vulnerable software versions installed.
@@ -29,41 +31,33 @@ SNS = Simple Notification Service = coordinates and manages the delivery or send
 SES = Simple Email Service = for sending automated emails
 WAF = Web Application Firewall = which traffic to allow or block to your web applications. AWS WAF can help you block common attack patterns to your VPC such as SQL injection or cross-site scripting, this is still not enough to withstand DDoS attacks. 
 Shield = managed Distributed Denial of Service (DDoS) protection service
+Shield Advanced = Advanced type of DDoS attacks such as http, UDP, TCP floods. In addition to the network and transport layer protections that come with Standard, AWS Shield Advanced provides additional detection and mitigation against large and sophisticated DDoS attacks
 ARN = amazon resource name
 Amazon Virtual Private Cloud (VPC) = provides users a virtual private cloud, by "provision[ing] a logically isolated section of Amazon Web Services (AWS) Cloud"
 AMI = Amazon Machine Image. AMIs are regionally scoped—to use an image in another region, you will need to copy the image to all regions where it will be used.
 NAT = Network Address Translator.
-CNAME = Canonical Name Record or Alias Record.
+CNAME = Canonical Name Record
 cloudformation = Infrastructure as a service. Automates the processs of infrastructure provisioning by using a wizard to create a template which can be used in any region. Alternatively you can write it manually.
+aws guarddutyp = Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts, workloads, and data stored in Amazon S3. 
+aws eks = used to host kubernates
+codeCommit = a private git version control
+aws application discovery service = AWS Application Discovery Service helps enterprise customers plan migration projects by gathering information about their on-premises data centers. This info can be used to find out TCO (Total Cost of Ownership)
 
 Security Groups = acts as a virtual firewall that controls the traffic for one or more instances
 snapshots = back up the data on your Amazon EBS volumes to Amazon S3 by taking point-intime snapshots.
 tag = user defined key-value pair.  
 
-secure network example
-Public Elastic Load Balancing The only security group that allows full public access
-Web Tier Amazon EC2 This accepts traffic only from public Elastic Load Balancing.
-Private Elastic Load Balancing This accepts traffic only from Web Tier Amazon EC2.
-Application Tier Amazon EC2 This accepts traffic only from private Elastic Load Balancing.
-Amazon ElastiCache This accepts traffic only from Application Tier Amazon EC2.
-Amazon Relational Database Service (Amazon RDS) This accepts traffic only from Application Tier Amazon EC2.
-Network Address Translation (NAT) This is used only for internally initiated outbound traffic.
-
 difference between storage type EBS s3 amd ephemeral ?
-Ephemeral storage depends upon your instance size and vary accordingly. It is temporary storage and will be deleted when instance stopped, rebooted or terminated. fastest boot time.
-EBS is persistent storages so stopping or rebooting will not loose data from it. but terminating will delete the data. medium boot time.
+Ephemeral storage depends upon your instance size and vary accordingly. It is temporary storage and will be deleted when instance stopped, rebooted or terminated. medium boot time
+EBS is persistent storages so stopping or rebooting will not loose data from it. but terminating will delete the data. fast boot time.
 S3 is also persistent storage but in case of EC2 instace backed by S3 it will behave like Ephemeral storage. slow boot time.
-
-AWS IAM controls access to AWS services and resources. It does not control access to the Amazon EC2 operating system or application-level authentication. There are some specific AWS security tools, such as Amazon Inspector, Amazon VPC Flow Logs and Amazon CloudWatch Logs.
-
-cloudwatch provides monitoring for thousands of metrics for 90 services.
-AWS CloudTrail records every API call in the AWS system.These records and other log files are processed through Amazon CloudWatch Logs, which analyze text data for patterns that trigger alerts and corresponding actions.
 
 Some security features users of cloud must use
 	individual user account and credentials
-	SSL/TLS for data transmission
-	encryption of data at storage.
+	SSL/TLS for data in transit.
+	encryption of data at rest.
 	user activity logging
+	
 aws is also responsible for security configuration of its products that are considered as managed services.
 e.g. DynamoDB, RDS, for this aws will handle basic security tasks such as guest operating system and database patching, firewall config and disaster recovery. for most of the managed services all you have to do is configure logical access control and and protect account credentials.
 

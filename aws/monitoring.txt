@@ -1,0 +1,68 @@
+AWS monitoring
+
+things monitored in ec2 monitoring = CPU load, disk I/O, and network I/O
+
+Monitoring the Status of Your AWS Cloud Services 
+aws provides below two ways to do that 
+	AWS Service Health Dashboard = With the AWS Service Health Dashboard, you can view current as well as past service health for all services across all regions except china and us gov.you can personalize it to track your AWS Cloud services.
+	AWS Personal Health Dashboard = provides information about AWS health events that can affect your account. The information is presented in two ways: a dashboard that shows recent and upcoming events organized by category and a full event log that shows all events from the past 90 days.
+
+Amazon CloudWatch = monitors the health and status of AWS resources in real time.
+Amazon CloudWatch monitors your Amazon Web Services (AWS) resources and the applications you run on AWS in real time. You can use CloudWatch to collect and track metrics, which are variables you can measure for your resources and applications.
+Amazon CloudWatch Logs = collects and monitors log files, can set alarms, and automatically reacts to changes in AWS resources. You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.
+Amazon CloudWatch Alarms = monitor a single metric and perform one or more actions based on customer-defined criteria. 
+Amazon CloudWatch Events = delivers a near real-time stream of system events that describe changes in AWS resources. An event indicates a change in your AWS environment. AWS resources can generate events when their state changes. For example, Amazon EC2 generates an event when the state of an EC2 instance changes from pending to running, and Amazon EC2 Auto Scaling generates events when it launches or terminates instances. AWS CloudTrail publishes events when you make API calls.
+for EC2 instances Basic monitoring, which collects metrics every five minutes, is provided by default without any additional costs.
+
+Metrics = At the core of Amazon CloudWatch are metrics , which are time-ordered sets of data points that contain information about the performance of resources.
+
+Amazon CloudWatch collectd plugin = publishing extension for collectd , an open-source statistic gathering daemon. All configured collectd metrics are automatically published to Amazon CloudWatch. 
+
+Data points are not returned from Amazon CloudWatch in chronological order.
+
+Namespaces = A namespace is a container for a collection of Amazon CloudWatch metrics. There are no default namespaces. When creating a custom metric, a namespace is required.
+
+Dimensions = A dimension is a name/value pair that uniquely identifies a metric and further clarifies the metric data stored. A metric can have up to 10 dimensions. Think of dimensions as categories or metadata for those characteristics.
+
+If unit is not provided for metrics then amazon cloudwatch uses None as unit. For metrics that are continuously emitted, Amazon CloudWatch sends a notification until three failures are found. When monitoring, using an average value can hide events that are drastically different than normal ones. When monitoring a maximum value, however, a single, random spike can skew the results. To avoid this, monitor the 95th percentile of CPU utilization to check for instances with an unusually heavy load.
+
+An Amazon CloudWatch Alarm is always in one of three states: OK , ALARM , or INSUFFICIENT_DATA .
+■ When the monitored metric is within the range that has been defined as acceptable, it is in the OK state.
+■ When a metric breaches a user-defined threshold, it transitions to the ALARM state.
+■ If the data needed to make a decision is missing or incomplete, it is in the INSUFFICIENT_DATA state.
+
+aws cloudwatch is push service i.e. cloudwatch didn't pull changes but changes and metrics are pushed to it by other services. Also cloudwatch cannot monitor multiple metrics for a single alarm to do this we need to aggregate all the metrics and send to cloudwatch. cloudwatch preserve history for two weeks. Also you cannot change the name of existing alarm. The number of evaluation period for an alarm multiplied by length of each evaluation period cannot exceed one day.
+
+aws rotue 53 and RDS service provides detailed monitering(1 min interval) without any additional charges.
+min time period for basic cloudwatch logs monitoring is 5 mins and for detailed min time possible is 1 min.
+Amazon CloudWatch will receive and aggregate statistical data based on the namespace and metric. namespace is must have parameter for sending data to cloudwatch.
+You can use high resolution mode to get time per second.
+
+You can aggregate the metrics for AWS resources across multiple resources. CloudWatch has in built cross-Region functionality to aggregate statistics from different Regions.
+
+Using AWS CloudTrail = get a history of AWS API calls and related events for your account. To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
+CloudTrail captures all API calls for AWS CloudFormation as events, including calls from the AWS CloudFormation console and from code calls to the AWS CloudFormation APIs. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for AWS CloudFormation. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in Event history. 
+AWS CloudTrail records every API call in the AWS system.These records and other log files are processed through Amazon CloudWatch Logs, which analyze text data for patterns that trigger alerts and corresponding actions.
+
+AWS Config = AWS Config provides a detailed view of the configuration of AWS resources in an AWS account, including how the resources are related to one another.
+
+VPC Flow Logs = enables you to capture information about the IP traffic going to and from network interfaces in your VPC. Flow log data can be published to Amazon CloudWatch Logs and Amazon S3. After you've created a flow log, you can retrieve and view its data in the chosen destination.
+Flow logs can help you with a number of tasks; for example, to troubleshoot why specific traffic is not reaching an instance, which in turn helps you diagnose overly restrictive security group rules. You can also use flow logs as a security tool to monitor the traffic that is reaching your instance.
+
+SurgeQueueLenght = total no of requests or connections pending to routed to healthy instance.
+SpillOverCount = When requests exceed the maximum SurgeQueueLength, the SpilloverCount metric starts to measure rejected requests. The maximum SurgeQueueLength is 1024.
+RequestCount = the number of requests completed or connections made during a specified interval (1 or 5 minutes).
+
+Estimating Costs
+two tools for estimating costs
+	AWS Simple Monthly Calculator = this is general purpose to calculate your total cost.
+	AWS Total Cost of Ownership (TCO) Calculator = AWS TCO Calculator allows you to estimate the cost savings when using AWS and provides a detailed set of reports that can be used in executive presentations.
+	
+AWS Trusted Advisor = recommendations on how to potentially reduce your spending with AWS. It tells us about how to improve security and reduce cost.
+
+AWS Service Catalog = allows IT administrators to create, manage, and distribute portfolios of approved products to end users who can then access the products they need in a personalized portal.
+
+The primary tool used for monitoring your Amazon ECS clusters is Amazon CloudWatch. There is no additional cost for using Amazon ECS. The only charges are for the Amazon EC2 instances or AWS Lambda requests and compute time.
+
+To help customers more actively track their AWS resource usage against service limits, AWS offers the AWS Limit Monitor solution, a reference implementation that automatically provisions the services necessary to proactively track resource usage and send notifications as you approach limits. The solution is easy-to-deploy and leverages AWS Trusted Advisor Service Limits checks that display your usage and limits for specific AWS services.
+With the AWS Limit Monitor, you can receive email notifications or notifications can be sent to your existing Slack channel, enabling you to request limit increases or shut down resources before the limit is reached. Hence, setting up AWS Limit Monitor by using AWS Lambda, AWS Trusted Advisor, and CloudWatch Events rules to track and monitor your AWS service limits which would be sent to your Slack Channel is correct.

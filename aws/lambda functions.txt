@@ -9,6 +9,11 @@ AWS Lambda functions are invoked by the following:
 One of the recommendations for writing code for AWS Lambda is to make sure that the code is stateless (that is, it does not make reference to any underlying infrastructure).
 AWS lambda can run continously only for 15 minutes.
 
+If you're using the AWS Lambda compute platform, you must choose one of the following deployment configuration types to specify how traffic is shifted from the original AWS Lambda function version to the new AWS Lambda function version:
+	Canary: Traffic is shifted in two increments. You can choose from predefined canary options that specify the percentage of traffic shifted to your updated Lambda function version in the first increment and the interval, in minutes, before the remaining traffic is shifted in the second increment.
+	Linear: Traffic is shifted in equal increments with an equal number of minutes between each increment. You can choose from predefined linear options that specify the percentage of traffic shifted in each increment and the number of minutes between each increment.
+	All-at-once: All traffic is shifted from the original Lambda function to the updated Lambda function version at once.
+
 Amazon CloudWatch provides metrics for AWS Lambda. These metrics include,
 but are not limited to, the following:
 	Invocation count

@@ -1,0 +1,56 @@
+aws compute
+
+aws EC2 instance has following features
+	Virtual computing environments, known as instances
+	Preconfigured templates for your instances, known as AMIs Various configurations of CPU, memory, storage, and networking capacity for your instances, known as instance types
+	Secure login information for your instances using key pairs (AWS stores the public key, and you store the private key in a secure place.)
+	Storage volumes for temporary data that’s deleted when you stop or terminate your instance, known as instance store volumes
+	Persistent storage volumes for your data using Amazon Elastic Block Store (Amazon EBS), known as Amazon EBS volumes
+	Multiple physical locations for your resources, such as instances and Amazon EBS volumes, known as regions and Availability Zones
+	A firewall that enables you to specify the protocols, ports, and source IP ranges that can reach your instances using security groups
+	Static IPv4 addresses for dynamic cloud computing that can be assigned to an individual instance, known as Elastic IP addresses
+	IPv6 addresses that can also be assigned to instances 
+	Virtual networks that you can create that are logically isolated from the rest of the AWS Cloud and that you can optionally connect to your own network, known as Amazon Virtual Private Clouds (Amazon VPCs)
+
+Although you can only access instance metadata and user data from within the instance itself, the data is not protected by cryptographic methods. Anyone who can access the instance can view its metadata. Therefore, you should take suitable precautions to protect sensitive data (such as long-lived encryption keys). You should not store sensitive data, such as passwords, as user data.
+
+User data is data which you can pass to the instance upon initial boot up or in subsequent boots. User data allows you to specify parameters for configuring your instance or attach a simple script. You can also use this data to build more generic AMIs that can be modified by configuration files supplied at launch time. For example, you can change a basic AWS Linux AMI to become a web server using user data. User data is limited to 16 KB, but you can load larger files by giving links to s3.
+
+Instance types
+General purpose
+	T = Turbo(burstable) = can give more performance than baseline for some time.
+	M = Mostly used = general purpose instances with balance of cost and performance.
+	A = ARM processor based
+Memory Optimized(RAM)
+	R = RAM  provides more ram for memery intensive application.
+	X = extra Ram 
+	z1d = high compute and memory
+Storage optimized
+	H1, D2 ,I (nvme SSD), I3en
+Compute Optimized 
+	C, z1d
+for AI and ML
+	G (gpu)
+	P (premium gpu)
+	F (FPGA)
+a = amd   g = graviton   n = network optimized    e = extra capacity     d = directly attached
+	
+e.g. T4g.large   Turbo 4th gen graviton processor 2 vCPU
+large = 2 vCPU
+
+Dedicated Instance = Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud (VPC) on hardware that's dedicated to a single customer. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
+There are no performance, security, or physical differences between Dedicated Instances and instances on Dedicated Hosts. However, there are some differences between the two. 
+	Use Dedicated Hosts for more visibility into the physical host for BYOL. You should also try Dedicated Hosts if your app requires minimal latency between instances(where you have per-socket, per-core, or per-VM software licenses.)
+	Use Dedicated Instances if you are only concerned with compliance with regulations
+
+private ip address = It is assigned at instace creation and only removed when instace is terminated. It has no impact on instance reboot and stop.
+public and elastic IP address behave differently than private ip address. when instance will stop public ip address will be returned to aws pool of public IP addresses. elastic ip address is kept in same account available for reassignment for particular aws account.
+
+aws instance pricing
+on-demand = no upfront commitment, pay as you go.
+reserved instance = upfront commitment, discount on on-demand pricing. you have to commit for minimum a year.
+spot = bidding for instance when your price exceed bidding amount you get spot instace.
+
+standarad vs convertible vs scheduled reserved instances = You can increase or decrease the instance size of both Standard and Convertible Reserved Instance. However, only the Convertible Reserved instance can change the instance type. Scheduled RI are applicable to instance deployed for certain period of time recurring on daily, weekly and monthly basis.
+
+placement group = A placement group is a logical grouping of instances within a single Availability Zone. Using placement groups enables applications to participate in a low-latency, 10 Gigabits per second (Gbps) network. Placement groups are recommended for applications that benefit from low network latency, high network throughput, or both.

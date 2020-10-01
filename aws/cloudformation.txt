@@ -1,0 +1,28 @@
+cloudformation
+
+cloudformation template = json/yaml text file. you can save file in .json, .yaml, .template or .txt format. 
+template can have multiple section but only Resources section is mandatory. some of important sections as below.
+	Format Version, Description, Metadata sections = are used to provide more information about template.
+	Parameters = Values to pass to your template at runtime (when you create or update a stack). You can refer to parameters from the Resources and Outputs sections of the template.
+	Mappings(key=values pair) = useful when you want to create resources in other region.
+	conditions = decide whether certain resources are created or whether certain resource properties are assigned a value during stack creation or update. For example, you could conditionally create a resource that depends on whether the stack is for a production or test environment.
+	Resources(required) = Specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket.
+	Outputs = Describes the values that are returned whenever you view your stack's properties.
+aws cloudformation uses Change Set to preview how the proposed changes to a stack might impact your running resources in AWS. It uses stack Policy to prevent stack resources from being unintentionally updated or deleted during a stack update. To manage multiple templates you can use stackSets. 
+
+When you need change or update stack, For example, if you have a stack with an EC2 instance, you can update the stack to change the instance's AMI ID. When you update a stack, you submit changes, such as new input parameter values or an updated template. AWS CloudFormation compares the changes you submit with the current state of your stack and updates only the changed resources. AWS CloudFormation provides two methods for updating stacks:
+   1. Direct update
+   2. Creating and executing change sets.
+When you directly update a stack, you submit changes and AWS CloudFormation immediately deploys them. Use direct updates when you want to quickly deploy your updates.
+With change sets, you can preview the changes AWS CloudFormation will make to your stack, and then decide whether to apply those changes. Change sets are JSON-formatted documents that summarize the changes AWS CloudFormation will make to a stack.
+
+The create-stack CloudFormation CLI command creates a stack as specified in the template. After the call completes successfully, the stack creation starts. You can check the status of the stack via the DescribeStacks API.
+It has an --on-failure optional parameter which determines what action will be taken if stack creation fails. Its default value is ROLLBACK which means that the CloudFormation service will automatically rollback the stack in the event of failures. The value must be one of the following: DO_NOTHING, ROLLBACK, or DELETE.
+
+drift detection is just a feature of CloudFormation that enables you to detect whether a stack's actual configuration differs, or has drifted, from its expected configuration. 
+
+SSM = System Software Manager
+
+cloudformation system manager state manager (replacement for cfn-init)= Systems Manager State Manager is a scalable configuration management service that automates the process of keeping your Amazon EC2 and on-premises infrastructure in a state that you define. With State Manager you can bootstrap EC2 instances with software at start-up, configure network settings, join Windows instances to a Microsoft Active Directory domain, and run scripts on Windows or Linux managed instances. To execute these tasks with State Manager, you create an association, which maps an automation or command document to target instances. With State Manager, we can run many of the same tasks as you would with cfn-init but with multiple added benefits.
+
+cloudformation system manager parameter store = used to centrally manage all parameters in cloudformation template and avoid rewriting templates just to make some parameter changes. This way you can avoid hardcoding or adding parameters in plaintext to the template.

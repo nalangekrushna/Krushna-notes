@@ -1,0 +1,83 @@
+RDS = a hosted database service which provides multiple database products to choose from, including Aurora, PostgreSQL, MySQL, MariaDB, Oracle, and Microsoft SQL Server.
+
+Amazon RDS Multi-AZ deployments do not fail over automatically in response to database operations such as long running queries, deadlocks, or database corruption errors. RDS instance has retention period from 0 to 35 days. but if you can only set min retention period to 1 and not to zero then you have read replicas due to which you cannot set it to zero.
+
+following tasks are carried out by AWS for database hosted in the AWS RDS service :
+creating and maintaining backups with a point in time recovery of 5 minutes. 
+critical security patches installation.
+
+user is responsible for Query Optimization in RDS to improve its performance.
+
+Amazon Aurora = fully managed, MySQL-compatible, relational database engine. An Amazon Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone containing a copy of the cluster data. Two types of instances make up an Aurora DB cluster
+	Primary Instance = A primary instance supports read-write workloads and performs all of the data modifications to the cluster volume. Each Amazon Aurora DB cluster has one primary instance.
+	Aurora Replica = An Aurora Replica supports only read operations. Each DB cluster can have up to 15 Aurora Replicas in addition to the primary instance
+Aurora cluster volume/table can grow to a maximum size of 64 TB.
+
+replication lag is variable depending on the rate of database change. That is, during periods where a large amount of write operations occur for the database, you might see an increase in replica lag. It is usually less than 100 ms.
+
+you can also use Amazon Aurora Multi-Master which is a feature of the Aurora MySQL compatible edition that adds the ability to scale out write performance across multiple Availability Zones, allowing applications to direct read/write workloads to multiple instances in a database cluster and operate with higher availability. You should use Aurora Multi-Master or Amazon Aurora Replicas for high availability.
+
+Aurora backtrack feature = Backtracking "rewinds" the DB cluster to the time you specify. Backtracking is not a replacement for backing up your DB cluster so that you can restore it to a point in time.
+
+Aurora ML = Aurora ml enables you to add ML-based predictions to applications via the familiar SQL programming language. For example, you can build product recommendation systems by writing SQL queries in Aurora that pass customer profile, shopping history, and product catalog data to a SageMaker model, and get product recommendations returned as query results.
+
+Performance metrics by aws
+IOPS = The number of I/O operations completed per second.
+Latency = The elapsed time between the submission of an I/O request and its completion.
+Throughput = The number of bytes per second transferred to or from disk.
+Queue depth = The number of I/O requests in the queue waiting to be serviced.
+
+all above metrics given as average in given time interval
+
+DynamoDB = NoSQL database supporting both document and key/value store models. 
+Amazon DynamoDB global tables  = provide a fully managed solution for deploying a multi-region, multi-master database. When you create a global table, you specify the AWS regions where you want the table to be available.
+
+Items = Each table contains multiple items. An item is a group of attributes uniquely identifiable among all of the other items. Items in Amazon DynamoDB are similar in many ways to rows, records, or tuples in relational database systems.
+Attributes = Each item is composed of one or more attributes. An attribute is a fundamental data element something that does not need to be broken down any further. Attributes in Amazon DynamoDB are similar to fields or columns in relational database systems.
+
+Streams = ordered flow of information about changes to items. A stream record contains information about a data modification to a single item in a DynamoDB table.
+
+Data Types = 
+	Scalar = Number, String, Binary, Boolean, and Null
+		Binary = Binary type attributes can store any binary data, such as compressed text, encrypted data, or images. The length of a binary attribute must be greater than zero and is constrained by the maximum Amazon DynamoDB item size limit of 400 KB.
+	Document = There are two document types, list and map, that can be nested within each other to represent complex data structures up to 32 levels deep. There is no limit on the number of values in a list or a map as long as the item containing the values fits within the Amazon DynamoDB item size limit of 400 KB. An attribute value cannot be an empty string or an empty set; however, empty lists and maps are allowed.
+		List = A list type attribute can store an ordered collection of values. Lists are enclosed in square brackets: [ ... ]. A list is similar to a JSON array. There are no restrictions on the data types that can be stored in a list element, and the elements in a list element can be different types.
+		Map = A map type attribute can store an unordered collection of name/value pairs. Maps are enclosed in curly braces: { ... }. A map is similar to a JSON object. There are no restrictions on the data types that can be stored in a map element, and elements in a map do not have to be the same type.
+		Set = number, string, or binary, All of the elements within a set must be of the same type. There is no limit on the number of values in a set, as long as the item containing the values fits within the Amazon DynamoDB 400 KB item size limit. Each value within a set must be unique. The order of the values within a set are not preserved. Amazon DynamoDB does not support empty sets.
+
+Amazon DynamoDB supports eventual consistency and strongly consistent reads. Unless specified otherwise, DynamoDB uses eventually consistent reads as the default. When a strongly consistent read is requested, Amazon DynamoDB returns a response with the most up-to-date data that reflects the updates from all prior write operations that were successful.
+
+DynamoDB Auto Scaling uses the AWS Application Auto Scaling service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns. This enables a table or a global secondary index to increase its provisioned read and write capacity to handle sudden increases in traffic, without throttling. When the workload decreases, Application Auto Scaling decreases the throughput so that you don’t pay for unused provisioned capacity.
+
+Redshift = fully managed data warehousing solution. It automates infrastructure provisioning and administrative tasks, such as backups, replication, and patching. the default backup period for redshift is 1 day.
+
+When you use Amazon Redshift Enhanced VPC Routing, Amazon Redshift forces all COPY and UNLOAD traffic between your cluster and your data repositories through your Amazon VPC. By using Enhanced VPC Routing, you can use standard VPC features, such as VPC security groups, network access control lists (ACLs), VPC endpoints, VPC endpoint policies, internet gateways, and Domain Name System (DNS) servers. If Enhanced VPC Routing is not enabled, Amazon Redshift routes traffic through the Internet, including traffic to other services within the AWS network.
+
+Redshift didn't support CRR (Cross Region Replication) to replicate data to another region you have to copy snapshots from one cluster to cluster in another region(manually or programatically)
+
+Amazon Redshift logs information about connections and user activities in your database. This can be used for security, troubleshooting and auditing.The logs are stored in S3 buckets. below are the log files. 
+- Connection log: logs authentication attempts, and connections and disconnections.
+- User log: logs information about changes to database user definitions.
+- User activity log: logs each query before it is run on the database.
+
+Redshift Spectrum = runs SQL queries directly against exabytes of unstructured data in Amazon S3. Spectrum uses two types of nodes : 1. Leader Node   2. Compute Node
+
+Leader Nodes = A leader node receives queries from client applications, parses the queries, and develops execution plans. These plans are an ordered set of steps to process these queries. The leader node coordinates the parallel execution of these plans with the compute nodes, aggregates the intermediate results from these nodes, and returns the results to the client applications.
+
+Compute Nodes = Compute nodes execute the steps specified in the execution plans and transmit data among themselves to serve these queries. The intermediate results are sent back to the leader node for aggregation before being sent to the client applications.
+
+aws RDS(automated backups) and Redshift provides user configurable automatic backup service and backup rotation options without the need for regular user intervention. By default, an RDS created from the AWS console has a backup retention of 7 days. You can further modify this backup retention period between 0-35 days. For Redshift, by default, automated backups are enabled for the data warehouse cluster with a 1-day retention period. RDS automated backup logs db transactions data in every 5 minutes so you can reliably restore it.
+
+ElastiCache = a distributed in-memory cache environment in the cloud.
+vertically scale elsticache memcached cluster using larger instance type ?
+-> for elasticache memcached cluster below are two types of scaling
+	1. Horizontal scaling
+		a. scale out = adding node to cluster.
+		b. scale in = removing node from cluster.
+	2. Vertical Scaling
+		a. upgrading node type (by creating new cluster and adding higher ec2 type)
+		b. downgrading node type (by creating new cluster and adding lower ec2 type)
+		
+When you scale your Memcached cluster up or down, you must create a new cluster. Memcached clusters always start out empty unless your application populates it. Take note that this is only applicable to the Memcached engine. For the Redis engine, you can directly change the instance type of your cluster without creating a new one.
+- Use the CreateCacheCluster API action to create a new ElastiCache cluster.
+- Specify the new EC2 instance type in the CacheNodeType parameter
