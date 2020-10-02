@@ -2,8 +2,6 @@ AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to
 
 KMS does not reside in your VPC, unlike CloudHSM. KMS does not provide dedicated, third-party validated hardware security modules under your exclusive control, unlike CloudHSM. In KMS, the hardware security modules (HSMs) are managed by AWS and not by you.
 
-SSE-S3 vs SSE-KMS = 
-
 With step scaling policies, you can specify the number of seconds that it takes for a newly launched instance to warm up. Until its specified warm-up time has expired, an instance is not counted toward the aggregated metrics of the Auto Scaling group. While scaling out, AWS also does not consider instances that are warming up as part of the current capacity of the group.
 
 A stack set lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template. All the resources included in each stack are defined by the stack set's AWS CloudFormation template. As you create the stack set, you specify the template to use, as well as any parameters and capabilities that the template requires. Hence, using CloudFormation StackSets to update the stacks on multiple AWS accounts is the best answer in this scenario.

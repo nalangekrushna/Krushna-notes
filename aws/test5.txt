@@ -5,9 +5,7 @@ To allow a user to pass a role to an AWS service, you must grant the PassRole pe
 when you delete Customer Master Keys (CMKs) associated with KMS
 Deleting a customer master key (CMK) in AWS Key Management Service (AWS KMS) is destructive and potentially dangerous. It deletes the key material and all metadata associated with the CMK and is irreversible. After a CMK is deleted, you can no longer decrypt the data that was encrypted under that CMK, which means that data becomes unrecoverable. You should delete a CMK only when you are sure that you don't need to use it anymore. If you are not sure, consider disabling the CMK instead of deleting it. You can reenable a disabled CMK if you need to use it again later, but you cannot recover a deleted CMK.
 
-AWS KMS does not rotate the backing keys of CMKs that are pending deletion 
-A CMK that is pending deletion cannot be used in any cryptographic operation.
-default CMK delete waiting period is 30 days.
+AWS KMS does not rotate the backing keys of CMKs that are pending deletion. A CMK that is pending deletion cannot be used in any cryptographic operation. default CMK delete waiting period is 30 days.
 
 ec2 instances in VPC using aws cli. recently launched EC2 instances do not have public DNS hostnames. reason for the issue ?
 Public IPv4 addresses enable communication over the Internet, while private IPv4 addresses enable communication within the network of the instance (either EC2-Classic or a VPC). 
