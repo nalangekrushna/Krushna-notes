@@ -12,3 +12,19 @@ aws naming conventions
 Api are in Capital case.  e.g.  CreateStack
 parameters are in camel case. eg.   stackParam
 cli commands and cli parameters are in small case with hyphen  e.g.  create-stack,  --on-failure
+
+kinesis = aws kinesis is real time fully managed and scalable data streaming service which enables real time data analytics. It can be used with video, audio, logs, website clickstreams as well as IoT telemetry data. Kinesis video stream uses TLS encryption for data at transport and aws KMS to encrypt data at rest.
+
+kinesis data firehose = used to store data in desired aws storages such as s3 bucket or aws redshift.
+
+aws support service plans
+	aws provide 24*7 access to customer service and documentation to all its customer. Above this there are three plans below.
+	developer = business hour email access to cloud support engineer.
+	business = 24*7 access by email, chat and call to cloud support engineer.
+	enterprise = 24*7 access by email, chat and call to cloud support engineer.
+	
+	
+	
+linux halt command = This command in Linux is used to instruct the hardware to stop all the CPU functions. Basically, it reboots or stops the system. If the system is in runlevel 0 or 6 or using the command with –force option, it results in rebooting of the system otherwise it results in shutdown.
+
+linux dd command = convert and copy.

@@ -38,6 +38,14 @@ a = amd   g = graviton   n = network optimized    e = extra capacity     d = dir
 e.g. T4g.large   Turbo 4th gen graviton processor 2 vCPU
 large = 2 vCPU
 
+for batch processing application use compute optimized instance.
+
+to communicate ec2 instance using ipv6 you should use vpc in dual stack mode. VPCs can operate in a dual-stack mode with the ability to assign both IPv4 and IPv6 addresses on EC2 instances.
+
+VPC comes with default security group which deny all inbound and allow all outbound traffic which gets associated with instance.
+
+By default, when you initiate a shutdown from an Amazon EBS-backed instance (using the shutdown or poweroff command), the instance stops.You can change this behavior so that it terminates instead. you can use InstanceInitiatedShutdownBehavior api to make the changes. to avoid accidental deletion set flag to true in DisableApiTermination api.
+
 Dedicated Instance = Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud (VPC) on hardware that's dedicated to a single customer. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
 There are no performance, security, or physical differences between Dedicated Instances and instances on Dedicated Hosts. However, there are some differences between the two. 
 	Use Dedicated Hosts for more visibility into the physical host for BYOL. You should also try Dedicated Hosts if your app requires minimal latency between instances(where you have per-socket, per-core, or per-VM software licenses.)
@@ -54,3 +62,5 @@ spot = bidding for instance when your price exceed bidding amount you get spot i
 standarad vs convertible vs scheduled reserved instances = You can increase or decrease the instance size of both Standard and Convertible Reserved Instance. However, only the Convertible Reserved instance can change the instance type. Scheduled RI are applicable to instance deployed for certain period of time recurring on daily, weekly and monthly basis.
 
 placement group = A placement group is a logical grouping of instances within a single Availability Zone. Using placement groups enables applications to participate in a low-latency, 10 Gigabits per second (Gbps) network. Placement groups are recommended for applications that benefit from low network latency, high network throughput, or both.
+
+target groups = A target group tells a load balancer where to direct traffic to : EC2 instances, fixed IP addresses; or AWS Lambda functions, amongst others. When creating a load balancer, you create one or more listeners and configure listener rules to direct the traffic to one target group.

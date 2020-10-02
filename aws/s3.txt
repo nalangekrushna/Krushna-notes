@@ -1,0 +1,51 @@
+Simple Storage Service (Amazon S3) = regionally provisioned object storage service. Content saved into Amazon S3 is automatically replicated into at least three facilities. Buckets are globally unique named objects; they are unique across all AWS accounts. all content in Amazon S3 is automatically web-enabled. When content is saved into Amazon S3, there is a unique URL created for the object, which includes the bucket name as the domain, hence the need for global uniqueness.
+Amazon S3 defines a bucket name as a series of one or more labels, separated by periods, which adhere to the following rules:
+■ The bucket name can be between 3 and 63 characters long and can contain only lowercase characters, numbers, periods, and dashes.
+■ Each label in the bucket name must start with a lowercase letter or number.
+■ The bucket name cannot contain underscores, end with a dash, have consecutive periods, or use dashes adjacent to periods.
+■ The bucket name cannot be formatted as an IP address (198.51.100.24).
+
+Amazon S3 supports both virtual-hosted-style and path-style URLs to access a bucket.
+■ In a virtual-hosted-style URL, the bucket name is part of the domain name in the URL. For example: http://bucket.s3.amazonaws.com 
+■ In a path-style URL, the bucket name is not part of the domain (unless you use a region-specific endpoint). For example: US East (N. Virginia) region endpoint, http://s3.amazonaws.com/bucket
+
+Default properties of Amazon S3 keep content private for the account owner until explicit commands to share are invoked. s3 min object size is 0 bytes. max object size can be 5 TB and largest object that can be uploaded in single PUT request is 5 GB. for object above size 100 mb multipart upload capability is recommended.
+
+After you enable versioning on a bucket, it can be in either the enabled or suspended state; you cannot disable versioning on a bucket. If you suspend versioning, Amazon S3 suspends the creation of object versions for all operations but preserves any existing object versions. If you delete after versioning enabled it will only delete current object and not prev object which you have to delete from console.
+
+Amazon S3 – Reduced Redundancy Storage (Amazon S3-RRS) = only backed up in two place and provide durability upto only 4 points. it is your option when questions looking for cheapest solution and does not mention about duarability or where data can be reproduced from some way.
+
+Amazon S3 Infrequent Access (Amazon S3-IA) = high durablity but if only needed to access two times a month. Exam questions that specifically call out objects that are only accessed once a month or less than 20 times a year should most likely be addressed with Amazon S3-IA.
+S3-IA is cost effective only when storage time is min 30 days and min 64 KB file size.
+
+S3 IA One Zone = used for infrequently accessed and easily reproducable as secondary backup option. Data is stored in only one AZ.
+
+S3 advanced services =
+Amazon S3 inventory is one of the tools Amazon S3 provides to help manage your storage. You can use it to audit and report on the replication and encryption status of your objects. You can also specify that the inventory list file is encrypted. You can query Amazon S3 inventory using standard SQL by using Athena or Redshift Spectrum
+S3 Analytics is primarily used to analyze storage access patterns to help you decide when to transition the right data to the right storage class. 
+S3 Select is used to retrieve specific data from the contents of an object using simple SQL expressions without having to retrieve the entire object.
+
+S3 bucket policy vs IAM vs bucket ACL =
+IAM policies define what a principal can do in your AWS environment. S3 bucket policies specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to.
+Use S3 bucket policies if:
+	You want a simple way to grant cross-account access to your S3 environment, without using IAM roles.
+	Your IAM policies bump up against the size limit (up to 2 kb for users, 5 kb for groups, and 10 kb for roles). S3 supports bucket policies of up 20 kb.
+	You prefer to keep access control policies in the S3 environment. 
+
+As a general rule, AWS recommends using S3 bucket policies or IAM policies for access control. S3 ACLs is a legacy access control mechanism that predates IAM. However, if you already use S3 ACLs and you find them sufficient, there is no need to change.
+
+An S3 ACL is a sub-resource that’s attached to every S3 bucket and object. It defines which AWS accounts or groups are granted access and the type of access. When you create a bucket or an object, Amazon S3 creates a default ACL that grants the resource owner full control over the resource.
+
+You can attach S3 ACLs to individual objects within a bucket to manage permissions for those objects. S3 bucket policies and IAM policies define object-level permissions by providing those objects in the Resource element in your policy statements. The statement will apply to those objects in the bucket. 
+
+Note: You attach S3 bucket policies at the bucket level (i.e. you can’t attach a bucket policy to an S3 object), but the permissions specified in the bucket policy apply to all the objects in the bucket.
+
+
+S3 bucket with Versioning and MFA Delete. which operation will require additional authentication ?
+-> change versioning state of bucket, permanantly delete object version.
+By default S3 bucket is unversioned, you can change it to Enabled to enable object versioning. and to suspend it use status as Suspended.
+
+S3 bucket objects encrypted at rest also configure proper permission for bucket
+configuring the S3 bucket to deny all requests if the x-amz-server-side-encryption header is not included
+
+x-amz-meta-x-amz-key is primarily used for client-side encryption to protect the data in transit to S3.

@@ -23,15 +23,8 @@ Disaster Recovery = there are 4 DR plans that you can use.
 	
 	multi site = This is fastest as well as costliest method of active/active failover config. Here we use one to one copy of our infrastructure in other region or AZ.
 
-
 You are managing a multi-region application deployed on AWS. You currently use your own DNS. What types of failover does Amazon Route 53 support? (choose three)
 	-> A. Active-active failover
 	   B. Active-active-passive failover
 	   C. Active-passive failover
-You can set up a variety of failover configurations using Amazon Route 53 alias, weighted, latency, geolocation routing, and failover resource record sets. You can choose Active-active failover, Active-passive failover, Active-active-passive, and other mixed configurations.	   
-
-Amazon Route 53 health checks monitor can monitor one of the following: the health of a specified resource, such as a web server; the status of an Amazon CloudWatch Alarm; and the status of other health checks.
-
-How do you make your hardware VPN redundant? (both options are right but B is best.)
-	-> A. Deploy your own software VPN solution on AWS, ensuring that the software-based VPN is deployed to two separate Availability Zones. Take down the hardware VPN.
-		B. Deploy two customer gateways. Configure your customer gateways to take advantage of the two tunnels provided by the hardware VPN.
+You can set up a variety of failover configurations using Amazon Route 53 alias, weighted, latency, geolocation routing, and failover resource record sets. You can choose Active-active failover, Active-passive failover, Active-active-passive, and other mixed configurations.

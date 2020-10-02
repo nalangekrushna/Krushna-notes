@@ -60,6 +60,7 @@ AWS Directory Service = AWS Directory Service provides multiple ways to use Micr
 
 AWS SSO = manages access to all your AWS Organizations accounts, AWS SSO-integrated applications, and other business applications that support the Security Assertion Markup Language (SAML) 2.0 standard.
 AWS SSO automatically provides you with a store by default, which you can use to manage your users and groups within AWS SSO. If you choose to store them in AWS SSO, create your users and groups and assign their level of access to your AWS accounts and applications. Alternatively, you can choose to Connect to Your External Identity Provider using Azure Active Directory or connect to your Microsoft AD Directory using AWS Directory Service.
+
 A permission set is a collection of administrator-defined policies that AWS SSO uses to determine a user's effective permissions to access a given AWS account. Permission sets can contain either AWS managed policies or custom policies that are stored in AWS SSO.
 you can only set up permission sets in AWS SSO and not in AWS Organizations. 
 

@@ -6,16 +6,15 @@ NAT gateway = NAT gateways in each Availability Zone are implemented with redund
 
 you need public subnet, EIP address and internet gateway to create nat gateway. gateway is created in specific AZ and implemented redundancy in same AZ. NAT gateway supports TCP, UDP and ICMP protocols
 
-VPC endpoint = A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.
-Endpoints are virtual devices. They are horizontally scaled, redundant, and highly available VPC components. They allow communication between instances in your VPC and services without imposing availability risks or bandwidth constraints on your network traffic.
+VPC endpoint = A VPC endpoint enables you to privately connect your VPC to supported AWS services using aws privatelink. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.
 
-aws privatelink = provides private connectivity between different/same account VPCs, AWS services, and on-premises applications. VPC endpoints support private connectivity over AWS Direct Connect, so that applications in your premises will be able to connect to these services via the Amazon private network.
+aws privatelink = provides private connectivity between different/same account VPCs, AWS services, and on-premises applications. 
 
 If working and prev accessible instance stops working then first check if the instance is terminated then check for aws system status. If system status is impaired then stop and start your instance again to run it on healthy system.
 
 route 53 = 
 highly available (global scope) 
-	how dns is setup = create public hosted zone of same as domain name. assign a set of 4 name servers to hosted zone. they can point to web server(ec2 instance) or s3 bucket. add this nameservers to domain. you can use alias record to route traffic to s3 bucket or cloudfront distribution (cdn) or other aws resources.
+	how dns is setup = create public hosted zone of same name as domain name(example.com). assign a set of 4 name servers to hosted zone. they can point to web server(ec2 instance) or s3 bucket. add this nameservers to domain. you can use alias record to route traffic to s3 bucket or cloudfront distribution (cdn) or other aws resources.
 	We can use private dns to resolve dns queries withing amazon vpc. so you can use custom domain names for your internal AWS resources without exposing DNS data to the public Internet.
 	
 Routing policies for Route 53
@@ -39,7 +38,8 @@ Route 53 health check = this supports three types of health checks.
 	1. Health checks that monitor an endpoint.(ip address or domanin name)
 	2. calculated health checks = Health checks that monitor other health checks
 	3. cloudwatch alarm = Health checks that monitor CloudWatch alarms. 
-Egress only internet gateway = only allows outbound(didn't allow to initiate from internet) communitcation over ipv6(ipv4 not supported) to internet. it is stateful and you cannot use security group with it but you can use network acl. Ipv6 addresses are globally unique hence they are public.
+	
+
 
 Oracle db with RAC config is not supported by aws RDS so you have to use ec2 instance to host oracle db.
 
@@ -48,3 +48,30 @@ bastion host = A bastion host is a special-purpose computer on a network specifi
 RAID = raid is accomplished at software level. For greater I/O performance than you can achieve with a single volume, RAID 0 can stripe multiple volumes together; for on-instance redundancy, RAID 1 can mirror two volumes together which can also offer fault tolerance. RAID 5 and RAID 6 are not recommended for Amazon EBS because the parity write operations of these RAID modes consume some of the IOPS available to your volumes.
 
 aws raid 1 vs raid 0 = raid 0 does striping (spliting data evenly across all the disk) while raid 1 does mirroring (create two copies of data.) use raid 0 when performance (I/O) is important and use raid 1 when fault tolerance and data redundancy is important. raid 1 storage capacity is half as it makes two copies of data. reading speed is same in both raid 0 and 1. but writing speed is less in raid 1.
+
+If you want to use your internal private dns resolver with aws then create dns options set that include both DHCP option with dns= amazon provided and internal dns server.
+
+Elastic Network Interfaces (ENIs) = Each instance in your VPC has a default network interface (the primary network interface) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC. ENI is only used to create and attach additional network interfaces for the EC2 instance.
+
+EIP (elastic IP address) = static public IPv4 address. An Elastic IP address is associated with your AWS account and allows you to mask the failure of an instance or software by remapping the address to another Amazon EC2 instance in your account. you can have at max 5 eips.
+
+The two major tools used to manage and troubleshoot VPC issues are as follows:
+■■ AWS CloudTrail
+■■ Amazon VPC Flow Logs
+	
+You need to establish a highly available connection between your Amazon VPC and your datacenter. What is the best way to accomplish this?
+Set up a Virtual Private Gateway. Make sure that you have two customer gateways configured to avoid having single point of failure.
+	
+You are using Amazon Route 53 as your DNS provider. You have a web application that is running in your datacenter located in Las Vegas, NV and in the AWS Frankfort, Germany Region. What steps would you take to minimize the load times for this web application?
+The latency measurement from your Las Vegas location will not be based on Las Vegas but will be based on the AWS Region that you associate with that record. In this case, it is recommended that you associate the us–west-1 Region located in Northern California. AWS can only create latency record sets in an AWS Region, not in a customer location.
+	
+You are trying to SSH in to an Amazon EC2 instance in your Amazon VPC but are unable to do so. What should you be checking?
+Make sure that you have an Internet gateway attached to your Amazon VPC, that the VPC route table has an entry that routes packets to the Internet, that the Network ACL has an inbound and an outbound rule that allows SSH, and that the Amazon EC2 instance has a security group rule that allows inbound SSH. Make sure that the EC2 instance has a Public or Elastic IP address associated with it.
+	
+Origin Access Identity (OAI) is used to restrict access to your Amazon S3 content.
+The subnet inherits the route table from the Amazon VPC.
+
+When you configure Amazon CloudFront, an origin refers to which of the following? 
+For static content, it is either an HTTP server or an Amazon S3 bucket. For media files on demand it is an S3 bucket.
+	
+A default Amazon VPC has a netmask of /20. It comes with an Internet gateway and a route table reflecting that Internet gateway. NAT and VPN can be added to the default VPC.

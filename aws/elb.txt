@@ -1,16 +1,18 @@
 ELB 
-
+ELB support TLS 1.0, 1.1 and 1.2
+ELB didn't support TLS 1.3
 Elastic Load Balancing distributes incoming application traffic across multiple Amazon EC2 instances, in multiple Availability Zones within a single AWS Region. Elastic Load Balancing supports three types of load balancers:
 ■■ Application Load Balancers
 ■■ Classic Load Balancers
 ■■ Network Load Balancers
 
-You have implemented a Classic Load Balancer. You now need to collect some information, specifically what is the IP address of the client making the request on the Classic Load Balancer. How would you collect this information?
+what is the IP address of the client making the request on the Classic Load Balancer.
 	-> Access logs contain more detailed information than Amazon CloudWatch, including information on the IP address of the client making the request.
 	
 ELB does not support load balancing across multiple region. You have to use Route53 to route requests across multiple AWS regions. ELB is HA and redundancy only in given AZ.
 
 connection draining on the load balancer = When Connection Draining is enabled, For the duration of the configured timeout, the load balancer will allow existing, in-flight requests made to an instance to complete, but it will not send any new requests to the instance. 
+The max allowed time for connection draining is 3600 seconds. (1 hour)
 
 By default, a Classic Load Balancer routes each request independently to the registered instance with the smallest load. However, you can use the sticky session feature (also known as session affinity), which enables the load balancer to bind a user's session to a specific instance. This ensures that all requests from the user during the session are sent to the same instance. However, there are some cases where majority of the incoming traffic is always routed on a specific EC2 instance. Hence, disabling the sticky sessions feature of the Classic Load Balancer is way forward.
 
@@ -20,3 +22,7 @@ TCP protocol, scalable, HA, and client IP address
 Proxy Protocol is an Internet protocol used to carry connection information from the source requesting the connection to the destination for which the connection was requested. Elastic Load Balancing uses Proxy Protocol version 1, which uses a human-readable header format.
 By default, when you use Transmission Control Protocol (TCP) for both front-end and back-end connections, your Classic Load Balancer forwards requests to the instances without modifying the request headers. If you enable Proxy Protocol, a human-readable header is added to the request header with connection information such as the source IP address, destination IP address, and port numbers. The header is then sent to the instance as part of the request.
 Using an Elastic Load Balancer with a TCP Listener then enabling the Proxy Protocol to distribute load on two or more application servers in different AZs is correct because it implements the proxy protocol and uses ELB with TCP listener.
+
+The PROXY Protocol allows an application, like a web server like Apache or Nginx, to retrieve client information of a user passing via a load balanced infrastructure. The protocol transports connection information including the originating IP address, the proxy server IP address, and both ports.
+
+A target group tells a load balancer where to direct traffic to : EC2 instances, fixed IP addresses; or AWS Lambda functions, amongst others. When creating a load balancer, you create one or more listeners and configure listener rules to direct the traffic to one target group.

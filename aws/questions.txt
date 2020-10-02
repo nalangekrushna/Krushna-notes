@@ -1,6 +1,3 @@
-
-
-
 Your instances are failing to launch for some reason. An error message is saying that "EC2 instance <instance ID> is in VPC. Updating load balancer configuration failed".  ?
 -> This error is produced when the ELB and the Auto Scaling group are not created in the same network. Make sure that both are in VPC or in EC2-Classic. 
 

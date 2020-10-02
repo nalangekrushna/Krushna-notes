@@ -52,6 +52,10 @@ Auto Scaling = Dynamic scaling responds to changing demand and predictive scalin
 If you suspend the Terminate process, your Auto Scaling group can grow up to ten percent larger than its maximum size, because this is allowed temporarily during rebalancing activities. If the scaling process cannot terminate instances, your Auto Scaling group could remain above its maximum size until you resume the Terminate process.
 auto scaling groups cannot scale out to other aws regions. Launching an Auto Scaling Group with subnets across 2 Availability Zones and setting the minimum and maximum capacity to 1 is incorrect as setting the maximum capacity to 1 means that the Auto Scaling group will not be able to scale out as required.
 
+auto scaling didn't support instance type change ie. didn't allow to edit launch configuration. So to change instance type you need to create a new launch config. This changes didn't apply to running instances of autoscaling group. To apply it to old running instances please terminate all old instances and new instances will be created according to new configuration.
+
+In aws management console you can schedule autoscaling for any future date. but in cli you can schedule only for 30 days in advance.
+
 scaling policy type = 
 	Target tracking scaling = scales in or out to keep target metrics value near to user provided value
 	step scaling = adjust in proportional of size of alarm breach. step scaling is better and generally recommended than simple scaling.
@@ -61,6 +65,23 @@ scaling policy type =
 A cooldown period helps you prevent your Auto Scaling group from launching or terminating additional instances before the effects of previous activities are visible. auto scaling marks instance unhealthy if it is in other state than running.
 
 auto scaling standby state = auto scaling didn't do health check on standby instances. standby state is used for performing updates/changes/troubleshooting or replacement instaces being launched.
+
+Scaling features
+	AZRebalance = balances no of ec2 instance in a group evenly across all specified AZ when group becomes unbalanced.
+
+	AddToLoadBalancer = Add instances to attached load balancer or target group when they are launched.
+
+Auto Scaling EC2 instance has two primary processes. suspending or resuming any of them will affect other process also.
+1. Launch = If you suspend Launch process then scale out will stop. AZRebalance will stop rebalancing group. ReplaceUnhealthy will continue adding terminate instances but will not add new instances.
+When you resume Launch process AZRebalance will gradually balance auto scaling group. ReplaceUnhealthy will immediately replace terminated instances.
+2. Terminate = If you suspend Terminate process then scale in will stop. AZRebalance process will be active but didn't work properly. It can add new instances without terminating the old one. Due to this Auto Scaling group can grow 10% more than max size. ReplaceUnhealthy will be inactive.
+When you resume Terminate process AZRebalance gradually rebalances auto scaling group. ReplaceUnhealthy will terminate all unhealthy marked instances immediately.
+
+A user has configured Auto Scaling with the minimum capacity as 2 and the desired capacity as 2. The user is
+trying to terminate one of the existing instances with the command: terminate-instance-in-auto-scalinggroup
+–decrement-desired-capacity What will Auto Scaling do in this scenario?
+-> Throws an error (ValidationError). Terminating instance without replacement will violate group’s min size constraint. Either set shouldDecrementDesiredCapacity flag to false or lower group’s min size.
+
 
 Resource or service-specific tags are often used to filter resources during infrastructure automation activities. Automation tags are used to opt in or opt out of automated tasks or to identify specific versions of resources to archive, update, or delete. For example, many customers run automated start/stop scripts that turn off development environments during non-business hours to reduce costs. In this scenario, Amazon Elastic Compute Cloud (Amazon EC2) instance tags are a simple way to identify the specific development instances to opt out of this action. For scripts used to locate and delete stale, out-of-date, or rolling Amazon EBS snapshots, snapshot tags can add an extra dimension of search criteria.
 

@@ -1,0 +1,38 @@
+
+cloudformation DependsOn vs CreationPolicy
+
+CreationPolicy only applied to three resources ec2 instances, auto scaling groups and WaitCondition. while DependsOn can be used with any resources.
+Primary purpose of CreationPolicy is wait for signal from instance. It is used to signal that bootstrap script execution succeded. To wait for bootstrap signal condition using cfn-signal we use CreationPolicy.
+DependsOn used to do seqeuntial instead of parallel resource creation.
+
+StackSet vs Nested Stack
+there will be some cases where you need to declare same resources in multiple templates. In this scenario you can use Nested Stack. Nested stacks make process of updating stacks easier. Stack Sets are used for multi account, multi region deployments. 
+Also you can use Stack Policies to avoid unintentional update or delete of resources in stack update process.
+
+Organization Units(OU) = group accounts by organization units to better manage them.
+
+aws redshift with enhances vpc routing will pass all the data through amazon network only. This will log all copy and unload operations using vpc flow logs.
+
+valid route 53 health check
+1. health check of endpoint.
+2. health check on other health checks (calculated health check)
+3. health check that monitors cloudwatch alarm.
+
+RDS enhanced monitoring gathers its metric from an agent on instance. It can provide us metrics such as cpu percentage and memory used by each process or thread.
+
+swf vs step functions = swf is used for distributed computing,big data work loads. Step functions are used for serverless visual, multiple aws service co-ordination workflow required.
+
+aws autoscaling cannot launch instances in other regions. but it can enable global secondary index for dyanamodb tables. It can also adjust read replicas in RDS.
+
+aws system manager supports single boards like rasberray pi.
+
+ec2 instance could go from pending to terminate state due to corrupt ebs snapshots.
+
+for aws s3 there are two aws encryption services. 1. S3 managed keys and 2. KMS managed keys.  3. user provided encryption keys. The default is s3 managed encryption key. KMS has some additional benefits with additional charges.
+
+ELB health check does not help capturing monitoring information about ELB itself.
+
+enable billing alerts in account preferences to start getting billing alerts.
+If application is hosted in multiple regions then use latency based routing and evaluate health flag to get performance.
+for data analytics operation always choose storage optimized instance over provisioned iops instance. as for data analytics we required large sequential high throughput operations.
+consolidated billing is feature of aws organizations.
