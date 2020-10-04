@@ -1,0 +1,21 @@
+Python deployment
+
+what is WSGI (Web Server Gateway Interface) ? 
+a simple and universal interface between web servers and web applications or frameworks(flask). the goal of WSGI is to facilitate easy interconnection of existing servers and applications or frameworks.
+
+how to deploy an python flask application in production ?
+short anser (Flask app + Gunicorn/uWSGI + nginx/httpd) 
+flask inbuilt server(werkeuz) is not good for production deployments. So we need an alternative. Also python app cannot talk directly to nginx/httpd(web server). For that we require to implement WSGI. There are multiple implementation of WSGI but Gunicorn or uWSGI are popular one.
+
+Performance of different configurations for flask production ?
+https://emptyhammock.com/projects/info/pyweb/gunicorn.html
+
+Gunicorn vs uWSGI which one to use ?
+Gunicorn is written in python while uWSGI is written in C. Also uWSGI comes with direct support from nginx. performance wise uWSGI is faster than Gunicorn. So we should use uWSGI.
+
+nginx vs Apache which one to use ?
+Nginx is indeed event-based. They call their architecture “event-driven and asynchronous”. Apache relies on processes and threads. So we should use nginx. use rwasa in future if high performance is required.
+https://anturis.com/blog/nginx-vs-apache/
+
+Traditional configuration for using NGINX and Apache in unison is to position NGINX ahead of Apache. This way, it serves as a reverse proxy — enabling it to accommodate every client request. Why is this important? Because it takes advantage of the quick processing speeds and NGINX’s capabilities to handle a lot of connections at the same time.
+In the case of static content, NGINX is a fantastic server, as files are served to the client directly and quickly. With dynamic content, NGINX proxies requests to Apache to be processed. Apache will then bring rendered pages back. After this, NGINX is able to send content back to clients. This is best solutions for large scale deployments.
