@@ -69,3 +69,7 @@ git status
 git add .
 git commit -m "comment"
 git push
+
+git delete last push
+git reset --hard HEAD~n    // this will delete the local n commit
+git push origin +master  // this will delete commit from remote.

@@ -1,0 +1,30 @@
+YAML = YAML Ain't Markup Language data serialization language such as xml or json. yaml is human readable. yaml uses line seperations and indentations just like python to seperate code. yaml is used docker, ansible, kubernates.
+
+serialization language = common standard format to transfer data between different technologies and languages.
+
+file extensions = .yml or .yaml
+
+different yaml formats.
+	key: value  or key:"value" or key:'value'
+	# comment
+	key : object i.e.(explained in below line.)
+	key : 
+		key1: value1
+		key2: value2
+	key : list i.e.(explained in below line.)
+	key :
+		-  a : b
+		   c : d
+		-  a : e
+		   c : f   or
+	key :
+		- value1
+		- value2
+	key : boolean i.e.(explained in below line.)
+	key : true    
+	key : yes
+	key : on
+	In yaml all three pairs (true,false,yes,no, on, off ) are valid.
+	key : | (multi line string.)
+	placeholder : {{variable}}
+	--- = for multiple yaml file in single file.
