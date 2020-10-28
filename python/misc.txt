@@ -12,10 +12,12 @@ Python will look that name up sequentially in the local, enclosing, global, and 
 Nonlocal = Similarly to global names, nonlocal names can be accessed from inner functions, but not assigned or updated. If you want to modify them, then you need to use a nonlocal statement.In contrast to global, you can’t use nonlocal to create lazy nonlocal names. Names must already exist in the enclosing Python scope if you want to use them as nonlocal names.
 
 What is the difference between Python Arrays and lists?
-Arrays and lists, in Python, have the same way of storing data. But, arrays can hold only a single data type elements whereas lists can hold any data type elements.
+Arrays and lists, in Python, have the same way of storing data. But, arrays can hold only a single data type elements whereas lists can hold any data type elements. Python does not have built-in support for arrays. Arrays can be imported from numpy.
 
 which is better None or NaN ?
-NaN is used as a placeholder for missing data consistently in pandas. I usually read/translate NaN as "missing". and there are API functions isnull and notnull which can be used across the dtypes to detect NA values. the main reason to use NaN (over None) is that it can be stored with numpy's float64 dtype, rather than the less efficient object dtype. np.nan allows for vectorized operations; its a float value, while None, by definition, forces object type, which basically disables all efficiency in numpy.
+Short Answer : when using numpy use NaN otherwise use None.
+
+Full Answer : NaN is used as a placeholder for missing data consistently in pandas. I usually read/translate NaN as "missing". and there are API functions isnull and notnull which can be used across the dtypes to detect NA values. the main reason to use NaN (over None) is that it can be stored with numpy's float64 dtype, rather than the less efficient object dtype. np.nan allows for vectorized operations; its a float value, while None, by definition, forces object type, which basically disables all efficiency in numpy.
 https://stackoverflow.com/questions/17534106/what-is-the-difference-between-nan-and-none
 
 expert level python tutorials

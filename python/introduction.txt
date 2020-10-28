@@ -79,6 +79,9 @@ You can also insert elements into a list without removing anything. Simply speci
 >>> a
 [1, 2, 3, 4, 5, 6, 7, 8]
 
+list methods
+	index, remove, pop, insert, append, extend, count, reverse, sort, copy, clear
+
 Why use a tuple instead of a list?
 	Program execution is faster when manipulating a tuple than it is for the equivalent list. 
 	Sometimes you don’t want data to be modified. 
@@ -108,12 +111,10 @@ frozenset({'baz'})
 Python does not perform augmented assignments on frozensets in place. The statement x &= s is effectively equivalent to x = x & s. It isn’t modifying the original x. It is reassigning x to a new object, and the object x originally referenced is gone.
 If you really feel compelled to define a set of sets (hey, it could happen), you can do it if the elements are frozensets, because they are immutable.
 
-Python allows an optional else clause at the end of a while loop. When <additional_statement(s)> are placed in an else clause, they will be executed only if the loop terminates “by exhaustion”—that is, if the loop iterates until the controlling condition becomes false. If the loop is exited by a break statement, the else clause won’t be executed.
+Python allows an optional else clause at the end of a while and for loop. When <additional_statement(s)> are placed in an else clause, they will be executed only if the loop terminates “by exhaustion”—that is, if the loop iterates until the controlling condition becomes false. If the loop is exited by a break statement, the else clause won’t be executed.
 
 Iterators = Part of the elegance of iterators is that they are “lazy.” That means that when you create an iterator, it doesn’t generate all the items it can yield just then. It waits until you ask for them with next(). Items are not created until they are requested.
 
 range() function returns an iterable that yields a sequence of integers.  range objects are lazy—the values in the specified range are not generated until they are requested.
-
-A for loop can have an else clause as well. The interpretation is analogous to that of a while loop. The else clause will be executed if the loop terminates through exhaustion of the iterable.
 
 By default, print() sends its output to a default stream called sys.stdout, which is usually equivalent to the console. The file=<stream> argument causes output to be sent to an alternate stream designated by <stream> instead.

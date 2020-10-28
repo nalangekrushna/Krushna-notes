@@ -1,0 +1,22 @@
+About the website
+
+Hi my name is Krushnakumar Nalange and I work at MNC as Consultant. I mostly work in python and MySql. DevOps always fascinated me as completely automating build process will really save a lot of time for me. And I will be able to work on what really matters than to go through all production nightmares. So the best way to do this is actually doing this. So I have created this[moviehacks.in] website. I have created this guide keeping in mind individual developer who wants to learn to use DevOps for daily routine and also keeping costs minimum but having end to end automated deployment flow and a running production deployments.
+
+The concept of website is very simple here we are trying to replicate OTT platforms. and the goal is that once automated DevOps pipeline is complete then just a git push should propagate all the changes from development environment to production environment. I am also hoping this will become the guide for any DevOps beginner to start his devops journey.
+
+So enough chitchat let's start listing the steps for it.
+1. you need to buy a domain name. This is must to understand the terminology and many other smaller details which you will know only when you will start deploying. I will recommend not buying hosting space as I recommend deploying on AWS.
+2. register your website on cloudflare and point your website nameservers to cloudflare provided nameserver as cloudflare provides CDN, DDoS protection,SSL/TLS certificate and multiple other services for free, which otherwise you have to buy it.  
+3. create a dev environment, procedure for which vary language to language. In my case I have used python for backend, Javascript and webpack for frontend and RDBMS MySql as database.
+4. create frontend using html, css and Javascript and use webpack for build management. There are alternative tools to webpack. This guide could be helpful to choose.
+5. Create RESTful API and backend using python or any alternative language.
+6. Write Unit and Integration tests to verify the code is giving desired output.
+7. To track changes use version control such as git. If you want keep changes to local and not to send to github you can create local git server.
+8. Use Jenkins to automate build process.(will see this in more depth in next article.)
+9. Create a test environment using docker. 
+10. Push the code changes to docker.
+11. build docker image and run unit testing.
+12. push the changes to production docker image.
+13. deploy this image on AWS.
+14. Run unit and integration testing on prod.
+Congrats you're Done..... 

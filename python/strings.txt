@@ -27,7 +27,7 @@ s = 'foobar'
 Byte Object = A bytes object is an immutable sequence of single byte values. Each element in a bytes object is a small integer in the range 0 to 255. The 'r' prefix may be used on a bytes literal to disable processing of escape sequences, as with strings.
 byt = rb'foo bar baz'
 
-If you try to use list as dict key/keys it will give TypeError : unhashable type :'list'
+If you try to use list or dict as dict key/keys it will give TypeError : unhashable type :'list'
 Why does the error message say “unhashable”? 
 -> Technically, it is not quite correct to say an object must be immutable to be used as a dictionary key. More precisely, an object must be hashable, which means it can be passed to a hash function. A hash function takes data of arbitrary size and maps it to a relatively simpler fixed-size value called a hash value (or simply hash), which is used for table lookup and comparison.
 

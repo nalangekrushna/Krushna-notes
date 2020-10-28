@@ -30,3 +30,20 @@ slim = minimal package needed to run
 	
 some good deployment articles
 https://hynek.me/articles/
+
+RUN vs CMD vs ENTRYPOINT :
+docker runs command in two forms shell form and executable form.
+shell mode is below and shell mode preprocesses things such as variable parsing/substitution.
+	instruction executable argument1 argument2 ....
+Executable form is below and it didn't preprocess variables.
+	instruction ['executable', 'argument1', 'argument2', ...]
+	
+	RUN command always creates new layer in both forms. CMD command in both form will set default parameters and if we run code without parameters it will use this default parameters to run the code. If you specify more than one CMD only last one will be executed. when using ENTRYPOINT command in executeable form, you can set additional parameters using cli. It does not ignore parameters provided by ENTRYPOINT. In shell form it will just ignore parameters provided on cli. 
+
+create vs run vs start :
+	docker create will only create a container. docker run will check if container is present or not, it will create container if not exists and run it. docker start will only run already created container. if you stopped created container and then try to run it then it will give error. to avoid the error use --rm flag in run command.
+
+docker bind vs volume : bind is managed by native OS while volume is managed by docker. Volume is recommended option in most cases. bind only supports linux host OS while volume also supports windows and macOS. Also there is tmpfs(linux) and npipe(windows) for temporary storage. Volume gives better performance on windows and macOs while bind gives relatively fast performance on linux.
+
+--mount vs -v = recommended is --mount. 
+	
