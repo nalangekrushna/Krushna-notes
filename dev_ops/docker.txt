@@ -46,4 +46,7 @@ create vs run vs start :
 docker bind vs volume : bind is managed by native OS while volume is managed by docker. Volume is recommended option in most cases. bind only supports linux host OS while volume also supports windows and macOS. Also there is tmpfs(linux) and npipe(windows) for temporary storage. Volume gives better performance on windows and macOs while bind gives relatively fast performance on linux.
 
 --mount vs -v = recommended is --mount. 
+
+docker volume create : if you run this command and volume is already present then it will return already created volume otherwise it will create new volume.
+docker network create : if you run this command and network is already there then it will give an error. otherwise it will create a network.
 	

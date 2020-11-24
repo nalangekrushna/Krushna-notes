@@ -9,7 +9,7 @@ Amazon S3 supports both virtual-hosted-style and path-style URLs to access a buc
 ■ In a virtual-hosted-style URL, the bucket name is part of the domain name in the URL. For example: http://bucket.s3.amazonaws.com 
 ■ In a path-style URL, the bucket name is not part of the domain (unless you use a region-specific endpoint). For example: US East (N. Virginia) region endpoint, http://s3.amazonaws.com/bucket
 
-Default properties of Amazon S3 keep content private for the account owner until explicit commands to share are invoked. s3 min object size is 0 bytes. max object size can be 5 TB and largest object that can be uploaded in single PUT request is 5 GB. for object above size 100 mb multipart upload capability is recommended.
+Default properties of Amazon S3 keep content private for the account owner until explicit commands to share are invoked. s3 min object size is 0 bytes. max object size can be 5 TB and largest object that can be uploaded in single PUT request is 5 GB. for object above size 100 mb multipart upload capability is recommended. 
 
 After you enable versioning on a bucket, it can be in either the enabled or suspended state; you cannot disable versioning on a bucket. If you suspend versioning, Amazon S3 suspends the creation of object versions for all operations but preserves any existing object versions. If you delete after versioning enabled it will only delete current object and not prev object which you have to delete from console.
 

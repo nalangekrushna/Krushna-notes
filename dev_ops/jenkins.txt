@@ -17,3 +17,64 @@ The basic statements and expressions which are valid in Declarative Pipeline fol
 	No semicolons as statement separators. Each statement has to be on its own line.
 	Blocks must only consist of Sections, Directives, Steps, or assignment statements.
 	A property reference statement is treated as a no-argument method invocation. So, for example, input is treated as input().
+	
+what is jenkins ?
+jenkins is used for continous integration and continous delivery tool and automation server. Jenkins is written in Java.
+
+what is CI (Continuous Integration) = It is a process where developers integrate code into a shared repository frequently. This integratios can be verified by automated builds and optionallly automated testing.
+
+what is CD (continuous deployment) = process of keeping code deployable at any point of time or automatically releasing new test or production environments when they pass automated testing.
+
+continuous delivery vs deployments = In delivery you do manual production deployment whereas in deployment you do automated production deployment.
+
+what is Jenkinsfile ?
+The text file with all pipeline definitions is called Jenkinsfile. It is being checked in the version control system(git).
+
+what is pipeline ?
+pipeline consists of build, deploy, test, release stages. Pipeline is a group of build jobs that are chained and integrated in sequence. Pipelines can be written in two different ways.
+	1. Scripted pipeline
+	2. Declarative pipeline
+
+what is scripted pipeline is Jenkins ?
+It starts with node
+
+what is declarative pipeline in Jenkins ?
+It starts with pipeline 
+
+pipeline -> agent, stages -> stage -> agent, environment, when, steps, post
+
+which command can be used to start jenkins manually ?
+(jenkinsurl)/restart
+(jenkinsurl)/safeRestart
+
+what are build triggers ?
+Triggers used to run the job periodically or remotely. different ways to trigger the build are 
+	1. after completion of other builds
+	2. by scm commit 
+	3. at specific time.(periodically)
+	4. manually
+
+what is agent in jenkins ?
+agent runs the code in jenkins. agent could be any, none, label, node, docker and dockerfile.
+	none = no global agent and every stage needs to define its own agent.
+	label = any labeled agent available in jenkins.
+	node = like label but with more options.
+	
+what is post in jenkins ?
+Post section contains additional steps to be performed. Its value can be changed, unstable, failure, success, always and aborted.
+
+different types of projects in jenkins ?
+	freestyle = It combines scm with any build system.
+	pipeline = long running sequential or parallel tasks spanning multiple build agents.
+	multi-config = projects with large no of different configurations as well as different platforms.
+	multi-brach = set of pipeline projects from single repo having multiple branches.
+	
+how to resolve broken build ?
+open console output to check the output logs.
+	
+how to take backup in jenkins
+JENKINS_HOME has all the data copy jenkins_home somewhere to take the backup. also you can use thinBackup plugin. In linux jenkins home in ~/.jenkins/   In windows you can find it in C:/users/<user_name>/.jenkins
+or C:\Program Files (x86)\Jenkins
+
+copy job from Jenkins_home/jobs/job_name to another installation on jenkins
+change job_name to new_job_name to renme existing job.

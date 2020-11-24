@@ -1,1 +1,13 @@
-do
+docker-compose 
+	build = just builds or rebuild the service
+	create = deprecated. Don't use.
+	run = for running “one-off” or “adhoc” tasks. It requires the service name you want to run and only starts containers for services that the running service depends on. Use run to run tests or perform an administrative task such as removing or adding data to a data volume container.
+	start = command is useful only to restart containers that were previously created, but were stopped. It never creates new containers. Starts existing containers for a service.
+	up = typically you use this. Builds, (re)creates, starts, and attaches to containers for a service. (build + start)
+	
+	down = Stops containers and removes containers, networks, volumes, and images created by up.
+		By default, the only things removed are:
+			Containers for services defined in the Compose file
+			Networks defined in the networks section of the Compose file
+			The default network, if one is used
+		Networks and volumes defined as external are never removed.

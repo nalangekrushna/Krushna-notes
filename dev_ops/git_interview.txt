@@ -1,0 +1,63 @@
+what is git ?
+It is open source version control system.
+
+what is git repo ?
+repo is a .git extension directory which contains all metadata of the repo whose contains are private to git.
+collection of various files such as config descriton and head and folders such as hooks info objects and ref.
+
+In which language the git is written ?
+C
+
+git push ?
+upload local repository content to remote repo.
+
+git commit ?
+save changes to local repository.
+
+git add ?
+git add will add new or changed files in your working directory to git staging area or index. which can be saved to local repository by running git commit.
+
+git status
+This command shows state of working directory and git staging area. It shows which changes are staged, which files are modified, which files are not being tracked. and also state of local repo with remote repository.
+
+what is staging area or index in git ?
+The intermediate area in which commits can be formatted and reviewed before commitng is called staging.
+
+git stash = GIT stash takes the current state of the working directory and index and puts in on the stack for later and gives you back a clean working directory.  So in case if you are in the middle of something and need to jump over to the other job, and at the same time you don’t want to lose your current edits then you can use GIT stash.
+
+git stash apply
+bring back stashed changes to working directory.
+
+git stash drop
+delete the stashed changes once you done working with them.
+
+git clone = copy of existing repository. Clones a repository into a newly created directory, creates remote-tracking branches for each branch in the cloned repository.
+
+git init --bare
+A bare Git repository is a repository that is created without a Working Tree. This is used to create the remote repository initially and then push the changes from local repo to remote repo.
+
+git commit --amend
+It can be used when you want to change the previous commit message. Git ammend internally creates new commit and replaces it with old commit so if you have pushed code to remote repo then except for modifying the commit message this command should not be used.
+
+what is hooks in git ?
+This directory consist of shell scripts which are activated after running the corresponding git command.
+
+git reset 
+resets index as well as working directory to last commit.
+
+git rm 
+delete the tracked file.
+
+git checkout
+update files in working tree from those in another branch without merging whole branch.
+
+git diff
+git diff shows changes between commits, commit and working tree.
+
+git rebase 
+It helps in maintaining linear history. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. you can use git rebase.
+
+what does git commit object contains ?
+1. a set of files, representing state of project at given point of time.
+2. reference to parent commit objects.
+3. A SHAI name, 40 character string that uniquely identifies commit object.

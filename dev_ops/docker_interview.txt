@@ -1,0 +1,99 @@
+what is docker ?
+open source lightweight containerization technology.
+
+advantages of docker
+portability
+performance
+Isolation
+Scalability
+
+disadvanteges
+still slow than bare metal
+increased complexity due to additional layer.
+for docker orchestration you need another tools such as kubernates or swarms.
+
+what is docker image ?
+A Docker image is a read-only template that contains a set of instructions for creating a container that can run on the Docker platform.
+A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
+
+what is docker container ?
+Docker Container is a standardized unit which can be created on the fly using docker image to deploy a particular application or environment.
+
+what is docker engine ?
+Its a open source containerization technology to build or containerize your application. docker engine acts as client server with following components.
+deamon (dockerd) = a server with long running daemon process dockerd. A api interface to connect and does different tasks.
+A CLI client (docker) to connect to dockerd daemon services.
+
+Explain registry ?
+docker provides dockerhub a public registry to store docker images. Also there are private repositories such as amazon ECR. registry is the place where you can store your docker image and reuse it anywhere by pulling from there.
+
+See all running containers
+docker ps
+
+Stop docker container
+sudo docker stop cotainer_name
+
+run image as container or to debug
+sudo docker run -it ubuntu bash
+
+how to monitor docker in production environment ?
+you can use docker events and docker state to monitor docker in production environment.
+
+States of docker container
+running, paused, exited, restarting
+
+what is virtualization ?
+creation of a virtual resource such as a server, desktop, operating system, file, storage or network.
+
+what is hypervisor ?
+The hypervisor allows you to create a virtual environment in which the guest virtual machines operate. It controls the guest systems and checks if the resources are allocated to the guests as necessary.
+
+what is docker object labels ?
+docker object lablels is a method of applying metadata to docker objects including images, containers, volumes and network.
+
+where are the docker volumes stored
+/var/lib/docker/volumes
+
+which formats compose file supports
+YAML and json
+
+lifecycle of docker container
+build, push, pull, run, pause, unpause, stop, start, kill
+
+what is docker pause ?
+It suspends all the processed in given docker container. Its possible uses scenario is to pause resource intensive tasks that you can resume at later state.
+
+how to run multiple containers using single service ?
+use docker-compose.
+
+does docker offers ipv6 support ?
+docker offers ipv6 support on linux hosts only. To enable it go to /ect/docker/deamon.json and set ipv6 key to true.
+
+can I loose my data when docker container exits ?
+No. The data is stored in container. You loose data when you delete the container.
+
+what different kind of volume mounts available in docker
+bind
+mount
+
+How do I run multiple copies of Compose file on the same host?
+Compose uses the project name which allows you to create unique identifiers for all of a project's containers and other resources. To run multiple copies of a project, set a custom project name using the -a command-line option or using COMPOSE_PROJECT_NAME environment variable.
+
+can docker host and client be on different machines ?
+Yes.
+
+What are the components of docker architecture ?
+clinet = provides command line tool for client to interact with docker daemon.
+docker host = It contains containers, images and daemon. It offers complete environment to run your application.
+registry = used to store docker images. which can be pulled from there.
+
+what are docker namespaces ?
+Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container. These namespaces provide a layer of isolation.
+
+how to configure default logging driver under docker ?
+To configure docker daemon to default to a specific logging driver. you need a set of value of log-driver to the name of logging driver to daemon.json file.
+
+how do I connect to docker network
+bridge is preferred mode.
+
+ 
