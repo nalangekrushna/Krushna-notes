@@ -1,0 +1,14 @@
+your website url(moviehacks.in) is not accessible ?
+Below are the steps to to follow. first check if ec2 instance is running and accessible
+	1. check instance state. It should be "Running". 
+	2. check security groups inbound rules. make sure your opened port(80,443 or 5000) and application port are same. Also make sure the protocols(http,https,tcp) are also same.
+	3. In special cases like https protocol with 5000 port(flask app) select custom tcp and 5000 as port no.
+	4. You should able to open app using protocol://Public_IPv4_address:port means you're ec2 instance is working fine. Public IPv4 DNS is used for address resolution of Public_IPv4_address.
+After confirming this try to connect using load balancer.
+	1. when we use http the default port is 80 and when https default port is 443. So to keep connection secure redirect http requests to https with 302 status code. 
+	2. https request to be forwarded to ec2 target groups with port 5000. So for security group of instances only custom tcp with 5000 port inbound should be allowed. 
+	3. for security group of load balancer configure both listeners https(443) and http(80) to be all inboud traffic should be allowed.
+	4. use alb address with both http and https protocol to check if both listeners are working properly.
+Naming server updation
+	1. copy alb address and add it into cname record of root(moviehacks.in) and cname record for www. 
+	2. confirm your website is accessible by visiting website url. (moviehacks.in)

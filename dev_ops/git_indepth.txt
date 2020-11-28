@@ -1,0 +1,8 @@
+
+git init = 
+It contains three files and 4 folders. The files are config, description and HEAD. Head file points out to currently checked out commit. If you run git init twice it will not override your git init of first time.
+
+git clone = It first calls git init to initialize the directory. Then it sets remote repo to given url in git clone command. then It copies all data from remote repo. -depth=1 option will only copy last commit, It is useful when remote has extensive commit history.
+
+git supports 3 protocol : http, ssh, and git
+	git = A protocol unique to git. Git comes with a daemon that runs on port (9418). The protocol is similar to SSH however it has NO AUTHENTICATION.
