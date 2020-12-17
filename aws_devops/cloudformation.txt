@@ -1,0 +1,36 @@
+cloudformation = You create a template that describes all the AWS resources that you want and AWS CloudFormation takes care of provisioning and configuring those resources for you. Only Resources section is mandatory. aws cloudformation only processes json. Yaml will be converted into json. use # for comments in yaml.
+
+stack = AWS CloudFormation provisions resources that are described in your template. you manage related resources as a single unit called a stack. 
+template = describe your AWS resources and their properties. It is json or yaml formatted text file which can have .json, .yaml .template .txt extensions.
+stack policy = what can be changed and who can change it.
+change set = Change sets allow you to see how your changes might impact your running resources, especially for critical resources, before implementing them.
+
+logical id vs physical id = logical id is the name given in cloudformation template which should be alphanumeric and unique inside template. You can use it inside template to refer in other sections. Some resources also have physical id sucha as instance id or bucket name.
+
+Intrinsic functions = cloudformation provides several built-in functions that helps you to manage the stack. Use intrinsic functions to assign values to properties that are not available until runtime.
+List of intrinsic functions : Base64, Cidr, Conditions, FindInMap, GetAtt, GetAZs, ImportValue, Join, Select, Split, Sub, Transform, Ref.
+
+Pseudo paramters = Parameters that are predefined in by aws Cloudformation. You can use them by using Ref function. list of Pseudo paramters AccoundId, NotificationARNs, NoValue, Partition, Region, StackId, StackName, URLSuffix
+
+You can pass the the user data using Base64 function which will convert it into Base64 format. The logs of deployment can be found at /var/log/cloud-init-output.log
+
+cfn helper scripts
+cfn-init = cfn-init reads metadata from init key and does following tasks. Fetch and Parse metadata from cloudformation. Install packages. Write files to disks. Enable/Disable and Start/Stop the service. If you update existing file then original file will be stored in same destination as file_name.bak
+
+cfn-signal = cfn-signal script tells cloudformation wheather ec2 instance successfully created or updated. This is usually to wait until other softwares and user data is installed on given ec2 instance. Use cfn-signal with CreationPolicy or with Auto Scaling Group on WaitOnResourceSignals update policy. When cloudformation works with such a policy it waits until it gets predefined no of signals or timeout period.
+
+cfn-get-metadata = fetch metadata block from cloudformation and print.
+
+cfn-hup = Deamon that detects changes in resource metadata and runs user specified actions. This Deamon uses three files. 
+	cfn-hup.conf = this file stores name of stack and aws credentials.
+	hooks.conf = user action that daemon calls are stored in hooks.conf file. To update this file you need to restart the daemon.
+	hooks.d = This directory is used for placing additional hooks configurations. If two hooks have same name in hooks.conf and hooks.d then both config will merge.(hooks.d config will overwrite hooks.conf). hooks.d config will run.
+	
+When you are using nested stack, always update the root stack first and then child stacks. examples of nested stack are load balancers or security groups.
+
+Default deletion policy for cloudformation is delete. but you can specify other delete policies such as Retain or Snapshot. Retain applies to every resources/nested stack and it will keep/preserve that resource. Snapshot policy only applicable for EBS volume and RDS, Redshift and ElastiCache. and It will take backup of data before deleting it. The default policy for RDS DBcluster is snapshot. Also you need to enmpy the s3 bucket first to delete it.
+
+To avoid accidental deletion of stack we can enable termination protection. This option is also available for ec2 instances.
+
+To create resource b after resource a is created you can use DependsOn parameter in resource b depending upon resource a. you can use aws custom resources to use resources that are not yet covered in cloudformation. example usage of custom resource to empty s3 bucket to delete it. this custom resource will be called whenever we create, update, delete the stack. The custom resource will call lambda function from which we can do whatever we want. Use conditions inside lambda function to act differently on create, update or delete event.
+	

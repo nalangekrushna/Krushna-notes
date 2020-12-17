@@ -1,1 +1,0 @@
-codedeploy = fully managed deployment service that automates deployment on ec2, ec2 on premises and lambda functions.

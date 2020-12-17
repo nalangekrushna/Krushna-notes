@@ -12,3 +12,6 @@ After confirming this try to connect using load balancer.
 Naming server updation
 	1. copy alb address and add it into cname record of root(moviehacks.in) and cname record for www. 
 	2. confirm your website is accessible by visiting website url. (moviehacks.in)
+	
+different devops topologies
+https://web.devopstopologies.com/

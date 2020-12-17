@@ -1,0 +1,34 @@
+tag = cicd
+codecommit = Internally it uses S3 and dynamodb to store data. So data is highly available and redundant. Max size of file that we can store is 2 GB. codecommit repos have two ways to inform anyone about any action 1. Triggers, 2.Notifications. Triggers supports SNS topic and lambda function. codecommit Notification can have two targets, notification topics and aws chatbot(slack). Trigger is legacy feature. It didn't use cloudwatch events for evaluation. So no of actions are limited in trigger. Notifications provide more detailed info than Triggers. Trigger is specific feature to codecommit. while sns is a aws service. aws for codecommit provides three managed policies AWSCodeCommitFullAccess, AWSCodeCommitPowerUser, AWSCodeCommitReadOnly. power user policy will have full access except delete permission. git repos are region specific.
+
+
+codebuild = It compiles the code, runs the test and create the packages that are ready to deploy. you can specify build commands in buildspec.yml file. CodeBuild also has triggers which can be used to invoke build periodically. You get notified using notification rule which will target sns topic.
+
+Buildspec.yml = This file contains version and phases at top level. Phases have install, pre_build, build, post_build sections. Install does environment setup. pre_build makes configuration changes and file copying. build step actually does building part. Last step post_build does post build actions such as copying artifacts to s3 bucket. Every section in Phases have run-as, commands and finally as sub section and install section have additional runtime-version subsection to define version of programminng language used. 
+artifacts = codebuild can generate artifacts (compiled source code or jar)
+
+codedeploy = 
+codedeploy helps to deploy and update software on on-premise or cloud infrastructure. while Opswork and beanstalk are end to end application management systems. Deployment group is codedeploy entity for grouping ec2 instances or lambda functions together for deployment. For a deployment you need a revision, a deployment group and a optional deployment configuration.	
+
+appspec.yml = configuration file present in root directory of revision, which specifies how to execute scripts and copy files for deployment. appspec file have two sections 1. file section = specifies which file from revision to copied to which destination in ec2 instances. 2. hooks section = It specifies location of scripts to run during each phase of deployment. 
+
+Deployment lifecycle event for codedeploy = 
+ApplicationStop = stops previously running deployment of the application. 
+DownloadBundle = copies files to temp location in instance.
+BeforeInstall = preinstall tasks such as decrypting files and taking backups.
+Install = copies file from temp location to its final destination. This step is reserved for codedeploy agent and user scripts cannot run here.
+AfterInstall = used to configure application or change file permissions.
+ApplicatonStart = restart services that were stopped in ApplicationStop.
+ValidateService = verifies if deployment is successful.
+
+
+
+Amazon SNS = It has two types of topics. 1. Standard  2. FIFO
+SNS notifications topics can provide basic or full information. In Basic information, Only the information sent to eventbridge or cloudwatch is sent to target audience. In Full mode it adds additional information to given notification. 
+
+In FIFO the messge order is strictly preserved. But in Standard there is no gaurantee of order preserving. FIFO will deliver message exactly once while Standard will deliver it atleast once. FIFO provides 300 publishes/second throughput while Standard provides more throughput than this. FIFO only supports SQS as subscription protocol while Standard supports SQS, Lambda, HTTP, SMS, Email and mobile app.
+
+cloudwatch stores all the billing information in N. Virginia(us-east-1). So to see billing alarm you have to change the region to us-east-1
+
+sdlc = system development life cycle 
+what is diff between full vs basic with example data. 
