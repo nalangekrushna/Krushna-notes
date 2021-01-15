@@ -1,0 +1,45 @@
+Route 53 is highly available (global scope) 
+route 53 can perform three operations
+1. domain registrations
+	how dns is setup = create public hosted zone of same name as domain name(example.com). assign a set of 4 name servers to hosted zone. they can point to web server(ec2 instance) or s3 bucket. add this nameservers to domain. you can use alias record to route traffic to s3 bucket or cloudfront distribution (cdn) or other aws resources. Above procedure is also applicable to dns routing of existing domains.
+	We can use private dns to resolve dns queries withing amazon vpc. so you can use custom domain names for your internal AWS resources without exposing DNS data to the public Internet.
+2. dns routing = Routing policies for Route 53
+	simple = route traffic to single resource. Here you cannot specify multiple ip addresses.
+	failover = uses active-passive config. when active instance fails starts routing traffice to passive instance.
+	geolocation = route traffice based on end users location. useful for content localization or restrict access by regions.
+	geoproximity = route traffice based on location of your resources.
+	latency = route traffice based on least latency. useful when you have resources in multiple regions.
+	multivalue answer = sends upto 8 healthy records selected at random.
+	weighted = route traffic to multiple resources based on proportions that you specify.
+	
+	hosted zone = to use private hosted zone below properties should be enabled in vpc. enableDnsHostnames, enableDnsSupport . In private hosted zone associate health check can only check weighted and failover records.	
+
+	traffic policy included below information about routing configuration :
+		the routing policy that you want to use.
+		resources that you want to traffic to route to such as ec2 instances and domain name of elb
+	dns resolver is regional.
+	
+3. health checks
+	1. Health checks that monitor an endpoint.(ip address or domanin name)
+	2. calculated health checks = Health checks that monitor other health checks
+	3. cloudwatch alarm = Health checks that monitor CloudWatch alarms. 
+	you need to provide endpoint(domain name, ip address), protocol (http/https/tcp), request interval and no of consecutive failures(failure threshold) to perform health check.If failure threshold is reached then route 53 considers endpoint as unhealthy. you can use cloudwatch alarm with sns notification to nofity users about failures.
+	
+You are managing a multi-region application deployed on AWS. You currently use your own DNS. What types of failover does Amazon Route 53 support? (choose three)
+	-> A. Active-active failover
+	   B. Active-active-passive failover
+	   C. Active-passive failover
+You can set up a variety of failover configurations using Amazon Route 53 alias, weighted, latency, geolocation routing, and failover resource record sets. You can choose Active-active failover, Active-passive failover, Active-active-passive, and other mixed configurations.
+
+active-passive failover configuration = primary will be always active and secondary will be in standby in case primary fails. when responding to queries route 53 only included primary healthy instances. If all primary resources becomes unhealthy in that case route 53 will include secondary healthy resources in response.
+
+aws rotue 53 by default provides detailed monitering(1 min interval) without any additional charges.
+
+alias record = a type of record you can create in route 53 which you can use to route traffic to aws resources such as elb or s3 bucket.below are some supported alias records
+	A record = ipv4 address
+	AAAA record = ipv6 address
+	CAA record = which certifacate authority can issue certificate for this domain.
+
+non-alias record(cname record) = aws charges for this type of query. It points out to another dns record. you can use it to point out of aws.
+
+MX record = name of mail servers and priority order. lower is the priority value, higher is the priority.

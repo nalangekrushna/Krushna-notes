@@ -23,3 +23,5 @@ but are not limited to, the following:
 	Duration of code execution
 	
 The AWS Lambda function is executed once it is invoked. If the execution fails, two more attempts are made. You can, as an option, configure AWS Lambda to forward a failed payload to a Dead Letter Queue (DLQ). This DLQ can take the form of an Amazon Simple Notification Service (Amazon SNS) topic or an Amazon Simple Queue Service (Amazon SQS) queue.
+
+Aws lambda function will have version number. Every time you update function the version will change. Versions are immutable. lambda has another concept alias. Alias are the pointer to functions. Alias are mutable so you can use alias to direct to different version. By default LATEST alias will direct to most recent version.

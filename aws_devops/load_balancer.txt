@@ -1,0 +1,16 @@
+load balancer = used to balance load between different ec2 instance, ip addresses and containers. Load balancer listens to predefined ports using listeners for connection request and distributes it among healthy targets defined in target groups in one or more AZ. If you enable cross zone load balancing, every instance will get same traffic otherwise every AZ will get same traffic. Elastic Load Balancing creates a cookie, named AWSELB, that is used to map the session to the instance. There are three types of load balancers
+
+1. Application load balancer = alb works on 7th layer. It uses round robin algorithm for traffic allocation. The Application Load Balancer injects a new custom identifier “X-Amzn-Trace-Id” HTTP header on all requests coming into the load balancer for request tracing. supports http and https protocols. alb could be internal-facing or internet facing. load balancer supports both ipv4 and dualstack mode.
+
+2. network load balancer = nlb works on 4th layer. support udp and tcp protocol.
+
+3. classic load balancer = By default, a Classic Load Balancer routes each request independently to the registered instance with the smallest load. However, you can use the sticky session feature (also known as session affinity), which enables the load balancer to bind a user's session to a specific instance. This ensures that all requests from the user during the session are sent to the same instance. However, there are some cases where majority of the incoming traffic is always routed on a specific EC2 instance. Hence, disabling the sticky sessions feature of the Classic Load Balancer is way forward.
+
+Elastic Load Balancing provides access logs that capture detailed information about requests sent to your load balancer. Each log contains information such as the time the request was received, the client's IP address, latencies, request paths, and server responses. You can use these access logs to analyze traffic patterns and troubleshoot issues. 
+Access logging is an optional feature of Elastic Load Balancing that is disabled by default. After you enable access logging for your load balancer, Elastic Load Balancing captures the logs and stores them in the Amazon S3 bucket that you specify as compressed files.
+Each access log file is automatically encrypted before it is stored in your S3 bucket and decrypted when you access it. You do not need to take any action; the encryption and decryption is performed transparently. Each log file is encrypted with a unique key, which is itself encrypted with a master key that is regularly rotated.
+
+bucket[/prefix]/AWSLogs/aws-account-id/elasticloadbalancing/region/yyyy/mm/dd/aws-account-id_elasticloadbalancing_region_load-balancer-id_end-time_ip-address_random-string.log.gz
+Notice it contains end time but not the start time.
+
+aws global accelerator = aws service which send your network traffic through aws infrastructure instead of open internet to improve performance of your services. It provides two static ip address and you can add remove different resources such as load balancers, eip and ec2 instances at backend.

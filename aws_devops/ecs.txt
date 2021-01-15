@@ -1,0 +1,8 @@
+ecs = container management system
+
+containers are defined insided task definitions that can be used to run individual tasks or tasks within service. service is config that enables you to run and maintain desired no of tasks in cluster. there are two types of ecs services aws provides
+1. farget = managed by aws
+2. ecs ec2 = managed by you.
+
+x-ray daemon on ecs = In Amazon ECS, create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster. You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container. 
+

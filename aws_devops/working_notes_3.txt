@@ -1,0 +1,82 @@
+graphQL api service = api for data manipulation, released by facebook
+AssumeRoleWithWebIdentity = useful to authenticate end users using google, fb or amazon third party logins.
+AssumeRoleWithSAML = use for enterprise user integrated with organization security policy and authenticated using microsoft Active Directory.
+
+elastic beanstalk = If your application doesn't pass all health checks, but still operates correctly at a lower health status, you can allow instances to pass health checks with a lower status, such as Warning, by modifying the Healthy threshold option. If your deployments fail because they don't pass health checks and you need to force an update regardless of health status, specify the Ignore health check option.
+
+to decouple db from beanstalk lauch it seperately using rds and use blue/green deployment method.
+
+aws amplify = set of tools and services to help ui developer to build frontend.
+aws mobile hub = It simplifies process of building, testing and monitoring mobile apps that uses aws services.
+
+Dynamodb Global Tables = global table is collection of one or more replica tables, all owned by single aws account. Any given global table can have only one replica table per region. Global table is created by following process.
+	1. Create ordinary dynamodb table with dynamodb streams enabled.
+	2. repeate step 1 in every other region where you want to replicate your data.
+	3. define dynamodb global table based on table you defined.
+to keep all tables in sync, global table create following attributes, do not modify or create same attributes with same name. aws:rep:deleting, aws:rep:updatetime, aws:rep:updateregion
+dyanmodb table only supports eventual consistency across regions. to get strongly consistent results you have to use same region for read and write operations. If same row is modified in multiple regions then the last write is kept.
+
+cloudfront attributes
+Delivery method = Web or RTMP(deprecated, only to be used with adobe flash player). you cannot change delivery method for existing distribution.
+Origin settings
+	Origin domain name = s3 bucket or http server. If you recently created bucket it may show 307 temp redirect error and can take upto 24 hours to resolve this.
+	origin connection attempt = default 3, allowed 1-3. After failure can connect to secondary origin or send error response.
+	Origin connection timeout = default 10, allowed 1-10 seconds.
+	Restrict bucket Access(only applicable to s3) = Yes to only access buckets by cloudfront urls. need OAI for this.
+	Origin Protocol Policy(only applicable to Custom resources) = protocol to use when cloudfront gets data from origin. 
+		1. HTTP only  = useful when s3 statc website hosting as s3 didn't support https.
+		2. HTTPS only = must have ssl certificate with matching origin server and domain name.
+		3. Match Viewer = http or https depends upon protocol of viewer requests.
+		3. Match Viewer = http or https depends upon protocol of viewer requests.
+
+Cache behaviour settings
+	Path pattern = matched path pattersn will be served from cloudfront, otherwise forwarded to origin.
+	viewer protocol policy = if viewer is using only below policies then they will able to acess the content.
+		http and https
+		redirect http to https
+		https only
+	cloudfront only caches GET, HEAD and OPTIONS method. others are not cached at all.
+	Field Level Encryption Config
+	Cache based on selected request header = whatever the setting cloudfront forwards 
+	Min TTL = 0 seconds
+	Max TTL = 1 year(31536000 seconds)
+	default TTL = 1 day ( 86400 seconds )
+	Restrict Viewers Access(Use signed url or signed queries) = to restrict access only to your/other aws accounts.
+
+ElastiCache = fully managed in memory data storage powered by redis or memcached. Elasticache is used for real-time use cases such as caching, session stores, gaming, geospatial services, real time analytics and queuing. memcached is designed for simplicity while redis offers richer feature set.
+Use memcached for below use cases
+	1. you need simplest model possible
+	2. you need to run multi-core, multi-threaded app.
+Use Redis for below use cases
+	1. user authentication with role bases access control
+	2. If you use data types other than string.
+	3. dynamic resharding, encryption
+	4. HA, automatic failover, backup and restore, Pub/Sub capabilties and geospatial indexing.
+	5. Compliance with different regulations.
+	
+Redis provides replication capabilities while memcached doesn't support it.
+	
+instance profile = Just like an IAM user represents a person, an instance profile represents EC2 instances. The only permissions an EC2 instance profile has is the power to assume a role. when you create iam role for ec2 aws console it will create instance profile with same name. but in case of cli and sdk you have to create instance profile manually. Instance profile can contain only one role while a role can have multiple profiles.
+
+aws data pipeline = ETL service using EMR and ec2 instances.
+aurora multi-master = In multi-master all db instances have read/write capacity.
+for hybrid webapp having webapp in both onpremise and aws how to route traffic - cloudfront
+
+x-ray daemon = software application that listens to traffic on UDP on port 2000, gathers raw segment data and relays it to aws x-ray api. aws lambda and beanstalk has integration with x-ray. For lambda x-ray is enabled by default. For beanstalk you have to use xray enabled configuration option to run the daemon on your instances. It uses aws access key id and secret access key to communicate with xray service api.
+
+x-ray daemon on ecs = In Amazon ECS, create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster. You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.
+
+to restrict access to s3 bucket and only allow access through cloudfront 
+	1. create special cloudfront user called an OAI (Origin Access Identity) and associate it with your distribution
+	2. configure s3 bucket permissions so cloudfront can use OAI to access files in bucket. make sure user can't use direct s3 url to access the bucket.
+	
+s3 object level logging = Object-level Logging records API activity to the CloudTrail service. you can also select what types of actions to be recorded.
+can we watch object level logs in s3 using cloudwatch events = no, you have to record event through cloudtrail.
+amazon aurora parallel query = feature that provides faster analytical queries over your current data
+RDS event notification = It uses sns service to send notification for different database events.
+is farget contains aws system manager = no
+scan operation on dynamodb table = returns every item of table or secondary index. By default returns all atrribute but using ProjectionExpression you can limit attributes to show. Max data return is 1 MB. If nothing matches then returns empty set.
+
+cloudfront signed url = to only give access to signed in user.
+	
+play with s3, sns, ec2

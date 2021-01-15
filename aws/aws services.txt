@@ -9,8 +9,6 @@ aws Elemental MediaConvert = same as aws elastic transcode.
 
 aws sts (security token service) = provides temporary limited priviledge credentials for user or federated users.
 
-Autonomous System Number (ASN) = An Autonomous System (AS) is a group of one or more IP prefixes (lists of IP addresses accessible on a network) run by one or more network operators that maintain a single, clearly-defined routing policy. Network operators need Autonomous System Numbers (ASNs) to control routing within their networks and to exchange routing information with other Internet Service Providers (ISPs).
-
 CloudWatch metric math = Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics. You can visualize the resulting time series on the CloudWatch console and add them to dashboards.
 
 amazon quicksight = a fully managed service that lets you easily create and publish interactive dashboards. 
@@ -18,8 +16,6 @@ amazon quicksight = a fully managed service that lets you easily create and publ
 Amazon Forecast = a fully managed service that uses machine learning to deliver highly accurate forecasts of any time-series data
 
 aws glue = AWS Glue is a fully managed ETL (extract, transform, and load) service that makes it simple and cost-effective to categorize your data, clean it, enrich it, and move it reliably between various data stores and data streams. 
-
-amazon swf = The Amazon Simple Workflow Service (Amazon SWF) makes it easy to build applications that coordinate work across distributed components.
 
 amazon neptune = fully managed graph database service 
 

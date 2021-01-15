@@ -29,3 +29,22 @@ usr/share/src = header files and kernel source.
 var = Variable files: files whose content is expected to continually change during normal operation of the system, such as logs, spool files, and temporary e-mail files.
 var/log = logs of system and applications.
  
+different colors used to denote types of items in directory.
+	Uncolored (white): file or non-filename text (e.g. permissions in the output of ls -l)
+	Bold blue: directory
+	Bold cyan: symbolic link
+	Bold green: executable file
+	Bold red: archive file
+	Bold magenta: image file, video, graphic, etc. or door or socket
+	Cyan: audio file
+	Yellow with black background: pipe (AKA FIFO)
+	Bold yellow with black background: block device or character device
+	Bold red with black background: orphan symlink or missing file
+	Uncolored with red background: set-user-ID file
+	Black with yellow background: set-group-ID file
+	Black with red background: file with capability
+	White with blue background: sticky directory
+	Blue with green background: other-writable directory
+	Black with green background: sticky and other-writable directory
+	
+*.d = Generally when you see that *.d convention, it means "this is a directory holding a bunch of configuration fragments which will be merged together into configuration for some service."

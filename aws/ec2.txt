@@ -13,6 +13,9 @@ aws EC2 instance has following features
 	Virtual networks that you can create that are logically isolated from the rest of the AWS Cloud and that you can optionally connect to your own network, known as Amazon Virtual Private Clouds (Amazon VPCs)
 
 Although you can only access instance metadata and user data from within the instance itself, the data is not protected by cryptographic methods. Anyone who can access the instance can view its metadata. Therefore, you should take suitable precautions to protect sensitive data (such as long-lived encryption keys). You should not store sensitive data, such as passwords, as user data.
+http://169.254.169.254/latest/meta-data/
+to access user data
+http://169.254.169.254/latest/user-data
 
 User data is data which you can pass to the instance upon initial boot up or in subsequent boots. User data allows you to specify parameters for configuring your instance or attach a simple script. You can also use this data to build more generic AMIs that can be modified by configuration files supplied at launch time. For example, you can change a basic AWS Linux AMI to become a web server using user data. User data is limited to 16 KB, but you can load larger files by giving links to s3.
 

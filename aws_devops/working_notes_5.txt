@@ -1,0 +1,22 @@
+Working notes 5
+RDS provides high availability and failover support by using mulit-az deployment. SQL server uses database mirroring or Always on Availability Group technique for failover support while other databases uses amazon failover technology.
+
+for SSE-C security you need to provide
+	x-amz-server-side-encryption-customer key
+	customer algorithm
+	customer key md5
+	
+find out reason for instance termination 
+by checking instance description under state transition reason label in details tab.
+
+special characters allowed in iam names.
+. @ = , _ - + 
+
+make content of private s3 bucket public
+setup aws bucket policy which marks all objects as public.
+scaling rds instance will cause outage.
+
+AWS has no service named aws federated access. federation is a concept in which two parties,
+1. Idp = Identity Provider. Identity provider authenticates user and gives an assertion to SP which contains attributes like user names and the scope of access.
+2. SP = Service Provider. SP uses assertion provided by IdP to provide access to services defined in the scope.
+you can use aws sso or aws iam to federate users into aws accounts and applications.

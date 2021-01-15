@@ -1,0 +1,126 @@
+working notes
+
+lambda function = supports from scratch, blueprints, docker images and sam. aws will crate new role for lambda function and also vpc will be default system managed. you can change vpc to yours to easily access function from ec2 instances.
+
+amazon EventBridge = fully managed, event driven architecture. all aws services send events by default to eventbridge default bus. and rules are used to take action on events.
+
+codepipeline runorder = The default runOrder value for an action is 1 in each stage. To specify a serial sequence of actions, use the smallest number for the first action and larger numbers for each of the rest of the actions in sequence. To specify parallel actions, use the same integer for each action you want to run in parallel.
+The numbering of serial actions do not have to be in strict sequence. For example, if you have three actions in a sequence and decide to remove the second action, you do not need to renumber the runOrder value of the third action. Because the runOrder value of that action (3) is higher than the runOrder value of the first action (1), it runs serially after the first action in the stage.
+
+network acl default config  understand rules for nacl, nacl rules= first matching rule gets applied. At the end we have * rule which is all deny. So if traffic doesn't match anything nacl will reject it. NACL has seperate rules for inbound and outbound traffic.
+Rule	Type	Protocol	Port Range	Source/Destination		Allow/deny	
+100		HTTP	TCP			80			0.0.0.0/0				ALLOW
+*		All		All			All			0.0.0.0/0				DENY
+vpc has default security group which allows all outbound traffic and no inbound traffic. If you created a ec2 instance inside vpc without creating a new security group then vpc default security group will be attached to that instance. 
+vpc traffic mirroring = you can use vpc traffic mirroring to copy content from your vpc to outbound for its inspection. It is useful for threat monitoring or troubleshooting.
+
+domain join directory = to use aws directory service which is used for sso.
+ec2 has termination protection, after enabling it you cannot terminate instance from api or console.
+
+CloudWatch metrics are rolled up over time; resolution effectively decreases as the metrics age. Here’s the schedule:
+	1 second metrics are available for 3 hours.
+	60 second metrics are available for 15 days.
+	5 minute metrics are available for 63 days.
+	1 hour metrics are available for 455 days (15 months).
+	
+ec2 tenancy = shared, dedicated, dedicated host
+
+how to access ec2 snapshots
+use "sudo su" to become root user in browser connected amazon linux 2 ami.
+
+understand vpc log flow
+<version> <account-id> <interface-id> <srcaddr> <dstaddr> <srcport> <dstport> <protocol> <packets> <bytes> <start> <end> <action> <log-status>
+vpc flow logs can only be sent to s3 or cloudwatch logs.
+
+aws parameter store vs secrets manager 
+both uses kms for encryption but parameter store can also save plaintext values. on the other hand secrets manager will encrypt everything by default. secrets manager also provides secret rotation and password generator. Also secrets can be shared with other accounts while parameters are not. Also there is charge to use secret manager while paramter store is free upto 10000 parameters.
+cloudformation stack set = To manage multiple templates you can use stackSets. 
+alb high availability = ELB is HA and redundancy only in given AZ.
+aws system manager configuration compliance = It scans fleet of ec2 instances for patch compliance and configuration inconsistencies. By default it shows patch and configuration inconsistencies on its display.
+
+s3 transfer acceleration = faster file transfer over long distance between client and s3 bucket. 
+quicksight = data visualization and dashboard.
+multi A-Z deployment configuration for RDS = when you create multi AZ db aws automatically makes a primary db instance and a standby instance in other AZ. Also data is synchronously backed up in standby instance. In case of primary db failure, aws automatically failover to standby.
+
+centralize log for multiple accounts in aws organizations 
+only supported option for cross-accoung log sharing is kinesis data streams. So first in destination create kinesis stream. use lambda function as event handler to pass the logs to amazon es cluster. In sender account use cloudwatch subscription filter to pass logs to kinesis streams.
+You can directly send data from cloudwatch logs and kinesis data firehose to es clusters. For other services such as s3, kinesis streams and dynamodb you can use lambda function as event handler.
+
+aws config aggregators = aggregate config for multi-account, multi-region settings.
+
+files and lifecycle events  auto scaling group, codebuild, codedeploy, opsworks, cloudformation template, beanstalk
+rules to understand   bucket access control policy
+understand cloudwatch services in details 
+
+aws config provides two types of evaluation trigger to validate compliance with rules.
+1. configuration changes = in event of change in state of matching resources rules evaluation will trigger.
+2. periodic
+
+The default namespace for metrics collected by the CloudWatch agent is CWAgent
+
+Set the ForumName attribute as the primary key and Subject as the sort key. Create a Local Secondary Index with LastPostDateTime as the sort key and the Thread as a projected attribute. 
+dynamodb provides fast access to items by specifying primary key. but you can also create secondary key to access other data using different attributes or keys. 
+secondary index is a structure that contains subset of attributes from table along alternate key to support query operations. A table can have multiple secondary indexes. Dynamodb supports two types of secondary indexes.
+1. Global secondary index = a index with partition key and sort key that is different from base table.
+2. Local Secondary index = index that has same partition key but different sort key. you can create upto 5 local secondary indexes.
+A projection is set of attributes that is copied from base table into secondary index.
+
+The primary key of a local secondary index must be composite (partition key and sort key). A local secondary index lets you query over a single partition, as specified by the partition key value in the query.
+Local secondary indexes are created at the same time that you create a table. You cannot add a local secondary index to an existing table, nor can you delete any local secondary indexes that currently exist.
+
+you can only integrate a Network Load Balancer to your Amazon API Gateway.
+
+The type of information that is logged by the containers in your task depends mostly on their ENTRYPOINT command. By default, the logs that are captured show the command output that you would normally see in an interactive terminal if you ran the container locally, which are the STDOUT and STDERR I/O streams. The awslogs log driver simply passes these logs from Docker to CloudWatch Logs.
+
+
+RDS automated backups
+
+A user has launched an EBS backed instance with EC2-Classic. The user stops and starts the instance. Which of the below mentioned statements is not true with respect to the stop/start action?
+-> The Elastic IP remains associated with the instance  
+
+A sys admin has enabled logging on ELB. Which of the below mentioned fields will not be a part of the log file name?
+a.  EC2 instance IP  
+b.  Random String
+-> EC2 instance IP
+
+A user is configuring the Multi AZ feature of an RDS DB. The user came to know that this RDS DB does not use the AWS technology, but uses server mirroring to achieve HA. Which DB is the user using right now?
+-> MS SQL  
+
+A system admin is planning to encrypt all objects being uploaded to S3 from an application. The system admin does not want to implement his own encryption algorithm; instead he is planning to use server side encryption by supplying his own key (SSE-C) Which parameter is not valid while making a call for SSE-C?
+-> x-amz-server-side-encryption-customer-key-AES-256  
+
+A user has launched an EC2 instance. However, due to some reason the instance was terminated. If the user wants to find out the reason for termination, where can he find the details?
+-> The user can get information from the AWS console, by checking the Instance description under the State transition reason label  
+
+A user has created a VPC with public and private subnets using the VPC wizard. Which of the below mentioned statements is true in this scenario?
+-> VPC bounds the main route table with a private subnet and a custom route table with a public subnet  
+
+A user has enabled versioning on an S3 bucket. The user is using server side encryption for data at Rest. If the user is supplying his own keys for encryption SSE-C., which of the below mentioned statements is true?
+-> It is possible to have diÃœerent encryption keys for diÃœerent versions of the same object  
+
+An application that you are managing has EC2 instances & Dynamo DB tables deployed to several AWS Regions In order to monitor the performance of the application globally, you would like to seetwo graphs 1) Avg CPU Utilization across all EC2 instances and 2) Number of Throttled Requests for all DynamoDB tables. How can you accomplish this?
+-> Use the Cloud Watch CLI tools to pull the respective metrics from each regional endpoint Aggregate the data oÃ ine & store it for graphing  
+
+When you define a security group rule for EC2 instances, which of the below form part of the rule. Choose 3 answers form the options below.
+Protocol  
+ Port Range  
+ Destination  
+ Rule ID  
+-> Protocol  
+ Port Range  
+ Destination
+ 
+In order to use Enhanced Networking for EC2 do you need to pay extra?
+NO  
+
+A user has created a VPC with a public subnet and a security group. The user has launched an instance in that subnet. The user is still unable to connect to the instance. The internet gateway has also been created and attached to the route table. What can be the reason for the error?
+=> The elastic/public IP is not present  
+
+When you scale the compute resources of a RDS DB instance, there will be no outage in the DB instance itself
+-> Yes  
+
+A user is trying to understand the detailed CloudWatch monitoring concept. Which of the below mentioned services provides detailed monitoring with CloudWatch without charging the user extra?
+-> AWS Autoscaling group.
+
+ \"s3.amazonaws.com/mybucket/photos/2014/08/puppy.jpg?x-user=johndoe\" is GET URL you have received for accessing your S3 bucket via REST API.What is significance of x-user=johndoe in this URL?
+-> Amazon S3 ignores query-string parameters that begin with "x" & these parameters are included in access log records

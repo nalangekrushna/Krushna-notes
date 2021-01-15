@@ -1,0 +1,17 @@
+ALB
+
+Application Load Balancer = distributes traffic among different aws resources in multiple Availability Zones for given region. to distribute traffic among multiple regions you have to use route 53. It supports all resuoreces such as ec2 instances, ip addresses, containers and lambda functions. alb adds “X-Amzn-Trace-Id” http header for request tracability throughout aws. To map session to instances elb creates cookie named AWSELB. this cookie is useful in sticky sessions i.e. to forward request from given end user to specific resource only. alb also supports path based routing, http, https based routing, query string based routing, source ip address cidr based routing.
+
+alb has two components 
+1. listeners = used to check for connection request for given protocol and port.
+2. target groups = used to route request to one or more targets.
+
+access logs = elb provides access logs which contains time of request, clients ip address, latencies, request paths and server response. access logs is optional feature which is disabled by default. after you enable access logs alb captures it, encrypts it using sse-s3 default encryption and stores it in s3 bucket. There are no additional charges for logs only you have to pay for s3. access logs also contains the requests that never made it to target.
+access log file name
+bucket[/prefix]/AWSLogs/aws-account-id/elasticloadbalancing/region/yyyy/mm/dd/aws-account-id_elasticloadbalancing_region_load-balancer-id_end-time_ip-address_random-string.log.gz
+notice there is no start time only end time is there.
+
+bucket used for storing access logs must have following requirements.
+same region
+only use sse-s3 encryption.
+bucket policy granting elb permission to write the logs

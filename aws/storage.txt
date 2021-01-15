@@ -26,7 +26,6 @@ Glacier Deep Archieve = deep archieve is less costly than glacier and it takes m
 
 EFS (Elastic File System) = fully managed file storage service. It is used to be accessible by thousands of ec2 instance at same time with consistent performance. efs didn't support windows os. Amazon EFS is a regional service storing data within and across multiple Availability Zones (AZs) for high availability and durability. EFS is used when you required parallel access storage.
 
-
 AWS EBS = you can mount multiple ebs volumes on single instance or you can attach single volume to multiple instances using ebs multi-attach(max 16). ebs volumes are created in an AZ can only be attached to instance in same AZ. you can create snapshot and restore snapshot any wehere in the region to attach to instance outside current AZ. you can use aws managed AWS Backup for ebs volumes. you cannot use hdd (sc1, st1) as boot volume. use raid 0 to maximize utilization of instance resources. Although recommended is raid 1 as it provides fault tolerance. Raid 5 and 6 are not at all recommended.  
 The maximum ratio of provisioned IOPS to requested volume size (in GiB) is 50:1.
 For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS. On a supported instance type, any volume 1,280 GiB in size or greater allows provisioning up to the 64,000 IOPS maximum (50 × 1,280 GiB = 64,000).

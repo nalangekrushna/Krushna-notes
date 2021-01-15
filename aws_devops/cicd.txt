@@ -1,18 +1,27 @@
 tag = cicd
-codecommit = Internally it uses S3 and dynamodb to store data. So data is highly available and redundant. Max size of file that we can store is 2 GB. codecommit repos have two ways to inform anyone about any action 1. Triggers, 2.Notifications. Triggers supports SNS topic and lambda function. codecommit Notification can have two targets, notification topics and aws chatbot(slack). Trigger is legacy feature. It didn't use cloudwatch events for evaluation. So no of actions are limited in trigger. Notifications provide more detailed info than Triggers. Trigger is specific feature to codecommit. while sns is a aws service. aws for codecommit provides three managed policies AWSCodeCommitFullAccess, AWSCodeCommitPowerUser, AWSCodeCommitReadOnly. power user policy will have full access except delete permission. git repos are region specific.
+codecommit = manged git VCS. Internally it uses S3 and dynamodb to store data. So data is highly available and redundant. Max size of file that we can store is 2 GB. codecommit repos have two ways to inform anyone about any action 1. Triggers, 2.Notifications. Triggers supports SNS topic and lambda function. codecommit Notification can have two targets, notification topics and aws chatbot(slack). Trigger is legacy feature. It didn't use cloudwatch events for evaluation. So no of actions are limited in trigger. Notifications provide more detailed info than Triggers. Trigger is specific feature to codecommit. while sns is a aws service. aws for codecommit provides three managed policies AWSCodeCommitFullAccess, AWSCodeCommitPowerUser, AWSCodeCommitReadOnly. power user policy will have full access except delete permission. git repos are region specific.
+to copy git repo using https or ssh
+git clone [https/ssh]://git-codecommit.ap-south-1.amazonaws.com/v1/repos/repo_name
 
+to achieve cross region replication we have to use lambda function and aws farget which is serverless architecture. follow below steps for CRR.
+1. developer commits code in source repo region.
+2. a codecommit trigger will invoke lambda function in source repo region.
+3. lambda function will run aws farget task in source repo region which will replicate changes to destination region repository. 
 
-codebuild = It compiles the code, runs the test and create the packages that are ready to deploy. you can specify build commands in buildspec.yml file. CodeBuild also has triggers which can be used to invoke build periodically. You get notified using notification rule which will target sns topic.
+codecommit uses https and ssh protocols to connect so it is secure at transit. codecommit repo by default is encrypted with aws kms so data is secure at rest by default.
+
+codebuild = It is managed service which compiles the code, runs the test and create the packages that are ready to deploy. you can specify build commands in buildspec.yml file. CodeBuild also has triggers which can be used to invoke build periodically. You get notified using notification rule which will target sns topic. codebuild supports java, android, python, .net, ruby, php, docker, go and nodejs. codebuild saved its artifact in s3 bucket. you can enable sse-kms encryption for output artifacts. you can upload build to s3 or cloudwatch. for environment either we can upload our own docker image or choose between amazon linux 2 or ubuntu.
 
 Buildspec.yml = This file contains version and phases at top level. Phases have install, pre_build, build, post_build sections. Install does environment setup. pre_build makes configuration changes and file copying. build step actually does building part. Last step post_build does post build actions such as copying artifacts to s3 bucket. Every section in Phases have run-as, commands and finally as sub section and install section have additional runtime-version subsection to define version of programminng language used. 
 artifacts = codebuild can generate artifacts (compiled source code or jar)
+You can use cloudwatch to record the logs. specify the ProjectName dimensions to get logs at project level otherwise you will get logs at account level.
 
 codedeploy = 
 codedeploy helps to deploy and update software on on-premise or cloud infrastructure. while Opswork and beanstalk are end to end application management systems. Deployment group is codedeploy entity for grouping ec2 instances or lambda functions together for deployment. For a deployment you need a revision, a deployment group and a optional deployment configuration.	
 
 appspec.yml = configuration file present in root directory of revision, which specifies how to execute scripts and copy files for deployment. appspec file have two sections 1. file section = specifies which file from revision to copied to which destination in ec2 instances. 2. hooks section = It specifies location of scripts to run during each phase of deployment. 
 
-Deployment lifecycle event for codedeploy = 
+Deployment lifecycle event for codedeploy ec2/onpremise = 
 ApplicationStop = stops previously running deployment of the application. 
 DownloadBundle = copies files to temp location in instance.
 BeforeInstall = preinstall tasks such as decrypting files and taking backups.
@@ -21,7 +30,53 @@ AfterInstall = used to configure application or change file permissions.
 ApplicatonStart = restart services that were stopped in ApplicationStop.
 ValidateService = verifies if deployment is successful.
 
+Deployment lifecycle events for lambda function
+BeforeAllowTraffic
+AllowTraffic
+AfterAllowTraffic
 
+Deployment lifecycle events for ecs 
+BeforeInstall
+Install
+AfterInstall
+AllowTestTraffic
+AfterAllowTestTraffic
+BeforeAllowTraffic
+AllowTraffic
+AfterAllowTraffic
+
+deployment types
+1. In-place deployment = only supported in ec2/onpremise instances. The application on each instance in deployment group is stopped. Instances are deregistered from load balancer. Latest application revision is installed. New version is started and validated.
+2. Blue/Green deployment = supported on ec2/onpremise, lambda, ecs and cloudformation. 
+
+deployment configurations
+1. canary = traffic is shifted in two batches.
+2. linear = traffic is shifted linearly after preconfigured time period.
+3. all at once = traffic is shifted immediately.
+In ec2/onpremise compute platform you can also specify min no of healthy instances.
+
+Rollback behaviour for codedeploy with existing content = As part of deployment process, codedeploy removes all prev revision files. If files are not part of prev deployment then there are three options.
+	Fail the deployment = report file presence and mark deployment status as failed.
+	Overwrite the content = version of file from application revision replaces files already on the instance
+	Retain the content = file in target location is retained and new version of files is not copied.
+
+CodePipeline = It works with codecommit, ecs, lambda, beanstalk, s3, codebuild, codedeploy, cloudformation, opswork.
+
+Step functions = used when you have complex workflows are functions are expected to take more than 15 minutes. Step functions can be running for a year.
+
+Api gateway = Api gateway supports http, websocket, rest protocols. It has three types of endpoints regional, edge optimized and private.
+
+OpsWorks = 5 lifecycle events.
+setup = This events happen after ec2 instance has finished booting.
+configure = This events happend on all ec2 instance when one the below thing happen.
+	1. An instance enters or exits the online state
+	2. attach or detach elastic ip address with an instace.
+	3. attach or detach elastic load balancer to a layer.
+deploy
+undeploy
+shutdown
+
+setup, deploy, undeploy and shutdown are instance specific while configure will happen on all instances.
 
 Amazon SNS = It has two types of topics. 1. Standard  2. FIFO
 SNS notifications topics can provide basic or full information. In Basic information, Only the information sent to eventbridge or cloudwatch is sent to target audience. In Full mode it adds additional information to given notification. 

@@ -1,17 +1,14 @@
-Simple Storage Service (Amazon S3) = regionally provisioned object storage service. Content saved into Amazon S3 is automatically replicated into at least three facilities. Buckets are globally unique named objects; they are unique across all AWS accounts. all content in Amazon S3 is automatically web-enabled. When content is saved into Amazon S3, there is a unique URL created for the object, which includes the bucket name as the domain, hence the need for global uniqueness.
-Amazon S3 defines a bucket name as a series of one or more labels, separated by periods, which adhere to the following rules:
-■ The bucket name can be between 3 and 63 characters long and can contain only lowercase characters, numbers, periods, and dashes.
-■ Each label in the bucket name must start with a lowercase letter or number.
-■ The bucket name cannot contain underscores, end with a dash, have consecutive periods, or use dashes adjacent to periods.
-■ The bucket name cannot be formatted as an IP address (198.51.100.24).
-
-Amazon S3 supports both virtual-hosted-style and path-style URLs to access a bucket.
-■ In a virtual-hosted-style URL, the bucket name is part of the domain name in the URL. For example: http://bucket.s3.amazonaws.com 
-■ In a path-style URL, the bucket name is not part of the domain (unless you use a region-specific endpoint). For example: US East (N. Virginia) region endpoint, http://s3.amazonaws.com/bucket
+Simple Storage Service (Amazon S3) = regionally provisioned object storage service. Content saved into Amazon S3 is automatically replicated into at least three different AZs. Buckets are globally unique named objects; they are unique across all AWS accounts. all content in Amazon S3 is automatically web-enabled. When content is saved into Amazon S3, there is a unique URL created for the object, which includes the bucket name as the domain, hence the need for global uniqueness.
 
 Default properties of Amazon S3 keep content private for the account owner until explicit commands to share are invoked. s3 min object size is 0 bytes. max object size can be 5 TB and largest object that can be uploaded in single PUT request is 5 GB. for object above size 100 mb multipart upload capability is recommended. 
 
 After you enable versioning on a bucket, it can be in either the enabled or suspended state; you cannot disable versioning on a bucket. If you suspend versioning, Amazon S3 suspends the creation of object versions for all operations but preserves any existing object versions. If you delete after versioning enabled it will only delete current object and not prev object which you have to delete from console.
+
+s3 encryption = you cannot apply different types of encryption on an object at same time. There are three mutually exclusive options depends on how you choose to manage the encryption keys.
+	sse-s3 = each object is encrypted with unique key. That unique key encrypted with master key which rotates regularly. It uses AES-256 for encryption.
+	sse-kms = uses aws kms service for encryption which provides needs some additional authenticated and audit trail of kms. you will be charged for kms service.
+	sse-c = you manage key for encryption.
+
 
 Amazon S3 – Reduced Redundancy Storage (Amazon S3-RRS) = only backed up in two place and provide durability upto only 4 points. it is your option when questions looking for cheapest solution and does not mention about duarability or where data can be reproduced from some way.
 
@@ -19,6 +16,8 @@ Amazon S3 Infrequent Access (Amazon S3-IA) = high durablity but if only needed t
 S3-IA is cost effective only when storage time is min 30 days and min 64 KB file size.
 
 S3 IA One Zone = used for infrequently accessed and easily reproducable as secondary backup option. Data is stored in only one AZ.
+
+S3 CRR and SRR = s3 replication feature provides cross region replication and same region replication with different bucket. you can set replication on bucket or prefix level. By using tags you can setup replication on object level.
 
 S3 advanced services =
 Amazon S3 inventory is one of the tools Amazon S3 provides to help manage your storage. You can use it to audit and report on the replication and encryption status of your objects. You can also specify that the inventory list file is encrypted. You can query Amazon S3 inventory using standard SQL by using Athena or Redshift Spectrum

@@ -1,0 +1,13 @@
+Elastic Beanstalk
+
+beanstalk supports java, .net, php, nodejs, python, ruby, go, docker. you can enable managed platform updates which will automatically update minor and patch updates automatically in maintainance window. Major version updates you have to manually initiate. beanstalk deployment type is immutable so when updating It will create new environment and direct traffic to it. beanstalk internally  uses cloudformaion to create resourece for us. beanstalk supports two type of environments 1. server environment 2. worker environment 
+beanstalk also provice preset config such as low cost, high availability and custom. beanstalk could at max have 1000 application versions stored. By using application version lifecycle setting you can limit version by number or days.Also you get option to store source bundle or only config.
+
+beanstalk saved configuration = used to backup configuration of elastic beanstalk.Inside your project root folder there is another folder named .elasticbeanstalk inside it another folder 'saved_configs' will store all the configurations.
+
+.ebextensions  = file present in root folder of project and used by beanstalk to further configure the project.  you can use Resources block inside it to add any kind of resources.
+
+keep RDS tables outside beanstalk to save data.
+
+.ebextension commands = to execute command on ec2 instance. the command run before the application and web server are set up and the application version file is extracted.
+.ebextension container_commands = used to do action on source code. container commands are run after application and web server is set up. application version file is extracted. but before application is deployed. container commands will by default run on all ec2 instances. you can set leader_only parameter to true to run it on single ec2 instance only. 

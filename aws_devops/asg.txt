@@ -1,0 +1,59 @@
+Auto Scaling Groups (asg) = Dynamic scaling responds to changing demand and predictive scaling automatically schedules the right number of EC2 instances based on predicted demand. Auto Scaling uses both this features for scaling. asg provides free detailed monitoring but you have to enable it.
+
+Auto scaling groups are used for scale in and scale out of ec2 instances. for this there are two options to create and configure new ec2 instaces.
+
+1. launch configuration (depracated) = it contains information such as ami id, instance type, key pair, security groups and block device mapping. You cannot modify launch config after you created it. To change launch config for asg, you have to create a new launch config and update asg group with it. when you create asg using ec2 instance, ec2 autoscaling automatically creates launch config for you and add it to asg.
+
+2. launch template = launch template is similar to launch config but it can also have multiple versions of template. launch template is preferred way over launch configuration to use latest features such as dedicated hosts and t2 unlimited instances. 
+
+After this config you have option to add load balancer. asg always does ec2 health checks and if you use load balancer, you can enable elb health checks also. you can also specify health check grace period. (i.e. time before first health check is performed.) asg provides free detailed monitoring but you have to enable it.
+
+health of asg instance is either healthy or unhealthy. all instances in asg starts as healthy, instance is considered healthy unless you get notification from ec2, elb or custom health check. If instance is marked as unhealthy then it is scheduled for replacement, to avoid replacement you can suspend health check of individual asg. asg also provides instance scale-in termination protection which is not applicable to unhealthy instances.
+
+Instances that do not use elb are considered healthy if ec2 reports running state. for instances using elb we additionaly check for elb reporting them healthy. when instance is terminated by asg for being unhealthy, associate eip will get disassociated and will not be attach to new launched instance.
+
+ASG provides three options for group size : desired capacity, max capacity and min capacity. before changing desired capacity make sure to change min or max capacity if the limit is getting exceeded. 
+
+asg provides only target tracking scaling policy or none. for scaling you can use cpu utilization , network in or out and alb request count per target. also you can specify no of seconds before instance is added to metrics. you can also notify users using sns topics for following events : Launch, Terminate, fail to launch, fail to terminate. step scaling and simple scaling policies available as advanced config.
+
+ASG instance lifecycle 
+scale out => pending => pending:wait => pending:proceed => InService => scale in/health check failure => terminating => terminating:wait => terminating:proceed => terminated
+
+InService => EnteringStandby => Standby => Pending
+all wait hooks are customizable(i.e. you can write code or do operation there.). asg remains in wait state until you complete lifecycle action by command or cli or timeout period reaches. default timeout perios is 1 hour.
+
+Standby state = you can put instance into standby state for update or troubleshoot instance. Auto Scaling didn't do health checks on standby instance. below are things happen when you put instance in standby
+1. you put instance into standby state. It remains there until you remove it from there.
+2. if you're using load balancer then instance gets deregistered.
+3. by default desired capacity is decremented by one but you can choose not to decrement.
+4. update or troubleshoot instance
+5. return to service by exiting standby state.
+6. desired capacity is incremented
+7. instance is registered with load balancer.
+
+If you suspend the Terminate process, your Auto Scaling group can grow up to ten percent larger than its maximum size, because this is allowed temporarily during rebalancing activities. If the scaling process cannot terminate instances, your Auto Scaling group could remain above its maximum size until you resume the Terminate process.
+auto scaling groups cannot scale out to other aws regions. Launching an Auto Scaling Group with subnets across 2 Availability Zones and setting the minimum and maximum capacity to 1 is incorrect as setting the maximum capacity to 1 means that the Auto Scaling group will not be able to scale out as required.
+
+auto scaling didn't support instance type change ie. didn't allow to edit launch configuration. So to change instance type you need to create a new launch config. This changes didn't apply to running instances of autoscaling group. To apply it to old running instances please terminate all old instances and new instances will be created according to new configuration.
+
+scaling policy type = 
+	Target tracking scaling = scales in or out to keep target metrics value near to user provided value
+	step scaling = adjust in proportional of size of alarm breach. step scaling is better and generally recommended than simple scaling.
+	simple scaling = scale in or out upon breach of threshold.
+	scheduled scaling = scale in or out at specific timing.
+
+Scaling features
+	AZRebalance = balances no of ec2 instance in a group evenly across all specified AZ when group becomes unbalanced.
+
+	AddToLoadBalancer = Add instances to attached load balancer or target group when they are launched.
+
+Auto Scaling EC2 instance has two primary processes. suspending or resuming any of them will affect other process also.
+1. Launch = If you suspend Launch process then scale out will stop. AZRebalance will stop rebalancing group. ReplaceUnhealthy will continue adding terminate instances but will not add new instances.
+When you resume Launch process AZRebalance will gradually balance auto scaling group. ReplaceUnhealthy will immediately replace terminated instances.
+2. Terminate = If you suspend Terminate process then scale in will stop. AZRebalance process will be active but didn't work properly. It can add new instances without terminating the old one. Due to this Auto Scaling group can grow 10% more than max size. ReplaceUnhealthy will be inactive.
+When you resume Terminate process AZRebalance gradually rebalances auto scaling group. ReplaceUnhealthy will terminate all unhealthy marked instances immediately.
+
+A user has configured Auto Scaling with the minimum capacity as 2 and the desired capacity as 2. The user is
+trying to terminate one of the existing instances with the command: terminate-instance-in-auto-scalinggroup
+–decrement-desired-capacity What will Auto Scaling do in this scenario?
+-> Throws an error (ValidationError). Terminating instance without replacement will violate group’s min size constraint. Either set shouldDecrementDesiredCapacity flag to false or lower group’s min size.

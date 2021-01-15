@@ -23,8 +23,3 @@ Disaster Recovery = there are 4 DR plans that you can use.
 	
 	multi site = This is fastest as well as costliest method of active/active failover config. Here we use one to one copy of our infrastructure in other region or AZ.
 
-You are managing a multi-region application deployed on AWS. You currently use your own DNS. What types of failover does Amazon Route 53 support? (choose three)
-	-> A. Active-active failover
-	   B. Active-active-passive failover
-	   C. Active-passive failover
-You can set up a variety of failover configurations using Amazon Route 53 alias, weighted, latency, geolocation routing, and failover resource record sets. You can choose Active-active failover, Active-passive failover, Active-active-passive, and other mixed configurations.
