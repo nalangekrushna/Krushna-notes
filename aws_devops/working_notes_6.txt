@@ -1,0 +1,33 @@
+
+to check if credentials are exposed to public you can use cloudwatch event AWS_RISK_CREDENTIALS_EXPOSED in aws health service.
+
+aws secrets manager didn't support dynamodb.
+
+replication cluster managed by ec2 with auto scaling in given region.
+
+efs to get minimum possible rto and rpo, create ec2 replication cluster with auto scaling in source region. scale according custom metrics you use to measure lag in file reads. Replicate data in s3 in destination region. create another replication cluster in destination region that reads from s3 and copy files to standby efs cluster. This is very costly way. also amazon datasync provides efs file replication capability which is not covered in devops exam. also it only copies files and not the file permissions.
+
+to add header in api gateway use static mapping.
+
+to distribute patches through internal patch repo, implement a custom patch baseline. you can specify alternative patch repo when using custom patch baseline otherwise you have to use patchline provided by aws which you cannot modify but approve or reject patches above it to apply to your aws resources. 
+
+codebuild_source_version represents branch name in codebuild.
+
+api gateway = simply creating and developing api gateway api doesn't make it automatically callable by user. to make it callable you must deploy your api to a stage. a stage is named reference to deployment, which is snapshot of api. you can configure stage for caching, canary release, request throttling, configure logging or stage variables.
+
+Create one template per logical element of your infrastructure. Deploy them using CloudFormation as they are ready. Use outputs and exports to reference values in the stacks. Keep each file separately in a version-controlled repository.
+
+cloudwatch events didn't provide user details( who took the action) while cloudtrail contains user details.
+
+aws opsworks has built in support for memcached cache support.
+
+for on premise microsoft ad to connect with aws use aws directory service ad connector.
+
+to share automated snapshot first convert it into manual snapshot by copying it. then share snapshot by action >> share snapshot. you can only share encrypted snapshot as private and not public. also you cannot share microsoft sql server and oracle db encrypted snapshots. also to share encrypted snapshot you have to share master cmk. snapshots encrypted by default encryption are also not shareable.
+
+we can recover data in from read replicas in following scenairio
+aws region failure.
+RDS hardware failure at master instance
+master db instance has been deleted.
+
+aws cost explorer for data transfer cost

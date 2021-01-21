@@ -1,6 +1,21 @@
-Elastic Beanstalk
+Elastic Beanstalk = eb used to quickly deploy and manage apps in cloud without worrying about infrastructure provisioning. you upload app to eb and eb manages health checks, capacity provisioning, load balancing and scaling. beanstalk supports java, .net, php, nodejs, python, ruby, go, docker. you can enable managed platform updates which will automatically update minor and patch updates automatically in maintainance window. Major version updates you have to manually initiate. 
 
-beanstalk supports java, .net, php, nodejs, python, ruby, go, docker. you can enable managed platform updates which will automatically update minor and patch updates automatically in maintainance window. Major version updates you have to manually initiate. beanstalk deployment type is immutable so when updating It will create new environment and direct traffic to it. beanstalk internally  uses cloudformaion to create resourece for us. beanstalk supports two type of environments 1. server environment 2. worker environment 
+beanstalk environment is collection of aws resources running an application version. eb provides below deployment policies
+1. All at Once
+2. Rolling
+3. Rolling with additional batches
+4. Immutable = new asg is created and traffic served by both until new asg passes health checks.
+5. Traffic spliting (canary)
+6. blue/green deployment = swap cname url to route traffic to new deployment. This method is also used when you are doing major version upgrade. you also need to use external database (outside eb environment) to do blue/green deployment.
+
+If your application doesn't pass all health checks, but still operates correctly at a lower health status, you can allow instances to pass health checks with a lower status, such as Warning, by modifying the Healthy threshold option. If your deployments fail because they don't pass health checks and you need to force an update regardless of health status, specify the Ignore health check option.
+
+If you change the configuration in eb then if provide below methods to apply changes
+1. Rolling 
+2. Immutable = create new temp asg outside environment with seperate set of instances running new config. after new instances passes health check they are moved to original asg and new temp asg is terminated. also prev config instances are terminated.
+3. disabled = terminates current env existing instances and launches new instances with updated config. There will be some downtime in this method.
+
+beanstalk internally  uses cloudformaion to create resourece for us. beanstalk supports two type of environments 1. server environment 2. worker environment 
 beanstalk also provice preset config such as low cost, high availability and custom. beanstalk could at max have 1000 application versions stored. By using application version lifecycle setting you can limit version by number or days.Also you get option to store source bundle or only config.
 
 beanstalk saved configuration = used to backup configuration of elastic beanstalk.Inside your project root folder there is another folder named .elasticbeanstalk inside it another folder 'saved_configs' will store all the configurations.

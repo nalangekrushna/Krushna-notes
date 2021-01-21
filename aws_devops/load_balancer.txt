@@ -14,3 +14,5 @@ bucket[/prefix]/AWSLogs/aws-account-id/elasticloadbalancing/region/yyyy/mm/dd/aw
 Notice it contains end time but not the start time.
 
 aws global accelerator = aws service which send your network traffic through aws infrastructure instead of open internet to improve performance of your services. It provides two static ip address and you can add remove different resources such as load balancers, eip and ec2 instances at backend.
+
+latency metrics in alb is called TargetResponseTime.

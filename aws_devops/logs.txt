@@ -1,0 +1,24 @@
+cloudtrail = cloudtrail records all api calls to all aws services. It is good for auditing purpose.
+trail = trail is cloudtrail config which defines which logs in which bucket should be delivered.
+below is the example of cloudtrail log file name
+AccountID_CloudTrail_RegionName_YYYYMMDDTHHmmZ_UniqueString.FileNameFormat 
+e.g. 111122223333_CloudTrail_us-east-2_20150801T0210Z_Mu0KsOhtH1ar15ZZ.json.gz 
+
+cloudtrail log file integrity = when you enable log file integrity for cloudtrail then cloudtrail creates a hash for every file delivered. every hour cloudtrail delivers a file that references the log file for last hour and contains hash of each. This file is called digest file.
+
+kinesis = managed alternative to apache kafka. real time streaming capacity. good for app logs, metrics and iot clickstreams.
+kinesis streams = low latency streams ingest at scale. streams are divided into shards or partitions. data retention in streams is 1 day by default. It can go upto 7 days. It has ability to reprocess/replay the data. multiple apps can consume from same stream. Once data inserted into kineisis it can't be deleted.
+kinesis stream records have following part in given sequence.
+1. data blob
+2. record key
+3. sequence number
+kinesis streams are real-time while kinesis data firehose is near real time.
+kinesis analytics = perform real time analytics on stream using sql.
+kinesis data firehose = load streams into s3, redshift and es.
+
+cloudwatch metrics
+in ec2 we will not get ram usage. that has to be custom metrics. also disk read and write are only applicable to instance store.
+in ebs we will get disk read and write. also free space metric has to be custom.
+
+cloudwatch alarms
+you cannot combine alarms in cloudwatch alarms. alarm only supports ec2, asg or sns notification target. billing alarm stored in us-east-1(N. Virginia). cloudwatch unified agents provides both metrics and logs. 

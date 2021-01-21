@@ -1,7 +1,5 @@
 working notes
 
-lambda function = supports from scratch, blueprints, docker images and sam. aws will crate new role for lambda function and also vpc will be default system managed. you can change vpc to yours to easily access function from ec2 instances.
-
 amazon EventBridge = fully managed, event driven architecture. all aws services send events by default to eventbridge default bus. and rules are used to take action on events.
 
 codepipeline runorder = The default runOrder value for an action is 1 in each stage. To specify a serial sequence of actions, use the smallest number for the first action and larger numbers for each of the rest of the actions in sequence. To specify parallel actions, use the same integer for each action you want to run in parallel.

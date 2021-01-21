@@ -64,8 +64,14 @@ CodePipeline = It works with codecommit, ecs, lambda, beanstalk, s3, codebuild, 
 
 Step functions = used when you have complex workflows are functions are expected to take more than 15 minutes. Step functions can be running for a year.
 
-Api gateway = Api gateway supports http, websocket, rest protocols. It has three types of endpoints regional, edge optimized and private.
+Api gateway = Api gateway supports http, websocket, rest protocols. It has three types of endpoints regional, edge optimized and private. you have to define method and path it it. 
+Stages are independtly config env that api can be deployed to. by default all http api created through console have default env named $default. you can add stages to indicate env such as dev or prod. api gateway supports canary deployment. throttling is used to limit no of request api gateway can support at a timie to avoid overwhelming the effect.
 
+opsworks stack = uses chef cookbook recipe. stack is set of layers of aws resources. you can create chef 12 or 11 stack. you can choose between windows or linux os. you can add custom cookbooks which supports git or http archieve or s3 bucket as source.
+In ops works there are three types of instance provisions.
+1. 24*7 = It is always available.
+2. time based = can start and stop on specific time.
+3. load based = can start and stop depending upon load.
 OpsWorks = 5 lifecycle events.
 setup = This events happen after ec2 instance has finished booting.
 configure = This events happend on all ec2 instance when one the below thing happen.

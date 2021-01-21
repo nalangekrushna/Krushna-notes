@@ -2,10 +2,6 @@ graphQL api service = api for data manipulation, released by facebook
 AssumeRoleWithWebIdentity = useful to authenticate end users using google, fb or amazon third party logins.
 AssumeRoleWithSAML = use for enterprise user integrated with organization security policy and authenticated using microsoft Active Directory.
 
-elastic beanstalk = If your application doesn't pass all health checks, but still operates correctly at a lower health status, you can allow instances to pass health checks with a lower status, such as Warning, by modifying the Healthy threshold option. If your deployments fail because they don't pass health checks and you need to force an update regardless of health status, specify the Ignore health check option.
-
-to decouple db from beanstalk lauch it seperately using rds and use blue/green deployment method.
-
 aws amplify = set of tools and services to help ui developer to build frontend.
 aws mobile hub = It simplifies process of building, testing and monitoring mobile apps that uses aws services.
 
@@ -78,5 +74,3 @@ is farget contains aws system manager = no
 scan operation on dynamodb table = returns every item of table or secondary index. By default returns all atrribute but using ProjectionExpression you can limit attributes to show. Max data return is 1 MB. If nothing matches then returns empty set.
 
 cloudfront signed url = to only give access to signed in user.
-	
-play with s3, sns, ec2

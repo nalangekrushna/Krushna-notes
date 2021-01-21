@@ -1,8 +1,16 @@
-ecs = container management system
+ecs = container management system = logical grouping of ec2 instances. ec2 instances run the ecs agent.(docker container) the ecs agents runs the instance into ecs cluster.
+
+ecs task definition = task definition are metadata in json format to tell ecs how to run a docker container.
+
+ecs service = helps define how many tasks should run, how they should be run.
 
 containers are defined insided task definitions that can be used to run individual tasks or tasks within service. service is config that enables you to run and maintain desired no of tasks in cluster. there are two types of ecs services aws provides
 1. farget = managed by aws
 2. ecs ec2 = managed by you.
+
+elastic beanstalk + ecs = you can run docker containers using eb. eb provides both single and multi docker container mode. In multi docker container mode you can run multiple containers per ec2 instance in eb. you need to provide dockerrun.aws.json at root of source code.
+
+we can use awslogs driver to send logs to cloudwatch.
 
 x-ray daemon on ecs = In Amazon ECS, create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster. You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container. 
 

@@ -13,8 +13,8 @@ aws cloudformation uses Change Set to preview how the proposed changes to a stac
 When you need change or update stack, For example, if you have a stack with an EC2 instance, you can update the stack to change the instance's AMI ID. When you update a stack, you submit changes, such as new input parameter values or an updated template. AWS CloudFormation compares the changes you submit with the current state of your stack and updates only the changed resources. AWS CloudFormation provides two methods for updating stacks:
    1. Direct update
    2. Creating and executing change sets.
-When you directly update a stack, you submit changes and AWS CloudFormation immediately deploys them. Use direct updates when you want to quickly deploy your updates.
-With change sets, you can preview the changes AWS CloudFormation will make to your stack, and then decide whether to apply those changes. Change sets are JSON-formatted documents that summarize the changes AWS CloudFormation will make to a stack.
+When you directly update a stack, you select update option on cloudformation stack, you submit changes and AWS CloudFormation immediately deploys them. Use direct updates when you want to quickly deploy your updates.
+With change sets, you go to change set tab, you can preview the changes AWS CloudFormation will make to your stack, and then decide whether to apply those changes. Change sets are JSON-formatted documents that summarize the changes AWS CloudFormation will make to a stack.
 
 on failure to deploy stack we have three options : DO_NOTHING, ROLLBACK, or DELETE. ROLLBACK is default option.
 
@@ -22,6 +22,6 @@ drift detection is just a feature of CloudFormation that enables you to detect w
 
 SSM = System Software Manager
 
-cloudformation system manager state manager (replacement for cfn-init)= Systems Manager State Manager is a scalable configuration management service that automates the process of keeping your Amazon EC2 and on-premises infrastructure in a state that you define. With State Manager you can bootstrap EC2 instances with software at start-up, configure network settings, join Windows instances to a Microsoft Active Directory domain, and run scripts on Windows or Linux managed instances. To execute these tasks with State Manager, you create an association, which maps an automation or command document to target instances. With State Manager, we can run many of the same tasks as you would with cfn-init but with multiple added benefits.
+cloudformation system manager state manager (replacement for cfn-init)= it keeps your Amazon EC2 and on-premises infrastructure in a state that you define. With State Manager you can bootstrap EC2 instances with software at start-up, configure network settings, join Windows instances to a Microsoft Active Directory domain, and run scripts on Windows or Linux managed instances. To execute these tasks with State Manager, you create an association, which maps an automation or command document to target instances. With State Manager, we can run many of the same tasks as you would with cfn-init but with multiple added benefits.
 
 cloudformation system manager parameter store = used to centrally manage all parameters in cloudformation template and avoid rewriting templates just to make some parameter changes. This way you can avoid hardcoding or adding parameters in plaintext to the template.
