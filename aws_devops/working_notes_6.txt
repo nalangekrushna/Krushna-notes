@@ -31,3 +31,15 @@ RDS hardware failure at master instance
 master db instance has been deleted.
 
 aws cost explorer for data transfer cost
+
+cloudformation can be used as deploy step.
+
+get latest ami id using lambda function => create custom resource in cloudformation template. Associate lambda with custom resource by specifying ARN of lambda function for the service token property.
+
+aws organizations = Its a global service. main account is called master account. you cannot change it. other accounts are called member accounts. member accounts can only be part of one oraganization. but we can move them from one organization to another organization. you get pricing benefits due to aggregate usage of all accounts. scp also applies to root user of all accounts except master account. scp does not affect AWSService roles.
+
+vpc peering allows private traffic between regions.
+
+to create rule for trusted advisor you have to be in us-east-1 region(i.e. Northern Virginia). Also to get billing metrics you have to be in us-east-1. trusted advisor is a global service.
+
+kinesis streams

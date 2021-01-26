@@ -17,7 +17,7 @@ S3-IA is cost effective only when storage time is min 30 days and min 64 KB file
 
 S3 IA One Zone = used for infrequently accessed and easily reproducable as secondary backup option. Data is stored in only one AZ.
 
-S3 CRR and SRR = s3 replication feature provides cross region replication and same region replication with different bucket. you can set replication on bucket or prefix level. By using tags you can setup replication on object level.
+S3 CRR and SRR = s3 replication feature provides cross region replication and same region replication with different bucket.Also CRR and SRR can be done with different account. you can set replication on bucket or prefix level. By using tags you can setup replication on object level.
 
 S3 advanced services =
 Amazon S3 inventory is one of the tools Amazon S3 provides to help manage your storage. You can use it to audit and report on the replication and encryption status of your objects. You can also specify that the inventory list file is encrypted. You can query Amazon S3 inventory using standard SQL by using Athena or Redshift Spectrum

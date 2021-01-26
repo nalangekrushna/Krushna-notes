@@ -4,6 +4,7 @@ stack = AWS CloudFormation provisions resources that are described in your templ
 template = describe your AWS resources and their properties. It is json or yaml formatted text file which can have .json, .yaml .template .txt extensions.
 stack policy = what can be changed and who can change it.
 change set = Change sets allow you to see how your changes might impact your running resources, especially for critical resources, before implementing them.
+stack set = used to create multi-account, multi-region stacks in single operation. when you update stack set all associated stacks in all regions and accounts gets updated. you can also set max concurrent operations on target as well as failure tolerance.
 
 logical id vs physical id = logical id is the name given in cloudformation template which should be alphanumeric and unique inside template. You can use it inside template to refer in other sections. Some resources also have physical id sucha as instance id or bucket name.
 

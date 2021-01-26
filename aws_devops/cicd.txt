@@ -62,6 +62,8 @@ Rollback behaviour for codedeploy with existing content = As part of deployment 
 
 CodePipeline = It works with codecommit, ecs, lambda, beanstalk, s3, codebuild, codedeploy, cloudformation, opswork.
 
+codepipeline multi-region deployment = you will follow regular deployment process in source region. In destination region you will copy artifacts from source region. then you will invoke codedeploy in destination region from source region using codepipeline in source region which will do the deployment.
+
 Step functions = used when you have complex workflows are functions are expected to take more than 15 minutes. Step functions can be running for a year.
 
 Api gateway = Api gateway supports http, websocket, rest protocols. It has three types of endpoints regional, edge optimized and private. you have to define method and path it it. 
