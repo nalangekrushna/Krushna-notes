@@ -15,6 +15,7 @@ enableDnsSupport - Indicates whether the DNS resolution is supported for the VPC
 
 If both attributes are set to true, the following occurs:
 - Your instance receives a public DNS hostname.
+
 - The Amazon-provided DNS server can resolve Amazon-provided private DNS hostnames.
 
 If either or both of the attributes is set to false, the following occurs:

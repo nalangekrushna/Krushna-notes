@@ -1,7 +1,8 @@
 AWS monitoring
 
 things monitored in ec2 monitoring = CPU load, disk I/O, and network I/O
-Free detailed monitoring  = Route 53, RDS, ELB
+Free detailed monitoring  = Route 53, RDS, ELB, ASG
+
 
 Monitoring the Status of Your AWS Cloud Services 
 aws provides below two ways to do that 

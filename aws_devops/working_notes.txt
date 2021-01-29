@@ -46,10 +46,6 @@ You can directly send data from cloudwatch logs and kinesis data firehose to es 
 
 aws config aggregators = aggregate config for multi-account, multi-region settings.
 
-files and lifecycle events  auto scaling group, codebuild, codedeploy, opsworks, cloudformation template, beanstalk
-rules to understand   bucket access control policy
-understand cloudwatch services in details 
-
 aws config provides two types of evaluation trigger to validate compliance with rules.
 1. configuration changes = in event of change in state of matching resources rules evaluation will trigger.
 2. periodic

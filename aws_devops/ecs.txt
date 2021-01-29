@@ -1,4 +1,4 @@
-ecs = container management system = logical grouping of ec2 instances. ec2 instances run the ecs agent.(docker container) the ecs agents runs the instance into ecs cluster.
+ecs = container management system = logical grouping of ec2 instances. ec2 instances run the ecs agent.(docker container) the ecs agents rgisters the instance into ecs cluster.
 
 ecs task definition = task definition are metadata in json format to tell ecs how to run a docker container.
 

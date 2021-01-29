@@ -9,7 +9,7 @@ In case of update block storage will only update affected block (default 512 byt
 object storage has two types 
 	hot(S3) = available immediately to download on multiple parallel locations.
 	cold(glaciar) = need to wait minimum 3-4 hours before being available. immediate (1-5 minutes) will be costly.
-all storages(s3, glacier, ebs) automatically replicated in multiple availability zones to be fail safe. block storage speed can still be affected by use of magnetic(hard cap 100 IOPS) or SSD (min 3000 IOPS). S3 standard is stored minimum three Availability Zones.
+all storages(s3, glacier) automatically replicated in multiple availability zones to be fail safe. block storage speed can still be affected by use of magnetic(hard cap 100 IOPS) or SSD (min 3000 IOPS). S3 standard is stored minimum three Availability Zones.
 In block storage you have to pre-provision the space required by you and in object storage there is no concept of provisioning. your billing starts when you upload the object and stops when you deletes the object.
 
 Amazon EMR(elastic Map Reduce) used to process vast amounts of data. It utilizes a hosted Hadoop framework running on  EC2 and S3. With EMR, you can provision one, hundreds, or thousands of compute instances to process data at any scale.

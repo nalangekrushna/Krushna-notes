@@ -48,8 +48,8 @@ snapshots = back up the data on your Amazon EBS volumes to Amazon S3 by taking p
 tag = user defined key-value pair.  
 
 difference between storage type EBS s3 amd ephemeral ?
-Ephemeral storage depends upon your instance size and vary accordingly. It is temporary storage and will be deleted when instance stopped, rebooted or terminated. medium boot time
-EBS is persistent storages so stopping or rebooting will not loose data from it. but terminating will delete the data. fast boot time.
+Ephemeral storage depends upon your instance size and vary accordingly. It is temporary storage and will be deleted when instance stopped, rebooted or terminated. medium boot time because you need to load all the data first before booting.
+EBS is persistent storages so stopping or rebooting will not loose data from it. but terminating will delete the data. fast boot time because you only need to load portion at starting.
 S3 is also persistent storage but in case of EC2 instace backed by S3 it will behave like Ephemeral storage. slow boot time.
 
 Some security features users of cloud must use

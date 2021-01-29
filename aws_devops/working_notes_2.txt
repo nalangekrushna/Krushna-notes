@@ -1,8 +1,6 @@
 codepipeline supports input parameters override for cloudformation template. 
 Launch a new pipeline using AWS CodePipeline that has multiple stages for each environment and configure it to use input parameters. Switch the associated UserData of the EC2 instances to match the environment where the application stack is being launched using CloudFormation mappings. Specify parameter overrides for AWS CloudFormation actions.
 
-deep dive aws trusted advisor
-
 Use an AWS Lambda-backed custom resource in the CloudFormation template to pull the new AMI IDs. Reference the AMI ID that the custom resource fetched in the launch configuration resource block.
 
 the Amazon Kinesis Adapter is the recommended way to consume streams from Amazon DynamoDB. The DynamoDB Streams API is intentionally similar to that of Kinesis Data Streams.

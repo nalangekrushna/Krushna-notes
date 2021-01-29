@@ -41,5 +41,3 @@ aws organizations = Its a global service. main account is called master account.
 vpc peering allows private traffic between regions.
 
 to create rule for trusted advisor you have to be in us-east-1 region(i.e. Northern Virginia). Also to get billing metrics you have to be in us-east-1. trusted advisor is a global service.
-
-kinesis streams

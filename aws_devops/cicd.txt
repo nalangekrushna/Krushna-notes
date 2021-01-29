@@ -92,6 +92,3 @@ SNS notifications topics can provide basic or full information. In Basic informa
 In FIFO the messge order is strictly preserved. But in Standard there is no gaurantee of order preserving. FIFO will deliver message exactly once while Standard will deliver it atleast once. FIFO provides 300 publishes/second throughput while Standard provides more throughput than this. FIFO only supports SQS as subscription protocol while Standard supports SQS, Lambda, HTTP, SMS, Email and mobile app.
 
 cloudwatch stores all the billing information in N. Virginia(us-east-1). So to see billing alarm you have to change the region to us-east-1
-
-sdlc = system development life cycle 
-what is diff between full vs basic with example data. 

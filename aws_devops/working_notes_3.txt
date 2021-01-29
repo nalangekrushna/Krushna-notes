@@ -73,4 +73,4 @@ RDS event notification = It uses sns service to send notification for different 
 is farget contains aws system manager = no
 scan operation on dynamodb table = returns every item of table or secondary index. By default returns all atrribute but using ProjectionExpression you can limit attributes to show. Max data return is 1 MB. If nothing matches then returns empty set.
 
-cloudfront signed url = to only give access to signed in user.
+cloudfront signed url = to only give access to aws accounts.
