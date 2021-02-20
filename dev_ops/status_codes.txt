@@ -1,0 +1,9 @@
+status codes for different server errors
+
+504 = gateway timeout = It says server while acting as proxy server didnot get response in time from upstream server that needed in order to complete the request.
+
+503 = service unavailable = This says server is not ready to handle the request. this is temporary condition and should be resolve after some time.(1 minutes).
+
+502 = bad gateway = server servicing the request gets invalid response from upstream server.
+
+501 = Not Implemented = server does not support functionality required to fulfill the request.

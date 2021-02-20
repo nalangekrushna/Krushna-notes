@@ -1,0 +1,49 @@
+Python decorators
+
+decorators are the functions that modifies behaviour of another function. In python functions are first class citizens. means functions can be passed around and used as arguments just like any other objects such as string, int, float and list. 
+
+Inner functions = It is possible to define function inside function. Such a function called inner function. Also inner functions are not defined until outer function is called. They are not directly accessible outside the outer function. If you want to reference them outside outside function you can return reference to the function (ie. function name without ()) . This way you will be able to access function outside outer function.
+
+complete example of decorator function
+
+import functools
+
+def my_decorator(func):
+    @functools.wraps(func)
+    def wrapper_my_decorator(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper_my_decorator 
+	
+@my_decorator
+def greeet(name) :
+	print("Creating greeting")
+    return f"Hi {name}"
+	
+print(greet('adam'))
+
+9 = python library used to update special attributes like __name__ and __doc__.
+11 = decorator function
+12 = updates attributes of passed (calling) function to original values so not to get confused with decorator function values.
+13 = Inner function use *args and **kwargs to get all the variables passed to calling function.
+14 = actual function on which decorator is applied is called and arguments are passed using args and kwargs. and final output is returned using return keyword.
+15 = referernce to inner function is returned so it can evaluated later.
+17 = decorator is applied to greet function. It is equivalent to "greet = my_decorator(greet)"
+22 = This line does actual execution.
+
+Decorating a class = There are two ways to decorate the class.
+1. decorate the methods of class. below are some built-in method decorators.
+2. decorate the whole class. apply decorator on top of class definition. @dataclass is example of this.
+
+Built-in class decorators
+@Property = property decorator is used to customize getter and setter for class attributes. If Property decorator is applied to class attribute then you have to use @attribute_name.setter to change its value. If we don't define setter for it then we can't change the value. 
+
+@classmethod = Not bound to any particular instance of class. Used as factory method to create specific instance of class.
+
+@staticmethod = It is not depend on class at all except it is part of class namespace. Static method can be called on both class and instance.
+
+If you apply multiple decorators they run in corresponding order.
+
+To understant below points use this link https://realpython.com/primer-on-python-decorators/
+stateful decorators 
+class as decorator
+__call__ method

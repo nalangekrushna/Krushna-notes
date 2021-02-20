@@ -1,0 +1,71 @@
+Flask interview questions
+
+Read this when you have time
+https://kronosapiens.github.io/blog/2014/08/14/understanding-contexts-in-flask.html
+https://testdriven.io/blog/flask-contexts/
+https://stackoverflow.com/questions/20036520/what-is-the-purpose-of-flasks-context-stacks
+
+flask = Its open source web development framework in python language. It uses jinja templates for rendering. flask current version is 1.1.2  and it supports python 3.5+. flask runs on localhost(127.0.0.1) and 5000 port.
+
+django vs flask ?
+django is full featured web app framework while flask only implements core features and uses extensions to provide other functionalities. Learning curve for django is steeper than flask. flask is more useful in context of microservices and small codebase having lightweight web applications.
+
+why use flask ?
+easy to learn
+inbuilt development server
+lightweight api
+large no of extensions for different tasks.
+
+flask is micro-framework = It is called microframework as it only provides core features such as routing, request and blueprint. To add different features such as mail, authentication, admin interface and database you need to use flask extensions.
+
+how to change flask host and port ?
+you can pass host and port parameters in app.run() method.
+
+how to get query string in flask ?
+-> we can use request object to get query string.
+
+@app.route method ?
+app route method contains one required paramter path. other parameters include methods (default GET HEAD OPTIONS) 
+
+how to use session in flask ?
+whenever you want to save some data between request, you can use session object.
+
+flask url_for function
+flask url_for is used to create url to prevent need to change url including templates througout app in case of change in root url of app.
+
+flask env variables to start an app ? Also other way of starting app.
+you need to set FLASK_APP, FLASK_ENV, FLASK_DEBUG variables and then run flask run command. you can also run flask app from inside python .py file. using app.run() method.
+ 
+what is mean by template engine in flask ?
+-> template files contain both static and dynamic data. Dynamic data is populated during runtime. placeholdres used in jinja template are populated during runtime using flasks render_template method.
+
+Jinja (need more details) = template language that renders pages of your app server.
+
+what is thread local object in flask ?
+-> In flask thread safety is provided out of box. we can use objects such as current_app, g, session and request without worrying about locking and concurrency. Also we don't need to pass object method to method. They are generally available within valid request context.
+
+what is application context in flask ?
+application context keeps track of application level data during a request or cli command. we use g and current_app proxies to achieve the same. flask pushes application context (g, current_app) with every request/cli command. Therefore during the request, functions have access to g and current_app.
+
+what is request context in flask ?
+Keeps track of request level data. Request context(request, session) is only available during lifecycle of rquest ie. from before request is sent up to app to response sent back to client.
+
+flask g object 
+flasks g object is used as global namespace for holding any data during the application context. letter g in that sense stands for global. It is not appropriate to store data between requests. So Instead of defining global variables in app you should use g to store global variables.
+
+flask current_app
+proxy to application handling the current requests. Used to access application without importing it or can't be imported in cases such as app factory pattern or blueprints and extensions. 
+ 
+flask session vs g ?
+
+what is flask current_app ? and for what purpose it is used ?
+
+app factory pattern ?
+
+how to connect database in flask ?
+using Flask-SQLAlchemy extension. elaborate more.
+
+flask ORM
+
+how to debug flask app
+use debug=True parameter in app.run() method.

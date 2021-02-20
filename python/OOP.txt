@@ -1,17 +1,20 @@
 OOP in python 3
 
 What Is Object-Oriented Programming (OOP)?
-Object-oriented Programming, or OOP for short, is a programming paradigm which provides a means of structuring programs so that properties and behaviors are bundled into individual objects.
+Object-oriented Programming, or OOP for short, is a programming paradigm which provides a means of structuring programs so that properties/attributes and behaviors/state are bundled into individual objects.
 For instance, an object could represent a person with a name property, age, address, etc., with behaviors like walking, talking, breathing, and running.
 
 Another common programming paradigm is procedural programming which structures a program like a recipe in that it provides a set of steps, in the form of functions and code blocks, which flow sequentially in order to complete a task.
 
-Since Python is a multi-paradigm programming language, you can choose the paradigm that best suits the problem at hand, mix different paradigms in one program, and/or switch from one paradigm to another as your program evolves.
+Since Python is a multi-paradigm programming language, you can choose the paradigm that best suits the problem at hand, mix different paradigms in one program, and/or switch from one paradigm to another as your program evolves. everthing is python is a object.
 
-Classes in Python : each thing or object is an instance of some class.
+Classes in Python : class is logical entity that have some specific attributes and methods.
+each thing or object is an instance of some class.
 Classes are used to create new user-defined data structures that contain arbitrary information about something. It’s important to note that a class just provides structure—it’s a blueprint for how something should be defined.
 
-Python Objects (Instances) = While the class is the blueprint, an instance is a copy of the class with actual values, literally an object belonging to a specific class.
+
+Python Objects (Instances) = object is an entity which have properties and behaviour.
+While the class is the blueprint, an instance is a copy of the class with actual values, literally an object belonging to a specific class.
 Put another way, a class is like a form or questionnaire. It defines the needed information. After you fill out the form, your specific copy is an instance of the class; it contains actual information relevant to you. 
 
 what is use of self ?
@@ -31,9 +34,12 @@ class Dog:
         self.name = name
         self.age = age
 
+you can access and modify both instance and class attributes but you can only delete instance attributes and not the class attributes. 
+Method = method is function associated with object.
+
 Python Object Inheritance = 
-Inheritance is the process by which one class takes on the attributes and methods of another. Newly formed classes are called child classes, and the classes that child classes are derived from are called parent classes. 
-It’s important to note that child classes override or extend the functionality (e.g., attributes and behaviors) of parent classes. In other words, child classes inherit all of the parent’s attributes and behaviors but can also specify different behavior to follow. The most basic type of class is an object, which generally all other classes inherit as their parent.
+in Inheritance, child object acquires all properties and behaviours of parent object. 
+child classes can override or extend the functionality (e.g., attributes and behaviors) of parent classes. The most basic type of class is an object, which generally all other classes inherit as their parent.
 When you define a new class, Python 3 it implicitly uses object as the parent class. So the following two definitions are equivalent:
 
 class Dog(object):
@@ -41,3 +47,25 @@ class Dog(object):
 # In Python 3, this is the same as:
 class Dog:
     pass
+	
+Polymorphism (many shapes) = one task can be performed by different ways. e.g. animal can speak but how they speak depends on cat or dog. ie. animal can have abstract concept of speaking whose implementation will depend upon specific animal. 
+
+encapsulation = means binding code and data together inside object.
+
+Abstraction = Abstraction is achieved through encapsulation. Abstraction is used to hide details and show only functionality to outside world. to hide any value in python add double underscore(__) before it. After this attribute will not be visible outside the class through object.
+In python class containing abstract method is called abstract class. However abstract class can also contain normal methods. Abstract method do not contain its implementation. Abstract method gets its definition in child classes. python provides abc module to implement abstraction. Abstract class cannot be instantiated. other words we cannot create object of abstract class.
+
+Constructor = Constructor is a special type of method which is used to initialize instance of a class. Python has two types of constructors 1. parameterized 2. non-parameterized = they only have self parameter in their __init__ method. Parameterized have other attributes other than self in their init method. If you didn't define constructor then python automatically assigns non parameterized constructor to the class. constructor overloading is not allowed in python.
+
+what will happen if any python class have two or more constructors(ie. init methods) ?
+python will ignore all other constructor except the last one defined. Also note that constructor overloading is not supported in python. If you give python two methods/functions of same name then python will use the last/latest one defined. and ignore other one. It didn't care about no of parmaters in this both methods.
+
+python supports both operator and function overloading. for custom function overloading we can use default parameters or multipledispatch library. for built-in function overloading we can define the method using dunder.e.g. to overload len() method we will write method names __len__() in that class. To do operator overloading eg. to overload + we will write __add__(self,other) method.
+Do a practical example for both operator and funciton overloading(len, and)
+
+method overriding = child can override parents method to produce different output.
+
+python classes have 4 builtin methods
+getattr, hasattr, setattr and delattr
+python classe also have some builtin attributes.
+module, dict and doc

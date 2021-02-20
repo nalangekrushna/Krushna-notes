@@ -1,0 +1,15 @@
+Programming Basics
+
+Interpreted language vs compiled language ?
+-> Interpreted languages are the one which directly run the source file without any conversion(compilation) in between. Basic is only the interpreted language. Although Python did generate intermediate byte code still it is called interpreted language. Interpreted language runs command one by one as opposed of compiled language which takes complete code and then run it. So by taking complete code compiled language can optimize the code for performance. So they are faster than interpreted language. Due to interpreters nature of taking one line at the time it will only show first error occured instead of the errors in the program.
+why is python called interpreted language ?
+If python is interpreted language then why generate .pyc files ?
+-> In various books it is mentioned that python language is interpreted but it is half correct. Python programs are first compiled and then interpreted. compilation part is done when we execute our code. This will generate byte code and then this byte code is interpreted according underlying platform(machine+os).
+
+scripting language vs programming language ?
+generally there is no very specific difference between them. both are very powerful. python is both scripting and programming language. But generally scripting is used to do some background automation tasks. while programming is done to work with user. microsoft office is a program written in c++ programming language while it gives us vba for scripting purpose.
+
+dynamic typing vs static typing = dynamically typed language perform type check at runtime while statically typed language does this at compilation time. In statically typed language data type of variable needs to declare before using. In case of dynamically typed we didn't need to declare data type before using variable.
+
+__pycache__ folder = This folder is used to store python's compiled files. So that they don't need to compile again.
+.pyc = file format of compiled source code files.

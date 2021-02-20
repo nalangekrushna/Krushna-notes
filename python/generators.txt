@@ -1,5 +1,7 @@
+what is iterator ?
+-> In python any object that can implement for loop is called iterators. List, tuple, string, dictionary are all examples of iterator.
 
-Generators = generator functions are a special kind of function that return a lazy iterator. 
+Generators = generator functions are a special kind of function that return a lazy iterator. but instead of using return it uses yield statement.
 
 In Python, yield is the keyword that works similarly as the return statement does in any program by returning the values from the function called. The return statement only returns the value from the function but yield statements also return multiple values by returning one value and wait, then it again resumes by saving that local state. The yield statement stops the execution of the function and resumes by returning the values one by one from the generator function called.
 
@@ -7,3 +9,18 @@ When you call a generator function or use a generator expression, you return a s
 When the Python yield statement is hit, the program suspends(not stops) function execution and returns the yielded value to the caller. (In contrast, return stops function execution completely.) When a function is suspended, the state of that function is saved. This includes any variable bindings local to the generator, the instruction pointer, the internal stack, and any exception handling.
 
 This allows you to resume function execution whenever you call one of the generator’s methods. In this way, all function evaluation picks back up right after yield.
+
+use cases for generator are
+1. reading large files.
+2. generting infinite numbers sequence.
+
+difference between generator and list
+lst = [ i**2 for i in range(5) ]   # creates list
+gen = ( i**2 for i in range(5) )   # creates generator
+
+If generator exhausted all values available to return it will give StopIteration exception.
+
+generator also has following methods
+1. send()
+2. throw() = throws an error
+3. close() = stops the infinite loop generator.

@@ -1,0 +1,9 @@
+Object Relation Mapping (SQLAlchemy)
+
+sqlalchemy provides two ways for database operations. 
+1. SQLAlchemy Expression langauge = It helps to reprensent RDB structures and expressions using python construct.
+2. SQLAlchemy ORM = provides way to associate user defined python classes with database tables and instance of classes with rows in corresponding tables. ORM is built upon expression language.
+
+echo parameter in create_engine api used to enable logging and get sql queries generated. creating object of create_engine didn't actually connect to database to verify the connection is successful we have to call engine.execute or engine.connect()
+
+A class using Declarative at a minimum needs a __tablename__ attribute, and at least one Column which is part of a primary key. when creating an ORM object if we didn't specify any attribute sqlalchemy assigns defualt value to column mapped attributes instead of raising attribute error which is pythons default behaviour. Also declarative system of sqlalchemy provides constructor (ie. __init__ method) which automatically accepts all column mapped attributes.

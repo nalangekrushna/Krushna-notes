@@ -1,3 +1,8 @@
+Best practices
+	Always create a new environment for new project. NEVER USE DEFAULT ENVIRONMENT.
+	use virtualenv to create virtual environments as venv(official library) is subset of this.
+	pyenv is not supported on windows.
+	you cannot activate environment from python script you have to use source or batch file to do this.
 
 variable names = Officially, variable names in Python can be any length and can consist of uppercase and lowercase letters (A-Z, a-z), digits (0-9), and the underscore character (_). An additional restriction is that, although a variable name can contain digits, the first character of a variable name cannot be a digit.
 

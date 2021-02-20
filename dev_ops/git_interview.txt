@@ -12,6 +12,9 @@ upload local repository content to remote repo.
 git commit ?
 save changes to local repository.
 
+git Head 
+git head points to last commit in checkout branch.
+
 git add ?
 git add will add new or changed files in your working directory to git staging area or index. which can be saved to local repository by running git commit. git add . or git add --all will add all files to staging area.
 
@@ -33,16 +36,13 @@ git clone = copy of existing repository. Clones a repository into a newly create
 
 git config = It reads config in system, global, local order. global setting overrides system setting and local setting overrides global settings. while writing default option in local. The global file is stored in C:/ProgramData/git/config/
 
-git alias = to create shortcut for git commands. e.g. git config --global alias.ci commit  This will create ci as alias to git commit.
+git alias = to create shortcut for git commands. e.g. git config --global alias.ci commit  This will create ci as alias to git commit in global config.
 
 git init 
 It will create new .git subdirectory in your current working directory. This will also create a new master branch. 
 
 git init --bare
 A bare Git repository is a repository that is created without a Working Tree. This is used to create the remote repository initially and then push the changes from local repo to remote repo.
-
-git clone
-git clone is used to create a copy of remote repositories. 
 
 git commit --amend
 It can be used when you want to change the previous commit message. Git ammend internally creates new commit and replaces it with old commit so if you have pushed code to remote repo then except for modifying the commit message this command should not be used.
@@ -59,11 +59,24 @@ delete the tracked file.
 git checkout
 update files in working tree from those in another branch without merging whole branch.
 
+to show changes between last commit and working directory.
 git diff
-git diff shows changes between commits, commit and working tree.
+
+to compare two commits of same branch
+git diff commitId1 commitId2
+
+to compare file in two different branches
+git diff branch1:path to file branch2:path to file
+to compare two branchees 
+git diff branch1..branch2
+It will compare current heads of both the branches.
+
+to compare top right branch with common ancestor of two branches( point from where both the branches got seperated.)
+git diff branch1...branch2
+here branch2 head will be compared to point where branch1 and branch2 diverged.
 
 git rebase 
-It helps in maintaining linear history. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. you can use git rebase.
+To incorporate changes made in master branch to feature branch after feature branch is created and master branch is moved forward. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. you can use git rebase.
 
 what does git commit object contains ?
 1. a set of files, representing state of project at given point of time.
