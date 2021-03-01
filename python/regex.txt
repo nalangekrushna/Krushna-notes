@@ -1,0 +1,50 @@
+
+re = python regexp module.
+pattern = what you want to find. you can search for multiple patterns by using straight vertical line(vertical bar). e.g. 'this|that' pattern is case sensitive. to match irrepctive of case you can add flags=re.IGNORECASE
+text = In which string you want to find. 
+
+re.search(pattern,text) = return first matched pattern from text. If no match found then return None.
+re.findall(pattern,text) = return all matched keywords in a list. If none matched then return empty list.
+re.match(pattern,text) = the pattern must appear at the front of the input, then using match. If no match found then return None.
+re.fullmatch(pattern,text) = The fullmatch method requires that the entire input string match the pattern.
+
+wild cards
+* = zero or more time.
++ = one or more time.
+? = zero or one time.
+{m} = m times the pattern should repeat.
+{m,n} = m is the minimum number of repetitions and n is the maximum.
+{m,} = value must appear at least m times, with no maximum.
+^ = this character should not be there.
+a-z = anything in between and including a to z.
+. = pattern should match any single character in that position.
+() = grouping, (ANDING)
+[] = this will do oring for all elements inside it.
+
+Escapes codes
+\d = a digit
+\D = a non-digit
+\s = whitespace (tab, space, newline, etc.)
+\S = non-whitespace
+\w = alphanumeric
+\W = non-alphanumeric
+
+Note = Escapes are indicated by prefixing the character with a backslash (\). Unfortunately, a backslash must itself be escaped in normal Python strings, and that results in difficult-to-read expressions. Using raw strings, which are created by prefixing the literal value with r, eliminates this problem and maintains readability. e.g.  r'\d+'
+
+To match the characters that are part of the regular expression syntax, escape the characters in the search pattern by using \(backslash).
+
+Anchoring
+^ =	start of string, or line
+$ =	end of string, or line
+\A = start of string
+\Z = end of string
+\b = empty string at the beginning or end of a word
+\B = empty string not at the beginning or end of a word
+
+Two flags affect how searching in multi-line input works: MULTILINE and DOTALL.  (need to understand this.)
+
+ASCII flag is used to restrict escape codes. 
+
+
+how to do exact match (i.e. thistext should not match this) ?
+using \b

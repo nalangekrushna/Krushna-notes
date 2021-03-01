@@ -1,0 +1,26 @@
+MultiThreading in python 
+
+what is a thread ?
+-> A thread is a seperate flow of execution.
+
+what is multiprocessing ?
+
+what is GIL (Global Interpreter Lock) ?
+-> 
+
+daemon thread = In computer science daemon is a process that runs in background. daemon thread in python is a thread which shuts down immediately when the program exits.
+If a program is running some threads which are not daemon then the program will wait until the threads gets completed. If the thread is daemon then it will terminate thread immediately.
+
+what is race condition ?
+-> race condition can occur when two or more threads access a shared piece of data or resource.
+
+ways to avoid race condition ?
+1. Lock = a lock is an object which looks like hall pass. Only one thread at a time can have lock. any other thread that wants lock have to wait until owner of lock gives it up. there are two method in lock acquire and release. A thread will call acquire to get lock if lock is not available then it will wait.
+python lock also operates as context manager means you can use it with "with" so when we exit the with block, lock will get released. Sometime you have to call lock function from another function which may or maynot have lock. For this scenario we can use RLock instead of Lock which allows multiple time acquisition of lock without giving error.
+2. Producer Consumer with Queue
+3. 
+
+there are two ways to do cpu bound multiprocessing in python 
+1. multiprocessing library
+2. concurrent.futures
+Both are same in terms of performance but multiprocessing has rich features set. But python documentation states that multiprocessing will be removed in future. So use concurrent.futures for cpu bound processing.

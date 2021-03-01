@@ -12,7 +12,7 @@ This allows you to resume function execution whenever you call one of the genera
 
 use cases for generator are
 1. reading large files.
-2. generting infinite numbers sequence.
+2. generating infinite numbers sequence.
 
 difference between generator and list
 lst = [ i**2 for i in range(5) ]   # creates list
@@ -24,3 +24,4 @@ generator also has following methods
 1. send()
 2. throw() = throws an error
 3. close() = stops the infinite loop generator.
+

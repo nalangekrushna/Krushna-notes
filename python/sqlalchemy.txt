@@ -1,4 +1,7 @@
-Object Relation Mapping (SQLAlchemy)
+Object Relation Mapping (SQLAlchemy) = sqlalchemy is python sql toolkit and Object Relationship (ORM).
+
+what is ORM ?
+We write program in Object Oriented fashion. but the data in RDB is stored as tables. Object Relation mapping is a process of mapping object parameters to underlying RDBMS table structure. So that you never need to write sql queries.
 
 sqlalchemy provides two ways for database operations. 
 1. SQLAlchemy Expression langauge = It helps to reprensent RDB structures and expressions using python construct.
@@ -7,3 +10,54 @@ sqlalchemy provides two ways for database operations.
 echo parameter in create_engine api used to enable logging and get sql queries generated. creating object of create_engine didn't actually connect to database to verify the connection is successful we have to call engine.execute or engine.connect()
 
 A class using Declarative at a minimum needs a __tablename__ attribute, and at least one Column which is part of a primary key. when creating an ORM object if we didn't specify any attribute sqlalchemy assigns defualt value to column mapped attributes instead of raising attribute error which is pythons default behaviour. Also declarative system of sqlalchemy provides constructor (ie. __init__ method) which automatically accepts all column mapped attributes.
+
+To use ORM first we get object of declarative_base class and use it as parent to all the databases classes. we use Base.metadat.create_all method to create all the table.
+
+some commonly used query operators
+and_ = query.filter(and_(User.name == 'hello' , User.fullname == 'hello world' ) or 
+		query.filter(User.name == 'hello' , User.fullname == 'hello world' ) or
+		query.filter(User.name == 'hello').filter(User.fullname == 'hello world')
+or_ = query.filter(or_(User.name == 'hello' , User.fullname == 'hello world' )
+
+filter = allows pythonic filtering arguments.
+eg. db.users.filter_by(name='Joe')
+filter_by = filter by is used for simple queries on column names. Also you can write more powerful queries such as using and_ or_ and other multiple operators in single query.
+e.g. db.users.filter_by(name='Joe')
+db.users.filter(or_(db.users.name=='Ryan', db.users.country=='England'))
+
+all = query.all() = will return list of all elements removing duplicate elements. So sometimes no of rows returned will be less than count. 
+
+Relationships
+one to one = one email id can only have one name associated with it.
+one to many = one user can have multiple mobile no.
+many to one = multiple users can be in only one city.
+many to many = multiple students can have multiple classes.
+
+Model = model is python class defining data mapping between python objects returned as a result of database query and underlying database table. The models are python class inheriting from sqlalchemy base class. The Base class provides the interface operations between instances of model and database tables.
+
+Mixin classes = Mixin only exists in multiple inheritance languages.
+how to map a table that has no primary key ?
+
+what is Flask-sqlalchemy ?
+It is a flask extension which provides support of sqlalchemy inside flask framework.
+
+In sqlalchemy can we use existing schema ?
+Yes, use autoload=True and autoload_with=engine parameters in Table class.
+
+what is unit of work pattern ?
+
+
+performance overhead ?
+sqlalchemy core gives almost same performance as raw sql as the core has very thin wrapper over raw sql. Performance of sqlalchemy ORM is much slower than this. but considering we do a singel CRUD operation at a time It is still justified to use ORM as decreases lot of work for developer.
+
+what is database migration ?
+database migration is moving data from one database to another database or data warehouse. there are two libraries for it 1. migration  2. alembic = alembic is recommended as it is actively maintained and written by author of sqlalchemy.
+
+Are my database connection pooled ?
+yes sqlalchemy does connection pooling automatically except of sqlite database.
+
+does sqlalchemy supports alter table ?
+no sqlalchemy doesn't support ddl operation for that you have to use ddl construct and for large scale changes alembic is recommended.
+
+do a exercise in both raw sql and sqlalchemy
+sqlalchemy and multiprocessing ? 

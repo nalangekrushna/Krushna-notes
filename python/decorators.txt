@@ -36,6 +36,7 @@ Decorating a class = There are two ways to decorate the class.
 
 Built-in class decorators
 @Property = property decorator is used to customize getter and setter for class attributes. If Property decorator is applied to class attribute then you have to use @attribute_name.setter to change its value. If we don't define setter for it then we can't change the value. 
+add @Property example from realpython.com
 
 @classmethod = Not bound to any particular instance of class. Used as factory method to create specific instance of class.
 

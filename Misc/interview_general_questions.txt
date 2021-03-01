@@ -1,0 +1,25 @@
+General interview questions ?
+
+intro 
+Hi my name is krushnakumar Nalange. I am 2016 passout with Bachelors of Engineering degree in mechanical engineering from JSPM Hadapsar college. I joined tech mahindra after completing my degree. There I worked on automation and mobile testing projects. Currently I am working in virtusa on citi bank project. I am good at python development, api development and SQL.
+
+explain your project ?
+So currently we have completed an analytics tool which generates different financial summary reports using a template based nlg engine. we use different reports such as financial summary report, revenue summry report, expense details etc. Each report contains many segments of citi business and for each segment, its revenue profit and loss is given for each month.
+So for each segment we have sub segment and those subsegments are further divided into further sub segments. First we take parent segment and calculate its month over month variance and variance percentage and we have to explain why this variance occured using child segment variance.
+For example one parent segment is global commercial, so lets say its revenue is decreased by some amount then the reason for decrease is explained by child segment. Lets say child segment X increased by some amount and segment Y decreased by some amount. hence overall decrease in amount variance in parent segment.
+So business analyst used to take this data and analyze and generate commentry manually so our task was to automate all the process business analyst doing and generate commentry.
+
+what is variance ? 
+So variance is spread of data ie. how is data is far from mean. 
+
+how to calculate variance percentage
+(current value-prev value/prev value )* 100
+
+why do you want to change the job ?
+some new challenging work.   
+
+what was the most difficult part ? how you solved it ?
+So the most difficult part in the project is data cleaning. So when we gets report there are large no of fields which are empty. Also column names are spanning multiple cells. So when we use library to import this data we will get large no of empty fields. Also some rows are not required for commentry generation due to business needs. So we will get another file which contains the values in first column which is the names of different business segments. we will match this names with names from another file and select only those rows. we will also select column names from prev got inputs. but it is not necessarity that column names and rows containing values for that columns are aligned or below one another. So we will put some manual conditions and check if the rows below column name is empty then we will move columns. also we will check if any row is completely empty then we will remove that also. We created a script which will do all this tasks.
+
+how you will deploy this app to production ?
+the reports will be uploaded to a sharepoint location. a dummy user with access to share point has been created which will download the reports to temporary storage. we are using cron job to schedule app run on 5 th of every month. the file name will have pattern containing year and month. So we will look for last months file. The file will contain data for prev month and last month. Then we will process the data and save it to database for retrieval.

@@ -1,0 +1,75 @@
+Git commands
+
+# Create a new repository on the command line
+ 
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/c0ldlimit/vimcolors.git
+git push -u origin master
+Just one note: if the repository doesn't exist in Github, first you will have to create it
+
+to clone directory from github
+git clone url folder_name
+
+to check config
+git config --list --show-origin
+
+to commit changes
+git add file_name
+git commit -m "comment"
+
+to commit changes
+git commit -a -m "comment"   # this will commit all tracked files. 
+git push
+
+to check status of all files  it will also show untracked files . It will not show files or folder added in gitignore.
+git status -s   # -s for short output. 
+
+to check gitignore files and folders
+git ls-files . --ignored --exclude-standard --others
+
+list of untracked files
+git ls-files . --exclude-standard --others
+
+to delete file
+git rm file_name -f   # -f when file added to git add.
+git commit -m "deleted_file"
+
+to move or rename file
+git mv file_name new_file_name  
+
+to update to latest without loosing our work
+git pull
+
+to create new branch
+git branch branch_name
+
+to create new branch and switch to it
+git checkout -b branch_name
+
+git switch branch
+git checkout branch_name
+
+to update changes on server (first time for a branch)
+git push --set-upstream origin new_branch
+git push                                               # generally
+
+git merge with master
+git checkout master 		# switch to branch with which you wanted to commit.
+git merge branch_name
+git commit -a
+git push
+
+create a new branch from master and then change it and then create pull request so other can review and merge it.
+git clone url folder_name
+git checkout -b model-training
+git status
+git add .
+git commit -m "comment"
+git push
+
+git delete last push
+git reset --hard HEAD~n    // this will delete the local n commit
+git push origin +master  // this will delete commit from remote.

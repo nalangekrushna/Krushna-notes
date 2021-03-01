@@ -1,0 +1,22 @@
+Basics_2
+
+
+zip function = It takes any number of iterables as arguments and returns an iterator over tuples of their corresponding elements. Under the hood zip function works by calling iter() method of each of its arguments, then advancing each iterator returned by iter() with next and aggregating the result into tuples. zip stops aggregating elements once shorted iterator gets exhausted. The iterator returned by zip iterates over this tuples. 
+
+map function = It is an iterator operator, that in simplest form applies single parameter function to each element of iterator one element at a time. Map function works by calling iter() on second argument, advancing this iterator with next until iterator is exhausted and passing return value given by next as argument to the func.
+
+Itertools
+This is python standard library which provides multiple iterators which are fast and efficient. Iterators have two advantages 1. Improved memory efficiency via lazy evaluation  2. faster execution time. Below are the three types of iterators. 
+1. Infinite iterators = Iterators which will never stop. below are the three iterators of this type.
+	a. count([start,][step]) = starting point and difference between two consecutive points.
+	b. cycle(p) = p could take string, list, tuple, dictionary. (e.g. every char seperately in string)
+	c. repeat(ele,[n]) = element upto n time or endlessly.
+2. Combinatoric iterators = below are the combinatoric iterators. for given value [1,2],2 below are their combinations, combinations_with_replacement and permutations.
+	a. product cartesian product
+	b. combinations = [1,2]   # order didn't matter
+	c. combinations_with_replacement = [1,2],[1,1],[2,2]
+	d. permutations = [1,2],[2,1]  # order is important.
+3. Terminating iterators
+	a. accumulate(iterable, func(prev_sum, next_element)) = accumulate function takes two argument out of which one is iterable and second is function having two arguments. accumulate passes sum of prev passes as first input to this binary function and next element from iterable as second argument. the output of function is stored in iterable and this iterable is returned to user. 
+
+complete itertools from here : https://realpython.com/python-itertools/#sequences-of-numbers : sequence of numbers.
