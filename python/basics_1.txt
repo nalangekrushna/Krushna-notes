@@ -19,6 +19,7 @@ data types in python
 	set {} = unique data, heterogeneous data types,unordered (you can't access particular element.), non-indexing
 	dictonary {key:value,key:value} = heterogeneous data types(like maps in java)
 		to check if given key contains in dictionary you can use if 'key' in dict_name or dict_name.get('key')
+	boolean
 	
 Operators in python
 	Arithmetic  +-*/
@@ -60,11 +61,6 @@ Some built in methods
 	reduce(function,list) = apply function for first two values and then apply it to returned value with third value and so on.
 Always keep non-default value arguments first.
 lambda function  (lambda argument : code)  function without name. lambda function will return output without explicitly writing return keyword.
-
-
-difference between python list and numpy array  ?
-python list and numpy array can take different data types(even objects also) in single list.
-performance wise numpy arrays are better than python list.
 
 file handling = python will consider r (read) mode if not specified.there are other w,r+,x,a four modes.
 modes of file handling

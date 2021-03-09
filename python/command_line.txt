@@ -1,0 +1,12 @@
+Python Command Line
+
+To create python command line application, There are three popular libraries. All three takes different approach to create command line application.
+1. Argparse = This is the oldest library. and comes inbuilt. This uses simple python statements to add different command line options.
+2. Docopt = This library used doc string for command line arguments. 
+3. Click = This library uses decorators to add command line capabilites to application. This is the best library of all three.
+
+click.arguments = arguments are compulsory
+click.option = options are optional. Also you can provide default value.
+
+read when you have time.
+https://dbader.org/blog/mastering-click-advanced-python-command-line-apps

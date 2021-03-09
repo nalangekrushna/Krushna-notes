@@ -60,7 +60,7 @@ Constructor = Constructor is a special type of method which is used to initializ
 what will happen if any python class have two or more constructors(ie. init methods) ?
 python will ignore all other constructor except the last one defined. Also note that constructor overloading is not supported in python. If you give python two methods/functions of same name then python will use the last/latest one defined. and ignore other one. It didn't care about no of parmaters in this both methods.
 
-python supports both operator and function overloading. for custom function overloading we can use default parameters or multipledispatch library. for built-in function overloading we can define the method using dunder.e.g. to overload len() method we will write method names __len__() in that class. To do operator overloading eg. to overload + we will write __add__(self,other) method.
+python supports both operator and function overloading except for constructor. for custom function overloading we can use default parameters or multipledispatch library. for built-in function overloading we can define the method using dunder.e.g. to overload len() method we will write method names __len__() in that class. To do operator overloading eg. to overload + we will write __add__(self,other) method.
 Do a practical example for both operator and funciton overloading(len, and)
 
 method overriding = child can override parents method to produce different output.

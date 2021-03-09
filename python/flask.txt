@@ -34,7 +34,7 @@ flask url_for function
 flask url_for is used to create url to prevent need to change url including templates througout app in case of change in root url of app.
 
 flask env variables to start an app ? Also other way of starting app.
-you need to set FLASK_APP, FLASK_ENV, FLASK_DEBUG variables and then run flask run command. you can also run flask app from inside python .py file. using app.run() method.
+you need to set FLASK_APP, FLASK_ENV(defaults to production), FLASK_DEBUG(defaults to False) variables and then run flask run command. you can also run flask app from inside python .py file. using app.run() method.
  
 what is mean by template engine in flask ?
 -> template files contain both static and dynamic data. Dynamic data is populated during runtime. placeholdres used in jinja template are populated during runtime using flasks render_template method.
@@ -57,8 +57,6 @@ flask current_app
 proxy to application handling the current requests. Used to access application without importing it or can't be imported in cases such as app factory pattern or blueprints and extensions. 
  
 flask session vs g ?
-
-what is flask current_app ? and for what purpose it is used ?
 
 app factory pattern ?
 

@@ -1,0 +1,44 @@
+Multiprocessing in python
+
+what is multiprocessing ?
+creation of multiple process so that programs can run concurrently and use all cpu cores.
+mp (multiprocessing) library gives each process its own python interpreter and a GIL. As processes don't share memory they can't modify same memory concurrently.
+
+there are two ways to do cpu bound multiprocessing in python 
+1. multiprocessing(mp) library
+2. concurrent.futures
+Both are same in terms of performance but multiprocessing has rich features set. Concurrent.futures provides simple interface. But python documentation states that multiprocessing will be removed in future. So use concurrent.futures for cpu bound processing if possible.
+
+In multiprocessing any new process will do two things
+	runs independantly.
+	have their own memory space.
+	
+As we know for new process there will be seperate new interpreter, new GIL and different memory locations, we will not be able to return anything using return statement inside target function as well as using global variables. 
+
+how many processes we should run concurrently ?
+we should run no of physical cores - 1 processes simaltaneously. for detailed explaination see link
+https://stackoverflow.com/questions/40217873/multiprocessing-use-only-the-physical-cores
+
+multiprocessing library provides different ways for sharing data between different processes
+1. Shared Memory = mp module provides Array and Value object to share data between processes. 
+check below link for examples
+https://www.geeksforgeeks.org/multiprocessing-python-set-2/  
+
+2. server process = whenever a python program starts, a server process is also started. from there on whenever new process is required, the parent process connects to the server and request it to fork a new process. A server process can hold python objects and allow other processes to manipulate them using proxies.  mp module provides manager class which controls server process. Hence manager provides way to create data which can be shared between different processes.
+
+server managers are better way as they can support list, dictionary, queues, value, array etc. Also single manager can be shared by processes on different computers over network. They are however slower than using shared memory.
+
+mp supports two types of communication channels for inter process communication(IPC) ie. communication between different processes.
+1. Queue = any python object can be passed through queue. mp.Queue is near clone of queue.Queue. It has two methods get and put. put is to add element in queue and get is to remove and return element from queue. Queues does proper synchronization between process. hence queues are process and thread safe.
+2. Pipe = pipe has two endpoints so it is preferred way over queue when two way communication is needed. mp pipe function provides two connection objects (which are two endpoints). Each connection object has send and recv method.
+
+what is process synchronization ?
+mechanism which ensures two or more concurrent processes do not simaltaneously execute some particular program segment known as critical section.
+
+critical section refers to part of program where shared resources is accessed.
+
+Lock class = mp module provides Lock class to deal with race condition. Lock is implemented using Semaphore object provided by operating system.
+
+Semaphore = synchronization object that controls access to multiple process to common resource. Its simply a value in OS storage that each process can check and change. Semaphore can be binary(0 or 1) or can have additional values.
+
+Pool = distributes task among cores/processes automatically.

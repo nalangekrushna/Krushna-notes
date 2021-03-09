@@ -1,0 +1,27 @@
+Python packaging 
+
+__pycache__ folder = This folder is used to store python's compiled files. So that they don't need to compile again.
+.pyc = file format of compiled source code files.
+
+module = file containing valid python statements and functions and ends with .py extension is called module.
+__init__.py = In python for anything to consider package it should have __init__.py module. init file could be empty or it should have some initialization code. when we import the package the code inside __init__.py gets executed. from python 3.3 there is another way of creating packages ie. namespace packages.
+
+when we write import module_name statement in below order python looks for that module. 
+1. current directory where python interpreter is opened.
+2. all paths provided inside PYTHONPATH environment variable.
+3. a list of directories configured at install time.
+The list of all available path could be get by using sys.path variable. we can use import filename syntax or from file_name import function/global variable syntax. location of imported file can be found using
+module_name.__file__
+
+__name__ = when .py file is imported as module(import moudule_name) python sets special dunder variable __name__ to module_name. If .py file is run as script then __name__ is set to string "__main__". 
+
+Use importlib.reload(module_name) function to reload the module.
+
+import * = __all__ list in __init__.py file in package and __all__ list in python module can be used to control what to import when import * statement is used. 
+1. for packages when __all__ is not defined then import * does not import anything.
+2. for modules when __all__ is not defined then import * import everything except names starting with underscore.
+ 
+If __init__.py is optional from python3.3 then whats package definition now ?
+python 3.3+ supports implicit namespace packages that allows to create packages without __init__.py file. This is called namespace package in contrast to regular package which contains __init__.py file empty or non-empty. Use case for namespace package is to share namespace, it required to make each directory of common path a namespace package. This is the only usecase for creating namespace package otherwise you should stick to regular package.
+check below link for detailed explaination and example
+https://stackoverflow.com/a/48804718/8144864 

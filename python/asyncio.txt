@@ -41,5 +41,3 @@ https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.htm
 What does it mean for something to be asynchronous?
 	Asynchronous routines are able to “pause” while waiting on their ultimate result and let other routines run in the meantime.
 	
-
-

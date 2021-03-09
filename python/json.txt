@@ -1,0 +1,13 @@
+JSON (JavaScript Object Notation) = Json is one of many standard formats used to store and exchange the data.
+json didn't support comments.
+
+The process of enclosing json is usually called serialization. This term refers to transformation of data into series of bytes to be stored or transmitted across the network.
+
+python provides inbuilt library json for working with jsons.
+
+dump vs dumps = dumps takes only single argument(string) and return encoded/serialized python string. to write data to file you will use dump method which takes data and file name as input parameters.
+
+load vs loads = same as dumps and dump. loads used when data is pulled from python string or from another program.
+
+how to encode complex number into json ?
+how to encode/decode python objects into json ? 

@@ -1,0 +1,32 @@
+python collections module
+
+1. Counter = Counter takes both dictionary or iterable as input and count no of occurence of element in list.
+count has three methods 
+	1. elements() = gives full list of all elements also having repeated elements.
+	2. most_common() = returns tuple in descending order from highest to lowest occurence of values.
+	3. subtract() = d1.subtract(d2) = deducts d2 from d1 and stores result in d1.
+	
+2. defaultdict(func) = same as regular dictionary except when key not exists then instead throwing keyerror, it creates the key and assigns default value to it returned from func function. if func parameter is absent then raises KeyError
+
+3. OrderedDict = dictionary where keys maintain the insertion order. means if you change value of key later it will not change position of key.
+
+4. deque = list optimized for inserting and removing items. to add element to end of list use append method. To add element at start of deque use appendleft method. also for removal of last element use pop and removal of first element use popleft.
+
+5. ChainMap = creates list of dictionaries but elements of dictionary can be accessed accessed directly.
+dict1 = { 'a' : 1, 'b' : 2 }
+dict2 = { 'c' : 3, 'b' : 4 }
+chain_map = ChainMap(dict1, dict2)
+print(chain_map.maps)
+>> [{'b': 2, 'a': 1}, {'c': 3, 'b': 4}]
+print(chain_map['a'])
+>> 1
+print(chain_map['b'])
+>> 2
+
+6. namedtuple = 
+Student = namedtuple('hi', 'fname, lname, age')
+s1 = Student('John', 'Clarke', '13')
+print(s1)
+print(s1.fname) 
+>> hi(fname='John', lname='Clarke', age='13')
+>> John

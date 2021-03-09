@@ -1,0 +1,15 @@
+Jinja2 template
+
+jinja is a templating language. templating language is a language containing variables and programming logic which when evaluated( rendered into html) are replaced with actual values. variables and logic is placed in between tag or delimiter. jinja template uses {%...%} for expressions and logic like for loop while {{...}} for variable output. Please note that {%...%} logic inside this is not shown to end user/webpage.
+e.g. {% for n in my_list %}
+        <li>{{n}}</li>
+        {% endfor %}
+		
+only output of {{n}} will be shown to the user. 
+
+jinja templates are just .html files. They live in /templates folder of flask project. jinja only support if statement and for loop. Its syntax is same as python except the end is done by endif or endfor. 
+
+use tag {% extends %} and {% block %} to implement inheritance. use {% block %} to fill in child template. 
+
+complete this tutorial from below link
+https://realpython.com/primer-on-jinja-templating/#template-inheritance

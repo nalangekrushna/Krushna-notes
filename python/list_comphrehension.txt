@@ -9,6 +9,4 @@ lst = [ i if i > condition else i*2  for i in lst ]
 to create generator instead of list
 gen = ( for i in lst )
 
-use list comphrehension instead of map and filter. but in concurrent programming use map and filter instead of list comphrehension. The alternative to reduce is itertools.accumulate. Also for large no of loops or values use generator instead of list.
-
-Collections 
+generally use list comphrehension instead of map and filter. but in concurrent programming use map and filter instead of list comphrehension. The alternative to reduce is itertools.accumulate. Also for large no of loops or values use generator instead of list.

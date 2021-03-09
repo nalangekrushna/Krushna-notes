@@ -48,3 +48,10 @@ To understant below points use this link https://realpython.com/primer-on-python
 stateful decorators 
 class as decorator
 __call__ method
+
+why use @Property to set getter and setter values in python ?
+Properties considered pythonic way of working with attributes because of following reasons
+	1. syntax used is very concise and readable.
+	2. 
+	
+how to work with getter setters aka property in object creation.

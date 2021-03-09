@@ -3,16 +3,18 @@ MultiThreading in python
 what is a thread ?
 -> A thread is a seperate flow of execution.
 
-what is multiprocessing ?
+what is threading library in python ?
+you can use threading library if the program is i/o bound.
 
 what is GIL (Global Interpreter Lock) ?
--> 
+-> python GIL is a mutex(or lock) that allows only one thread to hold control of python interpreter. ie. only one thread is at state of execution at any time.
+python keeps reference count variable need to protect from race condition and deadlocks. the GIL is single lock on interpreter itself, so running any program needs to acquire GIL lock for execution. This makes program effectively single threaded. As python uses many C extensions, GIL provides thread safe memory management for this C extensions.
 
 daemon thread = In computer science daemon is a process that runs in background. daemon thread in python is a thread which shuts down immediately when the program exits.
 If a program is running some threads which are not daemon then the program will wait until the threads gets completed. If the thread is daemon then it will terminate thread immediately.
 
 what is race condition ?
--> race condition can occur when two or more threads access a shared piece of data or resource.
+-> race condition can occur when two or more threads access a shared piece of data or resource and try to change it at the same time.
 
 ways to avoid race condition ?
 1. Lock = a lock is an object which looks like hall pass. Only one thread at a time can have lock. any other thread that wants lock have to wait until owner of lock gives it up. there are two method in lock acquire and release. A thread will call acquire to get lock if lock is not available then it will wait.
@@ -20,7 +22,18 @@ python lock also operates as context manager means you can use it with "with" so
 2. Producer Consumer with Queue
 3. 
 
-there are two ways to do cpu bound multiprocessing in python 
-1. multiprocessing library
-2. concurrent.futures
-Both are same in terms of performance but multiprocessing has rich features set. But python documentation states that multiprocessing will be removed in future. So use concurrent.futures for cpu bound processing.
+what is deadlock ?
+In deadlock a process acquires lock on some shared resource and waits for another process to release their lock on some other shared resource. The another process also does the same. Due to this both processes are waiting for other to release lock which never happens and program gets hanged. This is called deadlock.
+ 
+deadlock can happend in following 4 conditions
+1. mutual exclusion = one or more resources can be accessed by one process at a time.
+2. hold and wait = a process is holding atleast one resource and waiting for another resource.
+3. no preemption = resource cannot be taken from process unless process releases it.
+4. circular wait = a set of processes are waiting for each other in circular form.
+ 
+what is thread safe ?
+	Accessing shared data with locking and avoiding deadlocks.
+	In other words a thread safe program does not cause any side effects with multiple read/write operations from multiple threads on same objects.
+	
+how many threads we should create/run at a time ?
+ 
