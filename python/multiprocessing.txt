@@ -16,7 +16,7 @@ In multiprocessing any new process will do two things
 As we know for new process there will be seperate new interpreter, new GIL and different memory locations, we will not be able to return anything using return statement inside target function as well as using global variables. 
 
 how many processes we should run concurrently ?
-we should run no of physical cores - 1 processes simaltaneously. for detailed explaination see link
+we should run # physical cores - 1 processes simaltaneously. for detailed explaination see link
 https://stackoverflow.com/questions/40217873/multiprocessing-use-only-the-physical-cores
 
 multiprocessing library provides different ways for sharing data between different processes
@@ -42,3 +42,15 @@ Lock class = mp module provides Lock class to deal with race condition. Lock is 
 Semaphore = synchronization object that controls access to multiple process to common resource. Its simply a value in OS storage that each process can check and change. Semaphore can be binary(0 or 1) or can have additional values.
 
 Pool = distributes task among cores/processes automatically.
+
+Python multiprocessing tips
+1. Don't share resource instead pass messages. As using locks we lock the shared resource and block other processes from running. Use Queue to pass messages.
+
+2. Always clean up after yourself. Subprocesses can hang or fail to shutdown cleanly. You should send the END message as we are using queue and messages. If subprocess didn't listen to queue then we can also use mp.Event object which is initialized to false and can be set to True. Other process can check it with is-set method and wait of it to change. Best practice is to have only one “shutdown-requested” Event object in an application which is passed to all subprocesses. Subprocesses should then loop using that Event as their boolean check - so that if the shutdown-requested Event is set to True, the loop terminated.
+Main process has to also do cleanup. Main process should ensure that every other process gets termination signal.check if other processes are actually terminated. empty the queues. 
+
+3. Always handle TERM and INT signal. Server processes gets TERM signal to inform them time to stop. INT is used in testing to stop the program. INT should also generate stack trace. 
+
+4. Don't wait forever to do shutdown. configure timeout.
+
+5. Report exceptions, and have time based shared logging system. 

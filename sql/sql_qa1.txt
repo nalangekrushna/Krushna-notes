@@ -1,0 +1,4 @@
+SQL qa
+
+for list of sql qa go to below link
+https://www.w3resource.com/mysql/mysql-question-answer.php

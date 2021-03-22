@@ -25,3 +25,8 @@ generator also has following methods
 2. throw() = throws an error
 3. close() = stops the infinite loop generator.
 
+what is yield from ?
+>>yield from iterator
+is equivalent to 
+>>for x in iterator:
+>>    yield x

@@ -1,0 +1,26 @@
+SQL basics
+
+SQL = sql is domain specific programming language.sql is called as declarative programming language.
+
+declarative programming language = programs describe their desired results without explicitly listing commands or steps that must be performed.
+
+how sql database works ?
+	1) query parser = it will convert given query to any programming language it is using i.e. java,python,c,c++
+	2) query optimizer = determines the optimal way to run the query.
+	3) query executor = runs the query.
+	
+schmea  = collection of tables.
+
+Mysql 8.0 data types
+A. Numerics
+	1. Integers = Integer(int)(4 bytes), tinyint(1 byte), smallint(2 byte), mediumint(3 byte), bigint(8 byte). general purpose
+	2. Fixed point(stores exact value with precision) = Decimal, Numeric. 
+	3. Floating point type(approximate value) = float and double
+B. date and time
+	https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html
+C. text
+	1. VAR
+	2. VARCHAR
+	3. BLOB
+	4. TEXT
+	

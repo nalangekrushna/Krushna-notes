@@ -1,0 +1,22 @@
+Concurrency in Python
+
+concurrency = broad term covering both multiprocessing and asyncio.
+	1. multiprocessing (CPU-bound) = multi-core uses different cores.
+	2. Pre-emptive multitasking (threading)(IO-bound) = single core. The operating system decides when to switch tasks external to Python.
+	3. Co-operative multitasking (IO-bound)(asyncio) = single core. The tasks decide when to give up control. Its a single threaded, single process design.
+
+when to use concurrency ?
+Hold out on adding concurrency until you have a known performance issue and then determine which type of concurrency you need. 
+Once you’ve decided that you should optimize your program, figuring out if your program is CPU-bound or I/O-bound is a great next step. 
+CPU-bound problems only really gain from using multiprocessing.
+For I/O-bound problems, there’s a general rule of thumb in the Python community: “Use asyncio when you can, threading when you must.”
+asyncio can provide the best speed up for this type of program, but sometimes you will require critical libraries that have not been ported to take advantage of async programming. That time you can use threading 
+
+Above explaination of concurrency is taken form below link
+https://realpython.com/python-concurrency/
+
+what is asynchronous ?
+asynchronous can have any of below properties.
+1. Asynchronous routines are able to pause while waiting on their ultimate result and let other routine 
+run in meantime.
+2. Asynchronous code though mechanism above(point 1) facilitates concurrent execution. In other words, asynchronous code gives look and feel of concurrency.

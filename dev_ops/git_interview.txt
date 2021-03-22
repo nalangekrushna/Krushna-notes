@@ -82,3 +82,7 @@ what does git commit object contains ?
 1. a set of files, representing state of project at given point of time.
 2. reference to parent commit objects.
 3. A SHAI name, 40 character string that uniquely identifies commit object.
+
+git fetch vs pull ?
+git fetch = only downloads commits files and refs to local repository. git fetch is mostly used when you want update some part of your code without touching working copy.
+git pull = download the remote content for active local branch and immediately executes git merge. 

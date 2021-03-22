@@ -1,0 +1,39 @@
+Metaclasses in python
+
+metaprogramming = metaprogramming is potential of program to have knowledge and manipulate itself.
+metaclasses = Python supports form of metaprogramming for classes known as metaclasses. Python provides capability to define custom metaclasses.
+
+class Foo :
+	pass
+	
+x= Foo()
+
+type(x)
+>> < class '__main__.Foo'>
+
+type(Foo)
+>> < class 'type'> 
+
+Here type is metaclass, of which classes are instances. Just as an object is instance of class, in python 3 all classes are instance of type metaclass including inbuilt ones.
+
+when we initiate class Foo following happens.
+1. the __call__() method of Foo parent is called. Foo parent class is type metaclass so type's __call__() method is invoked.
+2. the call method in turn invokes following
+	__new__()
+	__init__()
+If Foo doesnot define above methods then they are inherited. But you can override them for customized behaviour during initialization. you can create below custom metaclass and modify its new and init method
+class Meta(type) :
+	def __new__():
+		pass
+	def __init__() :
+		pass
+		
+who is the parent of Foo ? is it object or type ?
+You define classes in order to create objects, right?
+But we learned that Python classes are objects.
+Well, metaclasses are what create these objects. They are the classes' classes
+Everything is an object in Python, and they are all either instance of classes or instances of metaclasses.
+Except for type.
+type is actually its own metaclass. This is not something you could reproduce in pure Python, and is done by cheating a little bit at the implementation level.
+for detailed explaination check below link
+https://stackoverflow.com/a/6581949/8144864

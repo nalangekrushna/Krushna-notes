@@ -32,8 +32,9 @@ deadlock can happend in following 4 conditions
 4. circular wait = a set of processes are waiting for each other in circular form.
  
 what is thread safe ?
+Python threading library is based upon preemptive multitasking (ie. operating system decides when to switch between tasks. In other words python thread execution can be abruptly terminated without completion.) So when we say thread safe it means we have to handle this condition that thread could terminated in between and make sure we didn't loose any data or their are any inconsistancies in results. In database language we will call this operation as atomic operations.
 	Accessing shared data with locking and avoiding deadlocks.
 	In other words a thread safe program does not cause any side effects with multiple read/write operations from multiple threads on same objects.
 	
 how many threads we should create/run at a time ?
- 
+It depends upon hardware software specifications. There is no hard limit on it.

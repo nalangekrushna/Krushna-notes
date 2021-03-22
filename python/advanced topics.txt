@@ -9,3 +9,20 @@ task : implement stack and queue using linked list.
 difference between python list and numpy array  ?
 python list and numpy array can take different data types(even objects also) in single list.
 performance wise numpy arrays are better than python list.
+
+context managers = context manage is a protocol or interface which your object has to follow to use with the with statement. Basically you need to add __enter__ and __exit__ method to an object to be used with context manager. you can use @contextmanager from contextlib to do the same.
+
+metaclass = In python instance of object will have type of class name but if you check the type of class then it is "type". explained below with example. 
+class Foo :
+	pass
+x= Foo()
+type(x)
+>> < class '__main__.Foo' >
+type(Foo)
+>> < class 'type' >
+type of built-in classes is also type as well as type of type class is also type.
+
+type is metaclass of which classes are instances. Just as ordinary object is an instance of class, any class is instance of type metaclass. you can dynamically create new classes using type metaclass. For more details check link below.
+https://realpython.com/python-metaclasses/#defining-a-class-dynamically 
+
+python closure = closure is a nested function (inner function) which has access to variables of enclosing function.  

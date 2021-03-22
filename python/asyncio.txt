@@ -3,41 +3,51 @@ Asyncio
 Use asyncio if your code is IO bound(file system, database, network).
 If your code is cpu bound then use multiprocessing library instead.
 
-concurrency = broad term covering both multiprocessing and asyncio.
-	1. multiprocessing (CPU-bound) = multi-core uses different cores.
-	2. Pre-emptive multitasking (threading)(IO-bound) = single core. The operating system decides when to switch tasks external to Python.
-	3. Co-operative multitasking (IO-bound)(asyncio) = single core. The tasks decide when to give up control.
-
-when to use concurrency ?
-Hold out on adding concurrency until you have a known performance issue and then determine which type of concurrency you need. 
-Once you’ve decided that you should optimize your program, figuring out if your program is CPU-bound or I/O-bound is a great next step. 
-CPU-bound problems only really gain from using multiprocessing.
-For I/O-bound problems, there’s a general rule of thumb in the Python community: “Use asyncio when you can, threading when you must.”
-asyncio can provide the best speed up for this type of program, but sometimes you will require critical libraries that have not been ported to take advantage of async programming. That time you can use threading 
-
-Above explaination of concurrency is taken form below link
-https://realpython.com/python-concurrency/
-
-co-routine = a coroutine is a function that can suspend its execution before reaching return, and it can indirectly pass control to another coroutine for some time.
-
 Asyncio = a single Python object, called the event loop, controls how and when each task gets run. The event loop is aware of each task and knows what state it’s in.
 
 Simplified example of how Asyncio works ?
 The ready state will indicate that a task has work to do and is ready to be run, and the waiting state means that the task is waiting for some external thing to finish, such as a network operation.
+
 Your simplified event loop maintains two lists of tasks, one for each of these states. It selects one of the ready tasks and starts it back to running. That task is in complete control until it cooperatively hands the control back to the event loop.
+
 When the running task gives control back to the event loop, the event loop places that task into either the ready or waiting list and then goes through each of the tasks in the waiting list to see if it has become ready by an I/O operation completing. It knows that the tasks in the ready list are still ready because it knows they haven’t run yet.
+
 Once all of the tasks have been sorted into the right list again, the event loop picks the next task to run, and the process repeats. Your simplified event loop picks the task that has been waiting the longest and runs that. This process repeats until the event loop is finished.
+
 An important point of asyncio is that the tasks never give up control without intentionally doing so. They never get interrupted in the middle of an operation. This allows us to share resources a bit more easily in asyncio than in threading. You don’t have to worry about making your code thread-safe.
 
-await = you can view await as the magic that allows the task to hand control back to the event loop. When your code awaits a function call, it’s a signal that the call is likely to be something that takes a while and that the task should give up control.
+co-routine = A coroutine is a function that can suspend its execution before reaching return, and it can indirectly pass control to another coroutine for some time. all coroutine function starts with async. coroutine could use await, return or yield but all these are optional.
+
+await = keyword await passes function control back to event loop. It suspends execution of surrounding coroutine.
 
 async = It’s easiest to think of async as a flag to Python telling it that the function about to be defined uses await. 
+
+async def g() :
+	r = await f()  # pause here and come back to g() when f() is ready.
+	return r
+when python reaches r = await f() statement. It tells python to suspend the execution of g() until result of function f() is returned. here we can call g() a co-routine.
 
 you do need to remember that any function that calls await needs to be marked with async. You’ll get a syntax error otherwise.
 
 how many no of request we can send at a time using asyncio ?
 https://pawelmhm.github.io/asyncio/python/aiohttp/2016/04/22/asyncio-aiohttp.html
 
-What does it mean for something to be asynchronous?
-	Asynchronous routines are able to “pause” while waiting on their ultimate result and let other routines run in the meantime.
-	
+asyncio.sleep() vs time.sleep() = time.sleep() stop everything in its tracks for duration of sleep time(blocking operation). asyncio.sleep() cede the control to event loop so other part of program could run (non-blocking operation).  
+
+must read 
+https://pymotw.com/3/asyncio/coroutines.html
+https://realpython.com/async-io-python (notes are from here only.)
+
+asyncio.run() = introduced in python 3.7, gets event loop, runs task until they are marked complete and then closing event loop. 
+
+asyncio.create_task() = to schedule execution of coroutine object. If create task calls main and main calls some other function then you should use await inside main to make sure that functions execution complete before main gets terminated by event loop.
+ 
+asyncio.gather() = gather returns single future object. If you await asyncio.gather() then youre waiting for all tasks to be completed. the result of gather will be list of results across the inputs. gather waits for entire result while asyncio.as_completed() will return results immediately. 
+
+Some important points regarding event loop
+1. coroutines don't do much on their own unless they are tied to the event loop. In other words if you create coroutine( ie. function starting with async and having await inside it.) and call them directly instead of using async they will just return coroutine object.
+remember asyncio.run() forces execution by scheduling main() coroutine (future object) for execution on the event loop.
+
+2. By default async IO event loop runs in single thread and on single core. It is also possible to run event loop across multiple cores also.
+
+3. Event loops are pluggable. ie. you can write your own implementation of event loop and async/await will still work with it. Infact asyncio library comes with two event loop implementations. Selector for unix and Proactor based on windows IO completion ports. 

@@ -1,14 +1,3 @@
-SQL = sql is domain specific programming language.sql is called as declarative programming language.
-
-declarative programming language = programs describe their desired results without explicitly listing commands or steps that must be performed.
-
-how sql database works ?
-	1) query parser = it will convert given query to any programming language it is using i.e. java,python,c,c++
-	2) query optimizer = determines the optimal way to run the query.
-	3) query executor = runs the query.
-	
-schmea  = collection of tables.
-
 offset 20 = ignore first 20.
 null = doesnot exist/unknown
 

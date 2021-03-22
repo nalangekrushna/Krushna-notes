@@ -1,0 +1,35 @@
+design patterns
+
+Types of design patterns
+1. Behavioral pattern = This patterns consist of how to communicate between objects. how objects interact and fulfill the given task.
+2. creational pattern
+
+Behavioural pattern = There are total 11 behavioural pattern in python. Iterator, chain of responsibility, Command, Interpreter, Mediator, Memento, Observer, State, Strategy, Template and Visitor.
+1. Iterator = python iterator pattern uses encapsulation principle ie.  how data structure is traveresed this  implementation details should be moved to iterator object and from outside only simply yields one item after another. python iterator pattern uses two methods. iter() and next(). iter will return iterable object. 
+2. Chain of Responsibility =
+3. Command
+
+Creational pattern = Creational patterns are not commonly used in python because of dynamic nature of language. Factory pattern is built-in python as language provides us all the flexibility needed to create object is sufficiently elegent fashion.
+
+1. Singleton = when only one instance of given class exists during runtime. Alternatively you can use module or create instance at top level in config file or pass the instance to every object that needs it. you can use singleton pattern to create database connection object.
+ 
+class Logger(object):
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            print('Creating the object')
+            cls._instance = super(Logger, cls).__new__(cls)
+            # Put any initialization here.
+        return cls._instance
+2. Dependancy Injection =  useful when mocking objects for python unit testing. If you know in advance all the object required then you can use dependancy injection patter. for example open() function to open file is good example of it.
+with open('input_data.json') as f:
+    data = json.load(f)
+In above example we gets three benefits
+1. decoupling = json library doesn't need to know all paramters accepted by open function and json load don't need to accept them and change function if in future open function changes.
+2. efficiency = If you have file already open somewhere you don't need to open it again. you can simple provide open file object.
+3. flexibilty = you can pass any file like object or other types of objects.
+
+Structural pattern = 
+1. Facade =  creating an interface so only predefined methods can be exposed to other programs.
+2. decorator = 

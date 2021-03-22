@@ -1,0 +1,16 @@
+conda commands
+
+conda update
+conda update conda
+
+conda create environment
+conda create -n et_scrapper_env python==3.8.8
+
+to activate created env
+conda activate et_scrapper_env
+
+to run jupyterlab
+jupyter-lab --notebook-dir=D:\Project\jupyter_test
+
+to get list of all conda environments
+conda info --envs

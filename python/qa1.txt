@@ -1,0 +1,23 @@
+qa 1
+
+API vs REST API
+API = is a interface which defines how to applications can talk with each other. It defines request type, request format so that anyone with right type and format could send request to application.
+REST (REpresentational State Transfer) is a type of API. rest is a standardized set of rules/standard/guideline to how to build an API. other popular api types are SOAP and GraphQL.
+
+request is made up of four things
+1. endpoint = e.g. https://example.com/test?query1=value1&query2=value2 here https://example.com is root endpoint while /test is a path. the final part the part after ? is called query parameters and & is used to join two query parameters. 
+2. type = GET, POST, PUT DELETE, there are others but rest is mainly concerned with this four.
+3. header = 
+4. body (data)
+
+A api is called restful api if it follows rest style.
+1. use right request type for right operation.
+2. use identifiers in url instead of query strings. query strings are good for filtering.
+3. use plurals instead of collection metaphors(like list set or dictionary.)
+	e.g  right /users/12345
+	     wrong /api?user=12345   or user_list/12345
+4. use lower case and use underscore and hyphen to seperate words. 
+5. use right http response code to indicate status.
+6. favor json over xml.
+
+idempotent = for an operation (or service call) to be idempotent, clients can make that same call repeatedly while producing the same result.

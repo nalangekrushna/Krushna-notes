@@ -1,0 +1,32 @@
+how to run stages in parallel ?
+from declarative pipeline 1.2 you can add parallel stage inside stage. Inside parallel you can again add different stage to run in parallel.
+
+how to copy multiple docker files in single line ?
+use below command 
+COPY source1 source2 dest
+
+containerization vs virtualization 
+both containers and vm are software technologies that create self contained virtual packages.
+Virtual machines programmed to emulate hardware of physical computer with complete os. vmwares make it possible to run multiple computers with multiple os on single physical server. 
+
+Hypervisor = virtualization will not be possible without hypervisor. hypervisor is software or firmware layer which orchestrate and seperates available resources aligning a portion to each vm.  
+
+vmware disadvantages = since each vm contains its own copy of os and all virtual hardware the os requires, it takes significant ram and cpu resources.
+sdlc is more complex with vmwares. 
+moving vm between traditional data centers and public clouds can be challenging.
+
+containers  = containers share host os with with other containers. and shared part is read-only. 
+container disadvantages = container based on different os requires different host.
+beacuase os is shared security vulneribility of os kernel is threat to all containers.
+
+vmwares should be used when you need full functionality of os or you have different os. containers should be used when you want to mimimize no of servers.
+
+docker disadvantages = 
+1. docker don't run at bare metal speed.
+2. the container ecosystem is fractured.
+3. persistent data storage is complicated.
+4. the only microservices based appliction benefit from it. For others it is just a packaging solution.
+5. graphical applications don't work well with docker.
+
+what is sidecar pattern ?
+sidecar pattern contains two seperate containers. one contains core functionality and other contains supporting/ augmented functionalities such as logging and monitoring.
