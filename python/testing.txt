@@ -4,13 +4,11 @@ exploratory testing = exploring the application and checking its features are wo
 unit test = checks if single component operates in right way.
 integration test = checks that components in your application operate with each other.
 
-test fixture = text fixture is a preparation needed to perform one or more tests and any associated cleanup actions.e.g creating temp db or directory or starting a server process.
+test fixture = text fixture is a preparation needed to perform one or more tests and any associated cleanup actions.e.g creating temp db or directory or starting a server process. we use setUp and tearDown method creation and deletion of test fixtures.
 test cases = individual unit of testing. It checks for specific response for particular set of inputs.
 test suite  = test suite is collection of individual test cases or other test suites. It aggregates tests that should run together.
 parameterization = If you’re running the same test and passing different values each time and expecting the same result
 test runner = test runner is a special application designed for running tests, checking the output and giving you tools for debugging and diagnosis tests and application.
-
-If your application is script and you don't want to make it package. This is useful when your filename collides with standard python library such as math.py. You can use __import__() function to import class function and variable.
 
 There are three popular test runners 1. unittest  2.nose2   3. pytest
 we will be using unittest as it comes with python standard library.
@@ -21,6 +19,14 @@ Unittest = unittest contains both test framework and test runner. unittest has b
 	3. method used in unittest testing must be start with "test" case sensitive.
 You can use assertRaises(ErrorName) to check for error.
 
+some methods of unittest.TestCase class
+	self.assertEqual
+	self.assertTrue
+	self.assertFalse
+	self.assertIs
+	self.assertIn
+	self.assetIsNot
+	
 Flask testing with unittest = flask provides werkzeug test "Client"  for testing. also it provides testing flag which can be used to disable error catching so you can see the real errors. you should create folder inside testing folder for input data called as fixtures. Use setUp method to load data from fixture.
 
 Integration testing = 

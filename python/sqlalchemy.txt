@@ -1,11 +1,21 @@
-Object Relation Mapping (SQLAlchemy) = sqlalchemy is python sql toolkit and Object Relationship (ORM).
+Object Relation Mapper (SQLAlchemy) = sqlalchemy is python sql toolkit and Object Relationship (ORM).
 
 what is ORM ?
 We write program in Object Oriented fashion. but the data in RDB is stored as tables. Object Relation mapping is a process of mapping object parameters to underlying RDBMS table structure. So that you never need to write sql queries.
 
-sqlalchemy provides two ways for database operations. 
-1. SQLAlchemy Expression langauge = It helps to reprensent RDB structures and expressions using python construct.
-2. SQLAlchemy ORM = provides way to associate user defined python classes with database tables and instance of classes with rows in corresponding tables. ORM is built upon expression language.
+sqlalchemy provides two api for database operations. 
+1. SQLAlchemy Core = It helps to reprensent RDB structures and expressions using python construct.
+2. SQLAlchemy ORM = provides way to associate user defined python classes with database tables and instance of classes with rows in corresponding tables. ORM is built upon sqlalchemy core.
+
+Engine object = engine object is a global object created just once for a particular db server and configured using url string which describess how to connect to db host or backend. This object acts as cental source of connection to that particular db providing both factory and connection pool for db connections.
+
+Result = execute method returns Result object which is an iterable object iterable over Row object. Result object contains Row object which behaves like python namedtuple.
+
+engine provides two primary interactive interfaces Connection and Result. ORM provides facade for both this objects named as Session. engine provides to api to connect to db.
+1. connect = default behaviour is to commit everything.
+2. begin = default behaviour is to commit everything at the scope release(end of context manager "with"). If exception is raised then rollback is issued.
+
+Session = when working with orm, engine object is managed by another object called Session. Session tracks object attributes changes. We can see them in session.dirty variable. Also flush occurs before any select so that all changes are saved in database.
 
 echo parameter in create_engine api used to enable logging and get sql queries generated. creating object of create_engine didn't actually connect to database to verify the connection is successful we have to call engine.execute or engine.connect()
 
@@ -19,9 +29,9 @@ and_ = query.filter(and_(User.name == 'hello' , User.fullname == 'hello world' )
 		query.filter(User.name == 'hello').filter(User.fullname == 'hello world')
 or_ = query.filter(or_(User.name == 'hello' , User.fullname == 'hello world' )
 
-filter = allows pythonic filtering arguments.
+filter_by = allows pythonic filtering arguments.
 eg. db.users.filter_by(name='Joe')
-filter_by = filter by is used for simple queries on column names. Also you can write more powerful queries such as using and_ or_ and other multiple operators in single query.
+filter = filter is used for simple queries on column names. Also you can write more powerful queries such as using and_ or_ and other multiple operators in single query.
 e.g. db.users.filter_by(name='Joe')
 db.users.filter(or_(db.users.name=='Ryan', db.users.country=='England'))
 
@@ -45,7 +55,7 @@ In sqlalchemy can we use existing schema ?
 Yes, use autoload=True and autoload_with=engine parameters in Table class.
 
 what is unit of work pattern ?
-
+This means accumulate all changes only in memoery, but don't communicate them to db until needed.
 
 performance overhead ?
 sqlalchemy core gives almost same performance as raw sql as the core has very thin wrapper over raw sql. Performance of sqlalchemy ORM is much slower than this. but considering we do a singel CRUD operation at a time It is still justified to use ORM as decreases lot of work for developer.
@@ -61,3 +71,10 @@ no sqlalchemy doesn't support ddl operation for that you have to use ddl constru
 
 do a exercise in both raw sql and sqlalchemy
 sqlalchemy and multiprocessing ? 
+
+different object states related to db
+transient = they are not associated with any database state and they are yet to be associated with session object.
+pending = when objects are added to session and yet to insert into db are said to be in pending state.
+we can see this object in variable session.new. 
+
+understand relationship between different tables using foreign key relative to sqlalchemy.

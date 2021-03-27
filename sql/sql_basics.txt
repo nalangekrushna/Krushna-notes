@@ -10,17 +10,37 @@ how sql database works ?
 	3) query executor = runs the query.
 	
 schmea  = collection of tables.
+mysql single quotes are preferred over double quotes. In python index starts form 0 but in mysql index starts from 1. eg. substr('somestring',1,3) will return 'som'.
 
 Mysql 8.0 data types
 A. Numerics
 	1. Integers = Integer(int)(4 bytes), tinyint(1 byte), smallint(2 byte), mediumint(3 byte), bigint(8 byte). general purpose
 	2. Fixed point(stores exact value with precision) = Decimal, Numeric. 
 	3. Floating point type(approximate value) = float and double
-B. date and time
+B. date and time = you should give date format in year-month-day format. 
+	1. DATE, 2. TIME 3. DATETIME 4. TIMESTAMP 5. YEAR
+	Datetime vs Timestamp = datetime has very large range while timestamp has only 1970 and above range. So storing value in Timestamp will give the error. Timestamp will convert values to utc before storing whilw datetime will store values as it it. generally use datetime and only if you want to track changes to record and update time everytime then only use timestamp.
+
 	https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html
 C. text
-	1. VAR
-	2. VARCHAR
-	3. BLOB
-	4. TEXT
-	
+	1. CHAR(n) = char is fixed length. means char allocated the memory either you use it or not. Char maximum length is 255. If the string lenght is fixed then char is slightly faster than varchar.
+	2. VARCHAR(n) = varchar is variable lenght. means it allocates only required memory to store string instead of declared n. max lenght is 65k. varchar is useful if you want to index entire column and it you want column with foreign key constraint.
+	3. BLOB = similar to text except it stores bytes instead of characters.
+	4. TEXT = It is used to store paragraphs
+	5. BINARY, VARBINARY = they are similar to char and varchar except they store byte strings instead of character strings.
+	6. ENUM = fixed set of string values explicitly permeated at table creation. you must use only one  predefined value. 
+	7. SET = fixed set of string values explicitly permeated at table creation. you can use one or more predefined values or empty string.
+D. JSON = mysql also supports json format natively.
+
+what is foreign key on update and foreign key on delete.
+
+difference between In and Between
+a between b and c is a macro that expands to b <= a and a <= c.
+a in (b,c,d) is a macro that expands to a=b or a=c or a=d.
+
+there are five types of database queries.
+1. DCL = grant, revoke
+2. DQL = select
+3. TCL = commit, rollback, savepoint
+4. DML = insert, update, delete
+5. DDL = create, alter, drop, truncate

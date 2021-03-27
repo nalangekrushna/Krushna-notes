@@ -25,3 +25,5 @@ If __init__.py is optional from python3.3 then whats package definition now ?
 python 3.3+ supports implicit namespace packages that allows to create packages without __init__.py file. This is called namespace package in contrast to regular package which contains __init__.py file empty or non-empty. Use case for namespace package is to share namespace, it required to make each directory of common path a namespace package. This is the only usecase for creating namespace package otherwise you should stick to regular package.
 check below link for detailed explaination and example
 https://stackoverflow.com/a/48804718/8144864 
+
+If your application is script and you don't want to make it package. Below is useful when your filename collides with standard python library such as math.py. You can use __import__() function to import class function and variable.

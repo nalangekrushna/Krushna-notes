@@ -1,6 +1,7 @@
 Flask interview questions
 
 Read this when you have time
+
 https://kronosapiens.github.io/blog/2014/08/14/understanding-contexts-in-flask.html
 https://testdriven.io/blog/flask-contexts/
 https://stackoverflow.com/questions/20036520/what-is-the-purpose-of-flasks-context-stacks
@@ -27,7 +28,7 @@ how to get query string in flask ?
 @app.route method ?
 app route method contains one required paramter path. other parameters include methods (default GET HEAD OPTIONS) 
 
-how to use session in flask ?
+how to use session in flask ? check ans again
 whenever you want to save some data between request, you can use session object.
 
 flask url_for function
@@ -62,8 +63,6 @@ app factory pattern ?
 
 how to connect database in flask ?
 using Flask-SQLAlchemy extension. elaborate more.
-
-flask ORM
 
 how to debug flask app
 use debug=True parameter in app.run() method.
