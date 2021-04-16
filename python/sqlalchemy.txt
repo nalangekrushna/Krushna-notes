@@ -21,7 +21,7 @@ echo parameter in create_engine api used to enable logging and get sql queries g
 
 A class using Declarative at a minimum needs a __tablename__ attribute, and at least one Column which is part of a primary key. when creating an ORM object if we didn't specify any attribute sqlalchemy assigns defualt value to column mapped attributes instead of raising attribute error which is pythons default behaviour. Also declarative system of sqlalchemy provides constructor (ie. __init__ method) which automatically accepts all column mapped attributes.
 
-To use ORM first we get object of declarative_base class and use it as parent to all the databases classes. we use Base.metadat.create_all method to create all the table.
+To use ORM first we get object of declarative_base class and use it as parent to all the databases classes. we use Base.metadata.create_all method to create all the table.
 
 some commonly used query operators
 and_ = query.filter(and_(User.name == 'hello' , User.fullname == 'hello world' ) or 
@@ -78,3 +78,39 @@ pending = when objects are added to session and yet to insert into db are said t
 we can see this object in variable session.new. 
 
 understand relationship between different tables using foreign key relative to sqlalchemy.
+
+from sqlalchemy import create_engine
+engine = create_engine('sqlite+pysqlite:///:memory:') 
+engine = create_engine('mysql+pymysql://root:toor@localhost:3306/playground')
+create_engine(database+dialect://username:password@host:port/db_name)
+# you can use engine.connect method to test the connection.
+Base = declarative_base(engine)
+class Parent(Base):
+    __tablename__ = 'parent'
+    id = Column(Integer, primary_key=True)
+    children = relationship("Child", back_populates="parent")
+
+class Child(Base):
+    __tablename__ = 'child'
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey('parent.id'))
+    parent = relationship("Parent", back_populates="children")
+	
+relationship back_populate option is used for to update other table also in case one table value changes.
+Although backref is only need to define in one class parent or child, It becomes complicated to keep track if you have multiple relationships. and also you need to look at another class 
+
+when we insert a row without primary key the new key will be generated. This key is stored in CursorResult.inserted_primary_key variable.
+
+to access a row using primary key for User orm use session.get(User,4)
+
+to get all the results
+session.query(User).all()
+
+to get exactly one result and raise MultipleResultsFound error if multiple results found and NoResultFound if not a single row is matched.
+session.query(User).one() 
+
+to get first result of multiple results
+session.query(User).first()
+
+If zero rows are returned then first will return None, all will return empty list and one will give error
+

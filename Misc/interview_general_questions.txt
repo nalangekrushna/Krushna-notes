@@ -1,10 +1,10 @@
 General interview questions ?
 
 intro 
-Hi my name is krushnakumar Nalange. I am 2016 passout with Bachelors of Engineering degree in mechanical engineering from JSPM Hadapsar college. I joined tech mahindra after completing my degree. There I worked on automation and mobile testing projects. Currently I am working in virtusa on citi bank project. I am good at python development, api development and SQL.
+Hi my name is krushnakumar Nalange. I am from Ahmednagar Maharashtra. I am 2016 passout with Bachelors of Engineering degree in mechanical engineering from JSPM Hadapsar college. I joined tech mahindra after completing my degree. There I worked on automation and mobile testing projects. Currently I am working in virtusa on citi bank project. I am good at python development, api development and SQL.
 
 explain your project ?
-So currently we have completed an analytics tool which generates different financial summary reports using a template based nlg engine. we use different reports such as financial summary report, revenue summry report, expense details etc. Each report contains many segments of citi business and for each segment, its revenue profit and loss is given for each month.
+So currently we have completed an analytics tool which generates different financial summary reports using a template based nlg engine. we use different reports such as expense by business, revenue summry report, expense details etc. Each report contains many segments of citi business and for each segment, its revenue profit and loss is given for each month.
 So for each segment we have sub segment and those subsegments are further divided into further sub segments. First we take parent segment and calculate its month over month variance and variance percentage and we have to explain why this variance occured using child segment variance.
 For example one parent segment is global commercial, so lets say its revenue is decreased by some amount then the reason for decrease is explained by child segment. Lets say child segment X increased by some amount and segment Y decreased by some amount. hence overall decrease in amount variance in parent segment.
 So business analyst used to take this data and analyze and generate commentry manually so our task was to automate all the process business analyst doing and generate commentry.

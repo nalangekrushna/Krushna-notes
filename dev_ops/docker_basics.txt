@@ -1,5 +1,4 @@
-how to run stages in parallel ?
-from declarative pipeline 1.2 you can add parallel stage inside stage. Inside parallel you can again add different stage to run in parallel.
+
 
 how to copy multiple docker files in single line ?
 use below command 
@@ -14,6 +13,11 @@ Hypervisor = virtualization will not be possible without hypervisor. hypervisor 
 vmware disadvantages = since each vm contains its own copy of os and all virtual hardware the os requires, it takes significant ram and cpu resources.
 sdlc is more complex with vmwares. 
 moving vm between traditional data centers and public clouds can be challenging.
+
+vmware advantages over docker
+when you want to provide users own os while requiring few physical servers.
+when you need lots of customization on os level or different incompatible packages with each other.
+when you need hard seperations between applications and instances.
 
 containers  = containers share host os with with other containers. and shared part is read-only. 
 container disadvantages = container based on different os requires different host.
@@ -30,3 +34,6 @@ docker disadvantages =
 
 what is sidecar pattern ?
 sidecar pattern contains two seperate containers. one contains core functionality and other contains supporting/ augmented functionalities such as logging and monitoring.
+
+how to save docker image ?
+docker save -o file_name image_name:tag

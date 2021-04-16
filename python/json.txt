@@ -9,5 +9,8 @@ dump vs dumps = dumps takes only single argument(string) and return encoded/seri
 
 load vs loads = same as dumps and dump. loads used when data is pulled from python string or from another program.
 
+data types supported by json = string, number, object, array, boolean(true,false) and null.
+JSON only uses double quotes.
+
 how to encode complex number into json ?
 how to encode/decode python objects into json ? 

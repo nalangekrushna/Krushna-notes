@@ -1,121 +1,25 @@
+python tuple = A tuple is a ordered collection of object. tuple is immutable meaning tuple itself cannot be modified but objects referenced by it can be modified.
+If tuple has immutable field like string then it cannot be modified but if tuple has mutable object like list then it can be modified. when python documents says immutable this means the above.
+for detailed explaination see link below
+https://stackoverflow.com/q/9755990/8144864
 
-Python is interpreted,general purpose, object oriented programming language. Many languages are compiled, meaning the source code you create needs to be translated into machine code, the language of your computer’s processor, before it can be run. Programs written in an interpreted language are passed straight to an interpreter that runs them directly. One potential downside to interpreted languages is execution speed. Programs that are compiled into the native language of the computer processor tend to run more quickly than interpreted programs.
-Python 3 has 33 keywords.
-
-Data Types
-	Integers = In Python 3, there is effectively no limit to how long an integer value can be.
-	The following strings can be prefix to an integer value to indicate a base other than 10.The underlying type of a Python integer, irrespective of the base used to specify it, is called int.
-		0b/ 0B = binary  e.g. 0b1011
-		0o/ O0 = octal
-		0x/ 0X = hexadecimal
-		
-	Float = float values are specified with a decimal point. Optionally, the character e or E followed by a positive or negative integer/float. e.g. 4.2, .2, 3., 1e2=100.0 . The maximum value a floating-point number can have is approximately 1.8 * 10^308. Python will indicate a number greater than that by the string inf. e.g. 1.9e308 = inf
-	
-	Complex number = Complex numbers are specified as <real part>+<imaginary part>j. e.g. 4+2j, 3j
-	
-	Strings = we use backslash (\) character to escape in string. To break up a string over more than one line, include a backslash before each newline. A raw string literal is preceded by r or R, which specifies that escape sequences in the associated string are not translated. Triple-quoted strings can be used add multiline strings. Escape sequences still work in triple-quoted strings, but single quotes, double quotes, and newlines can be included without escaping them. 
-	
-	Boolean Type(bool)
-	
-Python also allows chained assignment, which makes it possible to assign the same value to several variables simultaneously.
-x = y = [2]
-x.append(4)
->> y
-[2,4]
-
-variables in python 
-n = 300
-This assignment creates an integer object with the value 300 and assigns the variable n to point to that object.
-m = n
-What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, m, which points to the same object(i.e. same memory location) that n points to.
-m = 400
-Python creates a new integer object with the value 400, and m becomes a reference to it.
-n = "foo"
-Now Python creates a string object with the value "foo" and makes n reference that.
-There is no longer any reference to the integer object 300. It is orphaned, and there is no way to access it. An object stays alive, as it were, so long as there is at least one reference to it. Python will eventually notice that object is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.
-
-After the assignment m = n, m and n both point to the same object, confirmed by the fact that id(m) and id(n) return the same number. Once m is reassigned to 400, m and n point to different objects with different identities.
-
-The result of standard division (/) is always a float, even if the dividend is evenly divisible by the divisor. e.g. 10/2 = 5.0   10/4 = 2.5
-When the result of floor division (//) is positive, it is as though the fractional portion is truncated off, leaving only the integer portion. When the result is negative, the result is rounded down to the next smallest (greater negative) integer e.g. 10//4 = 2   10//-4 = -3    -10//4 = -3
-
-Equality Comparison on Floating-Point Values = it is poor practice to compare floating-point values for exact equality. Consider this example:
->>> x = 1.1 + 2.2
->>> x == 3.3
-False
-The internal representations of the addition operands are not exactly equal to 1.1 and 2.2, so you cannot rely on x to compare exactly to 3.3.
->>> tolerance = 0.00001
->>> x = 1.1 + 2.2
->>> abs(x - 3.3) <= tolerance
-True
-In python 3.5 they provided math.isclose() function to compare two floating point numbers.
-
-
-All the following are considered false when evaluated in Boolean context bool():
-	Any value that is numerically zero (0, 0.0, 0.0+0.0j)
-	An empty string
-	An object of a built-in composite data type which is empty. (list,set ,tuple ,dict)
-	The special value denoted by the Python keyword None
-	
-Python lists = list are ordered and their order is maintained in lifetime. Lists that have the same elements in a different order are not the same.
-to check if two lists are same
-sorted(lst_1) == sorted(lst_2)
-
->>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
-
->>> a[1:4]
-['bar', 'baz', 'qux']
->>> a[1:4] = [1.1, 2.2, 3.3, 4.4, 5.5]
->>> a
-['foo', 1.1, 2.2, 3.3, 4.4, 5.5, 'quux', 'corge']
->>> a[1:6]
-[1.1, 2.2, 3.3, 4.4, 5.5, 'quux']
->>> a[1:6] = ['Bark!']
->>> a
-['foo', 'Bark!', 'quux', 'corge']
-The number of elements inserted need not be equal to the number replaced. Python just grows or shrinks the list as needed.
-
-You can also insert elements into a list without removing anything. Simply specify a slice of the form [n:n] (a zero-length slice) at the desired index.
->>> a = [1, 2, 7, 8]
->>> a[2:2] = [3, 4, 5, 6]
->>> a
-[1, 2, 3, 4, 5, 6, 7, 8]
-
-list methods
-	index, remove, pop, insert, append, extend, count, reverse, sort, copy, clear
-	
-	remove(ele) = remove first element with specified value. didn't return anything.(ie. None)
-	pop(index) = optional index parameter to give the index of element in list. defaults to -1(last element) Also returns the removed element.
-	insert(index,value) = both are required paramters. insert also returns None.
-
-Why use a tuple instead of a list?
-	Program execution is faster when manipulating a tuple than it is for the equivalent list. 
-	Sometimes you don’t want data to be modified. 
-	dictionary which requires as one of its components a value that is of an immutable type. A tuple can be used for this purpose, whereas a list can’t be.
-	
 to define a singleton tuple, include a trailing comma (,) just before the closing parenthesis.
+e.g.
+t1 = (1,2,3,[1,2])
+t1[-1].append(3)
+print(t1)
+>> (1,2,3,[1,2,3])
 
-Neither a list nor another dictionary can serve as a dictionary key, because lists and dictionaries are mutable. string,int, float, bool and tuple can serve as dictionary keys.
-	
-	Set = set are unordered meaning the insertion order will not be maintained. Also duplicate values will be removed. We can only add immutable data types in set meaning set cannot have list or dict as a element.
-	
-Set Operations = 
-union (|) = x1 | x2 or x1.union(x2)
-intersection (&) = x1 & x2  x1.intersection(x2)
-difference (-) = x1 - x2    x1.difference(x2) return all element in x1 which not in x2.
-symatric difference (^) = x1 ^ x2  x1.symmetric_difference(x2) return the set of all elements in either x1 or x2, but not both.
-x1.isdisjoint(x2) = Determines whether or not two sets have any elements in common.
+list vs tuple
+lists are mutable							tuples are immutable
+iterations are relatively time consuming    iterations are relatively faster than list
+used for insertion and deletion				used for accessing elements
+list consumes more memory					tuples consume less memory
+lists have many methods						tuples have few methods.
+In conclusion if you don't need to edit elements after initializing use tuple otherwise use list.
 
-sets are mutable. frozensets are immutable. means you cannot modify frozensets once assigned. 
->>> f = frozenset(['foo', 'bar', 'baz'])
->>> s = {'baz', 'qux', 'quux'}
+__repr__ and __str__ = you can implement this both methods in python for object representation. 
+__str__ = should be easy to understand and for general user. Print will show this.
+__repr__ = should be unambigous and for developers use. just passing object name on interpreter should show this. In case of __str__ not available for print method it will fallback on __repr__. but vice versa is not true(ie. if you only define __str__ inspect value will not shown from __str__ method.)
 
->>> f &= s
->>> f
-frozenset({'baz'})
-
-If you really feel compelled to define a set of sets, you can do it if the elements are frozensets, because they are immutable.
-
-Python allows an optional else clause at the end of a while and for loop. When <additional_statement(s)> are placed in an else clause, they will be executed only if the loop terminates “by exhaustion”—that is, if the loop iterates until the controlling condition becomes false. If the loop is exited by a break statement, the else clause won’t be executed.
-
-By default, print() sends its output to a default stream called sys.stdout, which is usually equivalent to the console. The file=<stream> argument causes output to be sent to an alternate stream designated by <stream> instead.
+pprint = you can use from pprint import pprint to import this method which will show arbitary data in proper formatted way.

@@ -1,7 +1,7 @@
 offset 20 = ignore first 20.
 null = doesnot exist/unknown
 
-select distinct movie,count(year) as year_count from table where a='a' and rank is not null or a in (a,b) or b between a and b and name like '_Me%' group by year_count having year count>10 order by b desc limit 20 offset 40
+select distinct movie,count(year) as year_count from table where a='a' and rank is not null or a in (a,b) or year between a and b and name like '_Me%' group by year_count having year count>10 order by b desc limit 20 offset 40
 count, min, max, sum , avg 
 % zero or more
 _ exactly one

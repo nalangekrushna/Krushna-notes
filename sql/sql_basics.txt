@@ -9,7 +9,7 @@ how sql database works ?
 	2) query optimizer = determines the optimal way to run the query.
 	3) query executor = runs the query.
 	
-schmea  = collection of tables.
+schema = collection of tables.
 mysql single quotes are preferred over double quotes. In python index starts form 0 but in mysql index starts from 1. eg. substr('somestring',1,3) will return 'som'.
 
 Mysql 8.0 data types
@@ -19,7 +19,7 @@ A. Numerics
 	3. Floating point type(approximate value) = float and double
 B. date and time = you should give date format in year-month-day format. 
 	1. DATE, 2. TIME 3. DATETIME 4. TIMESTAMP 5. YEAR
-	Datetime vs Timestamp = datetime has very large range while timestamp has only 1970 and above range. So storing value in Timestamp will give the error. Timestamp will convert values to utc before storing whilw datetime will store values as it it. generally use datetime and only if you want to track changes to record and update time everytime then only use timestamp.
+	Datetime vs Timestamp = datetime has very large range while timestamp has only 1970 and above range. So storing value in Timestamp will give the error. Timestamp will convert values to utc before storing while datetime will store values as it it. generally use datetime and only if you want to track changes to record and update time everytime user logs in then only use timestamp.
 
 	https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html
 C. text
@@ -44,3 +44,9 @@ there are five types of database queries.
 3. TCL = commit, rollback, savepoint
 4. DML = insert, update, delete
 5. DDL = create, alter, drop, truncate
+
+query to find duplicate records
+lets say you have column id and name in your table employee. belwo is the query.
+select id, name, count(*) from employees group by id, name having count(*) > 1 ;
+
+complete datetime exercise from mysql workbench.

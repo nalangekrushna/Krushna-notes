@@ -78,3 +78,6 @@ or C:\Program Files (x86)\Jenkins
 
 copy job from Jenkins_home/jobs/job_name to another installation on jenkins
 change job_name to new_job_name to renme existing job.
+
+how to run stages in parallel ?
+from declarative pipeline 1.2 you can add parallel stage inside stage. Inside parallel you can again add different stage to run in parallel.

@@ -30,3 +30,6 @@ what is yield from ?
 is equivalent to 
 >>for x in iterator:
 >>    yield x
+
+difference between iterators and generators
+generator stores local variable while iterator didn't use local variables. Iterator uses iter() and next() functions while generator uses yield keyword. Every generator is iterator while every iterator is not a generator. you can implement iterator using iter() and next() method. but you can use any function with generators.

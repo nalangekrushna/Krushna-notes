@@ -6,7 +6,7 @@ count has three methods
 	2. most_common() = returns tuple in descending order from highest to lowest occurence of values.
 	3. subtract() = d1.subtract(d2) = deducts d2 from d1 and stores result in d1.
 	
-2. defaultdict(func) = same as regular dictionary except when key not exists then instead throwing keyerror, it creates the key and assigns default value to it returned from func function. if func parameter is absent then raises KeyError
+2. defaultdict(func,dictionary) = same as regular dictionary except when key not exists then instead throwing keyerror, it creates the key and assigns default value to it returned from func function. if func parameter is absent then raises KeyError
 
 3. OrderedDict = dictionary where keys maintain the insertion order. means if you change value of key later it will not change position of key.
 

@@ -1,0 +1,7 @@
+Linux book notes
+
+Notes from https://www.linuxtopia.org/
+
+Unix development started by bell labs in 1969 and initial version is released in 1971. Linux is full blown clone of unix and created to have some open source version available of unix. POSIX (Portable Operating System Interface) is an ieee standard designed to facilitate application portablility. Nowadays Linux run on everything such as mobile devices, home appliances and IoT devices. Linux is written in C programming language. 
+
+currently at 2.4 summary 

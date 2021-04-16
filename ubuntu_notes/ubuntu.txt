@@ -18,18 +18,20 @@ apt update vs apt upgrade vs apt full-upgrade
 When you update, it downloads the package information from all configured sources mentioned in /etc/apt/sources.list to the local repository. However, it does not update the packages you already have installed. In order to do that, you have to do apt upgrade. 
 The full-upgrade searches for dependencies with newer versions, installs new packages, and removes old ones on its own. On the other hand, upgrade never installs or removes packages on its own. It only installs the latest versions of the installed packages on your system. You should be careful when using full-upgrade as it may remove some packages you still want and need on your system.
 
-apt remove vs apt purge
-You can remove a package with the apt remove command. However, this command only removes the package, leaving its configuration files on the system. If you want to remove the package along with its configuration files, then use apt purge
+apt remove vs apt purge vs apt autoremove
+You can remove a package with the apt remove command. However, this command only removes the package, leaving its configuration files on the system. If you want to remove the package along with its configuration files, then use apt purge. autoremove checks if the packages are used somewhere if not it will remove them. VERY IMP: do not use autoremove as it can break your system.
 
 which vs type
 On Bourne-like shells, we're comparing the output of which with the output of type (type being a shell builtin, it's meant to be the ground truth, as it's the shell telling us how it would invoke a command).
 
 <command> is hashed = means command and its path is stored in hash table for quick reference next time.
 
+when we open a terminal we get non-login interactive shell.
+
 interactive vs non-interactive shell
-interactive shell = An interactive shell is simply any shell process that you use to type commands, and get back output from those commands. That is, a shell with which you interact. it reads .bash_profile file at starting of it.
-Non-interactive shell = when you run a shell script, a non-interactive shell is started that runs the commands in the script, and then exits when the script finishes. It reads .bashrc file instead of .bash_profile.
- 
+interactive shell = An interactive shell is simply any shell process that you use to type commands, and get back output from those commands. That is, a shell with which you interact. 
+Non-interactive shell = when you run a shell script, a non-interactive shell is started that runs the commands in the script, and then exits when the script finishes. 
+
 login vs non-login shell short answer 
 simply put any shell that asks password before start is login shell otherwise non-login shell. to check if shell is login or not use echo $0 if output(-bash) has hyphen(-) prefix then it is login shell. 
  
@@ -41,9 +43,14 @@ Non-login shell = Normally, every other shell you run after logging in will be a
 login shell executes following scripts
 /etc/profile
 ~/.bash_profile
+~/.profile
 
 Non-login shell executes following scripts
 /etc/bash.bashrc
 ~/.bashrc
 
-need to confirm which which shell runs which file in case of interactive and non-interactive shells.
+environment variables vs shell variables
+shell variables are private to currently running shell and they are not exported to the child shells/processes. environment variables are exported to all child processes/shells. 
+MyVar=Private # shell variable didn't get passed to child processes.
+export OurVAr=shared # environment variable will be passed to child shell.
+

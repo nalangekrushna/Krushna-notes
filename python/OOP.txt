@@ -41,6 +41,12 @@ Python Object Inheritance =
 in Inheritance, child object acquires all properties and behaviours of parent object. 
 child classes can override or extend the functionality (e.g., attributes and behaviors) of parent classes. The most basic type of class is an object, which generally all other classes inherit as their parent.
 When you define a new class, Python 3 it implicitly uses object as the parent class. So the following two definitions are equivalent:
+there are 5 types of inheritances.
+1. single inheritance = class have one parent class
+2. multiple inheritance = class have two or more than two parent classes.
+3. multilevel inheritance = It has grandparent parent and child relationship.
+4. hierachical inheritance = given class is used as base in multiple classes.
+5. hybrid inheritance = combination any from above four.
 
 class Dog(object):
     pass
@@ -69,3 +75,20 @@ python classes have 4 builtin methods
 getattr, hasattr, setattr and delattr
 python classe also have some builtin attributes.
 module, dict and doc
+
+If a class having multiple inheritance containing same method in both the parents and if we called that method in child class the method of first class in parenthesis is called.
+e.g.
+class B :
+   def print_hi(self) :
+        print('hi from B')
+class A :
+    def print_hi(self) :
+        print('hi from A')
+class C(A,B) :
+    pass
+c = C()
+c.print_hi()
+>> hi from A 
+
+to also print message hi from A you need to add super().__init__() in all the classes. detailed explaination can be found below
+https://stackoverflow.com/a/27134600/8144864

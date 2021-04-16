@@ -1,0 +1,61 @@
+Linux interview questions
+
+linux = Linux is unix like open source operating system.
+
+what is linux kernel = Linux kernel is main component of linux os and is core interface between computer's hardware and processes.
+
+what is bash
+bash is a shell or command language interpreter. Its full form is bourne again shell.
+
+what is swap space = 
+swap space is certain amount of hard disk space used by linux to temporarily hold some programs when ram don't have enough memory to hold all the programs executing.
+
+what are the basic components of linux
+kernel, shell, GUI, System utilities and application programs.
+
+describe root account ?
+root account is system admin account which has full control of the system. here you can create as user and give different permissions. It is default account every time you install linux.
+
+cli opening command
+	Ctrl+Alt+t
+
+to check memory uses
+free -m  or top command
+
+what is symbolic links
+A link in linux is a pointer to the file or directory. There are two types of links 1. soft links(symlink) 2. hard link. This links behave differently when source is moved or removed.
+a symlink is a type of file in linux that points to another file or directory on your computer. symlinks are not updated when source is moved or removed.
+Hard links always refer to source even if moved or removed. hard link contains inode address. if we created hard link and then removed the source file then also we can access the file. On the other hand if source is removed in case of soft link the link became dangling link.
+to create hard link
+	ln file_name link_name
+to create soft link
+	ln -s file_name link_name
+
+to logout from system
+	Alt+Ctrl+Delete
+
+how to grant or remove permissions
+chmod ugo+rwx   or  chmod ugo-rwx
+
+what is maximum file name lenght and path lenght
+maximum file name lenght is 255 chars and that for complete path is 4096 chars
+
+filenames starting with .
+filename starting with . are generally hidden files. this files can be configuration files that holds important data or setup info. setting them hidden makes less prone to deletion.
+
+nameless directory
+you cannot create nameless directory but you can create directory with spaces. ' '
+
+what are daemons
+daemons are background services that listens on specified port serves response to requests on that port.
+
+export =  export command is built-in utility of bash shell. It is used to pass functions and environment variables to child processes.
+
+revise grep, sed, awk, find
+
+you can use # to comment in command line. Every process in system has pid. Use kill pid to terminate process gracefully or use kill -9 pid to terminate process forcefully. kill -1 will kill all except the kill and init process.
+
+running multiple commands in single line
+command1; command2 = run both the commands
+command1 && command2 = only run second command if first is successful.
+command1 || command2 = only run second command if first is failed.  

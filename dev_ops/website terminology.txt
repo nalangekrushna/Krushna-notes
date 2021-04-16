@@ -34,3 +34,28 @@ ICMP (Internet Control Message Platform)  = The Internet Control Message Protoco
 General convention is that we use port 80 for http communication and port 443 for https communication although we can use https on port 80 and http on port 443. SSH servers use port 22.
 
 There are generally two main web servers are used for deployemnt today. They are apache httpd called as apache and nginx (pronounced as engine-x)
+
+what is tcp/IP ?
+IP(Internet Protocol) = ip is set of rules for routing and addressing packets of data so that they can travel across networks to arrive at correct destination. Data traversing through internet is divided into smaller pieces, called packets. IP information is attached to packets and this information helps routers to send packets to right places. Once package arrived at destination, they are handled differently depending upon which transport protocol is used with IP. most commons are tcp or udp.
+TCP (Transmission Control Protocol) = tcp is transport protocol means it decides the way data is sent or received. a tcp header is included in each data packet sent. Before transmitting the data tcp opens connection with receiver, tcp makes sure that all packages arrive in order. tcp receipient will acknowledge each packet. missing packages will be sent again. 
+tcp is designed for reliability and not for speed. tcp and ip are originally planned to use together so often referred as tcp/ip. however other transport protocols can be used with IP.
+
+what is an IP packet ?
+IP packets are created by adding IP header before each packet of data. IP header contains sending and receiving ip address, header lenght, packet lenght, time to live(TTL) and transport protocol(tcp,udp) being used. There are total 14 fields in header some of which are optional.
+
+Layers of OSI model
+OSI (Open System Interconnection) = 7 layer architecture with each layer having to perform specific functionality. 
+1. Physical layer = responsible for actual physical connection between devices. It is responsible to transfer individual bits from one node to next. 
+2. Data Link Layer = This layer is responsible for error free data transmission from one node to another over physical layer.
+3. Network Layer = network layer works for transmission of data from one node to another in different network. It also takes care of packet routing. Senders and Recievers IP addresses are placed in header by network layer. 
+4. Transport Layer = It is responsible for end to end delivery of complete message. Transport layer also provides acknowledgement of successful data transmission and retransmits data if error is found. 
+5. Session layer = establishing connection, maintaining session, authentication and security.
+6. Presentation Layer  = data from application layer is extracted here and manipulated as per required format to transmit over network.
+7. Application Layer = Application layer is implemented by network applications in which data is produced and transferred over internet. 
+
+In real life implementation layer 5 and 6 are skipped. Layer 4 is tcp/ip or udp/ip and Layer 5 is application layer which has http(tcp), ftp(tcp), dns(udp), tftp(udp) protocols.
+
+what is socket ?
+A socket is one endpoint of two way communication link between two programs running on same or different machines in a network. socket provides means of IPC(Inter Process Communication) by establishing named contact point between which communication can take place. socket provides bidirectional FIFO communication over network. socket is created at each end is made up of ip address and port number called as address. There are two types of sockets 
+1. datagram socket
+2. Stream socket 

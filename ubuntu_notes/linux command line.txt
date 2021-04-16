@@ -29,6 +29,7 @@ ls -l = show file details.
 ls -r = reverse
 ls -R = recursive, also prints subdirectories.
 whoami = to get username and home directory will be  /home/<user_name>/
+whatis = short information about command
 mkdir = create directory.
 mkdir -p dir/sub_dir = create both directory and subdirectory without argument if dir is not present then mkdir will fail.
 rmdir = delete empty directory/sub directory.
@@ -64,7 +65,8 @@ ps = shows all running processes.
 source = to reload .bash_profile or any other file in current shell. One special usecase is when we add any variable in .bash_profile then instead of restarting we can just reload using source command.
 
 $$ = pid of bash shell
-$0 = name of shell
+$0 = name of shell or filename of current script.
+$1 = $1 and above are positional arguments to given command or function.
 $? = exit status of most recently executed command
 
 VERY IMPORTANT COMMANDS

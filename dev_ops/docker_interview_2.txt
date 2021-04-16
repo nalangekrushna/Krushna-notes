@@ -1,0 +1,39 @@
+docker_interview_2
+
+to know docker version
+docker version
+
+get no of containers running, paused and stopped
+docker info
+
+to login to dockerhub
+docker login
+
+create docker container from image
+docker run -it d <image_name>
+
+list all running container
+docker ps
+
+list all containers running or not
+docker ps -a
+
+how to access running container
+docker exec -it <container_id> bash
+
+how to start stop and kill a container
+docker start <container_id>
+docker stop <container_id>
+docker kill <container_id>
+
+how to delete a stopped container
+docker rm <container_id>
+
+how to delete an image from local system
+docker rmi <image_id>
+
+how to remove all stoped containers, non-used networks, all dangaling images and build cache
+docker system prune
+
+how to monitor docker in production
+docker provides functionality like docker stats and docker events to monitor docker in production. docker stat provides cpu and memory uses of container. docker events provide info about activites happeningin docker daemon. 

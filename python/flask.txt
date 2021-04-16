@@ -8,6 +8,7 @@ https://stackoverflow.com/questions/20036520/what-is-the-purpose-of-flasks-conte
 
 flask = Its open source web development framework in python language. It uses jinja templates for rendering. flask current version is 1.1.2  and it supports python 3.5+. flask runs on localhost(127.0.0.1) and 5000 port.
 
+
 django vs flask ?
 django is full featured web app framework while flask only implements core features and uses extensions to provide other functionalities. Learning curve for django is steeper than flask. flask is more useful in context of microservices and small codebase having lightweight web applications.
 
@@ -28,8 +29,8 @@ how to get query string in flask ?
 @app.route method ?
 app route method contains one required paramter path. other parameters include methods (default GET HEAD OPTIONS) 
 
-how to use session in flask ? check ans again
-whenever you want to save some data between request, you can use session object.
+how to use session in flask ?
+Session object is used in flask for tracking session data. This is a dictionary object. 
 
 flask url_for function
 flask url_for is used to create url to prevent need to change url including templates througout app in case of change in root url of app.
@@ -46,10 +47,10 @@ what is thread local object in flask ?
 -> In flask thread safety is provided out of box. we can use objects such as current_app, g, session and request without worrying about locking and concurrency. Also we don't need to pass object method to method. They are generally available within valid request context.
 
 what is application context in flask ?
-application context keeps track of application level data during a request or cli command. we use g and current_app proxies to achieve the same. flask pushes application context (g, current_app) with every request/cli command. Therefore during the request, functions have access to g and current_app.
+application context keeps track of application level data during a request or cli command. we use g and current_app proxies to achieve the same. flask pushes application context (g, current_app, session) with every request/cli command. Therefore during the request, functions have access to g and current_app.
 
 what is request context in flask ?
-Keeps track of request level data. Request context(request, session) is only available during lifecycle of rquest ie. from before request is sent up to app to response sent back to client.
+Keeps track of request level data. Request context(request) is only available during lifecycle of rquest ie. from before request is sent up to app to response sent back to client.
 
 flask g object 
 flasks g object is used as global namespace for holding any data during the application context. letter g in that sense stands for global. It is not appropriate to store data between requests. So Instead of defining global variables in app you should use g to store global variables.
@@ -57,12 +58,17 @@ flasks g object is used as global namespace for holding any data during the appl
 flask current_app
 proxy to application handling the current requests. Used to access application without importing it or can't be imported in cases such as app factory pattern or blueprints and extensions. 
  
-flask session vs g ?
+flask session
+flask session is a dictionary like object which is stored on server side in application context to keeep track of client sessions. session object also keeps track of modification to it in session.modified=True. also you need to set app.secret_key to use session as it is signed cookie and user can only see it. To modify it user needs secret_key. 
 
 app factory pattern ?
+application factory is setting up or creating application in function. It has two major benefits. 
+	1. Testing = you can have different configurations with different instances for every test case.
+	2. multiple instances = you can run multiple instances of your application in same process.
+you cannot use application object blueprint at import time. so you have to use current_app to get access to application.
 
 how to connect database in flask ?
-using Flask-SQLAlchemy extension. elaborate more.
+using Flask-SQLAlchemy extension. You need to set value of SQLALCHEMY_DATABASE_URI 
 
 how to debug flask app
 use debug=True parameter in app.run() method.

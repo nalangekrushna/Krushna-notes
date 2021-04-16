@@ -1,4 +1,4 @@
-Docker provides the ability to package and run an application in a loosely isolated environment called a container. 
+Docker is open source lightweight containerization technology. It allows to automate deployment of application in lightweight and portable containers. 
 
 Docker provides tooling and a platform to manage the lifecycle of your containers:
 	Develop your application and its supporting components using containers.
@@ -7,10 +7,12 @@ Docker provides tooling and a platform to manage the lifecycle of your container
 	
 Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.
 
+docker supports three different sockets : unix, tcp and fd. By default unix domain socket is created at var/run/docker.sock requiring root permissions. If you want to access docker daemon remotely then you need to use tcp socket. default access is un authenticated and unencrypted. It should be secured using built-in https encrypted socket or putting web proxy in front of it. port it will be listening will be 2375.  
+
 All best practices are taken from pythonspeed.com and docker official guide.
 docker best practices
-	use python:3.7.8-burster instead of python:3
-	use requirements.txt instead of RUN pip install package_name.
+	use python:3.7.8-burster instead of python:3 (use specific versions.)
+	use requirements.txt instead of RUN pip install package_name. (or shell script file for linux packages.)
 	use COPY after pip install as you will able to get benefit of docker layer caching which will build fast.
 	by default docker runs as root user, create another non-root user instead of using root.
 	caching can lead to insecure images.
@@ -41,12 +43,12 @@ Executable form is below and it didn't preprocess variables.
 	RUN command always creates new layer in both forms. CMD command in both form will set default parameters and if we run code without parameters it will use this default parameters to run the code. If you specify more than one CMD only last one will be executed. when using ENTRYPOINT command in executeable form, you can set additional parameters using cli. It does not ignore parameters provided by ENTRYPOINT. In shell form it will just ignore parameters provided on cli. 
 
 create vs run vs start :
-	docker create will only create a container. docker run will check if container is present or not, it will create container if not exists and run it. docker start will only run already created container. if you stopped created container and then try to run it then it will give error. to avoid the error use --rm flag in run command.
+	docker create will only create a container. docker run will check if container is present or not, it will create container if not exists and run it. docker start will only run already created container. if you stopped created container having name and then try to run it again with same name then it will give error. to avoid the error use --rm flag in run command.
 
 docker bind vs volume : bind is managed by native OS while volume is managed by docker. Volume is recommended option in most cases. bind only supports linux host OS while volume also supports windows and macOS. Also there is tmpfs(linux) and npipe(windows) for temporary storage. Volume gives better performance on windows and macOs while bind gives relatively fast performance on linux.
 
 --mount vs -v = recommended is --mount. 
 
-docker volume create : if you run this command and volume is already present then it will return already created volume otherwise it will create new volume.
-docker network create : if you run this command and network is already there then it will give an error. otherwise it will create a network.
+docker volume create : if you run this command and volume is already present then it will return already created volume otherwise it will create new volume. the volumes will be stored at /var/lib/docker/volumes
+docker network create : if you run this command and network is already there then it will give an error. otherwise it will create a network. the network details will be stored at /var/lib/docker/network
 	

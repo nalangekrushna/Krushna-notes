@@ -32,7 +32,7 @@ var/log = logs of system and applications.
 different colors used to denote types of items in directory.
 	Uncolored (white): file or non-filename text (e.g. permissions in the output of ls -l)
 	Bold blue: directory
-	Bold cyan: symbolic link
+	Bold cyan: symbolic or hard link
 	Bold green: executable file
 	Bold red: archive file
 	Bold magenta: image file, video, graphic, etc. or door or socket
@@ -48,3 +48,5 @@ different colors used to denote types of items in directory.
 	Black with green background: sticky and other-writable directory
 	
 *.d = Generally when you see that *.d convention, it means "this is a directory holding a bunch of configuration fragments which will be merged together into configuration for some service."
+
+systemd = linux pid 1 process.

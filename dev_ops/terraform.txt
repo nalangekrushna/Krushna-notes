@@ -1,0 +1,10 @@
+Terraform 101
+
+what is terraform ?
+terraform is a tool used for building changing and versioning infrastructure.
+
+main commands in terraform ?
+terraform has mainly 3 commands.
+1. Refresh = terraform quries cloud service provider and and compare terraform view vs real world view of resources.
+2. Plan = Here terraform devised plan of changes required to achieve desired state.
+3. Apply = actual execution of required changes. here terraform figures out in which order resources should be created or modified to reach desired goal.

@@ -1,90 +1,115 @@
-Python notes
 
-Keyword = reserved,cannot use as identifier, variable name, function name,case-sensitive
-list of keywords -> import keyword; 	keyword.kwlist;
-identifiers = combination of alphanumerics and underscore, can start with only alphabet or underscore. can't use special characters.
-statements = any valid line of python code is called statement.
+Python is interpreted,general purpose, object oriented programming language. Many languages are compiled, meaning the source code you create needs to be translated into machine code, the language of your computer’s processor, before it can be run. Programs written in an interpreted language are passed straight to an interpreter that runs them directly. One potential downside to interpreted languages is execution speed. Programs that are compiled into the native language of the computer processor tend to run more quickly than interpreted programs.
 
-input() function is used to take input in python. whatever data you give it takes it as string.
-comments = #,'''
-muliline code = use \ at end of first line. or you can use it in brackets.
-variable = location in memory to store some data(value).
-id(variable) = gives location of variable in memory.
-every value in python has datatype.since everything is object in python programming data types are actually classes and variables are instance(object) of classes.
-data types in python
-	numeric : int,float,complex
-	string : strings are immutable(constant) in python.
-	list [] = heterogeneous data types,mutable = sequential data structure = seq[start:end:step],indexing
-	tuple () = heterogeneous data types, immutable(constant list), indexing
-	set {} = unique data, heterogeneous data types,unordered (you can't access particular element.), non-indexing
-	dictonary {key:value,key:value} = heterogeneous data types(like maps in java)
-		to check if given key contains in dictionary you can use if 'key' in dict_name or dict_name.get('key')
-	boolean
+Data Types
+	Integers = In Python 3, there is effectively no limit to how long an integer value can be.
+	The following strings can be prefix to an integer value to indicate a base other than 10.The underlying type of a Python integer, irrespective of the base used to specify it, is called int.
+		0b/ 0B = binary  e.g. 0b1011
+		0o/ O0 = octal
+		0x/ 0X = hexadecimal
+		
+	Float = float values are specified with a decimal point. Optionally, the character e or E followed by a positive or negative integer/float. e.g. 4.2, .2, 3., 1e2=100.0 . The maximum value a floating-point number can have is approximately 1.8 * 10^308. Python will indicate a number greater than that by the string inf. e.g. 1.9e308 = inf
 	
-Operators in python
-	Arithmetic  +-*/
-	comparison  ==,!=,<>,<=
-	assignment  =,+=,-=
-	logical     &,|,!
-	membership  in, not in     can be used to find element, character in list,tuple and string.
-							   for dictionary it only works with exact key name and not for value.in
-	identity    is, is not     compare the memory location of two objects
+	Complex number = Complex numbers are specified as <real part>+<imaginary part>j. e.g. 4+2j, 3j
 	
-some special behaviour operators
-floor division // it will only return quotient. and no reminder.
-modulus % will return reminder only.
-division / will return ratio.
-
-contol flow 
-if elif else
-
-def func(a,b,*test,**kwargs)
-func(1,2,’test1′,’test2′,{‘1′:1,’2’:2})
-out: normal args 1 2 -> normal arguments
-args (‘test1’, ‘test2’) -> tuples
-kwargs {‘1’: 1, ‘2’: 2} -> key value pairs
-
-%  operator gives modulus/reminder  e.g. 5%2  =1
-// operator gives quotient    e.g. 5//2  = 2    -5/2 = -3 
-**  exponential operator
-
-write docstrings for function -- good programming practice.
-Python returns None when you do not return anything in function.
-Some built in methods
-	all = check if all values are true( for 0 or False it returns false)
-	enumerate = returns list with index
-	dir =  gives all attributes of given variable.
-	filter(function, list) = returns subset of list
-	type = gives type of variable
-	isinstance(variable,datatype) = return true or false
-	map(function,list) = apply function to every value in list
-	reduce(function,list) = apply function for first two values and then apply it to returned value with third value and so on.
-Always keep non-default value arguments first.
-lambda function  (lambda argument : code)  function without name. lambda function will return output without explicitly writing return keyword.
-
-file handling = python will consider r (read) mode if not specified.there are other w,r+,x,a four modes.
-modes of file handling
-	w = creates/empties file and start writing from beginning.
-	x = creates file, if already present then throws error.
-	a = append at the end of file.
+	Strings = we use backslash (\) character to escape in string. To break up a string over more than one line, include a backslash before each newline. A raw string literal is preceded by r or R, which specifies that escape sequences in the associated string are not translated. Triple-quoted strings can be used add multiline strings. Escape sequences still work in triple-quoted strings, but single quotes, double quotes, and newlines can be included without escaping them. 
 	
-difference between syntax error and exception 
-	the python program terminates as soon as it gets syntax error. syntax error will show an arrow below the code line where error comes.syntax error came as parser detects invalid statement.
+	Boolean Type(bool)
 	
-Exception
-	raise  = to throw error if any condition occurs.
-	assert =  another way to check if condition satisfied otherwise throw error.
-	try, except = regular exception handling functions.It avoids program crashing and allows us to handle error.
-	try, except,else = In Python, using the else statement, you can instruct a program to execute a certain block of code only in the absence of exceptions.
-	try, except,else,finally = no matter exception came or not finally will always execute.
+Python also allows chained assignment, which makes it possible to assign the same value to several variables simultaneously.
+x = y = [2]
+x.append(4)
+>> y
+[2,4]
 
-pdb 
-Insert the following code at the location where you want to break into the debugger:
-import pdb; pdb.set_trace()
-from python 3.7 there is another way breakpoint()
-q = quit debugging
-n = Use n (next) to continue execution until the next line and stay within the current function, i.e. not stop in a foreign function if one is called. Think of next as “staying local” or “step over”.
-s (step) = Use s (step) to execute the current line and stop in a foreign function if one is called. Think of step as “step into”. If execution is stopped in another function
+variables in python 
+n = 300
+This assignment creates an integer object with the value 300 and assigns the variable n to point to that object.
+m = n
+What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, m, which points to the same object(i.e. same memory location) that n points to.
+m = 400
+Python creates a new integer object with the value 400, and m becomes a reference to it.
+n = "foo"
+Now Python creates a string object with the value "foo" and makes n reference that.
+There is no longer any reference to the integer object 300. It is orphaned, and there is no way to access it. An object stays alive, as it were, so long as there is at least one reference to it. Python will eventually notice that object is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.
 
-range() = When you're using an iterator, every loop of the for statement produces the next number on the fly.i.e.range
-to use list instead of iterator.  list(range(n))
+After the assignment m = n, m and n both point to the same object, confirmed by the fact that id(m) and id(n) return the same number. Once m is reassigned to 400, m and n point to different objects with different identities.
+
+The result of standard division (/) is always a float, even if the dividend is evenly divisible by the divisor. e.g. 10/2 = 5.0   10/4 = 2.5
+When the result of floor division (//) is positive, it is as though the fractional portion is truncated off, leaving only the integer portion. When the result is negative, the result is rounded down to the next smallest (greater negative) integer e.g. 10//4 = 2   10//-4 = -3    -10//4 = -3
+
+Equality Comparison on Floating-Point Values = it is poor practice to compare floating-point values for exact equality. Consider this example:
+>>> x = 1.1 + 2.2
+>>> x == 3.3
+False
+The internal representations of the addition operands are not exactly equal to 1.1 and 2.2, so you cannot rely on x to compare exactly to 3.3.
+>>> tolerance = 0.00001
+>>> x = 1.1 + 2.2
+>>> abs(x - 3.3) <= tolerance
+True
+In python 3.5 they provided math.isclose() function to compare two floating point numbers.
+
+
+All the following are considered false when evaluated in Boolean context bool():
+	Any value that is numerically zero (0, 0.0, 0.0+0.0j)
+	An empty string
+	An object of a built-in composite data type which is empty. (list,set ,tuple ,dict)
+	The special value denoted by the Python keyword None
+	
+Python lists = list are ordered and their order is maintained in lifetime. Lists that have the same elements in a different order are not the same.
+to check if two lists are same
+sorted(lst_1) == sorted(lst_2)
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a[1:4]
+['bar', 'baz', 'qux']
+>>> a[1:4] = [1.1, 2.2, 3.3, 4.4, 5.5]
+>>> a
+['foo', 1.1, 2.2, 3.3, 4.4, 5.5, 'quux', 'corge']
+>>> a[1:6]
+[1.1, 2.2, 3.3, 4.4, 5.5, 'quux']
+>>> a[1:6] = ['Bark!']
+>>> a
+['foo', 'Bark!', 'quux', 'corge']
+The number of elements inserted need not be equal to the number replaced. Python just grows or shrinks the list as needed.
+
+You can also insert elements into a list without removing anything. Simply specify a slice of the form [n:n] (a zero-length slice) at the desired index.
+>>> a = [1, 2, 7, 8]
+>>> a[2:2] = [3, 4, 5, 6]
+>>> a
+[1, 2, 3, 4, 5, 6, 7, 8]
+
+list methods
+	index, remove, pop, insert, append, extend, count, reverse, sort, copy, clear
+	
+	remove(ele) = remove first element with specified value. didn't return anything.(ie. None)
+	pop(index) = optional index parameter to give the index of element in list. defaults to -1(last element) Also returns the removed element.
+	insert(index,value) = both are required paramters. insert also returns None.
+	
+
+
+Neither a list nor another dictionary can serve as a dictionary key, because lists and dictionaries are mutable. string,int, float, bool and tuple can serve as dictionary keys.
+	
+	Set = set are unordered meaning the insertion order will not be maintained. Also duplicate values will be removed. We can only add immutable data types in set meaning set cannot have list or dict as a element.
+	
+Set Operations = 
+union (|) = x1 | x2 or x1.union(x2)
+intersection (&) = x1 & x2  x1.intersection(x2)
+difference (-) = x1 - x2    x1.difference(x2) return all element in x1 which not in x2.
+symatric difference (^) = x1 ^ x2  x1.symmetric_difference(x2) return the set of all elements in either x1 or x2, but not both.
+x1.isdisjoint(x2) = Determines whether or not two sets have any elements in common.
+
+sets are mutable. frozensets are immutable. means you cannot modify frozensets once assigned. 
+>>> f = frozenset(['foo', 'bar', 'baz'])
+>>> s = {'baz', 'qux', 'quux'}
+
+>>> f &= s
+>>> f
+frozenset({'baz'})
+
+If you really feel compelled to define a set of sets, you can do it if the elements are frozensets, because they are immutable.
+
+Python allows an optional else clause at the end of a while and for loop. When <additional_statement(s)> are placed in an else clause, they will be executed only if the loop terminates “by exhaustion”—that is, if the loop iterates until the controlling condition becomes false. If the loop is exited by a break statement, the else clause won’t be executed.
+
+By default, print() sends its output to a default stream called sys.stdout, which is usually equivalent to the console. The file=<stream> argument causes output to be sent to an alternate stream designated by <stream> instead.

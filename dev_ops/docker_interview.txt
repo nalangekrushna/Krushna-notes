@@ -42,12 +42,6 @@ you can use docker events and docker state to monitor docker in production envir
 States of docker container
 running, paused, exited, restarting
 
-what is virtualization ?
-creation of a virtual resource such as a server, desktop, operating system, file, storage or network.
-
-what is hypervisor ?
-The hypervisor allows you to create a virtual environment in which the guest virtual machines operate. It controls the guest systems and checks if the resources are allocated to the guests as necessary.
-
 what is docker object labels ?
 docker object lablels is a method of applying metadata to docker objects including images, containers, volumes and network.
 
@@ -67,7 +61,7 @@ how to run multiple containers using single service ?
 use docker-compose.
 
 does docker offers ipv6 support ?
-docker offers ipv6 support on linux hosts only. To enable it go to /ect/docker/deamon.json and set ipv6 key to true.
+docker offers ipv6 support on linux hosts only. To enable it go to /etc/docker/deamon.json and set ipv6 key to true.
 
 can I loose my data when docker container exits ?
 No. The data is stored in container. You loose data when you delete the container.
@@ -83,7 +77,7 @@ can docker host and client be on different machines ?
 Yes.
 
 What are the components of docker architecture ?
-clinet = provides command line tool for client to interact with docker daemon.
+client = provides command line tool for client to interact with docker daemon.
 docker host = It contains containers, images and daemon. It offers complete environment to run your application.
 registry = used to store docker images. which can be pulled from there.
 

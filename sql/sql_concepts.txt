@@ -4,7 +4,7 @@ ACID( Atomicity, consistency, Isolation, Durability) =
 Atomicity = Either complete transaction takes place at once or doesn't happen at all.
 Consistency = any data written to db must be valid according to all the defined rules including constraints and triggers.
 Isolation = multiple transactions can occur concurrently without leading to inconsistency of database state.
-Durability = Once tha transaction has completed execution, Its results are persisted even in case of system failure.  
+Durability = Once that transaction has completed execution, Its results are persisted even in case of system failure.  
 
 what is transactions ?
 db transaction is single unit of work. It could be made of multiple operations. A db transaction by definition must be ACID.
