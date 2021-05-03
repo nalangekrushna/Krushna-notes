@@ -1,0 +1,14 @@
+HELM
+
+helm = kubernetes based package installer. helm manages kubernetes charts. Charts are preconfigured packages of kubernetes resource. helm is a cli tool that interacts with its backend server called tiller. Tiller is installed by command helm -init and lives in kube-system namespace. When a chart is installed, Tiller creates a release and starts tracking it for changes. 
+
+helm charts or packages = helm uses chart to pack all required k8s components for an application to deploy, run and scale. helm chart is simply a collection of yaml templates files organised in specific directory structure. a chart root has only one file named Chart.yml by convention. templates are optional subdirectories in a chart that combines k8s components such as services, replicaSet and deployments. Values are described into values.yml file which is a yml structure holding values to match the templates.
+
+Repositories = repos are the where helm charts are held and maintained. Sometime helm packed repo as .tar.gz file. 
+
+Release = release is a mechanism to track installed application on k8s cluster. when an application is installed by helm a release is created. release will have revisions ie. helm release version terminology. if a specific release is updated, e.g. adding more memory to redis release, the revision is incremented. 
+
+kubeless = kubernetes native serverless framework. kubeless is deployed on the top of kubernetes cluster. Anything that triggers kubeless function to execute is regarded by framework as event. function could be triggered by below ways
+1. pubsub (kafka, NATS)
+2. http (as kubernetes service)
+3. Schedule (Cron jobs) 

@@ -8,3 +8,15 @@ terraform has mainly 3 commands.
 1. Refresh = terraform quries cloud service provider and and compare terraform view vs real world view of resources.
 2. Plan = Here terraform devised plan of changes required to achieve desired state.
 3. Apply = actual execution of required changes. here terraform figures out in which order resources should be created or modified to reach desired goal.
+4. Destroy = It deletes all the resources. 
+
+terraform components
+1. core = terraform core takes user provided tf config files and by quering provider it gets real world view. Provider could be one of the following things
+	a. IaaS = AWS, GCP, Azure as well as on-premise infrastructure using openstack or vmware
+	b. PaaS = Heroku, Kubernetes or Lambda
+	c. SaaS = monitoring tools such as DataDog, CDN or Github Teams 
+2.  
+
+Terraform Enterprise Application manages terraform state file centrally. Also it makes sure only one applicatoin run at a same time so two peoples creating same changes doesnot end making duplicate resources. It also stores all the required credentials centrally with encryption.
+
+terraform module = modules are black boxes of infrastructure automation. we can give access to modules to developers who don't know much about cloud or terraform. This module can be stored at terraform registry. The registry address is registry.terraform.io . with terraform enterprise we can also use our own private registry.   

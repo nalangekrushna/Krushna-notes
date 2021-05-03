@@ -1,0 +1,51 @@
+Kubernetes 101
+
+application -> container -> pods -> replicaSet -> deployment
+
+master component/node = master node running inside kubernetes cluster. master node runs api server, schedular, etcd and controller manager. It is responsible for managing kubernetes cluster. 
+workflow = user will execute some command using kubectl client. Kubectl will handle authorization with api server of master node. If authorization is successful then your command will be processed. Api server will first store data to etcd. Etcd will also store multiple other details in key value format. After that depending upon the command api server will send it to either controller manager or scheduler and will get some response back. After that api server will call kubelets inside the node.
+
+Etcd = Etcd is distributed, consistent key value store used for config mgmt, service discovery and co-ordinating distributed work. Very Important : keep a backup plan of etcd. Etcd also provide etcdctl a cli tool to set update remove and access values. 
+ 
+API server = It will process rest operations, validate them and update corresponding object in etcd. Only api server connects to etcd. Api server will also do authentication and authorization.
+
+Controller manager/Replication controller = It does lifecycle functions such as namespace creation, event garbage collection, terminated pod garbage collection, node garbage collection. Controller manager also watches the state of cluster using api server watch feature. when it gets notified, It makes changes to move to cluster from current state to desired state. Some example of controller that gets shipped with kubernetes are namespace controller, endpoint controller, deployment controller and replication controller. 
+
+Schedular = Schedular watches for unscheduled pods and bind them to nodes. During binding pod schedular will take care of following 
+1. availability or requested resources
+2. quality of service requirement
+3. Affinity and anti-affinity specifications
+4. Other constraints
+Once the pod has node assigned, the regular behaviour of kubelet is triggered and pod and its containers are created. 
+
+service = service is a type of resource that configures proxy to forward request to set of pods which is determined by selector. Once the service is created it will have an ip address which will accept the request on port. Below are the types of services
+1. ClusterIP = This is default service type which exposes service on cluster-internal IP address by making service only reachable within the cluster.
+2. NodePort = This exposes service on each nodes IP at static port. Since a ClusterIP service to which NodePort service will route is automatically created. we can connect NodePort service outside the cluster.
+3. LoadBalancer = This service type will expose service externally using cloud providers load balancer. So the NodePort and ClusterIP to which LB will route traffic are automatically created.
+4. ExternalName = maps service to externalName field by returning CNAME record with its value. This is useful when you want to use website. This will again map to LB.
+
+
+Kubernetes Namespaces = namespaces allows user to create virtual space within the same physical cluster. Kubernetes namespace can be seen as logical entity used to represent cluster resources for usage of particular set of users. Namespace cannot be nested. Each resource could be only in one namespace. By default kubernetes creates following three namespaces :
+1. default = It holds all the default set of pods, services and deployments used by the cluster.
+2. kube-public = namespace for resources that are publically available/readable by all
+3. kube-system = namespace for objects created by kubernetes system. 
+In real world you can create namespace for development, qa and production environment.
+
+Networking in kubernetes = There are 4 types of network communications 
+1. Container to Container = There are two types of communication 
+a. both the containers are in same pod.(Inter-node communication)
+Containers talk with each other using localhost. Containers allocated to same host shares network stack and other resources. So they can reach out to each other using localhost but the port must be different. when a pod contains multiple containers, docker will setup a single virtual ethernet for all the containers so for all of them localhost is the same.   
+b. container1 in pod1 and container2 in pod2(Intra-node communication)
+In this case first container1 will send request to pod1. Then pod1 sends request to pod2. and then pod2 will send request to container2. 
+2. pod to pod
+3. pod to service =
+
+4. service to external
+
+Kubernetes High Availability Overview = Each master replica will run following component in following modes
+1. etcd instance = all instance will be working and having consistent data.
+2. API server = all api servers will be working and will be communicating with local etcd instances. 
+3. Controller, Schedular, Cluster Auto-Scaler = Only one instance will be active in given cluster, all other instances in that cluster will be idle.
+4. Add-on manager = It is used to add multiple plugins. Each add-on manager will be working trying to keep all addons in sync.
+5. Load Balancing = in HA mode kubernetes master node binds with LB and connect LB with floating virtual IP. 
+6. worker Nodes = worker nodes will communicate with master node in HA mode only using Load balancer. Also all master nodes with also communicate with each other using only Load Balancer in HA mode.

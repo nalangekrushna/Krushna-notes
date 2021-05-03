@@ -1,0 +1,6 @@
+some troubleshooting
+
+to install pycairo package
+sudo apt install libcairo2-dev pkg-config python3-dev
+and then:
+pip install pycairo

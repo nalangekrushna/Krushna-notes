@@ -18,12 +18,12 @@ what is race condition ?
 
 ways to avoid race condition ?
 1. Lock = a lock is an object which looks like hall pass. Only one thread at a time can have lock. any other thread that wants lock have to wait until owner of lock gives it up. there are two method in lock acquire and release. A thread will call acquire to get lock if lock is not available then it will wait.
-python lock also operates as context manager means you can use it with "with" so when we exit the with block, lock will get released. Sometime you have to call lock function from another function which may or maynot have lock. For this scenario we can use RLock instead of Lock which allows multiple time acquisition of lock without giving error.
+python lock also operates as context manager means you can use it with "with" keyword so when we exit the with block, lock will get released. Sometime you have to call lock function from another function which may or maynot have lock. For this scenario we can use RLock instead of Lock which allows multiple time acquisition of lock without giving error.
 2. Producer Consumer with Queue
 3. 
 
 what is deadlock ?
-In deadlock a process acquires lock on some shared resource and waits for another process to release their lock on some other shared resource. The another process also does the same. Due to this both processes are waiting for other to release lock which never happens and program gets hanged. This is called deadlock.
+deadlock occurs when a process acquires lock on some shared resource and waits for another process to release their lock on some other shared resource. The another process also does the same. Due to this both processes are waiting for other to release lock which never happens and program gets hanged. This is called deadlock.
  
 deadlock can happend in following 4 conditions
 1. mutual exclusion = one or more resources can be accessed by one process at a time.

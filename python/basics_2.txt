@@ -16,9 +16,12 @@ data types in python
 	string : strings are immutable(constant) in python.
 	list [] = heterogeneous data types,mutable = sequential data structure = seq[start:end:step],indexing
 	tuple () = heterogeneous data types, immutable(constant list), indexing
+		to add two tuples a and b  use c = a+b. tuple only has two methods count and index.
 	set {} = unique data, heterogeneous data types,unordered (you can't access particular element.), non-indexing
+		to add two sets a and b use c = a|b or a.update(b)
 	dictonary {key:value,key:value} = heterogeneous data types(like maps in java)
 		to check if given key contains in dictionary you can use if 'key' in dict_name or dict_name.get('key')
+		to add two dictionaries a and b use a.update(b)
 	boolean
 	
 Operators in python
