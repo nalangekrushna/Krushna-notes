@@ -1,0 +1,47 @@
+build mysql docker image 
+
+This tutorial is just for learning purposes. In production environment of medium or large scale critical applications it is better to use cloud managed db instances or bare metals.
+For small scale production applications and for development and testing purposes we can use this customized docker image.
+
+So there are two ways to use database with docker.
+1. Build a customized image = customize image can contain readymade tables so you don't need to write them again. Only useful to get readymade image for testing. all data will be lost after you delete or stop the container.
+2. use storage = Except above mentioned one purpose for everything else use volume storage as it is platform agnostic. for storage another option is bind, which is only supported in linux but it is faster than volume.
+
+Here we are using second method(use storage) to build docker image using volume option.
+1. create a dockerfile 
+
+FROM mysql:8.0 as builder
+RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
+ENV MYSQL_ROOT_PASSWORD=root
+COPY user_ddl.sql /docker-entrypoint-initdb.d/
+RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db"]
+FROM mysql:8.0
+COPY --from=builder /initialized-db /var/lib/mysql
+
+2. Change docker mysql root password
+
+2. test above installation
+
+run the container 
+docker run --rm -d -p 3306:3306 --name db_test -e MYSQL_ROOT_PASSWORD=root website_db_image
+
+get inside container 
+docker exec -it db_test bash
+mysql -uroot -p
+use website;
+describe user;
+
+2. how to use volume here.
+
+
+
+how to use persistent volume there ?
+how to access and verify that data is present there.
+how to expose/allow clients to connect to db for different operations.
+how to give fine grained access to users according to role.
+how to manage this customized db inside kubernetes. 
+In above dockerfile example check diff size between build image and other one.
+
+for more info please refer below links
+https://serverfault.com/a/957004/711550
+https://github.com/iamdvr/prepopulated-mysql-container-example

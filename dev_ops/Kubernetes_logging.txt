@@ -1,0 +1,3 @@
+Kubernetes logging
+
+Generally when app crashes or stops the logs are intact. but in kubernetes it cleans/deletes the pods so logs are also gone. So it is important to create/use centralized log management system. 

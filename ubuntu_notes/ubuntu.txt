@@ -54,3 +54,5 @@ shell variables are private to currently running shell and they are not exported
 MyVar=Private # shell variable didn't get passed to child processes.
 export OurVAr=shared # environment variable will be passed to child shell.
 
+difference between ctrl+c, ctrl+d, ctrl+z and all other interrupt combinations ?
+

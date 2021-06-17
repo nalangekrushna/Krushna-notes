@@ -1,5 +1,5 @@
 what is iterator ? (python object implementing for loop)
--> In python any object that can implement for loop is called iterators. List, tuple, string, dictionary are all examples of iterator.
+-> In python any object that can implement for loop is called iterators. List, tuple, string, dictionary are all examples of iterator. to get iterator you need to implement __iter__ and __next__ method.
 
 Generators = generator functions are a special kind of function that return a lazy iterator. but instead of using return it uses yield statement.
 

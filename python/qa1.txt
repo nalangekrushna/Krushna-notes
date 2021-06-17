@@ -21,3 +21,6 @@ A api is called restful api if it follows rest style.
 6. favor json over xml.
 
 idempotent = for an operation (or service call) to be idempotent, clients can make that same call repeatedly while producing the same result.
+
+diff between put and patch
+PUT and PATCH both are used to update the data. but PUT requires full values (ie. values that are not being modified also needs to be passed.) while PATCH only requires values to be modified. PATCH is partial update. 

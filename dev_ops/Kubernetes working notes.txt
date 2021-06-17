@@ -1,0 +1,42 @@
+Kubernetes working notes
+
+to use docker images inside kubernetes for local minikube setup
+
+minikube start --insecure-registry="127.0.0.0:5000"
+eval $(minikube -p minikube docker-env)
+docker build -t movie_website_image .
+docker tag movie_website_image 127.0.0.0:5000/movie_website_image
+docker push 127.0.0.0:5000/movie_website_image
+
+some best practices
+always use namespaces
+always add atlease one common lable in every kind for each project.
+
+kubernetes use CoreDNS as DNS service provider. how kubernetes DNS service works explained below.
+1. A service named kube-dns and one or more pods are created.
+2. The kube-dns service listens kubernetes api for service and endpoint event and update DNS records accordingly. These events occur when you create, update or delete service and its associated pods.
+3. kubelet sets each new pods /etc/resolve.conf nameserver option to cluster ip of kube-dns service. 
+4. application running in containers can then resolve hostname such as example-service.namespace into correct cluster ip address. 
+
+kubernetes annotations = you can use kubernetes annotations to attach arbitrary non-identifying metadata to objects. Clients such as tools and libraries can retrieve the annotations.
+
+kubernetes yaml file 
+below are the required fields for kubernetes template
+1. apiVersion = when kubernetes has a release that updates what is available for you to use, Then it changes something in its api and new apiVersion is created. here is link to all available api version in kubernetes docs
+https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#-strong-workloads-apis-strong-
+
+2. kind = what kind of object you want to create. Some examples are Pod, ReplicaSet, Namespace, Service and Node.
+
+3. metadata = Data that helps uniquely identify the object. It can contains name, namespace as well other data also. There are two types of metadata 1. Labels and 2. Annotations. While labels are used in selector to match the objects, annotations are not. 
+
+4. spec = spec format is different for different kinds of object.
+
+what error will kubernetes will give when apiVersion value is wrong ?
+error: unable to recognize "file_name.yml": no matches for given kind in version "wrong_verson_name".
+
+what will be the error if kind is wrong ?
+error: unable to recognize "file_name.yml": no matches for kind "wroing kind" in version "apiVersion"
+
+what is kubernetes operator
+how to use kubernetes operator
+how to create kubernetes operator

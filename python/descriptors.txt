@@ -2,8 +2,12 @@ python descriptors
 
 Properties in python are just descriptors.
 
-Descriptors  = descriptors are python objects that implement a method of descriptor protocol which is used to create object that have special behaviour when they are accessed as attribute of other objects.
-If your descriptor only implements .__get__() then it is called non-data descriptor. If your descriptor also implements .__set__() and .__delete__() then it is called data descriptor. Both behave differently and data descriptors have preference over non-data descriptor in lookup.
+what is descriptor ?
+A descriptor lets you execute arbitrary code when reading or setting (or deleting) a value. It is used to do some operations such as orm object creation or making object read-only.
+detailed explaination below link
+https://stackoverflow.com/a/18038707/8144864
+
+Descriptors  = If your descriptor only implements .__get__() then it is called non-data descriptor. If your descriptor also implements .__set__() and .__delete__() then it is called data descriptor. Both behave differently and data descriptors have preference over non-data descriptor in lookup.
 
 The best practise to implement read-only descriptors, define set method inside data descriptor and raise an error inside it instead of actually setting value. 
 

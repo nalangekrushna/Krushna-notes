@@ -4,6 +4,7 @@ Interpreted language vs compiled language ?
 -> Interpreted languages are the one which directly run the source file without any conversion(compilation) in between. Basic is only the interpreted language. Although Python did generate intermediate byte code still it is called interpreted language. Interpreted language runs command one by one as opposed of compiled language which takes complete code and then run it. So by taking complete code compiled language can optimize the code for performance. So they are faster than interpreted language. Due to interpreters nature of taking one line at the time it will only show first error occured instead of the errors in the program.
 
 why is python called interpreted language ?
+Python is called an interpreted language because it goes through an interpreter, which turns code you write into the language understood by your computer's processor.
 Languages are not interpreted or compiled. Languages are just syntax or grammer of that language. But language interpretation can be compiled or interpreted.
 
 If python is interpreted language then why generate .pyc files ?

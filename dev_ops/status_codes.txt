@@ -7,3 +7,9 @@ status codes for different server errors
 502 = bad gateway = server servicing the request gets invalid response from upstream server.
 
 501 = Not Implemented = server does not support functionality required to fulfill the request.
+
+500 = Internal Server Error = 
+
+301 = Permanant redirect = one url needs to redirected to another permanantly. 
+
+302 = temporary redirect 

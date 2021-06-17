@@ -1,6 +1,7 @@
 python collections module
 
 1. Counter = Counter takes both dictionary or iterable as input and count no of occurence of element in list.
+
 count has three methods 
 	1. elements() = gives full list of all elements also having repeated elements.
 	2. most_common() = returns tuple in descending order from highest to lowest occurence of values.

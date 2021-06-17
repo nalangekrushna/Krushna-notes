@@ -49,3 +49,11 @@ Kubernetes High Availability Overview = Each master replica will run following c
 4. Add-on manager = It is used to add multiple plugins. Each add-on manager will be working trying to keep all addons in sync.
 5. Load Balancing = in HA mode kubernetes master node binds with LB and connect LB with floating virtual IP. 
 6. worker Nodes = worker nodes will communicate with master node in HA mode only using Load balancer. Also all master nodes with also communicate with each other using only Load Balancer in HA mode.
+
+Kubernetes multi container deployment best practises
+create a namespace and deploy all containers in it.
+
+Imperative object management vs declarative object management
+Kubernetes object management must be done by only one of the method. You should never mix both the methods.
+commands used in imperative are create, update, delete. Commands used in declarative management are apply and diff. In imperative command you tell kubenetes to exactly what to create, update or delete and you don't tell kubernetes how cluster should look like. In declarative update we tell kubernetes to make necessary changes so cluster should look like this.
+
