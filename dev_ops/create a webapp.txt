@@ -1,0 +1,38 @@
+create a webapp
+create a jenkins pipeline   in progress
+create a docker image       done
+deploy the docker image using kubernetes TO DO
+use terraform to manage kubernetes       TO DO
+
+cron jobs
+
+
+save users details in mysql db   done working
+create a mysql image with table structure.
+seperate frontend and backend   Don't Do This
+decide where to install jenkins for HA.
+write new jenkins pipelines 
+In production instead of using docker image for mysql use db services from cloud provider
+But just for learning purposes now we will create a mysql docker image.
+create container for mysql
+In kubernetes app design should be like 4 nodes each containing one pod out of which two pods runs web app and two pods runs db containers. the persistent volumes between db should be managed.   
+Also use kubernetes to manage both containers 1. mysql and 2. web app
+
+try to use distroless in Dockerfile. Currently in a beta phase wait for production release.
+check if minideb can be used and is it free for commercial use 
+
+kubectl create -f single_pod.yml 
+kubectl get pods --all-namespaces
+kubectl get nodes
+kubectl delete --all pods --namespace=test
+
+127.0.0.0/8
+
+test this things on kubernetes
+create three nodes
+connect to internet by worker node (maybe using serivce)
+both worker node should access same storage (use pv and pvc)
+worker node/pod will die in between (manually close worker node)
+the image will be used from local private repo. currently working on
+
+git credential-osxkeychain erase host=github.com protocol=https
