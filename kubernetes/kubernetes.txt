@@ -3,6 +3,7 @@ Kubernetes 101
 application -> container -> pods -> replicaSet -> deployment
 
 master component/node = master node running inside kubernetes cluster. master node runs api server, schedular, etcd and controller manager. It is responsible for managing kubernetes cluster. 
+
 workflow = user will execute some command using kubectl client. Kubectl will handle authorization with api server of master node. If authorization is successful then your command will be processed. Api server will first store data to etcd. Etcd will also store multiple other details in key value format. After that depending upon the command api server will send it to either controller manager or scheduler and will get some response back. After that api server will call kubelets inside the node.
 
 Etcd = Etcd is distributed, consistent key value store used for config mgmt, service discovery and co-ordinating distributed work. Very Important : keep a backup plan of etcd. Etcd also provide etcdctl a cli tool to set update remove and access values. 

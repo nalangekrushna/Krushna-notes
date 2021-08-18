@@ -1,0 +1,7 @@
+Istio = framework for microservices
+
+Istio service mesh will provide several capabilities for traffic monitoring, access control, discovery, security, resilience and other useful things to bundle of service. Istio deployed for microservice without any change of code in micro service. For this Istio deployes an Istio proxy(called Istio sidecar) next to each service.
+
+In Istio all the proxy envoys will connect with mixer from control plane. control plane also consist of pilot and Istio-auth both of which are connected to mixer. Istio-auth will manage all certificates to deploy TLS to proxy. All policy checks and telemetry work is handled by mixer. Pilot will handle all kind of traffic redirection.
+
+Istio uses gateway for access and routing of http/tcp connections. Configuration that determines traffic routing is defined as virtual services. Each virtual service includes routing rules that matches the criteria with specific protocol and destination. 
