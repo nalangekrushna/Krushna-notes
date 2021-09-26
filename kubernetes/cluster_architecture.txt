@@ -1,1 +1,27 @@
 Design kubernetes cluster
+
+use namespaces
+design a multi node cluster with multiple masters.
+use kubeadm
+persistent shared volume across multiple pods
+label nodes with specific disk types
+node selector ie. taints and tolerance
+don't do any job on master node.
+choose a networking solution  = flannel or weavenet or others
+use configmaps and secrets
+for logging use elk stack.
+docker image busybox or alpine
+Use ingress
+use replicaset and deployments
+use services
+node affinity
+daemonsets
+static pods
+multi container pod
+initContainer
+RBAC
+service accounts
+Image security
+Persistent Volumes
+Persistent Volume Claims
+healthchecks and readiness probe

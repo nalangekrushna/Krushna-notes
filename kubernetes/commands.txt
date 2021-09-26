@@ -1,0 +1,38 @@
+Kubernetes commands
+
+for all kubernetes service shortcuts cheatsheet
+https://blog.heptio.com/kubectl-resource-short-names-heptioprotip-c8eff9fb7202
+
+Shortcuts/list all services
+kubectl api-resources
+
+nodeport service creation
+kubectl expose deployment backend-deploy --name website-nodeport-svc -n dev --type=NodePort --port=80 --target-port=5000 -oyaml > website-nodeport-svc.yaml
+
+kubernetes service url
+<service-name>.<namespace>.svc.cluster.local:<service-port>
+website-nodeport-svc.dev.svc.cluster.local:80
+
+kubernetes service url to access externally
+minikube service --url service_name
+minikube service --url website-nodeport-svc -n dev -p website-backend
+kubectl get service backend-deploy -n dev --output='jsonpath="{.spec.ports[0].nodePort}"'
+
+to debug the container
+minikube ssh --node node_name
+// inside you can use all docker commands
+// to check webservice working or not use below command inside minikube ssh
+curl http://cluster-ip:target-port
+
+kubectl get pods -l app=backend-deploy -n dev \
+    -o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}'
+
+for ep in 172.17.0.2:80 172.17.0.2:80; do
+    wget -qO- $ep
+done
+
+kubernetes service debugging
+kubectl get svc # check if service exists or not
+kubectl run -it --rm -n dev busybox --image=busybox sh # to debug container
+kubectl exec -it -n dev pod_name -- mysql -uroot -p # to debug running db instance
+kubectl exec -it -n dev db-sts-0 -- /bin/bash

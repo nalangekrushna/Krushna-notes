@@ -1,0 +1,18 @@
+Ubuntu commands
+
+to check if service is running
+sudo service mysql status
+ps aux | grep mysql
+
+to stop or start a service
+service mysql stop
+
+disable/enable service from starting at boot
+sudo systemctl disable mysql
+
+to keep terminal alive
+tail -f /dev/null
+
+to install a tar.xz package
+extract this packages and then read install instructions inside it.
+to extract package use tar xf
