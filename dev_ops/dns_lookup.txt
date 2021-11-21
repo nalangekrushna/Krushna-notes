@@ -1,0 +1,10 @@
+dns lookup
+
+what is dns ?
+DNS(Domain Name System) is a system which converts domain names(website url/address) into ip addresses.
+
+how dns works ? (rough answer)
+1. local db
+2. ISP
+3. TLD
+4. authorative nameserver

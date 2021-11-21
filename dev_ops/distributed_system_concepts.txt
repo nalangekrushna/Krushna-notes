@@ -1,0 +1,5 @@
+distributed_system_concepts
+
+RPC (Remote Procedure Call) = RPC consist of two components client and server. the methods or functions on server can be called in same way as native methods. client stub handles transport of request from client to server. client and server can be written in different languages. This is an alternative to REST API.
+
+gRPC = googles implementation of RPC protocol using protobuffers as data transport mechanism.

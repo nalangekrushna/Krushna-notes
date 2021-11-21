@@ -13,6 +13,20 @@ sudo systemctl disable mysql
 to keep terminal alive
 tail -f /dev/null
 
-to install a tar.xz package
+
 extract this packages and then read install instructions inside it.
 to extract package use tar xf
+
+to install a software there are 4 methods as below.
+	1. deb package
+		sudo dpkg -i package_name.deb
+	2. apt packages
+		sudo apt install -y package_name 
+	3. snap packages
+		snap install package_name
+	4. to install a tar.xz, tar.gz, tar.bz2 package
+		to extract package use tar xvf package_name.tar.gz 
+		cd package_name
+		run ./configure 
+		./make
+		./make install
