@@ -1,0 +1,21 @@
+kubernetes local
+
+Objective :
+Setup a local kubernetes cluster by downloading and installing each component seperately.
+
+Kubernetes components
+Control plane
+	kube-apiserver
+	etcd
+	kube-schedular
+	kube-controller-manager
+Worker node
+	Kubelet
+	kube-proxy
+	container runtime
+Add ons
+	DNS server
+	Web UI
+CLI tools
+	kubectl - Installed
+	etcdctl

@@ -1,0 +1,12 @@
+kubernetes_job
+
+Objective : 
+1. when user commits code to git, It will call some kubernetes service.
+2. This service will in turn start a job.
+3. This job will be of jenkins using same pvc every time.
+4. After successful completion, the job will create a docker image.
+5. Now this docker image will replace prev running pods on kubernetes.
+
+Technical stack
+1. minikube
+ 

@@ -1,0 +1,20 @@
+DevOps learning Roadmap
+
+Pipelines :
+	Create sample pipelines for each of this.
+	Frontend :
+		Simple(html, css, javascript)
+		Angular
+		React
+	Backend :
+		Python
+		Java
+		
+Config mgmt tool :
+	Ansible
+	
+IaaC
+	Terraform
+	
+
+
