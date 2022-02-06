@@ -1,0 +1,7 @@
+resume_notes
+
+Create and manage Git remote repo for all the users.
+	In remote repo location : git init --bare project_name.git
+	In local repo location : git init
+							 git remote add origin file://path/to/project_name.git
+	periodically copy remote folder to another location. 

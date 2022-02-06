@@ -34,3 +34,40 @@ to install a software there are 4 methods as below.
 To reduce external monitors brightness
 xrandr -q | grep " connected"   # to find the names of connected monitors, ours will be marked as primary.
 xrandr --output DP-0 --brightness 0.5  # where DP-0 is monitor name got in above command.
+
+sublime text increase font size
+ctrl+scroll mouse
+
+add alias to command line
+create a new file
+	nano ~/.bash_aliases
+create alias
+	alias shortcut="original command"
+e.g. alias python="python3"
+to make changes effective immediately.
+	source ~/.bash_aliases	
+
+Error : read only file system  # this happens due to sudden system shutdown.
+sudo ntfsfix /dev/sda1 		   # where /dev/sda1 is the partition name(you can get it in disks utility.)
+or you can repair filesystem using disks uitility.
+
+to set default application type for given file extension
+https://askubuntu.com/a/1299800/1197536
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

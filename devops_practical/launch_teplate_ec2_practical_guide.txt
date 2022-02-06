@@ -1,0 +1,16 @@
+Launch template practical guide
+
+Here we are creating a launch template based on configuration from ec2_practical_guide.
+
+Create Launch template
+	Naming convention : appName-env-regionInitial-ec2Template e.g. appName-dev-apS1c-ec2Template
+	AMI : select from Amazon Linux 2 x86 or Ubuntu 20.0.4 LTS x86
+	Instance type : t3a.small or t3a.micro
+	key pair : aws_key_pair
+	security group : ec2-ssh-ip-sg
+	Volume 1 : type : magnetic(standard)
+	Add tag : Name : appName-env-regionInitial-ec2
+			  env : dev
+			  type : backend
+	Advanced details : check "Request spot instance"
+	

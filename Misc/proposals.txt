@@ -1,0 +1,48 @@
+proposals
+
+Expert developer for Python AWS Serverless - highly experienced in writing AWS Lambda Functions
+Hands-on person with coding skills, write their own test cases deploy the code and run, Familiarity with JIRA
+2-3 years experience in writing code, deploying on production and managing CI/CD pipelines.
+
+Cover letter
+I have total 5+ years of experience in DevOps in professional environment. I have deployed many CI/CD pipelines. I have also done a lot of automation using python language. In my current organisation we are using JIRA for tracking the work.
+
+similar project description
+Recently I worked on automating S3 bucket uploads using S3 event notification trigger and aws Lambda. So when someone uploads data in first buckets predetermined folder with given extension. A S3 notification trigger will be triggered which will call the lambda function. The lambda function written in Python will get object using key name provided in event parameter to get the object then apply some transform on it and store it in another S3 bucket.
+
+I am also currently working on a complex CI/CD pipeline which involves multiple API calls to third party vendors such as Oxygenxml web author and Ixiasoft CCMS which is an editor and Version Control System for technical writer respectively. It involves logging into Oxygnexml when writer commits technical documentation using Python script, downloading the changes and using another Python script to upload to Ixiasoft CCMS. We will soon deploying this pipeline in production.
+
+certification
+AWS SysOps Admin Associate
+AWS DevOps Professional 
+you can check the details in my upwork profile.
+
+Strong Python skills
+• Several years of coding experience, ideally in a professional/corporate environment
+• Ability to communicate clearly and integrate with the existing team
+• Dedication to meet project deadlines in a timely manner
+• Attention to details
+
+Cover letter
+I am currently working as Senior Software Engineer in a product based MNC working in tax compliance domain. I am having 5+ years of experience in development as well as maintainance in Python language. I collaborated with US, UK and India based colleagues and delivered the projects before time. I am proactive in finding solutions and automating the processes.  
+I am very much interested in NFT's and plan to create my own NFT's in future.
+
+Hi, thanks for reading my proposal. Below are some of the highlights about me:
+•	5+ years development/maintenance experience in Python
+•	Currently working as Senior Software Engineer at Product-based MNC.
+•	Collaborated with colleagues from the US, UK, Canada, and Australia.
+•	Track record of delivering 20+ projects on time in Corporate Environment.
+•	Proactive in Automating the tasks and processes.
+
+Hi, thanks for reading my proposal. Below are some of the highlights about me:
+•	More than 5+ year experience in DevOps in Corporate Environment.
+•	More than 3+ year experience in Scripting and automation using Python.
+•	Collaborated with colleagues from the US, UK, Canada, and Australia.
+•	Track record of delivering 20+ projects on time in Corporate Environment.
+•	Proactive in Automating the tasks and processes.
+Certifications: -
+•	AWS SysOps Admin Associate
+•	AWS DevOps Professional
+Recent Project: - 
+•	Recently I worked on automating S3 bucket uploads using S3 event notification trigger and aws Lambda. So, when someone uploads data in first buckets predetermined folder with given extension. A S3 notification trigger will be triggered which will call the lambda function. The lambda function written in Python will get object using key name provided in event parameter to get the object then apply some transform on it and store it in another S3 bucket.
+

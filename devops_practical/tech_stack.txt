@@ -1,0 +1,50 @@
+AWS S3 code pipeline ecs ec2 
+git 
+JIRA
+jenkins, Gitlab, Github Actions
+Github, Gitlab
+Docker, kubernetes
+Python
+Ubuntu, Windows, Amazon Linux 2
+Nginx, Apache tomcat/httpd
+Ansible
+Terraform
+ElasticSearch Logstach, Kibana, Prometheus + Grafana , Cloudwatch
+maven, 
+
+
+project 1
+java, unit testing, jenkins, maven, git, nginx, log4j2, ubuntu, prometheus Grafana(local server hosting)
+
+Project 2
+Python pip, unit testing, Gitlab, git, apache httpd, cloudwatch, Amazon linux 2(aws hosting)
+
+Project 3
+Nodejs, npm, unit testing, code pipeline, Apache tomcat, elk, docker, ecs
+
+Project 4 
+Go, package man, unit testing, Github actions, docker, terraform, ansible
+
+Project 5 
+FIRO pipeline
+
+Project 6
+docker volume integration
+
+Project 7
+S3 bucket automation
+
+---------------------------------------------------------------------------
+
+java project - DevOps
+python project - DevSecOps
+MLOps - test case optimisation, image processing
+kubernetes poc - visitor mgmt system
+
+TACTiX - git, Java, DevOps, jenkins
+Test Case Optimisation - aws codecommit, Python, Aws CodePipeline
+Mobile UI testing  - MLOps, docker, ecs fargate
+Summary Content generation - python/java, DevSecOPs, apache httpd
+visitor mgmt system - kubernetes, DevSecOps
+s3-upload-automation
+custom pipeline.

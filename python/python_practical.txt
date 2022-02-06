@@ -1,0 +1,6 @@
+Python practical guidelines
+
+1. Create new environment for new project.
+	
+2. generate requirements.txt file for that env so it can be replicated anywhere.
+ 

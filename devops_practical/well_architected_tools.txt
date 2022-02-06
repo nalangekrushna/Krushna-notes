@@ -1,0 +1,5 @@
+AWS well architected tools
+
+Some links for best practices
+https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/
+https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/
