@@ -1,0 +1,16 @@
+Packaging types supported by maven
+
+A. default packaging types (Built-in)
+	1. JAR(Java ARchive) = It may include pure Java classes, interfaces, resources, and metadata files. This is default packaging type in maven. 
+	2. WAR(Web application ARchive) = JAR + html, js, css, jsp, servlets pages and all other assets required for a web application. 
+	3. EAR(Enterprise application ARchive) = It contains one or more war and/or jar modules.
+	4. pom = Its the simplest packaging type. It helps to create parent or aggregator objects. Aggregator combines different regular maven projects and refer them inside modules element.
+	5. maven-plugin = In case default plugins are not enough, you can create your own plugin. 
+	6. ejb(Enterprise Java Beans) = EJB's are scalable, distributed server-side applications.
+	7. rar(resource adapter) = used to deploy resource adapter to application servers. rar contains jar and ra.xml which servers as deployment descriptor. It is different than .rar(file compression format.)
+B. Packaging types provided through plugins.
+	Following are the some of the packaging types provided by maven- zip, msi, rpm, tar, tar.bz2, tar.gz
+	For more details on how to implement and use packaging through plugin check below link.
+	https://www.baeldung.com/maven-packaging-types
+
+ 

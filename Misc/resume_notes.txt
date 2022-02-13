@@ -5,3 +5,5 @@ Create and manage Git remote repo for all the users.
 	In local repo location : git init
 							 git remote add origin file://path/to/project_name.git
 	periodically copy remote folder to another location. 
+
+	learn git branching strategies.

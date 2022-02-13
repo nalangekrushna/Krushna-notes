@@ -1,0 +1,25 @@
+git_branching_strategies
+
+There are mainly 3 branching strategies are there.
+1. git flow strategy:
+	Git flow consist of main, develop, feature, release and hotfix branches. This is legacy workflow and nowadays modern CI/CD pipelines favours trunk based workflow. 
+
+	main = main branch stores official release history.
+	development = serves as integration branch for features.
+	feature = This branch's subbranch should be used for new feature development. This branch uses development branch as its parent and gets merged back into development branch.
+	release = fork of development branch at predetermined criteria. No new features can be added after this point only bugfixes, docs and other release oriented tasks. Once ready to ship release branch gets merged into main and tagged with version number. It also should be merged with development branch coz critical updates may be added into release branch they need to be accessible to new features.
+	hotfix = maintenance or hotfix branches are used to quickly patch prod releases and based on main branch. when fix is completed hotfix gets merged to main and version number is increamented. Also it must be merged with development branch. 
+
+	for more details see this link : https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
+2. github branching strategy :
+	This is another and much simplar branching strategy and it is better for web app development. This is how it works.
+	1. main = main branch stores all merged and working code.
+	2. create a feature branch from main and make changes according to your requirements.
+	3. create a pull request for your changes.
+	4. If pull request got approved then merge the feature branch with main branch.
+	5. delete your feature branch. 
+
+
+Trunk based development workflow = As opposed to git, github or gitlab branching strategy, In trunk based development all developers commits code directly to main branch and there are no code access restrictions. 
+In some cases developers create short lived feature branches and they merge it back to main branch. 

@@ -1,0 +1,38 @@
+Maven = builds and manages any java based project(project mgmt tool). It is based on POM (Project Object Model) and current version is 3.6. Maven uses pom.xml file at project root to define it in maven 2 and 3. For maven 1 it was project.xml 
+
+Maven searches dependancies in following order : 1. local	2. Central	3. Remote
+By default local repo in %USER_HOME%/.m2 directory and the jar files are stored in %USER_HOME%/.m2/repository/. You can change local repo destination by changing value of <localRepository> tag in MAVEN_HOME/conf/settings.xml folder where MAVEN_HOME is maven installation directory. 
+
+Maven central repo is on public web and maintained by maven community itself. You can access it from here : http://repo1.maven.org/maven2/.
+
+Maven remote repo is your organisation maintained repo for the private artifacts specific to your company only.
+
+Super pom is maven's default pom. All pom extends super pom unless explicitly set. Following default values has been setup in pom. you can use mvn help:effective-pom command to get complete pom.
+	
+
+Aantomy of pom.xml
+Project (root, required) = root of all other tags.
+modelVersion(required) = must be explicitly set to 4.0.0 e.g. <modelVersion>4.0.0</modelVersion>
+groupId (required) = the id of project group e.g. com.mycompany.app
+artifactId(required) = the id of artifact(project) e.g. my-app
+version(required) = version number of artifact. e.g. 1
+packaging (optional,jar) = 	defines packaging type such as jar war etc.
+name (optional) = defines display name of project inside maven build logs.
+url (optional) = gives location for deployment.
+dependancy = dependancies are externally managed libraries. Central repo can only contain open source libraries. To install proprierity libraries use mvn install command. dependancy has following subelements. 
+1. groupId(required) 2. artifactId(required) 3. version(required) 
+4. type(optional,jar) = sometime corresponds to packaging or sometime its different. All types are mentioned here. Although we can create type using plugins and setting extension to true. https://maven.apache.org/ref/3.8.4/maven-core/artifact-handlers.html
+5. scope(optional, compile) = This element refers to the classpath of the task at hand (compiling and runtime, testing, etc.). 5 options provided are compile, provided, runtime, test, system. They are explained as below.
+	a. compile = This dependancies are available on all classpaths. Also this dependancies are propagated to dependant projects.(transitive)
+	b. provided = only available in compilation and testpath. for runtime must be provided by jdk or container.  (non-transitive)
+	c. runtime = dependancy available in test and runtime and not in compile. (transitive)
+	d. test = only available in test path and not required to run application. non-transitive
+	e. system = you need to manually provide the jar. available all the time.
+6. systemPath(required when scope is system) = must provide absolute path. 
+7. optional (optional) = says these dependancies is not necessary to run the project. 
+
+maven build lifecycle = maven build follows a specific lifecycle to deploy and distribute the target project. There are 3 standard build lifecycles. and lifecycles are consist of phases. and phase represent a stage in maven build. Phases are executed in sequence means all phases before the given phase are also executed. Each phase is sequence of goals. and each goal is responsible for a specific task.
+maven -> build lifecycle -> phases -> goal -> task
+	1. clean = when clean lifecycle is invoked maven deletes output of build by deleting build directory. Clean lifecycle has 3 phases as following. 1. pre-clean  2. clean  3. post-clean
+	2. default (build) = this is default lifecycle. It has 21 phases. It is responsible for project deployment.
+	3. site = this lifeclycle has 4 phases. 1.pre-site 2. site  3. post-site  4. site-deploy. This lifecycle can be used for project's documentation.
