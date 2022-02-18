@@ -1,0 +1,15 @@
+tomcat deployment
+Note :- below config is for deployment
+WAR(Web ARchive) format provides standard deployment layout for your web app. You must follow the given structure. top level directory in your app is also called document root, below is the structure for deployment of your app.
+1. document root = here you will place html, javascript, css and jsp files.
+2. /WEB-INF/web.xml = this is web app deployment descriptor for your app. this file contains servlet, security and init parameter info.
+3. /WEB-INF/classes = both servlet and non-servlet java classes not combined in jar.
+4. /WEB-INF/lib = jar files required by your app and third party jar files needed for db connection etc.
+5. /META-INF/context.xml = this file can be used to define tomcat specific config such as access logs, data source and session manager config.
+
+Note:- below config is for general purpose development.
+General(optional) directory structure recommended by apache tomcat for source code and deployment :
+1. docs/ = documentation of your application.
+2. scr/ = java source files that generated servelet beans and other java classes unique to your app.
+3. web/ = static content of your website, this directory will be document root for your web app. any subdirectory here will reflect in URI.
+4. web/WEB-INF/ = special config files required by your app and tomacat server. Content of this folder are not directly accessible to client request. So you can store sensitive config information here.

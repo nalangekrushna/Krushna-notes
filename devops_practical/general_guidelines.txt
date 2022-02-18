@@ -1,0 +1,8 @@
+This are the some of the steps you want to go to learn devops.
+
+1. Do setup tools(IDE, db) and technology(language and package manager etc.)
+2. setup version contorl(git)
+3. run the code locally successfully.
+4. Understand the code flow and how it interacts with db and frontend.
+4. create different profiles for dev, testing and deployment.
+5. move config from hardcoded to env variables. 

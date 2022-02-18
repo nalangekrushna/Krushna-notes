@@ -1,5 +1,10 @@
 Ubuntu commands
 
+permanently setup environment variable all users.
+sudo nano /etc/environment
+variable_name="value1:value2"
+source /etc/environment
+
 to check if service is running
 sudo service mysql status
 ps aux | grep mysql
@@ -53,9 +58,6 @@ or you can repair filesystem using disks uitility.
 
 to set default application type for given file extension
 https://askubuntu.com/a/1299800/1197536
-
-
-
 
 
 
