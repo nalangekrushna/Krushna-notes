@@ -30,4 +30,4 @@ terraform config structure = standard terraform project should contain following
 3. outputs.tf = contains outputs from resources created in main.tf
 4. versions.tf = contains version requirements for terraform and providers.
 
-terraform.tfvars should not be used anywhere except in compositions. 
+terraform.tfvars should not be used anywhere except in compositions.  
