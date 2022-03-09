@@ -1,0 +1,14 @@
+Servers
+
+Proxy server = server application that acts as intermediary between client requesting the resource and server providign the resource. 
+
+Types of proxy servers = 
+1. Open/forward proxy = A forward proxy provides proxy service to client or host of clients. Sometime its also acts as cache. When user says proxy server he usually means forward or open proxy server. Forward proxy hides identity of client.
+2. Reverse proxy server = reverse proxy accepts requests from external client on behalf of server stationed behind it. Here client didn't know who is providing service but it thinks the reverse proxy is actually providing service. So reverse proxy is hiding actual servers in this case. Reverse proxy also acts as load balancer.
+For more details check this link : https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy
+
+Proxy vs VPN = vpn is used for end to end protection and complete privacy while proxy are used to hide ip address and provide single point of contact for web server.
+
+Gateway vs firewall = 
+
+Firewall vs Proxy = 

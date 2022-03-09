@@ -43,8 +43,10 @@ kubernetes poc - visitor mgmt system
 
 TACTiX - git, Java, DevOps, jenkins
 Test Case Optimisation - aws codecommit, Python, Aws CodePipeline
-Mobile UI testing  - MLOps, docker, ecs fargate
-Summary Content generation - python/java, DevSecOPs, apache httpd
+Mobile UI testing  - MLOps, docker, ecs fargate, python
+Summary Content generation - Python, MLOps, apache httpd, gunicorn
 visitor mgmt system - kubernetes, DevSecOps
 s3-upload-automation
 custom pipeline.
+
+eks clustering using terraform

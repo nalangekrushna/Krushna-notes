@@ -1,0 +1,23 @@
+Unix Networking
+
+In linux everything is file.
+In python everything is object.
+
+what is socket ?
+socket allows communication between two different processes on same or different machines. In unix every I/O operation is done by reading or writing a file descriptor. file descriptor is just a integer associated with open file and it can be network connection, text file, terminal or something else. 
+
+There are two main socket types :
+1. Stream socket
+2. Datagram socket
+
+Unix Socket vs TCP/IP socket = 
+Unix socket aka Unix Domain Socket is inter-process communication(IPC) mechanism that allows bidirectional data exchange between processes running on the same machine. 
+
+IP sockets (especially TCP/IP sockets) are mechanism allowing communication between processes over the network. TCP/IP socket can also talk with the processes on same machine using loopback interface.
+
+Unix domain sockets knows that they are running on same machine, so they can avoid some checks and operations(such as routing) which makes them faster and lighter than IP sockets. Also unix sockets are subject to file system permissions, while tcp can only be controlled at packet level. So Unix sockets are preferred method over IP socket on same machine inter process communication. you can see own machine local unix sockets using below command. There is no alternatives of socket in windows.
+netstat -a -p --unix
+
+Named Pipe = Named pipe is another way of interprocess communication among processes running on same machine. while unix socket can have multiple bidirectional clients which will get different response, named pipe only supports one on one communication. Unlike sockets, Named pipes are available in both windows and linux.
+On windows named pipes are bidirectional one on one connections.
+On linux named pipes are unidirectional one on one connections.

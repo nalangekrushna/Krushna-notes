@@ -1,0 +1,12 @@
+nginx = Its a popular web server. Nginx can also act as reverse proxy, do load balancing, mail proxy or caching. 
+
+nginx architecture = nginx has one master process and one or more worker processes. The main purpose of master process is read and evaluate config files as well as maintain worker processes. The worker processes actually do the processing of client requests.
+
+nginx.conf = nginx configuration file is divided across range of contexts(sections). Each context contains its own set of directives to control specific aspect of nginx. This are the some of the important contexts 1. main 2. events 3. http 4. mail
+
+main context = Any directive that exists entirely outside of context blocks is said to inhibit the main context. main context is used to configure details that affect entire application on basic level.
+
+event context = defines how nginx handles connections at general level. worker_connections directive sets max number of simaltaneous connections that can be opened by worker process.
+
+http context = this context contains all the directives and other contexts necessary to define how to handle http or https connections and associated parameters. In production environment, you will be working mostly with http context. access_log directive will have path of access log file and access log format will be defined in log_format directive. include directive allows us to include another file in configuration.
+

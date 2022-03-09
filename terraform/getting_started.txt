@@ -1,0 +1,33 @@
+getting_started
+
+composition -> infra module -> resource module -> resource/data source
+
+terraform command flow
+init -> fmt -> validate -> plan -out=./tfplan -> apply "tfplan" -> show/state list -> destroy
+
+Below are the some of the key concepts used in terraform.
+Resource = resuorce is aws-vpc, db-instance etc. A resource belongs to provider, accepts arguments, outputs attributes and has lifecycle. A resource can be created, retrieved, updated and deleted.
+
+module = A module is collection of .tf and/or .tf.json files kept together in directory. A terraform moudule only consist of top-level config files in the directory. Nested directories are treated as completely seperate modules and are not automatically included into the config. terraform modules can use module calls to explicitly include other modules in config. 
+
+root module = terraform always runs in context of single root module. in terraform cli root module is the working directory where terraform is invoked. 
+
+Resource module = resource module is collection of connected resources which together performs the common action. e.g. aws vpc terraform module creates vpc subnet and nat gateway etc.
+
+Infrastructure module = infra module is collection of resource modules.
+
+Composition = composition is collection of infrastructure modules, which can span across several logically seperated areas(e.g. aws regions, several aws accounts). Composition is used to describe complete infrastructure required for the whole organization or project.
+
+data source = data source performs read only operations and depend on provider config. It is used in resource or infra module.
+
+remote state = infra modules or compositions should persist their terraform state in remote location where it can be retrieved by others in controllable way.
+
+provider = terraform relies on plugins called providers to interact with cloud providers, saas provider and other api's
+
+terraform config structure = standard terraform project should contain following files.
+1. main.tf = call modules, locals and data sources to create all resources.
+2. variables.tf = contains declaration of variables used in main.tf
+3. outputs.tf = contains outputs from resources created in main.tf
+4. versions.tf = contains version requirements for terraform and providers.
+
+terraform.tfvars should not be used anywhere except in compositions. 
