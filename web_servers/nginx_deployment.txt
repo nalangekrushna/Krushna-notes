@@ -1,0 +1,7 @@
+nginx_deployment
+
+problem statement :
+Deploy nginx as reverse proxy with apache tomcat to generate dynamic pages and serve static pages directly from nginx itself. Also setup ssl certificate for website.
+
+reason for this reverse proxy setup is nginx server is great at serving static content while tomcat is great at serving dynamic content. So it makes perfect combination.
+logs, load balancer, reverse proxy with cache and web socket proxying, log rotation, fastCGI

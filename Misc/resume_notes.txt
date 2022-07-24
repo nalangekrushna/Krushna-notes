@@ -7,3 +7,5 @@ Create and manage Git remote repo for all the users.
 	periodically copy remote folder to another location. 
 
 	learn git branching strategies.
+
+get second consultant part-time job.

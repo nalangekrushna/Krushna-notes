@@ -3,7 +3,13 @@ getting_started
 composition -> infra module -> resource module -> resource/data source
 
 terraform command flow
-init -> fmt -> validate -> plan -out=./tfplan -> apply "tfplan" -> show/state list -> destroy
+init -> fmt -> validate -> plan -out=./tfplan -> apply tfplan -> show/state list -> destroy
+
+short command flow
+plan -out=tfplan -> apply tfplan
+
+to add changes made outside to terraform state
+terraform apply -refresh-only -auto-approve
 
 Below are the some of the key concepts used in terraform.
 Resource = resuorce is aws-vpc, db-instance etc. A resource belongs to provider, accepts arguments, outputs attributes and has lifecycle. A resource can be created, retrieved, updated and deleted.

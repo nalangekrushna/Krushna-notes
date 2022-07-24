@@ -58,18 +58,3 @@ or you can repair filesystem using disks uitility.
 
 to set default application type for given file extension
 https://askubuntu.com/a/1299800/1197536
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

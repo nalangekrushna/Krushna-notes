@@ -50,3 +50,10 @@ s3-upload-automation
 custom pipeline.
 
 eks clustering using terraform
+
+what is your product
+how are you doing it
+short term goal for cto
+what is your current tech stack = flask and html and css
+
+https://www.amazon.in/ASUS-Vivobook-inches-Windows-X409FA-BV301T/dp/B09DL27QLK/ref=sr_1_264?keywords=laptop&qid=1649991229&sprefix=laptop%2Caps%2C201&sr=8-264

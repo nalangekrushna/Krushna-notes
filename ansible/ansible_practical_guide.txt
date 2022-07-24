@@ -1,0 +1,33 @@
+practical guide
+
+command to ping all the inventory
+ansible all -m ping
+ansible -i inventory.txt all -m ping
+
+list all hosts
+ansible all --list-hosts
+
+firewalld see all open ports
+sudo firewall-cmd --list-all
+
+to check all installed ansible galaxy modules
+ansible-galaxy collection list
+
+to install anisble galaxy collection
+ansible-galaxy collection install ansible.posix
+
+Develop a playbook to automate the deployment of Kodekloud E-commerce app.
+link: https://github.com/kodekloudhub/learning-app-ecommerce
+	- use local machine (ubuntu 20 ) as controller instead of virtual box controller vm.
+		- connect to db host machine. - done
+		- check if firewalld present in host machine - done
+		- install firewalld on host machine - done
+			- service is not installed
+			- service is not started
+			- service is running.
+		- install mariadb on db_server - done
+		- open 3306 tcp port if not open. - done
+		- only restart firewall if port has been opened - TODO
+		
+	ansible-playbook -i inventory.txt playbook_v1.yaml --tags "sql"
+deploy distributed web app on cloud using fully automated ansible playbook.

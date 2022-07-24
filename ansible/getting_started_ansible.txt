@@ -1,0 +1,9 @@
+getting_started_ansible
+
+what is ansible ?
+configuration mgmt tool
+
+inventory = 
+
+playbook = ansible playbook is a single file. Playbook defines a set of activities/task(play) to perform on host. 
+task = ansible task is a action to be performed on the host. 

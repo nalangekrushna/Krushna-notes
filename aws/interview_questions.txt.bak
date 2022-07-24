@@ -1,0 +1,52 @@
+AWS interview questions
+
+what is aws
+amazon web services is a public cloud service provider which provides highly scalable and reliable cloud infrastructure in different categories such as IaaS, Paas and Sass. 
+IaaS = s3, ec2, vpc
+PaaS = RDS (Databases), web servers(tomcat), Amazon Lightsail, aws lambda, basically most of the services which uses mulitple services behind the screeen, and which are managed by aws for high availability and scalability.
+SaaS = Amazon workspaces, amazon workmail
+
+cloud elasticity vs cloud scalability
+aws defined elasticity as "Ability to acquire and release resources dynamically. Here  scaling is based on predefined workload criteria." Describes the characteristics of physical layer related to hardware budget optimization.
+
+cloud Scalability = Refers systems ability to scale up(vertical) or scale out(horizontal) while processing current or additional hardware resources without inturrupting or services or impacting performance. Describe the characteristics of software architecture related to provision of higher workload.
+
+what are the main basic type of services aws provides ?
+Storage :- S3, S3 Glacier, EBS, EFS
+Computing :- EC2, Elastic Beanstalk, Lambda, AWS Batch
+Networking :-  Route53, VPC, cloudfront
+
+Relationship between Region and AZ (Availability Zone) ?
+AWS regions are seperate geographical areas. like us-west-1 (north california) us-west-2 (Oregon), ap-south-1 (Mumbai). Every region contains atleast 3 AZ. AZ are distinct locations with given region which are isolated from failure in other AZ. they provide inexpensive, low latency network connectivity to other AZ in same region.
+
+what is auto-scaling ?
+Auto scaling makes sure that you have enough resources available to handle the load for your application. This is done by monitoring your application metrics and adding removing the resources as and when needed.
+
+what is ami ?
+Amazon Machine Image(AMI) is a template that provides information required to create ec2 instance. AMI includes one or more EBS snapshot volumes, root folder structure as a starting point and network interfaces.
+
+what are key-pairs ?
+Amazon ec2 uses public key cryptography to encrypt and decrypt login information. In public key cryptography, the public key is used to encrypt information while on receiver's side, a private key is used to decrypt the information. The combination of public and private key is called key-pairs.
+
+what are the best security practices for amazon ec2 instance?
+Below are the some of the general best practices
+	Least Access : use ec2 key-pair to achieve this.
+	Least Privilege : Use roles with restricted capabilities.
+	Config mgmt = Use AWS config to record configuration changes.
+	IaC = Use cloudformation, terraform to make infrastructure changes and use version control tool to record the changes.
+	
+ec2 instance pricing model 
+	On demand instance = pay as you go
+	Reserved instance = need to make upfront payment. pricing is less than on demand.
+	Spot instance = Unused capacity available at high discount.
+	Dedicated host = A physical ec2 server assigned to you. Useful when regulations requires data separation.
+
+
+which services AWS autoscaling supports ?
+Try auto-scaling with ec2 instance
+instance types nomenclature such as t2, m2
+https://www.simplilearn.com/tutorials/aws-tutorial/aws-interview-questions 7 number question finOps
+
+soft limit for s3 buckets is 100(hundred). The hard limit is 1000(Thousand) buckets in a aws account. There is no max bucket size and number of objects per bucket limitation. The maximum object size is restricted to 5 TB.
+
+s3 Cross Region Replication (CRR) = This serive replicates data from one bucket to another bucket in same or different region asynchronously. means data will not be copied immediately.

@@ -1,0 +1,4 @@
+yum
+
+to uninstall a package 
+yum erase/remove package_name

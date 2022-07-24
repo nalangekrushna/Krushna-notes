@@ -10,6 +10,16 @@ http://localhost:8070/github-webhook/
 how ? 
 Jenkins uses pipelines to create automated deployment process. pipeline can use both declarative vs scripted pipeline syntax. declarative is latest one and feature rich than scripted. This pipeline can be stored in root folder of project to track in source control management(git) in "Jenkinsfile" file. Agent is must in declarative pipelines. Groovy language is used for scripting purpose in jenkins.
 
+We can change the name "Jenkinsfile" to any other, in that case in projects configuration in pipeline tab we need to pass file name in Script Path field.
+
+Jenkins Agents types = Agents are the worker nodes where actual execution of pipeline happens.
+	any = execute pipeline on any available agent.
+	none = when applied at top level, it means each stage should contain its own agent section.
+	label = pipeline will run on any node having provided label.
+	docker = execute pipeline or stage with given container which will be dynamically provisioned on a node pre-configured to accept docker based pipeline.
+	dockerfile = excecute pipeline or stage with container build from dockerfile contained in source code repo.
+	kubernetes = execute pipeline or stage inside a pod deployed on kubernetes cluster.
+
 jenkins single line comment  //
 jenkins multi-line comment   /* comment */
 
@@ -40,7 +50,13 @@ It starts with node
 what is declarative pipeline in Jenkins ?
 It starts with pipeline 
 
-pipeline -> agent, stages -> stage -> agent, environment, when, steps, post
+Top level element of pipeline in called block (ie. pipeline{ })
+block consists of sections, directives, steps and assigned statements.
+Sections consist of one or more directives or steps.
+Directives allows you to define list of parameters to be used in the script.
+
+
+pipeline -> agent, environment, options, tools, post, parameters, triggers, stages -> stage -> agent, environment, when, steps, post, parallel
 
 which command can be used to start jenkins manually ?
 (jenkinsurl)/restart = restarts immediately
@@ -53,12 +69,6 @@ Triggers used to run the job periodically or remotely. different ways to trigger
 	3. at specific time.(periodically)
 	4. manually
 
-what is agent in jenkins ?
-agent runs the code in jenkins. agent could be any, none, label, node, docker and dockerfile.
-	none = no global agent and every stage needs to define its own agent.
-	label = any labeled agent available in jenkins.
-	node = like label but with more options.
-	
 what is post in jenkins ?
 Post section contains additional steps to be performed. Its value can be changed, unstable, failure, success, always and aborted.
 
@@ -84,3 +94,19 @@ from declarative pipeline 1.2 you can add parallel stage inside stage. Inside pa
 jenkins how to change default port in ubuntu
 vi /etc/default/jenkins
 HTTP_PORT=<new_port>
+
+Jenkins directives
+environment = set environment variables for the execution.
+options = set different options related to pipeline execution such as retry, skip default checkout, timeout, timestamp.
+parameters = list of parameters that user should provide when triggering the pipeline.
+triggers = defines automated ways in which pipeline should be re-triggered. triggers are generally used with cron, pollscm and upstream jobs.
+stage = Goes inside stages section and should contain step section. practically speaking all real work done by pipeline will be wrapped in one or more stage directive.
+tools = tools to auto install and put on the path. It supports maven, jdk and gradle for now.
+input = input directive allows you to prompt for input using input step.
+when = when directive allows the pipeline to determine wheather stage should be executed depending upon given condition.
+
+Jenkins predefined variables
+
+
+
+Trigger downstream job using upstream jobs
