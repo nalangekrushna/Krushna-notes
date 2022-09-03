@@ -26,11 +26,24 @@ Infrastructure module = infra module is collection of resource modules.
 
 Composition = composition is collection of infrastructure modules, which can span across several logically seperated areas(e.g. aws regions, several aws accounts). Composition is used to describe complete infrastructure required for the whole organization or project.
 
-data source = data source performs read only operations and depend on provider config. It is used in resource or infra module.
+data source = data source performs read only operations and depend on/belongs to provider config. It is used in resource or infra module. data source is accessed by special kind of resource called data resource declared using data block. data source reads information in planning phase if available.
+
+Generally data source belongs to provider but there are special data sources which operates within terraform only. e.g. local-only data source exists for rendering templates, reading local files and rendering aws iam policies. speical data sources result data only temporarily exists during tf operation and recalculated each time a new plan is created.
+
+depends_on meta-argument (arguments defined by terraform itself and apply across all data sources.) within data block can be used to defer reading of data sources until all the changes to dependancies has been applied. 
 
 remote state = infra modules or compositions should persist their terraform state in remote location where it can be retrieved by others in controllable way.
+ 
 
 provider = terraform relies on plugins called providers to interact with cloud providers, saas provider and other api's
+
+provisioners = they are used to model specific actions on local machine or remote machine in order to preprare server or othere infrastructure objects for service. Only use provisioners if there are no other option. Some of example usage of provisioners null_resource will be 1. Running sql script on RDS 2. Delay in resource creation/deletion provisioners are used with special provider provided by terraform called null provider which have null_resource and null_data_source. 
+
+prev null_data_source was typically used to construct intermediate values to re-use elsewhere in config. The same can now be achieved using locals. By default provisioners will only run when the resource within they defined are being created. If provisioner fails during startup the resource is marked as tainted. Tainted resource will be marked for destruction and recreation during next tf apply. 
+
+If when = destroy is specified then provisoner will run during the resource within it defined is being destroyed. Destroy provisioners run before the resource is destroyed. If provisioners fails during starting or destroying then tf apply will also fail. we can change this by using on_failure setting to continue instead of fail. Multiple provisioners can be specified and they run in the order defined in config file. 
+
+Provisioners self object = Expressions in provisioner block cannot refer to their parent resource by name instead they use the special self object. The self object represents provisioners parent resource and has all that resource attributes.
 
 terraform config structure = standard terraform project should contain following files.
 1. main.tf = call modules, locals and data sources to create all resources.
@@ -38,7 +51,9 @@ terraform config structure = standard terraform project should contain following
 3. outputs.tf = contains outputs from resources created in main.tf
 4. versions.tf = contains version requirements for terraform and providers.
 
-terraform.tfvars should not be used anywhere except in compositions.  
+terraform.tfvars should not be used anywhere except in compositions. Or secrets.tfvars can be used to store secrets instead of using environment variables.
+
+
 
 to create public terraform modules
 	1. module repo must use this three part format terraform-<provider>-<module_name>
