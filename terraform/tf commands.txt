@@ -30,6 +30,9 @@ tf reads from data sources in tf plan phase. If something such as vault token ha
 
 tf functions - index, lookup
 
+signum = provides output as -1, 0 and 1 for negative, zero and positive values.
+chomp = removed newline character form end of the string.
+
 tf workspace command details
 
 
