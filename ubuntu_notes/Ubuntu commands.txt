@@ -38,7 +38,8 @@ to install a software there are 4 methods as below.
 
 To reduce external monitors brightness
 xrandr -q | grep " connected"   # to find the names of connected monitors, ours will be marked as primary.
-xrandr --output DP-0 --brightness 0.5  # where DP-0 is monitor name got in above command.
+xrandr --output DP-0 --brightness 0.7  # where DP-0 is monitor name got in above command.
+xrandr --output eDP-1-1 --brightness 0.9
 
 sublime text increase font size
 ctrl+scroll mouse
