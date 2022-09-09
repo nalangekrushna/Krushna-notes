@@ -35,4 +35,14 @@ chomp = removed newline character form end of the string.
 
 tf workspace command details
 
+main.tf file not required for tf apply.
+data source will retrieve all the data you can filter it using filter block.
+tf show command can be used to inspect current state file.
+tf cloud can be managed by using api token and not username and password.
+when we run tf console command it locks remote backend state file.
+TF_LOG_PATH command is used to provide specific path for log file.
+tf workspace show command is used to show is used to show current workspace.
 
+tf state 
+tf workspace
+tf show
