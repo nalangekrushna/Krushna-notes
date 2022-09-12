@@ -25,3 +25,5 @@ Image security
 Persistent Volumes
 Persistent Volume Claims
 healthchecks and readiness probe
+
+Design a pod
