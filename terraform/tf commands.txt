@@ -1,0 +1,48 @@
+tf commands
+
+tf import = import will find existing resource id and import it into tf state file at given address. Address must be valid resource address. Resource address is made up of two parts [module path][resource spec] module path can be skipped. example of valid resource address will be "module.foo.aws_instance.bar" or "aws_instance.bar". ID will depend upon resource type being imported and generally found in console such as ec2 instance id.
+The final command will look like "terraform import module.foo.aws_instance.bar i-abcd1234"
+
+tf get = to download and optionally update modules mentioned in root module. 
+
+tf workspace = when running locally, tf manages each collection of infrastructure with persistent working directory which contains config state data and variables. tf cloud manages infra collection with workspaces instead of directories. A workspace contains everything tf needs to manage a given collection of infra and separate workspaces function like separate working directories.
+In terraform OSS workspaces generally use same code repo, while in tf enterprise/cloud are often(but not required) mapped to unique repos.
+
+In terraform OSS initially persistent data stored in backend belongs to default workspace. 
+
+tf show = to inspect a saved plan file before applying it. 
+
+terraform does 10 concurrent operations while running tf apply command.
+
+Provider block is optional as if not provided tf will download right provider based on specified resources.
+If provider block provided twice it will generate "Error: Duplicate provider configuration" message. you can set alias argument to avoid the error. Alias is a meta-argument used when using same provider with different config for diff resources.
+
+tf sentinel is an embedded policy as a code framework integrated with Hashicorp enterprise and cloud product. Sentinel can be used to create fine grained logic based policy decisions and can be extended to use information from external resources. Sentinel runs before a config is applied, thereby reducing cost of public cloud resources.
+
+tf refresh (deprecated) = reads the current settings from all managed remote objects and updates terraform state to match. you don't need to use this as in both tf plan and tf apply tf automatically performs same refreshing action as a part of creating plan.
+
+tf state = this command is used to manipulate state file and is advance command. 
+
+tf has detailed logs that can be enabled by setting TF_LOG env variable to any of following values.  tf log levels from highest to lowest verbosity are : TRACE, DEBUG, INFO, WARN, ERROR
+
+tf stores plugins/providers in .terraform/providers directory while modules are stored in .terraform/modules directory.
+tf reads from data sources in tf plan phase. If something such as vault token has an explicit TTL apply must run before expiry of TTL otherwise tf will fail in apply phase. to avoid this you can adjust "default_lease_ttl_seconds" value.
+
+tf functions - index, lookup
+
+signum = provides output as -1, 0 and 1 for negative, zero and positive values.
+chomp = removed newline character form end of the string.
+
+tf workspace command details
+
+main.tf file not required for tf apply.
+data source will retrieve all the data you can filter it using filter block.
+tf show command can be used to inspect current state file.
+tf cloud can be managed by using api token and not username and password.
+when we run tf console command it locks remote backend state file.
+TF_LOG_PATH command is used to provide specific path for log file.
+tf workspace show command is used to show is used to show current workspace.
+
+tf state 
+tf workspace
+tf show

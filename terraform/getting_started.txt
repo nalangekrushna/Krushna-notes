@@ -1,5 +1,7 @@
 getting_started
 
+terraform(tf) is an immutable, declarative, infrastructure as code provisioning language based on Hashicorp config language(HCL) or optionally json.
+
 composition -> infra module -> resource module -> resource/data source
 
 terraform command flow
@@ -53,6 +55,14 @@ terraform.tfvars should not be used anywhere except in compositions. Or secrets.
 
 
 
+to create public terraform modules
+	1. module repo must use this three part format terraform-<provider>-<module_name>
+	2. module version is must and should be in x.y.z format optionally prefixed with v
+	3. the module must be on github and must be a public repo.
+
+terraform HCL recommends 2 spaces between each nesting level. 
+tf enterprise in locations of non-available internet access is called air-gapped installation.
+
 terraform file structures
 main.tf
 	provider
@@ -71,4 +81,19 @@ variables.tf
 
 outputs.tf
 	output
+
+resource "aws_instance" "example" {
+  ami = "abc123"
+
+  network_interface {
+    # ...
+  }
+}
+
+<block type> "<resource type>" "<local name/label>" 
+
+1. Here resource is a block type. Every blcok type defines how many labels it requires.
+2. "aws_instance" is resource type and "example" is labels/local name. 
+3. block body starts and end with this { and } delimiters.
+4. Inside block can contain more blocks and arguments.
 

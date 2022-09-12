@@ -1,0 +1,7 @@
+Data Structure Problems list
+
+1. Reverse an array in-place (without using another array or additonal memory) in O(N) time complexity.
+2. check wheather given string is palindrome or not (use same logic as of problem 1)
+3. Reverse integer without using string and list
+4. Check wheather two words are anagram or not.
+5. Sort String efficiently
