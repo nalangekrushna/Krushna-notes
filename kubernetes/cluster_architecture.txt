@@ -25,3 +25,6 @@ Image security
 Persistent Volumes
 Persistent Volume Claims
 healthchecks and readiness probe
+
+workflow to deploy kubernetes
+https://github.com/nalangekrushna/onlinebookstore.git
