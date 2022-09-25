@@ -1,0 +1,17 @@
+Building docker image a practical guide
+
+Use LTS versions
+Whenever possible use Alpine except for Python
+Use JRE instead of JDK in runner builds
+For builder stage use JDK instead of JRE.
+whenever there is compilation use multi-stage builds
+For java use eclipse temurin over any other open source java build.
+
+Docker build time secrets  --build-arg can work for multi stage builds
+Docker runtime secrets(db password etc)
+Do config/secret management in kubernetes
+
+
+Article ideas
+	how to select a docker tag for your project
+	how to create a minimal docker image (best practises)
