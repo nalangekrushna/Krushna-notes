@@ -4,18 +4,34 @@ application -> container -> pods -> replicaSet -> deployment
 
 master component/node = master node running inside kubernetes cluster. master node runs api server, schedular, etcd and controller manager. It is responsible for managing kubernetes cluster. 
 
-workflow = user will execute some command using kubectl client. Kubectl will handle authorization with api server of master node. If authorization is successful then your command will be processed. Api server will first store data to etcd. Etcd will also store multiple other details in key value format. After that depending upon the command api server will send it to either controller manager or scheduler and will get some response back. After that api server will call kubelets inside the node.
+workflow = user will execute some command using kubectl client. Kubectl will handle authorization with api server of master node. If authorization is successful then your command will be processed. Api server will first store data to etcd. Etcd will also store multiple other details in key value format. After that depending upon the command api server will send it to either controller manager or scheduler and will get some response back. After that api server will call kubelets inside the worker node.
+
+Kubernetes components can be broadly classified into two categories. 
+	A. Control plane components
+		1. kube-apiserver
+		2. etcd
+		3. kube-schedular
+		4. kube-controller-manager - some of the controllerrs are beow.
+			i. node controller
+			ii. job controller 
+			iii. endpoint controller
+			iv. service account and token controller 
+		5. cloud-controller-manager
+	B. Node components
+		1. kubelet
+		2. kube-proxy
+		3. container runtime
 
 Etcd = Etcd is distributed, consistent key value store used for config mgmt, service discovery and co-ordinating distributed work. Very Important : keep a backup plan of etcd. Etcd also provide etcdctl a cli tool to set update remove and access values. 
  
-API server = It will process rest operations, validate them and update corresponding object in etcd. Only api server connects to etcd. Api server will also do authentication and authorization.
+kube-api server = It will process rest operations, validate them and update corresponding object in etcd. Only api server connects to etcd. Api server will also do authentication and authorization.
 
-Controller manager/Replication controller = It does lifecycle functions such as namespace creation, event garbage collection, terminated pod garbage collection, node garbage collection. Controller manager also watches the state of cluster using api server watch feature. when it gets notified, It makes changes to move to cluster from current state to desired state. Some example of controller that gets shipped with kubernetes are namespace controller, endpoint controller, deployment controller and replication controller. 
+kube-controller-manager = control plane component that runs controller processes. Logically each controller is seperate process but to reduce complexity they all are compiled into single binary and run in single process.
 
-Schedular = Schedular watches for unscheduled pods and bind them to nodes. During binding pod schedular will take care of following 
+kube-Schedular = Schedular watches for unscheduled pods and bind them to nodes. During binding pod schedular will take care of following 
 1. availability or requested resources
 2. quality of service requirement
-3. Affinity and anti-affinity specifications
+3. Affinity and anti-affinity specifications 
 4. Other constraints
 Once the pod has node assigned, the regular behaviour of kubelet is triggered and pod and its containers are created. 
 
@@ -28,8 +44,10 @@ service = service is a type of resource that configures proxy to forward request
 
 Kubernetes Namespaces = namespaces allows user to create virtual space within the same physical cluster. Kubernetes namespace can be seen as logical entity used to represent cluster resources for usage of particular set of users. Namespace cannot be nested. Each resource could be only in one namespace. By default kubernetes creates following three namespaces :
 1. default = It holds all the default set of pods, services and deployments used by the cluster.
-2. kube-public = namespace for resources that are publically available/readable by all
-3. kube-system = namespace for objects created by kubernetes system. 
+2. kube-public = automatically created namespace for resources that are publically available/readable by all inside the cluster even if they are not authenticated.
+3. kube-system = automatically created namespace for objects created by kubernetes system. 
+4. kube-node-lease = holds lease objects associated with each node. 
+
 In real world you can create namespace for development, qa and production environment.
 
 Networking in kubernetes = There are 4 types of network communications 

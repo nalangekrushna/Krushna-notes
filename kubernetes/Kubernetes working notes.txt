@@ -18,7 +18,7 @@ kubernetes use CoreDNS as DNS service provider. how kubernetes DNS service works
 3. kubelet sets each new pods /etc/resolve.conf nameserver option to cluster ip of kube-dns service. 
 4. application running in containers can then resolve hostname such as example-service.namespace into correct cluster ip address. 
 
-kubernetes annotations = you can use kubernetes annotations to attach arbitrary non-identifying metadata to objects. Clients such as tools and libraries can retrieve the annotations.
+kubernetes annotations = you can use kubernetes annotations to attach arbitrary non-identifying metadata to objects. Clients such as tools and libraries can retrieve the annotations. Annotations are for humans and labels are for kubernetes. There are less restrictions on using annotation. 
 
 kubernetes yaml file 
 below are the required fields for kubernetes template
@@ -40,3 +40,5 @@ error: unable to recognize "file_name.yml": no matches for kind "wroing kind" in
 what is kubernetes operator
 how to use kubernetes operator
 how to create kubernetes operator
+
+liveness vs readyness vs startup probe 
