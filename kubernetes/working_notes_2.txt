@@ -1,0 +1,5 @@
+kubernetes working notes 2
+
+ClusterIP service = Its default kubernetes service type. It gives you service inside your cluster that other apps inside cluster can access. There is no external access. But you can access them using kubernetes proxies. use cases are 1. connecting directly from laptop for some reason or for debugging.
+
+NodePort = most basic way to get external traffic to your service. NodePort as name implies opens specific port on all the nodes.
