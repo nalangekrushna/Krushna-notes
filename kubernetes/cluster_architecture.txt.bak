@@ -1,0 +1,54 @@
+Design kubernetes cluster
+
+use namespaces
+design a multi node cluster with multiple masters.
+use kubeadm
+persistent shared volume across multiple pods
+label nodes with specific disk types
+node selector ie. taints and tolerance
+don't do any job on master node.
+choose a networking solution  = flannel or weavenet or others
+use configmaps and secrets
+for logging use elk stack.
+docker image busybox or alpine
+Use ingress
+use replicaset and deployments
+use services
+node affinity
+daemonsets
+static pods
+multi container pod
+initContainer
+RBAC
+service accounts
+Image security
+Persistent Volumes
+Persistent Volume Claims
+healthchecks and readiness probe
+
+Deploy python/java webapp on kubernetes cluster, connect ci/cd pipeline to it.
+Install kubernetes - Use kubeadm HA cluster.
+	HA cluster should contain atleast two master nodes ,3*2 worker nodes.
+
+Choose os for master and worker nodes
+lowest resource consuming and small in size mainted linux with debian base, apt package manager and Systemd as startup is
+	Papermint os.
+
+minikube start --nodes 4 -p website
+
+
+apache http server
+apache tomcat
+nginx
+jetty
+
+nginx
+
+deployments - 
+	nodejs - final output will be js, css and html so nginx directly.
+	python - gunicorn/uwsgi - nginx
+	java - apache tomcat /jetty (microservices)
+	angular - It is also js so only apache http server.
+
+Use below link for python app but with different db.
+https://realpython.com/rethink-flask-a-simple-todo-list-powered-by-flask-and-rethinkdb/
