@@ -1,0 +1,20 @@
+create module
+
+New Module Standard Structure :
+Root folder
+	examples/ # directory to keep example configurations
+	modules/  # sub modules of our custom module.
+	main.tf   
+	outputs.tf     # output variables
+	variables.tf   # input variables
+	LICENSE        # file containing license information.
+	backend.tf     # backend  info. 
+	README.md      # module documentation.
+
+deploy aws load balancer controller addon on eks cluster
+	Inputs: cluster_name
+	Steps :
+		check if eks cluster is present and in active state.
+
+
+The required provider will be defined inside sub-module in versions.tf file in case they are different from hashicorp/<provider_name>. while provider block for that module must be written into examples or parent/calling module.

@@ -66,8 +66,8 @@ tf enterprise in locations of non-available internet access is called air-gapped
 terraform file structures
 main.tf
 	provider
-	locals
 	data
+	locals
 	module
 	resource
 

@@ -41,5 +41,9 @@ string, number, bool, list, map, set, object and tuple
 
 dynamic block = dynamic block acts like a for expression and produced nested blocks.
 
+for expression vs for_each meta-arguments :
+https://awstip.com/terraform-for-vs-for-each-7ff8506a1f94
+
+
 
 

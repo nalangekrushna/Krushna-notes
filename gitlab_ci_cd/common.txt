@@ -1,0 +1,4 @@
+Gitlab default image -
+	Ruby 2.1
+
+If not even a signle rule is matched then no pipeline will run.
