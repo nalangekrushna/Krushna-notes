@@ -1,5 +1,3 @@
-angular concepts  https://www.codeproject.com/Articles/1174685/Learn-Angular-step-by-step-for-Beginners-Lab
-city and state    https://gist.github.com/shadabtughlaq/82c0fb64b578694db17b3150a1d05af3
 
 AMD vs CommonJS vs UMD 
 	two module specs AMD and CommonJS allowed developers to write their code in an agreed modularized way. AMD, Common JS are nothing but two styles of authoring Javascript code that help in making the code modular. 

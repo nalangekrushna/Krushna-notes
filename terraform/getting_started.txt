@@ -13,6 +13,9 @@ plan -out=tfplan -> apply tfplan
 to add changes made outside to terraform state
 terraform apply -refresh-only -auto-approve
 
+to handle multiple resources
+
+
 Below are the some of the key concepts used in terraform.
 Resource = resuorce is aws-vpc, db-instance etc. A resource belongs to provider, accepts arguments, outputs attributes and has lifecycle. A resource can be created, retrieved, updated and deleted.
 
@@ -30,7 +33,15 @@ data source = data source performs read only operations and depend on/belongs to
 
 Generally data source belongs to provider but there are special data sources which operates within terraform only. e.g. local-only data source exists for rendering templates, reading local files and rendering aws iam policies. speical data sources result data only temporarily exists during tf operation and recalculated each time a new plan is created.
 
-depends_on meta-argument (arguments defined by terraform itself and apply across all data sources.) within data block can be used to defer reading of data sources until all the changes to dependancies has been applied. 
+terraform expression = expressions refer to or are compute values in configuration. Expressions can be data exported by resource, arithmatic conditional evaluation and number of built-in functions. You can try expressions using terraform console command. Some of the examples of expressions are for, splat, dynamic block, conditionals etc. (in programmig term, it is similar to lambda functions)
+
+meta-arguments = A meta arguments controls terraforms behaviour when creating, desroying and replacing resources. meta arguments for resource includes count, depends_on, for_each and providers. 
+
+depends_on meta-argument (arguments defined by terraform itself and apply across all data sources.) within data block can be used to defer reading of data sources until all the changes to dependancies has been applied.(ie. to define explicit dependancies). depends_on should be used as last resort cause it may replace more resources than needed. Alternatives to depends_on is terraform expressions.
+
+count meta-argument = It is preferable to use for_each meta-arguments instead of count meta-argument. A given resource or module block cannot use both count and for_each. 
+
+for_each meta-argument = For each object takes map or set of string as input. In the block where for_each is used, there is a each object which have two keys each.key and each.value. (In case of set both key value are same.) In for each all set values and keys of map value should be known before any remote operation can be started. 
 
 remote state = infra modules or compositions should persist their terraform state in remote location where it can be retrieved by others in controllable way.
  

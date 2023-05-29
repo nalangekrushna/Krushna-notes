@@ -1,0 +1,4 @@
+angular directives = Directives are the classes that add additional behaviour to elements in your angular application.
+
+<ng-template> in html = this directive represents angular templates.
+

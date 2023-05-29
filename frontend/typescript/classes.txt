@@ -1,2 +1,11 @@
 Classes in typescript
 
+export import in typescript - 
+
+file1.ts
+export interface something {
+	text: string;
+}
+
+file2.ts
+import { something } from ./file1
