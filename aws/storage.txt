@@ -15,15 +15,6 @@ In block storage you have to pre-provision the space required by you and in obje
 Amazon EMR(elastic Map Reduce) used to process vast amounts of data. It utilizes a hosted Hadoop framework running on  EC2 and S3. With EMR, you can provision one, hundreds, or thousands of compute instances to process data at any scale.
 You can easily increase or decrease the number of instances manually or with Auto Scaling. This means that EMR can launch EC2 instances that have full admin right to user.
 
-Amazon Glacier = In all S3 cases high availability was necessary. when high availability is not needed then you should use glacier. Archieves stored in Amazon Glacier are immutable (that is, archives can be uploaded and deleted but cannot be edited or overwritten).
-
-Individual Amazon S3 Glacier archives can range in size from 1 byte to 40 terabytes. The largest archive that can be uploaded in a single Upload request is 4 gigabytes.
-A vault lock policy is different than a vault access policy. Both policies govern access controls to your vault. However, a vault lock policy can be locked to prevent future changes, providing strong enforcement for your compliance controls. You can use the vault lock policy to deploy regulatory and compliance controls, which typically require tight controls on data access. In contrast, you use a vault access policy to implement access controls that are not compliance related, temporary, and subject to frequent modification. Vault lock and vault access policies can be used together.
-
-For example, you can implement time-based data retention rules in the vault lock policy (deny deletes), and grant read access to designated third parties or your business partners (allow reads).
-
-Glacier Deep Archieve = deep archieve is less costly than glacier and it takes minimum (i.e. standard) 12 hours to retrieve and 48 hours for bulk retrieval. Data must be stored for min 180 days. and which is generally accessed 1-2 times a year.
-
 EFS (Elastic File System) = fully managed file storage service. It is used to be accessible by thousands of ec2 instance at same time with consistent performance. efs didn't support windows os. Amazon EFS is a regional service storing data within and across multiple Availability Zones (AZs) for high availability and durability. EFS is used when you required parallel access storage.
 
 AWS EBS = you can mount multiple ebs volumes on single instance or you can attach single volume to multiple instances using ebs multi-attach(max 16). ebs volumes are created in an AZ can only be attached to instance in same AZ. you can create snapshot and restore snapshot any wehere in the region to attach to instance outside current AZ. you can use aws managed AWS Backup for ebs volumes. you cannot use hdd (sc1, st1) as boot volume. use raid 0 to maximize utilization of instance resources. Although recommended is raid 1 as it provides fault tolerance. Raid 5 and 6 are not at all recommended.  
@@ -40,6 +31,8 @@ So in Conclusion to get best performance you should use EBS optimized provisione
 
 AWS EBS snapshots = EBS volumes are only replicated within an AZ thereby not providing much durability in case of that AZ failure. Snapshots are point in time.Snapshots create permanant images of the volume and store them at the regional level (across multiple Availability Zones) in Amazon S3. snapshots only store the sectors that have changed (the delta) from the previous snapshot, allowing the total volume of data stored (and thus billed) to be dramatically reduced. but If more than 10 GB of data has changed from last snapshot then instead of parsing changes system will save 100% new snapshot.
 
+Amazon data lifecycle manager for EBS snapshot = provides simple automated way to backup data using EBS snapshots created and deleted at custom schedule.
+
 when restoring EBS from snapshot The volume is created immediately, but the data is loaded lazily. This means that the volume can be accessed upon creation, and if the data being requested has not yet been restored, it will be restored upon first request.
 
 Securing Amazon EBS = two ways 1. client  2. volume
@@ -49,7 +42,7 @@ Securing Amazon EBS = two ways 1. client  2. volume
 instance storage(ephemeral storage) = directly attached to ec2 instance(physically). ideal for temporary storage of information that changes frequently. you cannot stop only terminate instance store backed ec2 instance. Also it takes more boot time than EBS backed storage as it has load all data first to instance store. But in case of EBS data is being lazily loaded and only boot portion required at starting. 
 
 Amazon EFS vs. Amazon EBS
-Amazon EFS is designed to provide regional, durable, multi-user file systems. Amazon EBS is designed for single Amazon EC2 volumes.Because of i0ts design, Amazon EBS is significantly cheaper when looking at per-GB cost of storage. If there is no need for multiple instances to attach to the storage, Amazon EBS will likely be a good place to start your operation.
+Amazon EFS is designed to provide regional(mulit-AZ), durable, multi-user file systems. Amazon EBS is designed for single Amazon EC2 volumes.Because of its design, Amazon EBS is significantly cheaper when looking at per-GB cost of storage. If there is no need for multiple instances to attach to the storage, Amazon EBS will likely be a good place to start your operation.
 Once you have multiple users, however, Amazon EFS will often be a much less expensive option with regional redundancy and durability. EFS and EBS both provide encryption at rest and in transit.
 
 amazon cloudfront = for distribution of frequently accessed static content that benefits from edge delivery, like popular website images, videos, media files, or software downloads.

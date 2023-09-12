@@ -1,0 +1,34 @@
+Directory and Cognito services
+
+AWS Directory services = 
+	1. AWS managed Microsoft AD = managed implementation of Microsoft Active Directory running of windows server 2022 R2. If you have Microsoft AD managed by yourself on your corporate network you can connect with it and have one or two way trust relationships.
+
+	2. AD connector = If you have self managed Microsoft AD you can connect it to AWS network over VPN or Direct Connect and then from their you can connect to AWS AD Connector which can authenticate and authorize you for access to AWS resources.  
+
+Self managed non AWS corporate Authentication flow
+1. User provides his credentials.
+2. Microsoft AD authenticates it.
+3. User tries to access app in corporate network.
+4. App connects with AD Federation Service (an Identity provider by microsoft).
+5. ADFS authenticates user by calling Microsoft AD.
+6. ADFS sends saml 2.0 assertion to the App.
+7. User gets logged in.
+
+Self managed non AWS corporate AD - connect to AWS resource
+Same as above until 6th step.
+7. App calls AWS STS service - STS:AssumeRoleWithSAML
+8. STS provide temporary credentials
+9. App accesses AWS resources using temporary provided credentials.
+
+Non Employee Users and Social Logins
+1. Sign up and Sign in is handled by Social identity providers such as Apple, Google, Meta or any other Open ID Connect compatible IdP provider.
+2. After sign-in, App calls AWS STS using following role - sts: AssumeRoleWithWebIdentity
+3. aws sts provides temporary credentials.
+4. App access the AWS resource.
+
+IAM Identity Center = Enables centralized permissions management and sso. It can connect to AD connector, AWS managed Microsoft AD or Azure AD. It also has Built-in SSO integrations with multiple business applications. It is also integrated with AWS Organizations and can also add additional aws accounts.
+
+Aamzon Cognito = It provides both Sign-in and Sign-up services. It primary use case is web and mobile application.
+1. Cognito User Pool - It can handle Sign-ups and sign in itself or can rely on third party social identity providers for authentication. 
+2. Cognito Identity Pool - Cognito Identity pool can use User pool or social identity providers to authenticate. It then talks to AWS STS to provide temprary credentials.
+

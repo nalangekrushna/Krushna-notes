@@ -1,0 +1,28 @@
+Git testing for jupyter notebooks
+Here we are testing git responses on different scenarios for objective of triggering machine learning pipeline only on appropriate scenarios. 
+
+Update :- We are skipping testing as there is an already very well maintained and supported tool to use with git and jupyter notebooks. Below is the link
+https://github.com/fastai/nbdev
+ 
+ 
+
+
+Expected results :
+	trigger = git status commands says the file is modified. and pipeline should be triggered in case of commit or push.
+	skip = git status command don't say file is modified. As there are no changes in code the pipeline will not trigger in case of commit or push.
+Actual Results :
+	In actual result we will check only git status of the file. 
+	
+Scenario - Expected result - Actual result
+
+1. Add new code. - trigger - trigger
+2. modify the code. - trigger - trigger
+3. Add/update/delete comment - skip - trigger
+4. Add new empty cell. - skip - 
+5. Add new empty cell with comments. - skip - 
+6. Run cell for first time. - skip - 
+7. Change in cell number due to rerun of cell. - skip - skip
+8. Add output due to first time running of cell. - skip - 
+9. Change of output due to rerun of cell. - skip - skip
+10 create new empty notebook with and without comment but not a single line of code. - skip - 
+11. Add new cell with code. - trigger - 

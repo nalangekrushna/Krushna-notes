@@ -1,6 +1,11 @@
 Networking
 
-AWS Direct Connect (connection)= allows you to establish dedicated network connection from your premise to AWS VPC.
+AWS Direct Connect (connection)= allows you to establish dedicated network connection from your premise to AWS region using private connection without going through internet. You need to connect to AWS direct connect location which are available in multiple cities. 
+
+customer data center => customer router => customer cage in AWS direct connect location => AWS cage in AWS direct connect location having AWS Direct connect endpoint => AWS direct connect in AWS region
+Then we have a private Virtual Interface which connects to single AWS vpc in same AWS region of direct connect to a virtual Gateway on VPC.
+WE also have a public virtual interface (VIF) which connects to all the AWS regions but not to the internet.
+
 
 aws direct connect connection between vpc and on-premise prerequisite
 1. Your network must use single-mode fiber with a 1000BASE-LX (1310 nm) transceiver for 1 gigabit Ethernet or a 10GBASE-LR (1310 nm) transceiver for 10 gigabit Ethernet.
@@ -9,64 +14,59 @@ aws direct connect connection between vpc and on-premise prerequisite
 4. Your device must support Border Gateway Protocol (BGP) and BGP MD5 authentication.
 
 AWS Direct Connect Gateway = You can use an AWS Direct Connect gateway to connect your AWS Direct Connect connection over a private virtual interface to one or more VPCs in your account that are located in the same or different regions. You associate a Direct Connect gateway with the virtual private gateway for the VPC, and then create a private virtual interface for your AWS Direct Connect connection to the Direct Connect gateway. You can attach multiple private virtual interfaces to your Direct Connect gateway. A Direct Connect gateway is a globally available resource. You can create the Direct Connect gateway in any public region and access it from all other public regions.
+One important exception is direct connect gateway didn't allow virtual gateways to send traffic to each other virtual gateways.
 
-subnet scope is Availability zone and VPC scope is regional. for example If you want VPC in two regions you must have two VPC (one per region) you can have maximum five VPC per region per account.
+Elastic Load Balancer (elb) = If you need flexible application management or HTTP requests we recommend that you use an Application Load Balancer. Only Application Load Balancers support WebSockets, path-based routing, host-based routing and support for containerized applications. If extreme performance and static IP or For network/transport protocols (layer4 – TCP, UDP) load balancing, we recommend that you use a Network Load Balancer. If you have an existing application that was built within the EC2-Classic network, then you should use a Classic Load Balancer.
 
-the range of CIDR block for ipv4 is from /16 to /28 only.
+NAT gateway = NAT gateways in each Availability Zone are implemented with redundancy. Create a NAT gateway in each Availability Zone to ensure zone-independent architecture.
 
-AWS reserves the four IP and the last IP addresses. In a 10.0.0.0/24, the following IPs are reserved:
-	10.0.0.0: Network address.
-	10.0.0.1: Reserved by AWS for the Amazon VPC router.
-	10.0.0.2: Reserved by AWS. The IP address of the DNS server is always the base of the Amazon VPC network range; however, the base of each subnet range is also reserved.
-	10.0.0.3: Reserved by AWS for future use.
-	10.0.0.255: Network broadcast address. AWS does not support broadcast in an Amazon VPC; therefore, we reserve this address.
+you need public subnet, EIP address and internet gateway to create nat gateway. gateway is created in specific AZ and implemented redundancy in same AZ. NAT gateway supports TCP, UDP and ICMP protocols
+
+VPC endpoint = A VPC endpoint enables you to privately connect your VPC to supported AWS services using aws privatelink. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.
+
+aws privatelink = provides private connectivity between different/same account VPCs, AWS services, and on-premises applications. 
+
+If working and prev accessible instance stops working then first check if the instance is terminated then check for aws system status. If system status is impaired then stop and start your instance again to run it on healthy system.
+
+Oracle db with RAC config is not supported by aws RDS so you have to use ec2 instance to host oracle db.
+
+bastion host = A bastion host is a special-purpose computer on a network specifically designed and configured to withstand attacks. It is used to connect VPC from internet to get access to resources in private subnet.
+
+RAID = raid is accomplished at software level. For greater I/O performance than you can achieve with a single volume, RAID 0 can stripe multiple volumes together; for on-instance redundancy, RAID 1 can mirror two volumes together which can also offer fault tolerance. RAID 5 and RAID 6 are not recommended for Amazon EBS because the parity write operations of these RAID modes consume some of the IOPS available to your volumes.
+
+aws raid 1 vs raid 0 = raid 0 does striping (spliting data evenly across all the disk) while raid 1 does mirroring (create two copies of data.) use raid 0 when performance (I/O) is important and use raid 1 when fault tolerance and data redundancy is important. raid 1 storage capacity is half as it makes two copies of data. reading speed is same in both raid 0 and 1. but writing speed is less in raid 1.
+
+If you want to use your internal private dns resolver with aws then create dns options set that include both DHCP option with dns= amazon provided and internal dns server.
+
+Elastic Network Interfaces (ENIs) = Each instance in your VPC has a default network interface (the primary network interface) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC. ENI is only used to create and attach additional network interfaces for the EC2 instance.
+
+EIP (elastic IP address) = static public IPv4 address. An Elastic IP address is associated with your AWS account and allows you to mask the failure of an instance or software by remapping the address to another Amazon EC2 instance in your account. you can have at max 5 eips.
+
+The two major tools used to manage and troubleshoot VPC issues are as follows:
+■■ AWS CloudTrail
+■■ Amazon VPC Flow Logs
 	
-Once you choose the size of your Amazon VPC, you cannot change it. Therefore on the side of caution and make your VPC large. A best practice is to identify a private /16 network that is not being used and dedicate that to your VPC.
-
-Route Tables = When a VPC is created, a route table associated with that VPC is also created. This is called the default route table.
-
-we can add destination 0.0.0.0/0 and target Internet-gateway-id to go to internet gateway.
-
-VPC having private subnet with route table having value 0.0.0.0/0   and status blackhole. If you delete a NAT gateway, the NAT gateway routes remain in a blackhole status until you delete or update the routes.
-Detaching internet gateway will not create blackhole status in route table. 
-
-Network Access Control Lists (ACLs) = A VPC also has a default network Access Control List (ACL). This default network ACL will allow all inbound and outbound traffic. You can modify network ACLs either by allowing or denying inbound or outbound traffic based on port, protocol, and IP address. You create a number of rules that are evaluated in order, and when a match occurs, that rule gets invoked.
-
-Security Groups = A VPC also has a default security group. by default security groups deny all inbound traffic and allows all outbound traffic. you can only specify allow rules. you can specify seperate rules for inbound and outbound traffice. Security groups are stateful. An instance can have maximum 5 security groups. In case of VPC in addition to all above rules security groups also allow inbound traffice from instances having same security group.
-
-One of the other things that is created with a VPC is a Dynamic Host Configuration Protocol (DHCP) option set. The DHCP option set controls various configuration parameters that are passed to compute instances created in the VPC. Some of the parameters are domain name, domain name server, NTP servers, NetBIOS name type, and NetBIOS node type. AWS provides a DNS server by default, but other DNS servers can be used instead.
-
-Our recommended practice is to create two subnets per Availability Zone: one public subnet and one private subnet. The public subnet’s route table includes a route to the Internet. The private subnet’s route table does not include a route to the Internet. An instance in a public subnet has either a public IP or an Elastic IP address assigned to it, while an instance in a private subnet has only a private IP address assigned to it. For an instance in a private subnet to send a packet to the Internet, that packet must be routed through either a Network Address Translation (NAT) instance or a NAT gateway. For an instance in a private subnet to receive a packet from the Internet, that packet must be routed through either the Classic Load Balancer or Application Load Balancer, or through another compute instance with load balancing software installed.
-
-If you no longer need your subnet, you can delete it. before that you must terminate any instances in the subnet first. You will be prompted with an error message in the AWS Console when you try to delete a subnet with instances. Also you need to delete all custom(modified) route tables, network ACLs and security groups except default ones.
-The delete-vpc CLI command deletes the specified VPC. You must detach or delete all gateways and resources that are associated with the VPC before you can delete it.
-For example, you must terminate all instances running in the VPC, delete all security groups associated with the VPC (except the default one), delete all route tables associated with the VPC (except the default one), and detach or delete internet/virtual private gateways.
-
-A VPC can be created that has no connection to resources outside of the VPC. However, most VPCs have some sort of connection to resources outside the VPC. These connections can take the form of gateways, endpoints, and peering connections. There are three major gateways for the VPC. They are as follows:
-	Internet gateway
-	NAT gateway/ Egress only gateway
-	VPN gateway
+You need to establish a highly available connection between your Amazon VPC and your datacenter. What is the best way to accomplish this?
+Set up a Virtual Private Gateway. Make sure that you have two customer gateways configured to avoid having single point of failure.
 	
-Internet Gateway = An Internet gateway serves two purposes: to provide a target in your VPC route tables for Internet-routable traffic and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses. internet gateway supports both ipv4 and ipv6 addresses. 
+You are using Amazon Route 53 as your DNS provider. You have a web application that is running in your datacenter located in Las Vegas, NV and in the AWS Frankfort, Germany Region. What steps would you take to minimize the load times for this web application?
+The latency measurement from your Las Vegas location will not be based on Las Vegas but will be based on the AWS Region that you associate with that record. In this case, it is recommended that you associate the us–west-1 Region located in Northern California. AWS can only create latency record sets in an AWS Region, not in a customer location.
+	
+You are trying to SSH in to an Amazon EC2 instance in your Amazon VPC but are unable to do so. What should you be checking?
+Make sure that you have an Internet gateway attached to your Amazon VPC, that the VPC route table has an entry that routes packets to the Internet, that the Network ACL has an inbound and an outbound rule that allows SSH, and that the Amazon EC2 instance has a security group rule that allows inbound SSH. Make sure that the EC2 instance has a Public or Elastic IP address associated with it.
+	
+Origin Access Identity (OAI) is used to restrict access to your Amazon S3 content.
+The subnet inherits the route table from the Amazon VPC.
 
-NAT Gateway = You can use a network address translation (NAT) gateway to enable instances in a private subnet to connect to the Internet or other AWS services, but prevent the Internet from initiating a connection with those instances. NAT Gateway only supports ipv4 traffic
-Each NAT gateway is created in a specific Availability Zone and implemented with redundancy in that zone. In NAT gateway you disable souce/destination checking to allow NAT as internet gateway for your private instace.
+When you configure Amazon CloudFront, an origin refers to which of the following? 
+For static content, it is either an HTTP server or an Amazon S3 bucket. For media files on demand it is an S3 bucket.
+	
+A default Amazon VPC has a netmask of /20. It comes with an Internet gateway and a route table reflecting that Internet gateway. NAT and VPN can be added to the default VPC.
 
-Egress only internet gateway = only allows outbound(didn't allow to initiate from internet) communitcation over ipv6(ipv4 not supported) to internet. it is stateful and you cannot use security group with it but you can use network acl. Ipv6 addresses are globally unique hence they are public.
+AWS client VPN = used to connect client device to AWS VPC subnet over internete using VPN endpoint. You will need to use VPN software on client side. It will add a route to VPN endpoint in AWS. VPN endpoint in aws will do source network address translation (snat) to assign you one of the address from aws subnet. This is useful in accessing vpc resources directly through your client device. 
 
-VPN Gateway = A VPN gateway is used either to provide (1) an IPsec VPN connection through the Internet to your location or (2) an AWS Direct Connect connection to your location.
+AWS site to site vpn = Used to connect customer data center or office location into the AWS. AWS VPN is managed IPSec VPN. You need to create a Virtual Private Gateway in AWS and a customer gateway on other side to establish a VPN connection. It supports static routes or BGP peering/routing. You need to add a route in route table for customer data center cidr block and point it to Virtual Private Gateway.
 
-you can connect vpc to on-premise network by using IPsec AWS managed VPN connection. A vpn connection consist of virtual private gateway and customer gateway. you can use transit gateway instead of virtual private gateway to connect vpn to multiple vpcs and resources.
+AWS VPN Cloudhub = It's an architectural pattern used when you have multiple office or on-prem network and AWS site to site VPN. Here we follow hub and spoke model. ie. Every office premises is only connected to AWS site to site VPN. and they communicate with each other office premises by using virtual private gateway as hub. ie.thier communication passes through virtual private gateway even only they want to talk to each other. Only requirement is each on-prem network should have unique BGP Autonomous System Number. 
 
-NACL are stateless and security groups are stateful.
-to understand above statement lets take a example. Consider you only allow inbound traffic in both nACL and security group. so when someone from internet sends a request. It will reach to ec2 instance. Security group will outbound traffice for that ip address for that request even if it explicitly blocks all outbound traffice. This is called stateful. But nACL will block that outbound response as nACL is stateless.
-
-for an internet packet to reach to ec2 instance needs to pass from below three elements in given order from internet to ec2 instace.
-1. route table = In vpc we have three route tables(applicable at vpc level) 
-	a. default = this route table will be automatically created and it will contain only one address 10.10.0.0/16 local		For CIDR understanding see below. the address provided in this route table helps to resolve local other resources from that same vpc. For both public and private route table content of this table is copied. So please think before adding anything in it.	
- 	b. public = public will have one extra address 0.0.0.0/0 IGW	here IGW is a construct for amazon's highly available internet gateway. so any packet in internet having ip address of public subnet can reach in/out using IGW.	
-	c. private = this route table will have extra address like 0.0.0.0/0  NAT-ID 	this will use NAT(Network Address Translation) server to connect to internet. So no packet from internet initiates connection to private subnet but instances from private subnet could connect and initialize connection to internet. Also to access private subnet directly you can use VGW (Virtual gateway) from company premise by adding route like this 172.67.0.0/16 VGW.
-2. nACL = (applicable at subnet level)by default nACL allows all the inbound and outbound traffic. nACL is optional. Also nACL can have both inbound and outbound rule set. VPC comes with default modifiable nACL. you can specify both allow and deny ruls. You can create a custom network ACL and associate it with a subnet. By default, each custom network ACL denies all inbound and outbound traffic until you add rules.
-3. security group = {applicable at ec2 instace (resource)level} by default security groups deny all inbound traffic and allows all outbound traffic. and you can allow by using ip address/range, protocol and port. security group is mandatory. you can only specify allow rules. you can write seperate rules for inbound and outbound traffic. one instance can have max 5 security groups attached to it.
-
-CIDR (Classless Inter-Domain Routing) = lets take an example 10.10.0.0/16 it tells that address should be like 10.10.*.* So any address starting from 10.10. The /16 tells us to freeze first 16 bits. any decimal number below 256 can be converted into binary using maximum 8 bits. So /16 means freeze first 16 bits i.e. (10.10) so max you can freeze 28 bits.and min is 16 bits. So /16 gives us 256*256 = 65536 ip addresses to use. to only get traffic from single ip for example you can do this 10.10.23.54/32 ie. freeze all 32 bits. (only single address.) to get traffice from anywhere in internet you can use this 0.0.0.0/0
+AWS transit Gateway = transit gateway is a network transit hub that connects vpc with each other and on-premises network. Your VPCs and customer gateways are all attached to transit gateway. You specify one subnet from each AZ to enable routing within the AZ. transit gateways can also be attached to VPNs, Direct connect Gateways, third party appliances and even other transit gateways in other regions or accounts. transit gateway is region scoped service.

@@ -25,29 +25,17 @@ A best practice is to rotate access keys regularly for all of the IAM users. Unn
 IAM policies 
 trust policy = A JSON policy document in which you define the principals that you trust to assume the role. (principals that can take the role). A role trust policy is a required resource-based policy that is attached to a role in IAM. The principals that you can specify in the trust policy include users, roles, accounts, and services.
 
-service control policy = used in conjunction with AWS Organizations to specify the maximum permissions for member accounts in the organization.
-
 IAM Permission Policies = IAM Polices are JSON-formatted permission documents that are used to grant or deny access to IAM users. By default, an IAM user cannot do anything with any service in an AWS account, even if he has authentication credentials. Permission to take actions with a service must be explicitly provided to individual users, groups, or roles.
 
-An IAM policy consists of four main elements:
-	Action
-	Effect
-	Resource
-	Conditions (optional)
-	
 IAM policy rules have an order of precedence. If an action is explicitly denied, it is denied; then if an action is explicitly allowed, it is allowed. Otherwise, all other actions are implicitly denied.
 An IAM policy can also use policy conditions for extra security. For example, conditions could be set so that requests must originate from a specific range of IP addresses, or a request must use SSL or MFA.
-There are two types of IAM policies:
-	Managed policies = Managed policies can be customer and AWS-managed. These policies are standalone policies that are attached to multiple users, groups, and roles. AWS-managed policies are created by AWS. Customer-managed policies are created and managed by customers.
-	Inline policies = Inline policies are embedded in a principal entity such as a user, group, or role. The policy is an inherent part of the entity. The same policy can be used for multiple entities, but those entities do not share the policy. Instead, each entity has its own copy of the policy (that is, inline policies cannot be centrally managed).
-The IAM console provides “service last accessed data” about when IAM users and roles last attempted to access AWS Cloud services.
+
 
 Permission policies = You manage access in AWS by creating permission policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources. AWS evaluates these policies when an IAM principal (user or role) makes a request. Most policies are stored in AWS as JSON documents. There are 6 types of policies
-1. Identity-based policies – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). They can be further categorized as 
-	a. Managed Policies = can be further classified as
-		i. AWS managed
-		ii. Customer managed
-	b. Inline policies = tightly coupled with either single user,user group or role. gets deleted when coupled entity is deleted.
+1. Identity-based policies – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). 
+	There are two types of identity based IAM policies:
+	Managed policies = Managed policies can be customer and AWS-managed. These policies are standalone policies that are attached to multiple users, groups, and roles. AWS-managed policies are created by AWS. Customer-managed policies are created and managed by customers.
+	Inline policies = Inline policies are embedded in a principal entity such as a user, group, or role. The policy is an inherent part of the entity. The same policy can be used for multiple entities, but those entities do not share the policy. Instead, each entity has its own copy of the policy (that is, inline policies cannot be centrally managed). when deleting the principal, this policies also gets deleted.
 
 2. Resource-based policies – Attach inline policies to resources. e.g. permission of s3 bucket.
 3. Permissions boundaries – Use a managed policy as the permissions boundary for an IAM entity (user or role). That policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions. 
@@ -76,13 +64,17 @@ Statement = list of container for following elements.
 	Action – Include a list of actions that the policy allows or denies.
 	Resource (Required in only some circumstances) – If you create an IAM permissions policy, you must specify a list of resources to which the actions apply. If you create a resource-based policy, this element is optional. If you do not include this element, then the resource to which the action applies is the resource to which the policy is attached.
 	Condition (Optional) – Specify the circumstances under which the policy grants permission.
+	
+Generelized statement: identity based policy must have resource and resource based policy must have principal.
+trust policy are similar to resource policies and must have action having sts service and some variation of AssumeRole api call.
 
 IAM Roles = IAM Roles are temporary user credentials. IAM user credentials are regarded as static credentials. temporary credentials consisting of the following:
 	Access key ID
 	Secret access key
 	Token
 	Duration
-	
+IAM roles have both trust policy and identity based policy attached to it. 	
+
 Best Practices for Securing Your AWS Account :
 1. Require MFA for root-level access.
 2. Do not share root credentials with anyone other than the account holder.
@@ -107,3 +99,34 @@ AWS Config records configuration changes within an AWS account. Using AWS Config
 
 good resource to how to avoid MITM attack.
 https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+
+Iam policy evaluations 
+1. Explicit Deny anywhere always overrides all Allows anywhere.
+2. Organisation SCP limits the operations principal can do. But didn't grant any permissions.
+3. Permission boundries restrict what identity based policies can do. But didn't grant any permissions.
+4. Only organisational scp are applicable to Resource based policies. Permission boundries are not applicable to resource based policies. They grant permission to principal on specific resourece. and are attached to resources.
+5. Identity based policies are restricted by Organisational SCPs, Permission boundries and their own permissions. They do grant the permissions. 
+
+Organisations SCP, Permission boundries and Identity based permission policies are structured similarly.
+Resource based policies and trust policies are structured similarly. Trust policies have minor addition of STS service actions with some variation of AssumeRole API call.
+
+How IAM works?
+When principal ( User, Federated User, Role or application ) first provides sign-in credentials, IAM checks for authentication and lands you to the home page. When User clicks on a service it checks for users authorisation on that service. 
+
+IAM authentication methods :
+User, Federated Users, Roles => AWS IAM => AWS Management console
+CLI, API => access key, secret key => AWS IAM => AWS API
+Signin cert => AWS IAM => EC2
+ssh key, git creds => AWS IAM => AWS codecommit
+
+AWS STS ( Security Token Service ) = Provides short term, temporary access credentials.
+EC2 instance have instance profile where IAM role can be attached. which then requests for temporary credentials from AWS STS service. 
+
+Access Control Methods
+1. RBAC :- Role based access control - admin, developer, operations ()
+2. ABAC - Attribute Based Access Control - Using AWS Tags (e.g. aws:PrincipalTag ) Uses condition property of permissions policy to restrict the access.
+
+Scenario : Access resourece from Account B in Account A
+	Account A principal needs to have Identity based policy Allowing access to another accounts specified resources. Also Account A permission boundry and organisation SCP should not explicitely or implicitely deny this.
+	
+	Account B specified resource should have resource based policy allowing access from Account A principal. Also Account B organisational SCP should not deny it explicitely or implicitely. 
