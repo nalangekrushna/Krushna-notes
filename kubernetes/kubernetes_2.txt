@@ -1,0 +1,27 @@
+Kubernetes deployment strategies : defines strategy to replace old pods by new pods.
+	Recreate = all existing pods are killed first and then new pods are created.
+	RollingUpdate(default) = one pod is killed and new revision pod is created and wait until its running. then repeat the process for next pod. Use maxUnavailable and maxSurge to control rolling update process.
+	
+	replicas = number of pods to create.
+	
+Kubernetes Service Account : Used to identify non-human identities in kubernetes cluster. Application pods, system components and internal or external entities can use service account to perform different actions. Service accounts are different from user accounts which are authenticated human users in cluster. 
+when you create a cluster, kubernetes automatically creates service account named "default" for every namespace in your cluster. Default SA don't get any permission other than api discovery and recreated if you delete it. Also pods automatically gets assigned default SA for the namespace if not provided.
+
+Kubernetes Volume : There are multiple volume types but belwo two are most important ones.
+ConfigMap = 
+Secret = 
+
+Kubernetes Probe 
+1. Startup probe = It's initial probe and all other probes are disabled until it succeeds. If startup probe fails then kubernetes restarts the container. You can put more time and attempts here to give slow starting app enough time to start.
+2. Readyness probe = Sometime apps are unable to serve traffic temporarily due to data loads or waiting for third party service. You don't want to kill the pod but also don't want to send traffic to it. Readyness probe takes care of it. 
+3. Liveness probe = check if app is working otherwise restarts it. Use can use inialDelaySeconds to provide inital delay instaed of startup probe. 
+
+Kubernetes Pod restart policy = Spec of pod has a restart policy which is applicable to all the containers in the pod. There are threee values : Always (default), OnFailure and Never. After container exits, kubelet restarts container with exponential backoff timing with 5 minutes limit.
+
+
+explain kubernetes architecture two main components :
+1. control plane 
+2. worker nodes
+	
+ingress files
+stateful    

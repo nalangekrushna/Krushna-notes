@@ -76,7 +76,9 @@ git diff branch1...branch2
 here branch2 head will be compared to point where branch1 and branch2 diverged.
 
 git rebase 
-To incorporate changes made in master branch to feature branch after feature branch is created and master branch is moved forward. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. you can use git rebase.
+To incorporate changes made in master branch to feature branch after feature branch is created and master branch is moved forward. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. But also you want to keep branch history clean. So that later you can clean merge your feature branch back into the main branch.
+rebasing re-writes the project history by creating brand new commits for each commit in the original branch.
+You should never use git rebase with public branches.
 
 what does git commit object contains ?
 1. a set of files, representing state of project at given point of time.
@@ -86,3 +88,6 @@ what does git commit object contains ?
 git fetch vs pull ?
 git fetch = only downloads commits files and refs to local repository. git fetch is mostly used when you want update some part of your code without touching working copy.
 git pull = download the remote content for active local branch and immediately executes git merge. 
+
+git merge = Integrate changes from one branch to another branch. 
+git blame = find out who and what changes has been made to given file.

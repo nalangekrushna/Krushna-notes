@@ -118,3 +118,4 @@ resource "aws_instance" "example" {
 3. block body starts and end with this { and } delimiters.
 4. Inside block can contain more blocks and arguments.
 
+terraform 
