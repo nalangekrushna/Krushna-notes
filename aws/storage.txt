@@ -62,3 +62,6 @@ AWS Snowball Edge Storage Optimized = used for large scale data migration. One d
 aws snowmobile = If your volume is more than 10 PB then use aws snowmobile.
 
 Different instance types will support different storage options. The three major types of storage for Amazon EC2 are instance storage, Amazon EBS, and Amazon Elastic File System (Amazon EFS).
+
+
+Amazon FSx = supports netapp ontap, openZFS, windows file server and Lustre file systems for your storage requirements. Windows file server supports Microsoft DFS (Distributed File Sytem).
