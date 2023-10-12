@@ -76,3 +76,10 @@ git push
 git delete last push
 git reset --hard HEAD~n    // this will delete the local n commit
 git push origin +master  // this will delete commit from remote.
+
+git stash [push] = creates a stack entry 
+git stash apply  = applied stash entry back on most recent changes.
+git stash drop = deletes the stash entry
+git stash clear = delete all the stash entries
+git stash pop = applied most recent stash Stash@{0} to working tree and removes it from stash entries
+git stash list = list all the stash entries.

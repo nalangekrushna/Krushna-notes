@@ -1,8 +1,46 @@
+Static pod = Static pods are managed directly by kubelet daemon on specific node instead of kube-apiserver. They can be created using file-hosted or network hosted manifests. Static pods are bound to one kubelet on specific node. Kubelet tries to create a mirror pod on kube-apiserver for each static pod. It is used to deploy control plane components. Kubeadm tool uses static pods to deploy control plane components.
+
+DaemonSet = Runs copy of pods on all the nodes. Use case :- cluster storage daemon, log collection daemon, node monitoring daemon
+
+Kubernetes Schedular = scheduling refers to matching pods to right nodes so kubelet can run them. Schedular watches for newly created pods that don't have node assigned and binds them to the best node. Schedular first filters nodes not matching the requirements and then scores remaining nodes to find the best one.
+You can also specify node in pod template but that is used only in special cases.
+
+Labels and Selectors =
+Labels = key-value pair.
+label selector = supports equality based (=, ==, !=) and set based (in, not in , exists). multiple selector acts as AND condition.
+
+nodeSelector = specify labels in this field in pod templates to schedule pods on only nodes having given labels. 
+Node Affinity = property of pods that attracts them to set of nodes. There are two types of node affinity
+	1. requiredDuringSchedulingIgnoredDuringExecution
+	2. preferredDuringSchedulingIgnoredDuringExecution
+taints = Taints allow nodes to repel a set of pods. It has following effects - NoSchedule, PreferNoSchedule, NoExecute
+Toleration = Toleration are applied on pods. Toleration allows schedular to schedule pods with matching taints key value, effect and operator(equal operator, default).
+
+Use case for taints and tolerance = Dedicated Nodes, Nodes with special hardware, Taints based eviction.
+
+
 Kubernetes deployment strategies : defines strategy to replace old pods by new pods.
 	Recreate = all existing pods are killed first and then new pods are created.
 	RollingUpdate(default) = one pod is killed and new revision pod is created and wait until its running. then repeat the process for next pod. Use maxUnavailable and maxSurge to control rolling update process.
 	
 	replicas = number of pods to create.
+	
+Environment Variables = environment variables can be passed as value, or valueFrom ( in which you can use configmap and secrets ).
+
+ConfigMap = key-value pairs used as env variables or config files in volume.
+Secrets = used to store passwords, token and other sensitive data. Kubernetes only send secret to node if required. Kubernetes stores secrets in tmpfs, so secret never written on disk. Once the pod requiring secret is deleted, kubernetes also deletes local copy of secret.
+
+secrets in etcd are by default stored as plain text, Anyone with api access or etcd access can retrieve, modify a secret. Also anyone with ability to create a pod in given namespace have read access to secrets.
+
+Init Container = To perform the tasks that has been done only at a startup. First initContainer will run and after it's successful execution main container will start. If initContainer fails kubernetes restart the pod.
+
+OS upgrades = kubernetes has pod eviction timeout of 5 mins so if you can complete update before 5 mins, you can take the node down. But there is another more safe way to do this by using kubernetes drain command. which will remove all the pods from current node and move them to other node. Then you can safely upgrade the node. then again using uncordon command you can get node back in use.
+
+Cluster Upgrade process = 
+
+Backup and restore method = 
+
+ 
 	
 Kubernetes Service Account : Used to identify non-human identities in kubernetes cluster. Application pods, system components and internal or external entities can use service account to perform different actions. Service accounts are different from user accounts which are authenticated human users in cluster. 
 when you create a cluster, kubernetes automatically creates service account named "default" for every namespace in your cluster. Default SA don't get any permission other than api discovery and recreated if you delete it. Also pods automatically gets assigned default SA for the namespace if not provided.
@@ -23,5 +61,6 @@ explain kubernetes architecture two main components :
 1. control plane 
 2. worker nodes
 	
-ingress files
-stateful    
+ingress
+statefulset
+Gateway    

@@ -37,3 +37,13 @@ sidecar pattern contains two seperate containers. one contains core functionalit
 
 how to save docker image ?
 docker save -o file_name image_name:tag
+
+where docker logs are stored
+/var/lib/docker/containers/<container-id>/<container-id>-json.log
+
+how to copy 
+docker cp <container-id>:/path/inside/container /host/target/path
+
+check docker disk usage
+docker system df
+

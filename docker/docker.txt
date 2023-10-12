@@ -52,3 +52,10 @@ docker bind vs volume : bind is managed by native OS while volume is managed by 
 docker volume create : if you run this command and volume is already present then it will return already created volume otherwise it will create new volume. the volumes will be stored at /var/lib/docker/volumes
 docker network create : if you run this command and network is already there then it will give an error. otherwise it will create a network. the network details will be stored at /var/lib/docker/network
 	
+docker network = docker provides following networking drivers.
+1. bridge (default) = bridge network is commonly used when you need to communicate to other containers on same host.
+2. host = Uses host networking directly.
+3. overlay = connect multiple docker daemons together and enables to communicate containers across nodes.
+4. ipvlan = total control over both ipv4 and ipv6 addressing.
+5. macvlan = allows you to assign mac address to container making it appear as physical device on the network. Useful when dealing with legacy application that expect directly to connected to physical network.
+6. none = completely isolates a container from host 

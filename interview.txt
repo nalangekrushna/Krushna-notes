@@ -10,7 +10,7 @@ what is netmask =  IPv4 addresses represented in CIDR notation are called networ
 0.0.0.0/0 what is last bit called?
 /28 /16 is allowed for vpc cidr blocks.
 s3 bucket access controls.
--p ports
+-p ports host_port : container_port
 linux check cpu and networking usage
 terraform how to lock state file.
 s3 policies vs iam policies
@@ -20,5 +20,17 @@ what is null resource
 ec2 connection refused
 s3 bucket unable to create or copy objects.
 how to recover ec2 instance when ssh key is lost
-practise grep and awk commands
+practise grep and awk and awk commands
 what are the pipes in linux files
+git revert
+network modes in docker
+git dif .. vs ...
+python super method example
+HPA VPA in kubernetes
+authentication and authorisation in eks
+how to give single pod s3 bucket access
+Only give user read-only access to kubernetes cluster
+how to access cluster through ssh
+how to access nodeport outside of cluster
+how ingress knows which service to select
+how to evenly distribute pods between different nodes.

@@ -1,0 +1,7 @@
+Monitoring
+
+Kubernetes uses Metrics server for monitoring.
+Metrics Server = provides container resource metrics for kubernetes build-in autoscaling pipelines.
+metrics server collects resource metrics from kubelets and exposes them to kubernetes api server through metrics api to be used by Horizontal Pod Autoscaler and Vertical Pod Autoscaler.
+
+To collect metrics for monitoring solutions use kubelets /metrics/resource endpoint directly.
