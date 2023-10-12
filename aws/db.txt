@@ -6,8 +6,6 @@ following tasks are carried out by AWS for database hosted in the AWS RDS servic
 creating and maintaining backups with a point in time recovery of 5 minutes. 
 critical security patches installation.
 
-Amazon RDS custom  = Amazon RDS custom allows you to customize your database configuration and underlying operating system to allow to work the legacy, packaged databases on AWS RDS.
-
 user is responsible for Query Optimization in RDS to improve its performance.
 
 Amazon Aurora = fully managed, MySQL-compatible, relational database engine. An Amazon Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone containing a copy of the cluster data. Two types of instances make up an Aurora DB cluster
@@ -20,6 +18,8 @@ replication lag is variable depending on the rate of database change. That is, d
 you can also use Amazon Aurora Multi-Master which is a feature of the Aurora MySQL compatible edition that adds the ability to scale out write performance across multiple Availability Zones, allowing applications to direct read/write workloads to multiple instances in a database cluster and operate with higher availability. You should use Aurora Multi-Master or Amazon Aurora Replicas for high availability.
 
 Aurora backtrack feature = Backtracking "rewinds" the DB cluster to the time you specify. Backtracking is not a replacement for backing up your DB cluster so that you can restore it to a point in time.
+
+Aurora Global database = Single Aurora database can span multiple regions to enable fast local reads and quick distater recovery. Latency is less than one second. A database in secondary region can be promoted to full read/write capabilities in less than a minute. 
 
 Aurora ML = Aurora ml enables you to add ML-based predictions to applications via the familiar SQL programming language. For example, you can build product recommendation systems by writing SQL queries in Aurora that pass customer profile, shopping history, and product catalog data to a SageMaker model, and get product recommendations returned as query results.
 
@@ -34,6 +34,11 @@ all above metrics given as average in given time interval
 DynamoDB = NoSQL database supporting both document and key/value store models. 
 Amazon DynamoDB global tables  = provide a fully managed solution for deploying a multi-region, multi-master database. When you create a global table, you specify the AWS regions where you want the table to be available.
 
+Aurora vs Dynamodb = 
+Aurora is SQL while Dynamodb is NoSQL db.
+Aurora has both standard and serverless configuration while Dynamodb is only Serverless.
+Aurora global databases provides read capacity across multiple regions while Dynamodb provides both read/write capacity across multiple regions.
+
 Items = Each table contains multiple items. An item is a group of attributes uniquely identifiable among all of the other items. Items in Amazon DynamoDB are similar in many ways to rows, records, or tuples in relational database systems.
 Attributes = Each item is composed of one or more attributes. An attribute is a fundamental data element something that does not need to be broken down any further. Attributes in Amazon DynamoDB are similar to fields or columns in relational database systems.
 
@@ -42,8 +47,6 @@ Streams = ordered flow of information about changes to items. A stream record co
 Amazon DynamoDB supports eventual consistency and strongly consistent reads. Unless specified otherwise, DynamoDB uses eventually consistent reads as the default. When a strongly consistent read is requested, Amazon DynamoDB returns a response with the most up-to-date data.
 
 DynamoDB Auto Scaling uses the AWS Application Auto Scaling service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns. This enables a table or a global secondary index to increase its provisioned read and write capacity to handle sudden increases in traffic, without throttling. When the workload decreases, Application Auto Scaling decreases the throughput so that you don’t pay for unused provisioned capacity.
-
-Dynamodb Accelerator (DAX) = Dynamodb compatible in-memory cache service. It reduces Dynamodb response time from single digit miliseconds to microseconds. For read-heavy or bursty workloads, DAX provides increased throughput and potential cost-savings by reducing number of reads on database.
 
 Redshift = fully managed data warehousing solution. It automates infrastructure provisioning and administrative tasks, such as backups, replication, and patching. the default backup period for redshift is 1 day.
 
