@@ -15,7 +15,10 @@ cli commands and cli parameters are in small case with hyphen  e.g.  create-stac
 
 kinesis = aws kinesis is real time fully managed and scalable data streaming service which enables real time data analytics. It can be used with video, audio, logs, website clickstreams as well as IoT telemetry data. Kinesis video stream uses TLS encryption for data at transport and aws KMS to encrypt data at rest.
 
-kinesis data firehose = used to store data in desired aws storages such as s3 bucket or aws redshift.
+kinesis data firehose = Kinesis data firehose is an ETL (Extract Transform Load) service for real-time streaming data. It supports ingestion through Kinesis data streams, Kinesis data firehose agent and multiple other aws services. It then performs ETL transformation on data and stores it into following destinations. Amazon S3, Redshift, OpenSearch, HTTP Endpoints and some partner services.
+.Used to store data in desired aws storages such as s3 bucket or aws redshift.
+
+kinesis data streams = Kinesis data stream manages infrastructure, storage, networking and configuration to stream your data at your throughput levels. Provides streaming data in real-time for your custom app to process and analyze. 
 
 aws support service plans
 	aws provide 24*7 access to customer service and documentation to all its customer. Above this there are three plans below.
@@ -28,3 +31,5 @@ aws support service plans
 linux halt command = This command in Linux is used to instruct the hardware to stop all the CPU functions. Basically, it reboots or stops the system. If the system is in runlevel 0 or 6 or using the command with –force option, it results in rebooting of the system otherwise it results in shutdown.
 
 linux dd command = convert and copy.
+
+AWS GuardDuty = You can prevent AWS guardduty from accessing your data source by by suspending it from it's general settings. But this will not delete the previous findings. To delete the previous findings you need to disable the service from it's general settings.

@@ -19,6 +19,8 @@ you can also use Amazon Aurora Multi-Master which is a feature of the Aurora MyS
 
 Aurora backtrack feature = Backtracking "rewinds" the DB cluster to the time you specify. Backtracking is not a replacement for backing up your DB cluster so that you can restore it to a point in time.
 
+Aurora Global database = Single Aurora database can span multiple regions to enable fast local reads and quick distater recovery. Latency is less than one second. A database in secondary region can be promoted to full read/write capabilities in less than a minute. 
+
 Aurora ML = Aurora ml enables you to add ML-based predictions to applications via the familiar SQL programming language. For example, you can build product recommendation systems by writing SQL queries in Aurora that pass customer profile, shopping history, and product catalog data to a SageMaker model, and get product recommendations returned as query results.
 
 Performance metrics by aws
@@ -31,6 +33,11 @@ all above metrics given as average in given time interval
 
 DynamoDB = NoSQL database supporting both document and key/value store models. 
 Amazon DynamoDB global tables  = provide a fully managed solution for deploying a multi-region, multi-master database. When you create a global table, you specify the AWS regions where you want the table to be available.
+
+Aurora vs Dynamodb = 
+Aurora is SQL while Dynamodb is NoSQL db.
+Aurora has both standard and serverless configuration while Dynamodb is only Serverless.
+Aurora global databases provides read capacity across multiple regions while Dynamodb provides both read/write capacity across multiple regions.
 
 Items = Each table contains multiple items. An item is a group of attributes uniquely identifiable among all of the other items. Items in Amazon DynamoDB are similar in many ways to rows, records, or tuples in relational database systems.
 Attributes = Each item is composed of one or more attributes. An attribute is a fundamental data element something that does not need to be broken down any further. Attributes in Amazon DynamoDB are similar to fields or columns in relational database systems.

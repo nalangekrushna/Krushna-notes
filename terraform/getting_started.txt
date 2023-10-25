@@ -1,6 +1,15 @@
 getting_started
 
+what is terraform ?
+terraform is infrastructure as a code tooling used to manage cloud and bare metal it infrastructure declaratively.
 terraform(tf) is an immutable, declarative, infrastructure as code provisioning language based on Hashicorp config language(HCL) or optionally json.
+
+
+what is IaaC ?
+IaaC is a process of managing infrastructure programatically. So it can be consistent, repeatable, version controled and drift detectable.
+
+what is a drift
+Drift is unintended or unaccounted changes in infrastructure. 
 
 composition -> infra module -> resource module -> resource/data source
 
@@ -13,13 +22,14 @@ plan -out=tfplan -> apply tfplan
 to add changes made outside to terraform state
 terraform apply -refresh-only -auto-approve
 
-to handle multiple resources
+to handle specific resource
+tf apply -target=
 
 
 Below are the some of the key concepts used in terraform.
-Resource = resuorce is aws-vpc, db-instance etc. A resource belongs to provider, accepts arguments, outputs attributes and has lifecycle. A resource can be created, retrieved, updated and deleted.
+Resource = Each terraform resource describes one or more infrastructure objects such as aws-vpc, db-instance etc. A resource belongs to provider, accepts arguments, outputs attributes and has a lifecycle. A resource can be created, retrieved, updated and deleted.
 
-module = A module is collection of .tf and/or .tf.json files kept together in directory. A terraform moudule only consist of top-level config files in the directory. Nested directories are treated as completely seperate modules and are not automatically included into the config. terraform modules can use module calls to explicitly include other modules in config. 
+module = A module is a container for multiple resources used together. A module is collection of .tf and/or .tf.json files kept together in directory. A terraform moudule only consist of top-level config files in the directory. Nested directories are treated as completely seperate modules and are not automatically included into the config. terraform modules can use module calls to explicitly include other modules in config. 
 
 root module = terraform always runs in context of single root module. in terraform cli root module is the working directory where terraform is invoked. 
 
@@ -29,7 +39,7 @@ Infrastructure module = infra module is collection of resource modules.
 
 Composition = composition is collection of infrastructure modules, which can span across several logically seperated areas(e.g. aws regions, several aws accounts). Composition is used to describe complete infrastructure required for the whole organization or project.
 
-data source = data source performs read only operations and depend on/belongs to provider config. It is used in resource or infra module. data source is accessed by special kind of resource called data resource declared using data block. data source reads information in planning phase if available.
+data source = data source performs read only operations and depend on/belongs to provider config. It is used in resource or infra module. data source is accessed by special kind of resource called data resource declared using data block. data source reads information in planning phase if available. otherwise if data source is depend upon one of the managed resources, it defers the reading until apply phase to preserve order of operations.
 
 Generally data source belongs to provider but there are special data sources which operates within terraform only. e.g. local-only data source exists for rendering templates, reading local files and rendering aws iam policies. speical data sources result data only temporarily exists during tf operation and recalculated each time a new plan is created.
 
@@ -52,9 +62,10 @@ provisioners = they are used to model specific actions on local machine or remot
 
 prev null_data_source was typically used to construct intermediate values to re-use elsewhere in config. The same can now be achieved using locals. By default provisioners will only run when the resource within they defined are being created. If provisioner fails during startup the resource is marked as tainted. Tainted resource will be marked for destruction and recreation during next tf apply. 
 
-If when = destroy is specified then provisoner will run during the resource within it defined is being destroyed. Destroy provisioners run before the resource is destroyed. If provisioners fails during starting or destroying then tf apply will also fail. we can change this by using on_failure setting to continue instead of fail. Multiple provisioners can be specified and they run in the order defined in config file. 
+If when = destroy is specified then provisoner will run during the resource within it defined is being destroyed. Destroy provisioners run before the resource is destroyed. If provisioners fails during starting or destroying then tf apply will also fail. we can change this by using (on_failure=continue) setting to continue instead of fail. Multiple provisioners can be specified and they run in the order defined in config file. 
 
 Provisioners self object = Expressions in provisioner block cannot refer to their parent resource by name instead they use the special self object. The self object represents provisioners parent resource and has all that resource attributes.
+e.g.  ${self.private_ip}
 
 terraform config structure = standard terraform project should contain following files.
 1. main.tf = call modules, locals and data sources to create all resources.
@@ -76,9 +87,8 @@ tf enterprise in locations of non-available internet access is called air-gapped
 
 terraform file structures
 main.tf
-	provider
-	data
 	locals
+	data
 	module
 	resource
 
@@ -108,3 +118,4 @@ resource "aws_instance" "example" {
 3. block body starts and end with this { and } delimiters.
 4. Inside block can contain more blocks and arguments.
 
+terraform 

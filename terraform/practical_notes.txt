@@ -1,0 +1,3 @@
+terraform will not work in empty folder or folder not having atleast one .tf empty file. 
+If you directly create resource, terraform will find appropriate provider for it.
+terraform is case sensitive and only use double quotes (") in it.

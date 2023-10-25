@@ -1,0 +1,10 @@
+AWS Organisation
+
+Organisations = Enables to centrally manage multiple accounts and have a single consolidated billing.
+When we create a AWS Organisation, it has management (root of hierachy) account. Then we can create additonal accounts or join the existing accounts. We can create a hierachy called as Organisational Units (OU). We can apply SCP at organisational level or OU level. SCP can control tagging and available API actions. We can also create AWS accounts programatically using AWS Organisations APIs. Can also apply Cloudtrail at top level.
+
+Users in management accout are not restricted by SCPs. ie. SCPs are not applicable to users in management account.
+
+AWS Control Tower - Extension of AWS Organisation. Using control tower you can create a landing zone. Landing zone is a well-architected multi-account baseline. Landing zone will have a Root OU ( containing management account ), Security OU, Sandbox OU and Production OU. Within Security OU you will have Audit and Log Archieve AWS accounts. Sandbox and Production OU are empty by default. Control Tower is also integrated with IAM Identity Center and directory sources can be SSO, SAML 2.0 or Microsoft AD. 
+	Control tower create SCP that disallows certain API actions. This are called Preventive Guardrails. Control tower also creates some lambda functions and AWS config rules which are called detective guardrails and are used for governance and compliance. Root user in management account can perform actions that guardrail would disallow.
+	

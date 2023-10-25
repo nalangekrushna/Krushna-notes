@@ -1,0 +1,36 @@
+how alb routes the traffic?
+difference between statefulset and deployment in kubernetes?
+python how to get arguments.
+aws cdk's
+difference between aws ecs and aws eks
+calculate cidr blocks
+when to use replicaset instead of deployment
+use cases for alb vs nlb
+what is netmask =  IPv4 addresses represented in CIDR notation are called network masks
+0.0.0.0/0 what is last bit called?
+/28 /16 is allowed for vpc cidr blocks.
+s3 bucket access controls.
+-p ports host_port : container_port
+linux check cpu and networking usage
+terraform how to lock state file.
+s3 policies vs iam policies
+kubernetes how to update replicas
+kubernetes how to decide which service type to use
+what is null resource
+ec2 connection refused
+s3 bucket unable to create or copy objects.
+how to recover ec2 instance when ssh key is lost
+practise grep and awk and awk commands
+what are the pipes in linux files
+git revert
+network modes in docker
+git dif .. vs ...
+python super method example
+HPA VPA in kubernetes
+authentication and authorisation in eks
+how to give single pod s3 bucket access
+Only give user read-only access to kubernetes cluster
+how to access cluster through ssh
+how to access nodeport outside of cluster
+how ingress knows which service to select
+how to evenly distribute pods between different nodes.

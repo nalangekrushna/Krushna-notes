@@ -1,4 +1,4 @@
-Simple Storage Service (Amazon S3) = regionally provisioned object storage service. Content saved into Amazon S3 is automatically replicated into at least three different AZs. Buckets are globally unique named objects; they are unique across all AWS accounts. all content in Amazon S3 is automatically web-enabled. When content is saved into Amazon S3, there is a unique URL created for the object, which includes the bucket name as the domain, hence the need for global uniqueness.
+Simple Storage Service (Amazon S3 standard) = regionally provisioned object storage service. Content saved into Amazon S3 is automatically replicated into at least three different AZs. Buckets are globally unique named objects; they are unique across all AWS accounts. all content in Amazon S3 is automatically web-enabled. When content is saved into Amazon S3, there is a unique URL created for the object, which includes the bucket name as the domain, hence the need for global uniqueness.
 
 Default properties of Amazon S3 keep content private for the account owner until explicit commands to share are invoked. s3 min object size is 0 bytes. max object size can be 5 TB and largest object that can be uploaded in single PUT request is 5 GB. for object above size 100 mb multipart upload capability is recommended. 
 
@@ -9,13 +9,21 @@ s3 encryption = you cannot apply different types of encryption on an object at s
 	sse-kms = uses aws kms service for encryption which provides needs some additional authenticated and audit trail of kms. you will be charged for kms service.
 	sse-c = you manage key for encryption.
 
-
-Amazon S3 – Reduced Redundancy Storage (Amazon S3-RRS) = only backed up in two place and provide durability upto only 4 points. it is your option when questions looking for cheapest solution and does not mention about duarability or where data can be reproduced from some way.
-
-Amazon S3 Infrequent Access (Amazon S3-IA) = high durablity but if only needed to access two times a month. Exam questions that specifically call out objects that are only accessed once a month or less than 20 times a year should most likely be addressed with Amazon S3-IA.
+Amazon S3 Infrequent Access (Amazon S3 standard IA) = high durablity but if only needed to access two times a month. Exam questions that specifically call out objects that are only accessed once a month or less than 20 times a year should most likely be addressed with Amazon S3-IA.
 S3-IA is cost effective only when storage time is min 30 days and min 64 KB file size.
 
 S3 IA One Zone = used for infrequently accessed and easily reproducable as secondary backup option. Data is stored in only one AZ.
+
+Amazon Glacier = In all S3 cases high availability was necessary. when high availability is not needed then you should use glacier. Archieves stored in Amazon Glacier are immutable (that is, archives can be uploaded and deleted but cannot be edited or overwritten). Following are different variants of glacier service.
+
+1. S3 Glacier Instant Retrieval = miliseconds data access with 60% less cost that S3 standard IA when data accessed quarterly.
+2. S3 Glacier flexible Retrieval = Access data in minutes or hours with 10% less cost than Instant retrieval when data accessed 1-2 times yearly.
+3. S3 Glacier Deep Archieve = Access data in hours and data accessed 1-2 times yearly. Specifically designed for highly regulated industries such as finance, healthcare and gove services. It can use vault lock policy and vault access policy to control the access.
+A vault lock policy is different than a vault access policy. Both policies govern access controls to your vault. However, a vault lock policy can be locked to prevent future changes, providing strong enforcement for your compliance controls. You can use the vault lock policy to deploy regulatory and compliance controls, which typically require tight controls on data access. In contrast, you use a vault access policy to implement access controls that are not compliance related, temporary, and subject to frequent modification. Vault lock and vault access policies can be used together.
+
+For example, you can implement time-based data retention rules in the vault lock policy (deny deletes), and grant read access to designated third parties or your business partners (allow reads).
+
+Individual Amazon S3 Glacier archives can range in size from 1 byte to 40 terabytes. The largest archive that can be uploaded in a single Upload request is 4 gigabytes.
 
 S3 CRR and SRR = s3 replication feature provides cross region replication and same region replication with different bucket.Also CRR and SRR can be done with different account. you can set replication on bucket or prefix level. By using tags you can setup replication on object level.
 

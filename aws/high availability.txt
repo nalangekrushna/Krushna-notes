@@ -1,6 +1,6 @@
 High Availability
 
-Simple Queue Service(SQS) = access to message queues that store messages waiting to be processed. Amazon SQS queues retain messages for a set period of time. The default setting is four days; however, you can configure a queue to retain messages for up to 14 days.
+Simple Queue Service(SQS) = access to message queues that store messages waiting to be processed. Amazon SQS queues retain messages for a set period of time. The default setting is four days; however, you can configure a queue to retain messages for up to 14 days. Use case for SQS is decoupling application components to handle the load. SQS uses polling mechanism while SNS uses push model. 
 
 Visibility timeout is the period of time that a message is invisible to the rest of your application after an application component gets it from the queue. During the visibility timeout, the component that received the message usually processes it and then deletes it from the queue. default timeout period is 30 seconds.
 

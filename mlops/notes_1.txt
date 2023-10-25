@@ -1,0 +1,39 @@
+Notes 1
+
+Learning methodology
+We are going to below titanic notebook to refresh our machine learning knowledge and then figure out how to do mlops over it. The final output should look as explained in below mentioned google mlops guide. 
+https://www.kaggle.com/code/startupsci/titanic-data-science-solutions/notebook
+https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
+
+
+So the first thing is we need input data to work on. Here in kaggle the dataset is provided as a csv file. but there can be different ways data can be provided in ml projects.
+	1. Data File ( csv, xlsx)
+	2. API 
+	3. Direct Database access
+	4. Data lakes like snowflake
+	5. queues and streams ( is it possible? )
+	
+Basic steps in mlops (Basic ml)
+	1. Load the data. 
+	2. Divide data into traing, testing and maybe validation datasets (optional)
+	3. Feature engineering ( feature creation, updation or deletion ) 
+	4. Build different models using different algorithms.
+	5. Compare different models by using predefined metric for values.
+	6. Choose best model and deploy it in production using different deployment strategies.
+	
+Take a look at different machine learning ops tools
+Modify the Basic ml steps for deep learning, Reinforcement learning, images and maybe nlp also.
+
+Input data different scenarios :
+A) Loading the data for first time.
+B) Checking for the data updates ( cron job or by manual push due to rerunning of jupyter notebook/code ) - data drifting.
+
+Pipeline triggering scenarios 
+a. Cron Job
+b. Manual
+c. Updates in Data
+d. Updates in Code - 
+
+To handle jupyter notebooks in git use below tool
+https://github.com/fastai/nbdev
+https://github.com/mwouts/jupytext - It takes different approach than nbdev

@@ -1,0 +1,30 @@
+EKS
+
+what is meaning of elastic in aws ?
+Ability to acquire or releaase resources as needed. ie. auto scaling.
+Some aws services such as S3, SNS, SQS do this as a part of service. Some requires vertical scaling like RDS, while others like ec2, ecs, fargate are integrated with AWS auto scaling.
+
+eks cluster plane is provisioned across multiple Availability Zones.
+
+EKS
+current version : 1.27
+cluster role : Full permisions on EC2, Auto Scaling Group, Load balancer
+Additional Secrets encryption available for kubernets secrets stored in etcd over the above default encryption applied to ebs volume where etcd data resides. It is part of defence in depth security principal.
+Select VPC and subnets
+cluster endpoint could be public or private or both.
+logging availabe for api server, auditing, authentication, controller manager and schedular.
+AddOns : CoreDNS, Amazon VPC CNI, kube-proxy
+VPC CNI = allows kubernetes pods to have a sampe IP address inside pod as they do on VPC network.
+
+While updating control plane (cluster) it performs rolling update, so cluster never goes down.
+
+cloudwatch logs
+/aws/containerinsights/mcp-dev/application = All log files in /var/log/containers or pods. This captures all the application container logs writing to stdout or stderr.
+/aws/containerinsights/mcp-dev/dataplane = kubelet service logs
+/aws/containerinsights/mcp-dev/host
+/aws/containerinsights/mcp-dev/performance  
+/aws/eks/mcp-dev/cluster = contol plane logs
+
+aws load balancer controller will be installed as deployment.
+daemonsets = cloudwatch agent, csi-secrets-store, fluent-bit
+namespaces = amazon cloudwatch

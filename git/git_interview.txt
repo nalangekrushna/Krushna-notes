@@ -6,6 +6,17 @@ repo is a .git extension directory which contains all metadata of the repo whose
 collection of various files such as config descriton and head and folders such as hooks info objects and ref.
 A Git repository is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed. 
 
+what is working tree in git?
+It's a directory including subdirectories and files in it on local machine that is associated with repository excluding .git sub directory.
+
+To understand difference between working tree/workspace, index, HEAD and staging area
+=> You are working in working tree or worksapce. You add files using git add command which then goes to "index". Index is also called as "Staging Area" then you use git commit command to commit the changes to local repo which is also called as "HEAD". Then you push the changes to rmeote repo using git push command.
+
+Now when you do git pull or rebase all the changes are merged into working tree. But when you do git fetch The changes are only added to HEAD. 
+
+index file = .git/index. Binary file containing list of all files in current branch.
+local repo = .git directory. It also has objects sub directory which contains all versions of every file in the repo. 
+
 git push ?
 upload local repository content to remote repo.
 
@@ -20,9 +31,6 @@ git add will add new or changed files in your working directory to git staging a
 
 git status
 This command shows state of working directory and git staging area. It shows which changes are staged, which files are modified, which files are not being tracked. and also state of local repo with remote repository.
-
-what is staging area or index in git ?
-The intermediate area in which commits can be formatted and reviewed before commitng is called staging.
 
 git stash = GIT stash takes the current state of the working directory and index and puts in on the stack for later and gives you back a clean working directory.  So in case if you are in the middle of something and need to jump over to the other job, and at the same time you don’t want to lose your current edits then you can use GIT stash.
 
@@ -39,10 +47,10 @@ git config = It reads config in system, global, local order. global setting over
 git alias = to create shortcut for git commands. e.g. git config --global alias.ci commit  This will create ci as alias to git commit in global config.
 
 git init 
-It will create new .git subdirectory in your current working directory. This will also create a new master branch. 
+It will create new .git subdirectory in your current working directory. This will also create a new main branch. 
 
 git init --bare
-A bare Git repository is a repository that is created without a Working Tree. This is used to create the remote repository initially and then push the changes from local repo to remote repo.
+A bare Git repository is a repository that is created without a Working Tree. This is used to create the remote repository initially and then push the changes from local repo to remote repo. In practical it means you will see the content of .git folder in your current directory instead of .git subdirectory.
 
 git commit --amend
 It can be used when you want to change the previous commit message. Git ammend internally creates new commit and replaces it with old commit so if you have pushed code to remote repo then except for modifying the commit message this command should not be used.
@@ -76,7 +84,9 @@ git diff branch1...branch2
 here branch2 head will be compared to point where branch1 and branch2 diverged.
 
 git rebase 
-To incorporate changes made in master branch to feature branch after feature branch is created and master branch is moved forward. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. you can use git rebase.
+To incorporate changes made in master branch to feature branch after feature branch is created and master branch is moved forward. you started new branch from master branch. After that there are some commits in master branch. you want to update your new branch to include the changes in master branch. But also you want to keep branch history clean. So that later you can clean merge your feature branch back into the main branch.
+rebasing re-writes the project history by creating brand new commits for each commit in the original branch.
+You should never use git rebase with public branches.
 
 what does git commit object contains ?
 1. a set of files, representing state of project at given point of time.
@@ -86,3 +96,29 @@ what does git commit object contains ?
 git fetch vs pull ?
 git fetch = only downloads commits files and refs to local repository. git fetch is mostly used when you want update some part of your code without touching working copy.
 git pull = download the remote content for active local branch and immediately executes git merge. 
+
+git merge = Integrate changes from one branch to another branch. 
+git blame = find out who and what changes has been made to given file.
+
+git double dot(..) vs triple dot(...) 
+git log A..B = It will show you all commits that B have but A don't have.
+git log A...B = It will show you all the commits A have but B don't have and all the commits B have but A don't have. (ie. mutually exclusive set).
+
+IMP :- double dot and triple dot have different meaning in git log and git diff commands.Below is the version for git diff and it's explaination.
+
+git diff foo..bar 
+git diff foo bar # same as above 
+Above both commands will show the difference between latest commits of both the branches.
+
+git diff foo...bar
+Above command will show the difference between the merge base of two branches and tip (latest commit) of bar. Merge base means the last comman commit between two branches. So the command will show the changes made in bar branch while ignoring the changes made to foo branch.
+https://stackoverflow.com/questions/7251477/what-are-the-differences-between-double-dot-and-triple-dot-in-git-dif
+
+git diff [file_name] = this command will compare the working tree with the index.
+git diff --cached = Changes between the index and your last commit
+git diff HEAD = Changes in working tree since your last commit.
+git diff --no-index = changes in one/two non-git things.
+
+git revert = It takes specified commit, undo the changes made in that commit and create a new commit with inverse changes. This prevents git from losing history. Other commands such as checkout and reset moves HEAD to given commit due to which the loss of history occurs.
+
+git clean = remove untracked files from working tree.
