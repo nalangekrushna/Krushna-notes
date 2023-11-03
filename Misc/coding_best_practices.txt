@@ -1,0 +1,8 @@
+Coding steps : 
+	Before start :
+		create git repo.
+		always pull latest changes first.
+		while merging git branches always use --squash.
+
+	New Python project
+		

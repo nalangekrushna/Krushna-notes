@@ -50,3 +50,5 @@ how to use service account to access aws s3 bucket?
 how to use network load balancer in ingress?
 what is ingress controller called?
  
+To use storage you need to install EBS CSI driver. It can be Amazon managed or Self managed. You will also need to provide IAM role with AmazonEBSCSIDriverPolicy policy.
+default storage class on kubernetes - 
