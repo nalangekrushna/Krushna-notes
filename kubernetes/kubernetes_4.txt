@@ -1,0 +1,25 @@
+
+Custom Resource Definition (CRD) = You need to create a CRD as well as custom controller for CRD to actually deploy it. 
+Operator framework = Operator consist of both CRD and CRD controller together. There are additional feature when using Operator framework.
+
+Kubernetes deployment strategies = first two are in-built strategies. Below that are not deployment strategies but can be implemented in different ways.
+1. Recreate = destroys all the pods at the same time, application is inaccessible in between.
+2. RollingUpdate (default)
+3. Blue Green = Blue (old version), Green (New Version), After new version passes initial tests, all the traffic is switched at the same time. Here we create a new deployment and change service selector to point to new version.
+4. Canary =  deploy new version and route small % of traffic to it. If successful then we use rolling update strategies to increase % of traffic routed to new version to 100%. Here create new deployment with least number of pod to start with small % of traffic.
+
+Give service account access to s3 bucket
+1. create service account
+2. create a resource based policy for s3 bucket.
+3. get account id and oidc providers urls.
+4. create trust relationship having principal as federated oidc provider.
+5. create role using above trust relationship and resource based s3 bucket policy.
+6. Annotate service account with iam role arn.
+
+Give someone access to eks cluster.
+In eks, access by IAM principals (users, roles) to aws eks is enabled by aws iam authenticator for kubernetes which runs on eks control plane. Authenticator gets it's config info from aws-auth configmap. creator of eks cluster gets "system:masters" permission. 
+
+1. find out correct rolebindings/clusterrolebindings for required authorisation level permissions.
+2. add additional kubernetes rolebindings/clusterrolebindings (e.g. system:masters, system:authenticated) to groups inside aws-auth configmap by editing kubectl edit -n kube-system configmap/aws-auth
+
+There will be default configmap already present. If not you cand download aws provided configmap and edit it and then apply it. 
