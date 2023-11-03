@@ -28,3 +28,25 @@ cloudwatch logs
 aws load balancer controller will be installed as deployment.
 daemonsets = cloudwatch agent, csi-secrets-store, fluent-bit
 namespaces = amazon cloudwatch
+
+why do you use eks managed nodes?
+There are 3 options to have nodes in eks.
+1. self managed node group = You have to manually provision and attach nodes to eks cluster.
+2. eks managed node group = Automates the provisioning and lifecycle management of nodes. There are no additional charges for managed node groups you only pay for aws resources you use.
+3. fargate = fargate provides on-demand, right sized compute for containers. Fargate managed provisioning, configuring and scaling. For same amount of compute and storage fargate will cost much more when application is scaled than eks managed node group.s
+
+Upgrading eks managed nodes steps = It asks for update strategy out of Rolling or forced. when you initiate node upgrade following things happen.
+1. eks randomly chooses nodes that needs to be upgraded upto maxUnavailable value.
+2. It drains pods from that node. Even after 15 mins pods are not evicted and no force flag set then upgrade fails with PodEviction error.
+3. eks cordons node after every pod evicted and waits for 60 seconds. for making service controller aware and remove node from list of active node.
+4. sends termination request to auto scaling group. and ASG launches new node with upgraded config in same AZ.
+5. repeats the process until all nodes are upgraded.
+
+ASG = when using ASG it is strongly recommended to use load balancer as ip addresses of ASG instances will changes due to autoscaling, termination etc. If you don't use load balancer then you need to update addresses in route 53 dns service with some complex setup.
+ASG supports target tracking scaling policy which has avg cpu utilisation, avg network in, avg network out and alb requests per taraget metrics for tracking. ASG also supports sns notifications for launch, terminate, faild to launcha and failed to terminate events.
+
+how to use service account to access aws s3 bucket?
+
+how to use network load balancer in ingress?
+what is ingress controller called?
+ 

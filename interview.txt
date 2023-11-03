@@ -1,10 +1,11 @@
 how alb routes the traffic?
-difference between statefulset and deployment in kubernetes?
-python how to get arguments.
-aws cdk's
-difference between aws ecs and aws eks
-calculate cidr blocks
-when to use replicaset instead of deployment
+	Ingress controller can be provided with path, path type and backend which consist of service name and target port.
+	
+difference between statefulset and deployment in kubernetes? - later
+python how to get arguments. - 
+difference between aws ecs and aws eks - later
+calculate cidr blocks - 
+when to use replicaset instead of deployment - while developing and testing.
 use cases for alb vs nlb
 what is netmask =  IPv4 addresses represented in CIDR notation are called network masks
 0.0.0.0/0 what is last bit called?
@@ -15,6 +16,7 @@ linux check cpu and networking usage
 terraform how to lock state file.
 s3 policies vs iam policies
 kubernetes how to update replicas
+
 kubernetes how to decide which service type to use
 what is null resource
 ec2 connection refused
@@ -34,3 +36,14 @@ how to access cluster through ssh
 how to access nodeport outside of cluster
 how ingress knows which service to select
 how to evenly distribute pods between different nodes.
+Kubernetes uses schedular configuration to decide on which node the pod should be deployed. Scheduling plugin called "NodeResourcesBalancedAllocation" will evenly distribute the pods.
+permissions mapping in kubernetes rbac and iam roles.
+How to access service from another namespace.
+How to access pods, nodes inside eks cluster.
+Types of ingress,
+how to create an alarm for ec2 instance.
+why did you use eks managed nodes?
+how to create nlb using ingress
+eks storage ebs volume plugin
+create aws ec2 alarm.
+schedule instance start stop by using aws event bus

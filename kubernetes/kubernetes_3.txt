@@ -1,0 +1,12 @@
+Kubernetes_3 
+
+Networking = when we talk about kubernetes networking it generally means networking between master, workers and between different nodes. Kubernetes doesn't come with pod networking solution.
+Network policy (default-All Allow) = It's another object in kubernetes cluster. You can link network policy to one or more pods. Network policies are stateful. It has two types Ingress or Egress. Policy only get applied to the type used in configuration for others it is All Allow by default. Network policies are enforced by network solution providers such as Kube-router (default), Calico, Romana, Weave-net etc. Some network solution providers don't support network policies such as Flannel.
+
+Pod networking = Kubernetes has defined requirements pod networking such as having ip address and ability to reach out to any pod on same or different nodes. There are different solutions out there such as flannel, weave-net, cilium etc. Kubernetes CNI managed in kubelets. pod networking solutions put thier agents on every node and they intercept packets going to other nodes. They already have info about pod location. So they takes care of routing the packet.
+
+Ip address Management (IPAM) in CNI = CNI comes with two built-in plugins to which you can outsource task of getting free ip addresses and assigning it to the pods. They are host-local and DHCP. As name suggests host-local managed IP address for local machine.
+
+CoreDNS = default DNS provider in kubernetes. CoreDNS creates a deployment with 2 pod in a replicaset in kube-system namespace for it to work. CoreDNS also creates a service named as kube-dns for nameserver resolution. Ip address of kube-dns server is passed as nameserver in pods.
+
+Ingress = Ingress uses different ingress controllers such as alb, ixtio, nginx, HAproxy, trafik etc to route the traffic and reverse proxy purposes. GCP load balancer and nginx controllers are maintained by kubernetes. Controller are deployed as a deployment. Ingress controller can be managed using configmap.

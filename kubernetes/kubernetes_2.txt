@@ -34,13 +34,45 @@ secrets in etcd are by default stored as plain text, Anyone with api access or e
 
 Init Container = To perform the tasks that has been done only at a startup. First initContainer will run and after it's successful execution main container will start. If initContainer fails kubernetes restart the pod.
 
-OS upgrades = kubernetes has pod eviction timeout of 5 mins so if you can complete update before 5 mins, you can take the node down. But there is another more safe way to do this by using kubernetes drain command. which will remove all the pods from current node and move them to other node. Then you can safely upgrade the node. then again using uncordon command you can get node back in use.
+OS upgrades = kubernetes has pod eviction timeout of 5 mins so if you can complete update before 5 mins, you can take the node down. But there is another more safe way to do this by using kubernetes drain command. which will remove all the pods from current node and move them to other node. Then you can cordon node to avoid scheduling pods on that node. Then you can safely upgrade the node. then again using uncordon command you can get node back in use.
 
-Cluster Upgrade process = 
+Backup and restore method = Following three are backup candidates in kubernetes.
+1. Resource configurations = kubectl get all -A -o yaml > config.yaml
+2. ETCD cluster = Using etcdctl cli tool take snapshot save which will save data directory /var/lib/etcd to desired location. From there you can stop api-server and then restore snapshot by passing saved directory.
+3. Persistent Volumes = 
 
-Backup and restore method = 
+Authentication = There are following actors who need to access kubernetes cluster :  Developers, Admin, end users and bots.
+For Admins and Developers we create Users in Kubernetes for Bots we create a Service Accounts. Kube-apiserver is responsible for authenticating the users. Kube-apiserver can authenticate using following methods.
+1. static password file
+2. Static token file
+3. Certificates
+4. Identity Services
 
- 
+Kubeconfig = 
+kubectl config = $HOME/.kube/config = This file has three sections. 
+1. Clusters
+2. Users
+3. Contexts = Contexts defines which cluster account will be used to access which cluster.
+4. current-context
+
+Kubectl proxy = 
+
+Authorisation = There are 4 types of authorisation in Kubernetes
+1. Node = kubelets needs to access kube-apiserver, for that purpose Any nodes with System node group and system node in prefix is authorised by special authoriser called node authoriser.
+2. ABAC = You use a policy file to define access to different roles. Each time policy file is updated you need to restart kube-apiserver for changes to take effect.
+3. RBAC = 
+4. Webhook = Use third party authentication service to decide users permissions.
+5. AlwaysAllow (default) = 
+6. AlwaysDeny = 
+
+We can use multiple authorisation modes same time. It authorises request by order of authorisation modes provided. When a authorisation mode denies the request it is passed to next mode.
+
+RoleBindings = role binding grants permission defined in a role to a user or set of users.
+
+cluster Roles = Roles and Role bindings are namespaced (ie. only applicable within given namespace.) You can also isolate pods, services and deployment using namespaces. But some resources such as nodes cannot be assigned to a namespace. This resources are called cluster scoped resources. Other resouces are categoriesed as namespaced resources. Example of cluster scoped resouces are pv and namespaces. Cluster roles and cluster bindings are used to give permissions on cluster scoped resources.
+
+I am currently studying Service Accounts in Mumshad manambeth's CKA udemy course.
+
 	
 Kubernetes Service Account : Used to identify non-human identities in kubernetes cluster. Application pods, system components and internal or external entities can use service account to perform different actions. Service accounts are different from user accounts which are authenticated human users in cluster. 
 when you create a cluster, kubernetes automatically creates service account named "default" for every namespace in your cluster. Default SA don't get any permission other than api discovery and recreated if you delete it. Also pods automatically gets assigned default SA for the namespace if not provided.
@@ -62,5 +94,5 @@ explain kubernetes architecture two main components :
 2. worker nodes
 	
 ingress
-statefulset
+statefulset = 
 Gateway    
