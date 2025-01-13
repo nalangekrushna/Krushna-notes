@@ -1,0 +1,3 @@
+Cloud exercises
+
+Create and Manage a Virtual Machine: Using any cloud provider like AWS, Azure, or Google Cloud, create a virtual machine, SSH into it, install some software, and then destroy it.

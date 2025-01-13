@@ -1,0 +1,10 @@
+Study targets
+
+Complete AWS well architect for given feature.
+buy and complete aws solution architect professional
+Kubernetes certification
+Open Policy Agent - security
+Implement terraform plugin in self service portal
+Just in time resource provisioning for load testing on database, by creating different profiles such as development, production, moderate etc.
+Daily automated build, security scanning and minor version upgrades/vulnerability suppression for security vulnerabilities
+Automated jira ticket creation for support tickets

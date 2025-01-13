@@ -1,0 +1,6 @@
+
+Well architected principles -
+	
+	Operational excellance - perform operations as code, make small reversible changes, Anticipate failure
+	Security - principle of least privilege, identify human or machine, defence in depth, capture and analyse logs and events in real time, maintain tracability, incident response, 
+	Reliability - Automatically recover from failure, test recovery procedure, horizontal scaling, monitor demand and workload utilization, 
