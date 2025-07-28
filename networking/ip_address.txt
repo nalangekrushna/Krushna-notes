@@ -1,0 +1,6 @@
+Ip address finding
+
+Following command gives correct ip address
+	curl ifconfig.me - ipv4 or ipv6 correct one
+	dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com - ipv4
+	dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com - ipv6

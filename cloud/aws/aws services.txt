@@ -31,13 +31,9 @@ AWS cloudfront Reports :
 AWS IAM Reports :
 	Credentials Report = You can generate and download a credential report that lists all users in your account and the status of their various credentials, including passwords, access keys, and MFA devices. 
 	
-AWS SAM = The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications.
+AWS SAM = The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications. Sam consist of sam templates and sam cli. Additionally aws also provides sam accelerate to do the local testing.
 
 Oracle RAC(Real Application Cluster) = With RAC, we can apply rolling patches to eliminate the downtime while patching. aws didn't support oracle RAC config.
-
-S3 transfer acceleration = Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront’s globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
-
-aws acl = It defines which AWS accounts or groups are granted access and the type of access. When a request is received against a resource, Amazon S3 checks the corresponding ACL to verify that the requester has the necessary access permissions.
 
 aws macie = Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII). This can help you meet regulations, such as the Health Insurance Portability and Accountability Act (HIPAA) and General Data Privacy Regulation (GDPR). 
 
@@ -73,4 +69,7 @@ The cfn-signal helper script is a wrapper thats signals an AWS CloudFormation Wa
 The cfn-hup helper script is a daemon that checks for updates to metadata and executes custom hooks when changes are detected. 
 
 Finally, there is no helper script named cfn-deploy.
+
+AWS cloudformation stacksets = aws cloudformation stacksets are used to provision resources in multiple accounts in multiple regions. Here using Administrator account having cloudformation templates can deploy into the multi account, multi-region setup.
+
 

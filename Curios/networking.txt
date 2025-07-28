@@ -1,0 +1,20 @@
+networking
+
+IPv4 addresses - a 32 bit numeric value eg. 172.16.0.0 (private ip address)
+IPv6 addresses - a 128bit alphanumeric value  e.g. value1:value2:value3:value4:value5:value6:value7:value8
+
+private IPv4 address - range of non-internet facing ip addresses used in internal networks. Private IP addresses are provided by network devices such as routers using network address translation (NAT). Private IPs have following 3 different ranages.
+	Class A - 10.0.0.0 to 10.255.255.255 (large networks) (8 bits for network, 24 bits for hosts)
+	Class B - 172.16.0.0 to 172.31.255.255 (medium networks) (16 bits for network, 16 bits for hosts)
+	Class C - 192.168.0.0 to 192.168.255.255 (small networks) (24 bits for network, 8 bits for hosts)
+
+If you try to pind private ip address from the public internet, router will simply drop your packet.
+
+Private IPv6 Address - Similar use case as of private IPv4 addresses
+	fc07::/7 - 
+	fec0::/10 - 
+
+
+
+Dynamic host configuration protocol (DHCP) - is a system of assigning IP address to the network devices on an organisation network. DHCP only used to assign private ip addresses on org network and not for assigning the public ipv4 addresses.
+

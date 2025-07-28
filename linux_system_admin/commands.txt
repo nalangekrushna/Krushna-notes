@@ -1,0 +1,15 @@
+Essential commands
+
+linux os is case-sensitive.
+
+find - slower, but does the realtime search, has more options than locate.
+locate - faster, but relies on database, limited number of attributes searchable. Command to update database for locate command it sudo updatedb.
+
+File System -  EXT4 - best choice for linux system as is supports journaling.
+	exFAT or FAT32 - best choice for removable devices like usb pen drive.
+	swap - not actual file system but a place to store the data in case of low memory situation.
+
+File viewing commands - cat, more, less
+less (best when having lot of content) - supports page changig, up and down scrolling and real-time file monitoring. additionally keyword search is supported in less.
+
+sort command - 

@@ -1,0 +1,9 @@
+Gradle Basics
+
+Core Concepts
+
+If root folder of project contains gradle sub-directory then it is a gradle project. another way to find gradle project is gradlew binary in the root folder of the project.
+
+settings.gradle file contains a root project name and subprojects. build.gradle file contains build script this file can be at root level or sub-project/folder level.
+
+./gradlew build is the recommeneded way to run the commands. as it also uses pre-defined version of gradle to run the commands.

@@ -8,7 +8,7 @@ critical security patches installation.
 
 user is responsible for Query Optimization in RDS to improve its performance.
 
-Amazon Aurora = fully managed, MySQL-compatible, relational database engine. An Amazon Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone containing a copy of the cluster data. Two types of instances make up an Aurora DB cluster
+Amazon Aurora = fully managed, MySQL-compatible and PostgreSQL relational database engine. An Amazon Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone containing a copy of the cluster data. Two types of instances make up an Aurora DB cluster
 	Primary Instance = A primary instance supports read-write workloads and performs all of the data modifications to the cluster volume. Each Amazon Aurora DB cluster has one primary instance.
 	Aurora Replica = An Aurora Replica supports only read operations. Each DB cluster can have up to 15 Aurora Replicas in addition to the primary instance
 Aurora cluster volume/table can grow to a maximum size of 64 TB.

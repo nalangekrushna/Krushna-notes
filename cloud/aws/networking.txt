@@ -5,7 +5,9 @@ AWS Direct Connect (connection)= allows you to establish dedicated network conne
 AWS direct connect does not encrypt traffic in transit by default. You can combine AWS VPC VPN with direct connect to provide IPSec encrypted private connection.  
 customer data center => customer router => customer cage in AWS direct connect location => AWS cage in AWS direct connect location having AWS Direct connect endpoint => AWS direct connect in AWS region
 Then we have a private Virtual Interface which connects to single AWS vpc in same AWS region of direct connect to a virtual Gateway on VPC.
-WE also have a public virtual interface (VIF) which connects to all the AWS regions but not to the internet.
+WE also have a public virtual interface (VIF) which connects to all the AWS regions for the public endpoints.
+
+AWS Direct Connect Transit Virtual Interface = this allows you to connect any account, any number of vpcs in any region. This interface connects with AWS VPC transit gateway.
 
 
 aws direct connect connection between vpc and on-premise prerequisite

@@ -1,0 +1,23 @@
+learn_networking
+
+First, understand the OSI. Memorize that bad boy, write lines if you have to. Test yourself later by pairing protocols with the OSI model ("Probably Didn't Need Those Stupid Packets, Anyway" is my favorite acronym)
+Learn how IPv4 addresses work (Public IPs, Private IPs, subnets, routing tables, NAT)
+Learn how MAC addresses work (ARP tables, switches, DHCP)
+Learn the difference between routers and switches (L2 vs L3 OSI)
+Learn about TCP and UDP (TCP = ALL the data will be received correctly, in order. UDP = All data will be sent, but it may not arrive, or it may arrive mangled, and that's OK)
+Learn about DHCP (Static IPs vs Dynamic, IP reservations)
+Learn about DNS (A records, CNAME records, MX records, NS records, SRV records)
+Learn about IPv6 (Unfortunately, not extremely useful right now. Most companies are IPv4 only)
+
+let's do a debugging session end to end to understand the kubernetes networking.
+at the same time go through the aws side also of it.
+	let's start with the website.
+		you do nslookup website name, it returns you an ip address.
+
+
+when you type the url in the browser how browser resolve ip address of the website?
+	1. First browser sends request to dns server. This DNS server is configured in your local machine. This is also called DNS resolver and is generally your ISP. set by DHCP protocol.
+	2. then this DNS server will call root DNS server.
+	3. Then root level DNS server will provide address of TLD domain name server.
+	4. TLD will provide address of authorative dns server for that website.
+	5. authorative dns server will provide the ip address for given website.

@@ -40,7 +40,7 @@ CNAME = Canonical Name Record
 cloudformation = Infrastructure as a service. Automates the processs of infrastructure provisioning by using a wizard to create a template which can be used in any region. Alternatively you can write it manually.
 aws guardDuty = Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts, workloads, and data stored in Amazon S3. It will be used for everything except for web application.
 aws eks = managed kubernates service
-codeCommit = a private git version control
+codeCommit(deprecated) = a private git version control
 aws application discovery service = AWS Application Discovery Service helps enterprise customers plan migration projects by gathering information about their on-premises data centers. This info can be used to find out TCO (Total Cost of Ownership)
 
 Security Groups = acts as a virtual firewall that controls the traffic for one or more instances
